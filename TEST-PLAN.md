@@ -148,3 +148,9 @@ verification gaps and limitations honestly; and the APK is clearly marked as tes
 For a production release, additionally required: real TV hardware verification, an independent
 security review, production signing, and a completed functional matrix including the `NOT RUN` items
 above.
+
+## Streaming / third-party app verification (2026-10-29, alpha2)
+
+- VLC for Android TV **3.7.1 (official x86_64 build, VideoLAN)** was sideloaded on the Google TV emulator while GeDefense TV protection was active.
+- VLC successfully played a public HTTPS HLS test stream (`test-streams.mux.dev`, HTTP 200 segment responses in its logs, decoded video frame visible). This verifies that a real third-party streaming app keeps working through the local loopback VPN.
+- YouTube is not installed in the emulator system image and could not be signed in/tested; Play Store, Google TV launcher and Google Play services continue to work under protection. Real TV hardware and YouTube playback remain **NOT_TESTED**.
