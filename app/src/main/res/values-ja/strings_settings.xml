@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings strings for the user-adjustable UI scale (Darstellung). -->
+<resources>
+
+    <string name="settings_section_appearance">表示</string>
+    <string name="settings_ui_scale_label">UI スケール</string>
+    <string name="settings_ui_scale_desc">視聴距離に合わせて内容と文字を拡大縮小します。</string>
+    <string name="settings_ui_scale_hint">コンテンツには即時適用されます。ナビゲーションはアプリ再起動後にスケールされます。</string>
+    <string name="settings_ui_scale_compact">コンパクト</string>
+    <string name="settings_ui_scale_normal">標準</string>
+    <string name="settings_ui_scale_large">大</string>
+    <string name="settings_ui_scale_changed">UI スケール：%1$s。</string>
+
+</resources>

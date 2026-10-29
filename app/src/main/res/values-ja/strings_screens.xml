@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Additional German screens strings, kept separate from the base string table. -->
+<resources>
+
+    <!-- ==================================================== Persisted scan summary -->
+    <string name="summary_last_run">前回の実行</string>
+    <string name="label_collectors">チェック範囲</string>
+    <string name="home_subtitle_summary">前回のチェックは完了しました。再起動後、検出結果の詳細はメモリに残りません。</string>
+    <string name="home_summary_details_note">前回実行の詳細は再起動後メモリに残りません。最新の検出結果を得るには再チェックしてください。</string>
+    <string name="home_summary_findings_note">前回実行の検出結果は再起動後に一覧として再構築されません。最新の検出結果を得るには再チェックしてください。</string>
+    <string name="home_device_details_note">前回実行のデバイスデータは再起動後メモリに残りません。</string>
+    <string name="findings_summary_title">メモリに検出結果の詳細なし</string>
+    <string name="findings_summary_message">前回のチェックは完了していますが、再起動後に検出結果の詳細は復元されません。最新の検出結果を得るには再チェックしてください。</string>
+    <string name="check_collectors_after_restart">前回実行のチェック範囲は再起動後メモリに残りません。</string>
+    <string name="apps_summary_empty_title">メモリにアプリインベントリなし</string>
+    <string name="apps_summary_empty_message">前回のチェックは完了していますが、再起動後にアプリの詳細はメモリに残りません。表示可能なアプリを収集するには再チェックを開始してください。</string>
+    <string name="hardening_summary_empty_title">メモリに強化の詳細なし</string>
+    <string name="hardening_summary_empty_message">前回のチェックは完了していますが、詳細状態は再起動後メモリに残りません。最新の強化検出結果を得るには再チェックしてください。</string>
+
+    <!-- ================================================================= Home -->
+    <string name="home_android_value">%1$s (API %2$d)</string>
+    <string name="home_label_patch_assessment">パッチ評価</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow_format">%1$s · %2$s</string>
+    <string name="finding_detail_digest_short">%1$s …</string>
+    <string name="finding_detail_digest_none">なし</string>
+
+    <!-- ============================================================ Empty states -->
+    <string name="empty_no_check_title">チェック未実施</string>
+    <string name="empty_no_check_message">最初のローカルチェックを開始して、セキュリティ状態、検出結果、証跡を生成してください。</string>
+    <string name="empty_no_findings_full_title">検出結果なし</string>
+    <string name="empty_no_findings_full_message">前回のチェックでは可視範囲に検出結果はありませんでした。これは完全な安全の証明ではありません。</string>
+    <string name="empty_no_findings_partial_title">可視範囲に検出結果なし</string>
+    <string name="empty_no_findings_partial_message">可視範囲は限定的でした。不可視の範囲は未チェックであり、安全の証明ではありません。</string>
+
+    <!-- ================================================================= Apps -->
+    <string name="apps_section_list">アプリ一覧</string>
+    <string name="apps_list_limit">先頭 %1$d 件の表示可能なアプリを表示しています。</string>
+    <string name="apps_visibility_scope">このチェックでの可視性：%1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_records_label">記録</string>
+    <string name="evidence_events_limit">最新 %1$d 件のイベントを表示しています。</string>
+    <string name="evidence_event_none">イベント種別なし</string>
+
+    <!-- ======================================================= Check details -->
+    <string name="check_collector_error">エラー：%1$s</string>
+    <string name="check_collectors_pending">チェック範囲は実行中のチェック完了後に表示されます。</string>
+    <string name="check_previous_note">表示されているチェック範囲は前回完了したチェックのものです。</string>
+
+    <!-- ========================================================= Threat intel -->
+    <string name="ti_status_value">フィード最新：%1$d / %2$d · 古い：%3$d</string>
+
+    <!-- ================================================= Settings (informational) -->
+    <string name="settings_retention_info_title">ローカル証跡の保存</string>
+    <string name="settings_retention_info_value">手動削除まで</string>
+    <string name="settings_retention_info_body">V1 では自動ローテーションと定時削除は有効ではありません。ローカル証跡は「証跡」領域で明示的に確認した後に削除されます。</string>
+    <string name="settings_retention_cycle">値：7、30、90、180 日。再度有効化すると次に切り替わります。</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_publisher_label">発行元</string>
+    <string name="about_publisher_value">VisionGaiaTechnology</string>
+    <string name="about_source_label">アプリパッケージ</string>
+
+</resources>

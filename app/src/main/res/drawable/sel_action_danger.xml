@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Destructive action: signal red reserved for explicit, confirmed destructive steps. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/tv_radius_control" />
+            <solid android:color="@color/tv_transparent" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/tv_divider" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/tv_radius_control" />
+                    <solid android:color="@color/tv_danger" />
+                </shape>
+            </item>
+            <item
+                android:bottom="@dimen/tv_focus_stroke"
+                android:left="@dimen/tv_focus_stroke"
+                android:right="@dimen/tv_focus_stroke"
+                android:top="@dimen/tv_focus_stroke">
+                <shape android:shape="rectangle">
+                    <corners android:radius="10dp" />
+                    <solid android:color="@color/tv_danger_fill_focus" />
+                    <stroke
+                        android:width="1dp"
+                        android:color="@color/tv_danger" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/tv_radius_control" />
+            <solid android:color="@color/tv_danger_fill_focus" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/tv_danger" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/tv_radius_control" />
+            <solid android:color="@color/tv_danger_fill" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/tv_danger_stroke" />
+        </shape>
+    </item>
+
+</selector>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Check-screen strings for the ring-based status head (2026 redesign). -->
+<resources>
+
+    <string name="check_ring_caption_collectors">范围</string>
+    <string name="check_ring_caption_findings">发现项</string>
+    <string name="check_ring_caption_running">进行中</string>
+    <string name="check_ring_caption_state">状态</string>
+    <string name="check_ring_unknown">…</string>
+    <string name="check_status_head_eyebrow">检查状态</string>
+    <string name="check_collectors_head">检查范围</string>
+
+</resources>

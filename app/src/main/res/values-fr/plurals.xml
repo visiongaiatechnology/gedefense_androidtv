@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Plural forms for counted UI text (values-fr). -->
+<resources>
+
+    <plurals name="count_findings">
+        <item quantity="one">%1$d constat</item>
+        <item quantity="other">%1$d constats</item>
+        <item quantity="many">%1$d constats</item>
+    </plurals>
+
+    <plurals name="count_events">
+        <item quantity="one">%1$d entrée</item>
+        <item quantity="other">%1$d entrées</item>
+        <item quantity="many">%1$d entrées</item>
+    </plurals>
+
+    <plurals name="count_collectors">
+        <item quantity="one">%1$d zone de vérification</item>
+        <item quantity="other">%1$d zones de vérification</item>
+        <item quantity="many">%1$d zones de vérification</item>
+    </plurals>
+
+    <plurals name="count_apps">
+        <item quantity="one">%1$d app</item>
+        <item quantity="other">%1$d apps</item>
+        <item quantity="many">%1$d apps</item>
+    </plurals>
+
+    <plurals name="count_feeds">
+        <item quantity="one">%1$d flux</item>
+        <item quantity="other">%1$d flux</item>
+        <item quantity="many">%1$d flux</item>
+    </plurals>
+
+    <plurals name="count_evidence_records">
+        <item quantity="one">%1$d entrée enregistrée</item>
+        <item quantity="other">%1$d entrées enregistrées</item>
+        <item quantity="many">%1$d entrées enregistrées</item>
+    </plurals>
+
+    <plurals name="count_collector_findings">
+        <item quantity="one">%1$d constat</item>
+        <item quantity="other">%1$d constats</item>
+        <item quantity="many">%1$d constats</item>
+    </plurals>
+
+    <plurals name="count_more_findings">
+        <item quantity="one">%1$d constat supplémentaire dans la liste</item>
+        <item quantity="other">%1$d constats supplémentaires dans la liste</item>
+        <item quantity="many">%1$d constats supplémentaires dans la liste</item>
+    </plurals>
+
+    <plurals name="count_removed_packages">
+        <item quantity="one">%1$d paquet supprimé depuis la base de comparaison.</item>
+        <item quantity="other">%1$d paquets supprimés depuis la base de comparaison.</item>
+        <item quantity="many">%1$d paquets supprimés depuis la base de comparaison.</item>
+    </plurals>
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Interactive list row: unfocused rows stay containerless (no card inflation). D-pad focus draws a
+  4dp bright-gold ring plus a warm glass fill so the active row is unmistakable at 10 feet.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/tv_radius_control" />
+            <solid android:color="@color/tv_transparent" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/tv_radius_control" />
+                    <solid android:color="@color/tv_gold_bright" />
+                </shape>
+            </item>
+            <item
+                android:bottom="@dimen/tv_focus_stroke"
+                android:left="@dimen/tv_focus_stroke"
+                android:right="@dimen/tv_focus_stroke"
+                android:top="@dimen/tv_focus_stroke">
+                <shape android:shape="rectangle">
+                    <corners android:radius="10dp" />
+                    <solid android:color="@color/tv_control_fill_focus" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/tv_radius_control" />
+            <solid android:color="@color/tv_control_fill_focus" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/tv_radius_control" />
+            <solid android:color="@color/tv_transparent" />
+        </shape>
+    </item>
+
+</selector>

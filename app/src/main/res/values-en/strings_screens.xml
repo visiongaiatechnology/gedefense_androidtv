@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Additional English screen strings, kept separate from the base string table. -->
+<resources>
+
+    <!-- ==================================================== Persisted scan summary -->
+    <string name="summary_last_run">Last run</string>
+    <string name="label_collectors">Check areas</string>
+    <string name="home_subtitle_summary">Last check completed. Finding details are no longer in memory after a restart.</string>
+    <string name="home_summary_details_note">Details from the last run are no longer in memory after a restart. Re-run the check for current findings.</string>
+    <string name="home_summary_findings_note">Findings from the last run are not rebuilt as a list after a restart. Re-run the check for current findings.</string>
+    <string name="home_device_details_note">Device data from the last run is no longer in memory after a restart.</string>
+    <string name="findings_summary_title">No finding details in memory</string>
+    <string name="findings_summary_message">The last check is complete, but finding details are not reconstructed after a restart. Re-run the check for current findings.</string>
+    <string name="check_collectors_after_restart">The check areas of the last run are no longer in memory after a restart.</string>
+    <string name="apps_summary_empty_title">App inventory not in memory</string>
+    <string name="apps_summary_empty_message">The last check is complete, but app details are no longer in memory after a restart. Run a new check to capture visible apps.</string>
+    <string name="hardening_summary_empty_title">Hardening details not in memory</string>
+    <string name="hardening_summary_empty_message">The last check is complete, but detailed states are no longer in memory after a restart. Re-run the check for current hardening findings.</string>
+
+    <!-- ================================================================= Home -->
+    <string name="home_android_value">%1$s (API %2$d)</string>
+    <string name="home_label_patch_assessment">Patch assessment</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow_format">%1$s · %2$s</string>
+    <string name="finding_detail_digest_short">%1$s …</string>
+    <string name="finding_detail_digest_none">Not available</string>
+
+    <!-- ============================================================ Empty states -->
+    <string name="empty_no_check_title">No check yet</string>
+    <string name="empty_no_check_message">Start the first local check to generate security posture, findings and evidence.</string>
+    <string name="empty_no_findings_full_title">No findings</string>
+    <string name="empty_no_findings_full_message">The last check found no findings in visible areas. That is not proof of complete security.</string>
+    <string name="empty_no_findings_partial_title">No findings in visible areas</string>
+    <string name="empty_no_findings_partial_message">Visibility was limited. Non-visible areas are unchecked – that is not proof of security.</string>
+
+    <!-- ================================================================= Apps -->
+    <string name="apps_section_list">App list</string>
+    <string name="apps_list_limit">The first %1$d visible apps are shown.</string>
+    <string name="apps_visibility_scope">Visibility in this check: %1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_records_label">Entries</string>
+    <string name="evidence_events_limit">The last %1$d events are shown.</string>
+    <string name="evidence_event_none">No event type</string>
+
+    <!-- ======================================================= Check details -->
+    <string name="check_collector_error">Error: %1$s</string>
+    <string name="check_collectors_pending">Check areas are listed after the running check finishes.</string>
+    <string name="check_previous_note">The listed check areas come from the last completed check.</string>
+
+    <!-- ========================================================= Threat intel -->
+    <string name="ti_status_value">Feeds current: %1$d of %2$d · stale: %3$d</string>
+
+    <!-- ================================================= Settings (informational) -->
+    <string name="settings_retention_info_title">Local evidence retention</string>
+    <string name="settings_retention_info_value">Until manual deletion</string>
+    <string name="settings_retention_info_body">Automatic rotation and timed deletion are not active in V1. Local evidence is deleted in the evidence section after explicit confirmation.</string>
+    <string name="settings_retention_cycle">Values: 7, 30, 90 or 180 days. Activating again cycles onward.</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_publisher_label">Publisher</string>
+    <string name="about_publisher_value">VisionGaiaTechnology</string>
+    <string name="about_source_label">Application package</string>
+
+</resources>

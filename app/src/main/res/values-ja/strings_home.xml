@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hero / KPI strings for the 2026 Home redesign. -->
+<resources>
+
+    <string name="home_hero_eyebrow">概要</string>
+    <string name="home_hero_title">セキュリティ状態</string>
+    <string name="home_top_findings">主な検出結果</string>
+    <string name="home_hero_last_check">前回のチェック：%1$s · %2$s</string>
+    <string name="home_hero_never_checked">このデバイスではまだチェックを実行していません</string>
+    <string name="home_hero_band_caption">前回のローカルチェックに基づく評価</string>
+
+    <string name="home_metric_android">Android</string>
+    <string name="home_metric_android_caption">パッチ：%1$s</string>
+    <string name="home_metric_apps">アプリ</string>
+    <string name="home_metric_apps_caption">パッケージ可視性が制限</string>
+    <string name="home_metric_feeds">フィード</string>
+    <string name="home_metric_feeds_caption">ローカル脅威インテリジェンス</string>
+    <string name="home_metric_collectors">スキャン</string>
+    <string name="home_metric_collectors_caption">カバレッジ：%1$s</string>
+    <string name="home_metric_no_data">—</string>
+    <string name="home_metric_unknown">利用不可</string>
+
+    <string name="home_summary_title">前回の実行</string>
+    <string name="home_hero_cta">チェックを開始</string>
+    <string name="home_hero_cta_rerun">再チェック</string>
+
+</resources>

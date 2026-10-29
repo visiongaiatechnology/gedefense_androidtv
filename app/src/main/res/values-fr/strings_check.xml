@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Check-screen strings for the ring-based status head (2026 redesign). -->
+<resources>
+
+    <string name="check_ring_caption_collectors">Zones</string>
+    <string name="check_ring_caption_findings">Constats</string>
+    <string name="check_ring_caption_running">En cours</string>
+    <string name="check_ring_caption_state">État</string>
+    <string name="check_ring_unknown">…</string>
+    <string name="check_status_head_eyebrow">État de la vérification</string>
+    <string name="check_collectors_head">Zones de vérification</string>
+
+</resources>

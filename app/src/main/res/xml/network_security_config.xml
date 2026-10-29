@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--
+      TLS-only transport for the TV app: no cleartext traffic, only the system trust anchors.
+      No user-installed CAs are trusted, so a locally installed interception certificate cannot be
+      used to read feed traffic.
+    -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

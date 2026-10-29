@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Additional German screens strings, kept separate from the base string table. -->
+<resources>
+
+    <!-- ==================================================== Persisted scan summary -->
+    <string name="summary_last_run">最近一次运行</string>
+    <string name="label_collectors">检查范围</string>
+    <string name="home_subtitle_summary">最近一次检查已完成。重启后，发现项详情不再保留在内存中。</string>
+    <string name="home_summary_details_note">最近一次运行的详情在重启后不再保留在内存中。请重新检查以获取当前发现项。</string>
+    <string name="home_summary_findings_note">重启后不会重新构建最近一次运行的发现项列表。请重新检查以获取当前发现项。</string>
+    <string name="home_device_details_note">最近一次运行的设备数据在重启后不再保留在内存中。</string>
+    <string name="findings_summary_title">内存中无发现项详情</string>
+    <string name="findings_summary_message">最近一次检查已完成，但重启后不会重建发现项详情。请重新检查以获取当前发现项。</string>
+    <string name="check_collectors_after_restart">最近一次运行的检查范围在重启后不再保留在内存中。</string>
+    <string name="apps_summary_empty_title">内存中无应用清单</string>
+    <string name="apps_summary_empty_message">最近一次检查已完成，但重启后应用详情不再保留在内存中。启动新检查以采集可见应用。</string>
+    <string name="hardening_summary_empty_title">内存中无加固详情</string>
+    <string name="hardening_summary_empty_message">最近一次检查已完成，但详细状态在重启后不再保留在内存中。请重新检查以获取当前加固发现项。</string>
+
+    <!-- ================================================================= Home -->
+    <string name="home_android_value">%1$s (API %2$d)</string>
+    <string name="home_label_patch_assessment">补丁评估</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow_format">%1$s · %2$s</string>
+    <string name="finding_detail_digest_short">%1$s …</string>
+    <string name="finding_detail_digest_none">不存在</string>
+
+    <!-- ============================================================ Empty states -->
+    <string name="empty_no_check_title">尚无检查</string>
+    <string name="empty_no_check_message">启动首次本地检查，以生成安全状态、发现项和证据。</string>
+    <string name="empty_no_findings_full_title">无发现项</string>
+    <string name="empty_no_findings_full_message">最近一次检查在可见范围内未发现异常。这不能证明完全安全。</string>
+    <string name="empty_no_findings_partial_title">可见范围内无发现项</string>
+    <string name="empty_no_findings_partial_message">可见范围受限。不可见范围未经检查——这不能证明安全。</string>
+
+    <!-- ================================================================= Apps -->
+    <string name="apps_section_list">应用列表</string>
+    <string name="apps_list_limit">仅显示前 %1$d 个可见应用。</string>
+    <string name="apps_visibility_scope">本次检查中的可见性：%1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_records_label">记录</string>
+    <string name="evidence_events_limit">仅显示最近 %1$d 个事件。</string>
+    <string name="evidence_event_none">无事件类型</string>
+
+    <!-- ======================================================= Check details -->
+    <string name="check_collector_error">错误：%1$s</string>
+    <string name="check_collectors_pending">检查范围将在当前检查完成后列出。</string>
+    <string name="check_previous_note">列出的检查范围来自最近一次已完成的检查。</string>
+
+    <!-- ========================================================= Threat intel -->
+    <string name="ti_status_value">情报源最新：%1$d / %2$d · 已过期：%3$d</string>
+
+    <!-- ================================================= Settings (informational) -->
+    <string name="settings_retention_info_title">本地证据保留</string>
+    <string name="settings_retention_info_value">直至手动删除</string>
+    <string name="settings_retention_info_body">V1 未启用自动轮换和定时删除。本地证据需在“证据”区域明确确认后删除。</string>
+    <string name="settings_retention_cycle">可选值：7、30、90 或 180 天。再次启用将切换到下一个。</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_publisher_label">发布者</string>
+    <string name="about_publisher_value">VisionGaiaTechnology</string>
+    <string name="about_source_label">应用包</string>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings strings for the user-adjustable UI scale (Darstellung). -->
+<resources>
+
+    <string name="settings_section_appearance">显示</string>
+    <string name="settings_ui_scale_label">界面缩放</string>
+    <string name="settings_ui_scale_desc">按观看距离缩放内容和字体。</string>
+    <string name="settings_ui_scale_hint">立即作用于内容；导航需重启应用后才会缩放。</string>
+    <string name="settings_ui_scale_compact">紧凑</string>
+    <string name="settings_ui_scale_normal">标准</string>
+    <string name="settings_ui_scale_large">大</string>
+    <string name="settings_ui_scale_changed">界面缩放：%1$s。</string>
+
+</resources>

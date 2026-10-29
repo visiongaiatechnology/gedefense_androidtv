@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Softer glass surface for secondary information zones (cool edge, no highlight). -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/tv_radius_panel" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/tv_glass_panel_soft"
+                android:startColor="@color/tv_glass_panel_soft"
+                android:type="linear" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/tv_glass_stroke_cool" />
+        </shape>
+    </item>
+</layer-list>

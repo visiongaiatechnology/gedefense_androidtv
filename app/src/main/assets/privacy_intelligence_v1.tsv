@@ -1,0 +1,29 @@
+# GeDefense Privacy Intelligence v1
+# id\tdomain\tincludeSubdomains\tcategory\tconfidence\tbreakageRisk\tessential\tsourceId\tsourceUrl\tlicenseId\tobservedAt
+google-connectivity-android	connectivitycheck.android.com	true	ESSENTIAL_CONNECTIVITY	HIGH	LOW	true	google-android-enterprise	https://support.google.com/work/android/answer/10513641	REFERENCE	2026-09-22
+google-connectivity-gstatic	connectivitycheck.gstatic.com	true	ESSENTIAL_CONNECTIVITY	HIGH	LOW	true	google-android-enterprise	https://support.google.com/work/android/answer/10513641	REFERENCE	2026-09-22
+google-fcm-mtalk	mtalk.google.com	true	ESSENTIAL_PUSH	HIGH	LOW	true	google-android-enterprise	https://support.google.com/work/android/answer/10513641	REFERENCE	2026-09-22
+google-device-provisioning	device-provisioning.googleapis.com	true	ESSENTIAL_CONNECTIVITY	HIGH	LOW	true	google-android-enterprise	https://support.google.com/work/android/answer/10513641	REFERENCE	2026-09-22
+google-ota-primary	ota.googlezip.net	true	ESSENTIAL_UPDATE	HIGH	LOW	true	google-android-enterprise	https://support.google.com/work/android/answer/10513641	REFERENCE	2026-09-22
+xiaomi-tracking-miui	tracking.miui.com	true	DEVICE_TELEMETRY	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+xiaomi-tracking-intl	tracking.intl.miui.com	true	DEVICE_TELEMETRY	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+xiaomi-mistat	data.mistat.xiaomi.com	true	ANALYTICS	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+xiaomi-mistat-intl	data.mistat.intl.xiaomi.com	true	ANALYTICS	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+xiaomi-abtest	abtest.mistat.xiaomi.com	true	ANALYTICS	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+xiaomi-abtest-intl	abtest.mistat.intl.xiaomi.com	true	ANALYTICS	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+xiaomi-track-ad	track.ad.xiaomi.com	true	ADS	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+xiaomi-sdkconfig-ad	sdkconfig.ad.xiaomi.com	true	ADS	HIGH	LOW	false	xiaomi-community-crosscheck	https://github.com/unknownFalleN/xiaomi-dns-blocklist	LGPL-3.0	2026-09-22
+samsung-atlas-dls	dls.di.atlas.samsung.com	true	DEVICE_TELEMETRY	MEDIUM	LOW	false	adguard-samsung-2026	https://github.com/AdguardTeam/AdguardFilters/issues/240343	REFERENCE	2026-09-22
+samsung-runestone-dls	orsdls.di.runestone.samsung.com	true	ANALYTICS	MEDIUM	LOW	false	adguard-samsung-2026	https://github.com/AdguardTeam/AdguardFilters/issues/240343	REFERENCE	2026-09-22
+samsung-ureca	ureca.samsungapps.com	true	ANALYTICS	MEDIUM	LOW	false	adguard-samsung-2026	https://github.com/AdguardTeam/AdguardFilters/issues/240343	REFERENCE	2026-09-22
+samsung-health-insight	insight.samsunghealth.com	true	ANALYTICS	MEDIUM	MEDIUM	false	adguard-samsung-2026	https://github.com/AdguardTeam/AdguardFilters/issues/240343	REFERENCE	2026-09-22
+samsung-health-analytics	shealth-analytics-api.samsunghealth.com	true	ANALYTICS	MEDIUM	MEDIUM	false	adguard-samsung-2026	https://github.com/AdguardTeam/AdguardFilters/issues/240343	REFERENCE	2026-09-22
+google-public-dns-doh	dns.google	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	google-public-dns-official	https://developers.google.com/speed/public-dns/docs/secure-transports	REFERENCE	2026-09-22
+cloudflare-public-dns-doh	cloudflare-dns.com	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	cloudflare-public-dns-official	https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/	REFERENCE	2026-09-22
+cloudflare-public-dns-dot	one.one.one.one	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	cloudflare-public-dns-official	https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/	REFERENCE	2026-09-22
+cloudflare-security-dns	security.cloudflare-dns.com	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	cloudflare-public-dns-official	https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/	REFERENCE	2026-09-22
+cloudflare-family-dns	family.cloudflare-dns.com	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	cloudflare-public-dns-official	https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/	REFERENCE	2026-09-22
+quad9-secure-dns	dns.quad9.net	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	quad9-official	https://docs.quad9.net/services/	REFERENCE	2026-09-22
+quad9-dns10	dns10.quad9.net	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	quad9-official	https://docs.quad9.net/services/	REFERENCE	2026-09-22
+quad9-dns11	dns11.quad9.net	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	quad9-official	https://docs.quad9.net/services/	REFERENCE	2026-09-22
+quad9-dns12	dns12.quad9.net	true	ENCRYPTED_DNS	HIGH	MEDIUM	false	quad9-official	https://docs.quad9.net/services/	REFERENCE	2026-09-22

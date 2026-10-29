@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- V2 loopback VPN foreground-service texts (service-owned; the TV UI has its own strings). -->
+    <string name="v2_vpn_channel_name">Статус локальной защиты</string>
+    <string name="v2_vpn_channel_desc">Постоянный статус локальной фильтрации подключений на этом телевизоре.</string>
+    <string name="v2_vpn_notification_title">GeDefense TV — локальная защита</string>
+    <string name="v2_vpn_session_name">Локальная защита GeDefense TV</string>
+    <string name="v2_vpn_notification_starting">Подготовка локальной защиты …</string>
+    <string name="v2_vpn_notification_active">Локальная защита активна. Данные не покидают устройство.</string>
+    <string name="v2_vpn_notification_degraded">Локальная защита ограничена — идёт восстановление.</string>
+    <string name="v2_vpn_notification_stopped">Локальная защита неактивна.</string>
+</resources>

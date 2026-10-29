@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- V2 loopback VPN foreground-service texts (service-owned; the TV UI has its own strings). -->
+    <string name="v2_vpn_channel_name">ローカル保護状態</string>
+    <string name="v2_vpn_channel_desc">このテレビでのローカル接続フィルタリングの常駐状態です。</string>
+    <string name="v2_vpn_notification_title">GeDefense TV — ローカル保護</string>
+    <string name="v2_vpn_session_name">GeDefense TV ローカル保護</string>
+    <string name="v2_vpn_notification_starting">ローカル保護を準備中…</string>
+    <string name="v2_vpn_notification_active">ローカル保護が有効です。データはデバイス外に出ません。</string>
+    <string name="v2_vpn_notification_degraded">ローカル保護は制限付き — 復旧中です。</string>
+    <string name="v2_vpn_notification_stopped">ローカル保護は無効です。</string>
+</resources>

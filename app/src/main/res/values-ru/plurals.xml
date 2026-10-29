@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Localized plural forms for GeDefense TV (ru). -->
+<resources>
+
+    <plurals name="count_findings">
+        <item quantity="one">%1$d обнаружение</item>
+        <item quantity="few">%1$d обнаружения</item>
+        <item quantity="many">%1$d обнаружений</item>
+        <item quantity="other">%1$d обнаружения</item>
+    </plurals>
+
+    <plurals name="count_events">
+        <item quantity="one">%1$d запись</item>
+        <item quantity="few">%1$d записи</item>
+        <item quantity="many">%1$d записей</item>
+        <item quantity="other">%1$d записи</item>
+    </plurals>
+
+    <plurals name="count_collectors">
+        <item quantity="one">%1$d область проверки</item>
+        <item quantity="few">%1$d области проверки</item>
+        <item quantity="many">%1$d областей проверки</item>
+        <item quantity="other">%1$d области проверки</item>
+    </plurals>
+
+    <plurals name="count_apps">
+        <item quantity="one">%1$d приложение</item>
+        <item quantity="few">%1$d приложения</item>
+        <item quantity="many">%1$d приложений</item>
+        <item quantity="other">%1$d приложения</item>
+    </plurals>
+
+    <plurals name="count_feeds">
+        <item quantity="one">%1$d фид</item>
+        <item quantity="few">%1$d фида</item>
+        <item quantity="many">%1$d фидов</item>
+        <item quantity="other">%1$d фида</item>
+    </plurals>
+
+    <plurals name="count_evidence_records">
+        <item quantity="one">Сохранено %1$d запись</item>
+        <item quantity="few">Сохранено %1$d записи</item>
+        <item quantity="many">Сохранено %1$d записей</item>
+        <item quantity="other">Сохранено %1$d записи</item>
+    </plurals>
+
+    <plurals name="count_collector_findings">
+        <item quantity="one">%1$d обнаружение</item>
+        <item quantity="few">%1$d обнаружения</item>
+        <item quantity="many">%1$d обнаружений</item>
+        <item quantity="other">%1$d обнаружения</item>
+    </plurals>
+
+    <plurals name="count_more_findings">
+        <item quantity="one">Ещё %1$d обнаружение в списке</item>
+        <item quantity="few">Ещё %1$d обнаружения в списке</item>
+        <item quantity="many">Ещё %1$d обнаружений в списке</item>
+        <item quantity="other">Ещё %1$d обнаружения в списке</item>
+    </plurals>
+
+    <plurals name="count_removed_packages">
+        <item quantity="one">С момента базы сравнения удалён %1$d пакет.</item>
+        <item quantity="few">С момента базы сравнения удалено %1$d пакета.</item>
+        <item quantity="many">С момента базы сравнения удалено %1$d пакетов.</item>
+        <item quantity="other">С момента базы сравнения удалено %1$d пакета.</item>
+    </plurals>
+
+</resources>

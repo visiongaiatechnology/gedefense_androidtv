@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fit-safe short strings for the 1080p layout (single-line chips/pills, no word breaks). -->
+<resources>
+
+    <string name="apps_counts_short">Visibles : %1$d · Nouvelles : %2$d · Modifiées : %3$d</string>
+    <string name="findings_count_short">%1$d</string>
+
+</resources>

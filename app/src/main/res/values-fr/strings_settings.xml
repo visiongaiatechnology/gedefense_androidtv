@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings strings for the user-adjustable UI scale (apparence). -->
+<resources>
+
+    <string name="settings_section_appearance">Apparence</string>
+    <string name="settings_ui_scale_label">Échelle de l\'interface</string>
+    <string name="settings_ui_scale_desc">Met à l\'échelle le contenu et le texte selon la distance de visionnage.</string>
+    <string name="settings_ui_scale_hint">S\'applique immédiatement au contenu ; la navigation n\'est mise à l\'échelle qu\'après un redémarrage de l\'app.</string>
+    <string name="settings_ui_scale_compact">Compact</string>
+    <string name="settings_ui_scale_normal">Normal</string>
+    <string name="settings_ui_scale_large">Grand</string>
+    <string name="settings_ui_scale_changed">Échelle de l\'interface : %1$s.</string>
+
+</resources>

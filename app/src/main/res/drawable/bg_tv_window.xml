@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Window environment: obsidian tone shift with one faint warm brand wash at the top. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:endColor="@color/tv_bg_deep"
+                android:startColor="@color/tv_canvas"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item android:height="220dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:endColor="#00000000"
+                android:startColor="#14C9A24B"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Localized plural forms for GeDefense TV (ja). -->
+<resources>
+
+    <plurals name="count_findings">
+        <item quantity="one">検出結果 %1$d 件</item>
+        <item quantity="other">検出結果 %1$d 件</item>
+    </plurals>
+
+    <plurals name="count_events">
+        <item quantity="one">記録 %1$d 件</item>
+        <item quantity="other">記録 %1$d 件</item>
+    </plurals>
+
+    <plurals name="count_collectors">
+        <item quantity="one">チェック範囲 %1$d 件</item>
+        <item quantity="other">チェック範囲 %1$d 件</item>
+    </plurals>
+
+    <plurals name="count_apps">
+        <item quantity="one">アプリ %1$d 件</item>
+        <item quantity="other">アプリ %1$d 件</item>
+    </plurals>
+
+    <plurals name="count_feeds">
+        <item quantity="one">フィード %1$d 件</item>
+        <item quantity="other">フィード %1$d 件</item>
+    </plurals>
+
+    <plurals name="count_evidence_records">
+        <item quantity="one">%1$d 件の記録を保存</item>
+        <item quantity="other">%1$d 件の記録を保存</item>
+    </plurals>
+
+    <plurals name="count_collector_findings">
+        <item quantity="one">検出結果 %1$d 件</item>
+        <item quantity="other">検出結果 %1$d 件</item>
+    </plurals>
+
+    <plurals name="count_more_findings">
+        <item quantity="one">一覧にさらに %1$d 件の検出結果</item>
+        <item quantity="other">一覧にさらに %1$d 件の検出結果</item>
+    </plurals>
+
+    <plurals name="count_removed_packages">
+        <item quantity="one">比較基準以降に %1$d 個のパッケージが削除されました。</item>
+        <item quantity="other">比較基準以降に %1$d 個のパッケージが削除されました。</item>
+    </plurals>
+
+</resources>

@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GeDefense TV — German UI strings (default locale).
+
+  Every user-facing text of the TV UI is defined here; Kotlin code never hardcodes German copy.
+  Wording rules: honest capability states, no "sicher/Sauber" claim for partial or missing
+  visibility, concrete action verbs, no marketing claims.
+-->
+<resources>
+
+    <string name="app_name">GeDefense TV</string>
+    <string name="brand_mark_description">GeDefense TV のシンボル：ブラインド付きシールド</string>
+
+    <!-- ======================================================== navigation rail -->
+    <string name="nav_home">概要</string>
+    <string name="nav_home_desc">セキュリティ状態と前回のチェック</string>
+    <string name="nav_check">チェック</string>
+    <string name="nav_check_desc">チェックの開始と進捗の確認</string>
+    <string name="nav_findings">検出結果</string>
+    <string name="nav_findings_desc">検出された異常の表示</string>
+    <string name="nav_apps">アプリ</string>
+    <string name="nav_apps_desc">表示可能なアプリと変更</string>
+    <string name="nav_hardening">強化</string>
+    <string name="nav_hardening_desc">デバッグ、インストール、管理</string>
+    <string name="nav_threat_intel">脅威情報</string>
+    <string name="nav_threat_intel_desc">フィードの状態、鮮度、制限</string>
+    <string name="nav_evidence">証跡</string>
+    <string name="nav_evidence_desc">ローカルログとレポート</string>
+    <string name="nav_settings">設定</string>
+    <string name="nav_settings_desc">保存期間、同期、テレメトリ</string>
+
+    <!-- ================================================================= actions -->
+    <string name="action_start_check">チェックを開始</string>
+    <string name="action_rerun_check">再チェック</string>
+    <string name="action_cancel_check">チェックを中止</string>
+    <string name="action_show_progress">進捗を表示</string>
+    <string name="action_open_findings">検出結果を開く</string>
+    <string name="action_open_evidence">レポートと証跡</string>
+    <string name="action_open_settings">設定</string>
+    <string name="action_open_about">アプリについて</string>
+    <string name="action_export_report">レポートを書き出す</string>
+    <string name="action_delete_evidence">証跡を削除</string>
+    <string name="action_confirm_delete">完全に削除</string>
+    <string name="action_cancel">キャンセル</string>
+    <string name="action_back_to_list">検出結果一覧へ</string>
+    <string name="action_refresh">更新</string>
+    <string name="action_sync_now">今すぐ同期</string>
+    <string name="action_syncing">同期中…</string>
+    <string name="action_change">変更</string>
+    <string name="action_filter_all">すべてのアプリ</string>
+    <string name="action_filter_changes">変更のみ</string>
+    <string name="action_open_area">セクションを開く</string>
+    <string name="action_back">戻る</string>
+
+    <!-- ============================================================ value states -->
+    <string name="value_unknown">不明</string>
+    <string name="value_not_available">利用不可</string>
+    <string name="value_never">未実施</string>
+    <string name="value_none">なし</string>
+    <string name="value_not_checked">未チェック</string>
+    <string name="value_dash">—</string>
+    <string name="value_yes">はい</string>
+    <string name="value_no">いいえ</string>
+    <string name="value_multiple">複数</string>
+
+    <!-- =================================================== posture band labels -->
+    <string name="posture_band_strong">強</string>
+    <string name="posture_band_moderate">中</string>
+    <string name="posture_band_weak">弱</string>
+    <string name="posture_band_unknown">評価不可</string>
+    <string name="posture_band_insufficient">可視範囲が限定的</string>
+    <string name="posture_score_unit">/ 100</string>
+    <string name="posture_score_unknown">評価不可</string>
+
+    <!-- ========================================================== visibility -->
+    <string name="visibility_full">完全に可視</string>
+    <string name="visibility_partial">一部可視</string>
+    <string name="visibility_stale">期限切れ</string>
+    <string name="visibility_none">可視不可</string>
+
+    <!-- ========================================================== capability -->
+    <string name="capability_supported">対応</string>
+    <string name="capability_permission_required">権限が必要</string>
+    <string name="capability_unsupported">非対応</string>
+    <string name="capability_failed">失敗</string>
+
+    <!-- ======================================================== data quality -->
+    <string name="quality_fresh">最新</string>
+    <string name="quality_partial">一部</string>
+    <string name="quality_stale">古い</string>
+    <string name="quality_unknown">不明</string>
+
+    <!-- ============================================================ severity -->
+    <string name="severity_info">情報</string>
+    <string name="severity_low">低</string>
+    <string name="severity_medium">中</string>
+    <string name="severity_high">高</string>
+    <string name="severity_critical">重大</string>
+
+    <!-- ========================================================== confidence -->
+    <string name="confidence_low">低</string>
+    <string name="confidence_medium">中</string>
+    <string name="confidence_high">高</string>
+
+    <!-- ========================================================== scan states -->
+    <string name="scan_state_completed">完了</string>
+    <string name="scan_state_partial">一部完了</string>
+    <string name="scan_state_cancelled">中止</string>
+    <string name="scan_state_failed">失敗</string>
+    <string name="scan_state_running">チェック実行中</string>
+    <string name="scan_state_idle">準備完了</string>
+
+    <!-- ========================================================== patch state -->
+    <string name="patch_current">最新</string>
+    <string name="patch_aging">古くなりつつある</string>
+    <string name="patch_outdated">期限切れ</string>
+    <string name="patch_critically_outdated">重大に期限切れ</string>
+    <string name="patch_unknown">不明</string>
+
+    <!-- ========================================================= policy action -->
+    <string name="policy_none">アクションなし</string>
+    <string name="policy_observe">監視</string>
+    <string name="policy_recommend_manual">手動対応を推奨</string>
+    <string name="policy_escalate">判断が必要</string>
+
+    <!-- ==================================================== collector category -->
+    <string name="category_platform">デバイスとプラットフォーム</string>
+    <string name="category_apps">アプリとインベントリ</string>
+    <string name="category_hardening">強化</string>
+    <string name="category_connectivity">接続</string>
+    <string name="category_threat_intel">脅威インテリジェンス</string>
+    <string name="category_sensor_health">センサーとデータの健全性</string>
+
+    <!-- ========================================================= event classes -->
+    <string name="event_class_device_state">デバイス状態</string>
+    <string name="event_class_app_inventory">アプリインベントリ</string>
+    <string name="event_class_usage_signal">利用シグナル</string>
+    <string name="event_class_connectivity_state">接続状態</string>
+    <string name="event_class_ti_match">脅威インテリジェンス一致</string>
+    <string name="event_class_sensor_health">センサー/データ健全性</string>
+    <string name="event_class_enforcement">適用</string>
+
+    <!-- ================================================== time and formatting -->
+    <string name="format_date_time">yyyy/MM/dd HH:mm</string>
+    <string name="format_date_time_with_clock">yyyy/MM/dd HH:mm</string>
+    <string name="format_date">yyyy/MM/dd</string>
+    <string name="age_just_now">たった今</string>
+    <string name="age_minutes">%1$d 分前</string>
+    <string name="age_hours">%1$d 時間前</string>
+    <string name="age_days">%1$d 日前</string>
+    <string name="duration_seconds">%1$d 秒</string>
+    <string name="duration_minutes">%1$d 分</string>
+    <string name="duration_hours">%1$d 時間</string>
+
+    <!-- ============================================================ generic -->
+    <string name="label_state">状態</string>
+    <string name="label_time">時刻</string>
+    <string name="label_duration">所要時間</string>
+    <string name="label_findings">検出結果</string>
+    <string name="label_visibility">可視性</string>
+    <string name="label_quality">データ品質</string>
+    <string name="label_capability">対応状況</string>
+    <string name="label_source">ソース</string>
+    <string name="label_confidence">信頼度</string>
+    <string name="label_severity">重大度</string>
+    <string name="label_coverage">カバレッジ</string>
+    <string name="count_findings">検出結果 %1$d 件</string>
+    <string name="count_events">記録 %1$d 件</string>
+    <string name="count_of_total">%1$d / %2$d</string>
+    <string name="error_read_failed">データを読み取れませんでした。</string>
+    <string name="error_read_failed_detail">ローカルサービスが応答しません。「更新」から再試行してください。</string>
+
+    <!-- ================================================================== Home -->
+    <string name="home_eyebrow">セキュリティ概要</string>
+    <string name="home_title">セキュリティ状態</string>
+    <string name="home_subtitle_no_scan">このデバイスではまだチェックを実行していません。評価はすべてローカルで行われます。</string>
+    <string name="home_subtitle_scan">前回のローカルチェックに基づく評価です。可視性とカバレッジは別々に表示されます。</string>
+    <string name="home_score_label">保護スコア</string>
+    <string name="home_section_device">デバイスとチェック範囲</string>
+    <string name="home_section_findings">主な検出結果</string>
+    <string name="home_section_last_check">前回のチェック</string>
+    <string name="home_label_device">デバイス</string>
+    <string name="home_label_android">Android</string>
+    <string name="home_label_patch">セキュリティパッチ</string>
+    <string name="home_label_collectors">対応しているチェック範囲</string>
+    <string name="home_label_coverage">全体の可視性</string>
+    <string name="home_scan_running_note">チェックを実行中です。完了後に結果が更新されます。</string>
+    <string name="home_no_findings_note">可視範囲に検出結果はありません。可視範囲が限定的な場合、これは安全の証明にはなりません。</string>
+    <string name="home_cap_reason">制限：%1$s</string>
+    <string name="home_more_findings">一覧にさらに %1$d 件の検出結果</string>
+    <string name="home_no_scan_note">チェックなしではセキュリティ状態を判断できません。</string>
+    <string name="home_running_pill">チェック実行中</string>
+
+    <!-- ================================================================= Check -->
+    <string name="check_eyebrow">ローカルチェック</string>
+    <string name="check_title">セキュリティチェック</string>
+    <string name="check_subtitle">ローカルのチェック範囲を順に実行します。デバイスデータのアップロードはありません。</string>
+    <string name="check_section_progress">進捗</string>
+    <string name="check_section_collectors">チェック範囲</string>
+    <string name="check_progress_count">%2$d 中 %1$d 件完了</string>
+    <string name="check_progress_current">現在：%1$s</string>
+    <string name="check_progress_findings">これまでに %1$d 件の検出結果</string>
+    <string name="check_progress_idle">次のチェックの準備ができました。</string>
+    <string name="check_progress_unknown">チェックを実行中です。進捗は完了後に更新されます。</string>
+    <string name="check_last_result">前回の結果</string>
+    <string name="check_collector_meta">%1$s · 対応：%2$s · 可視：%3$s · データ：%4$s</string>
+    <string name="check_collector_findings">検出結果 %1$d 件</string>
+    <string name="check_collector_no_findings">検出結果なし</string>
+    <string name="check_coverage_no_denominator">カバレッジ %1$d 件を観測、信頼できる分母なし</string>
+    <string name="check_coverage">カバレッジ %1$d / %2$d</string>
+    <string name="check_failed_title">チェック失敗</string>
+    <string name="check_failed_message">前回のチェックは失敗しました。新しいチェックを開始してください。詳細は証跡ログにある場合があります。</string>
+    <string name="check_cancelled_note">前回のチェックは中止されました。結果は不完全です。</string>
+    <string name="check_partial_note">前回のチェックは一部のみ完了しました。すべてのチェック範囲が結果を返したわけではありません。</string>
+    <string name="check_no_collectors">チェック範囲がありません。</string>
+    <string name="check_started">チェックを開始しました。</string>
+    <string name="check_already_running">チェックはすでに実行中です。</string>
+    <string name="check_cancel_requested">中止を要求しました。</string>
+    <string name="check_cancel_unavailable">中止できる実行中のチェックはありません。</string>
+    <string name="check_start_unavailable">チェックを開始できませんでした。</string>
+    <string name="check_running_hint">開始後は進捗をリアルタイムで確認できます。完了後にこの画面は自動的に更新されます。</string>
+
+    <!-- ============================================================== Findings -->
+    <string name="findings_eyebrow">検出結果</string>
+    <string name="findings_title">検出結果</string>
+    <string name="findings_subtitle_full">前回のチェックによる検出結果を重大度順に表示します。</string>
+    <string name="findings_subtitle_partial">可視範囲の検出結果です。可視範囲は限定的でした。</string>
+    <string name="findings_summary">%1$d 件の検出結果（%2$d 件のチェック範囲）</string>
+    <string name="findings_summary_one">%1$d 件の検出結果（%2$d 件のチェック範囲）</string>
+    <string name="findings_severity_summary">高/重大：%1$d · 中：%2$d · 低/情報：%3$d</string>
+    <string name="findings_visibility_note">可視性：%1$s。不可視の範囲は未チェックです。</string>
+    <string name="findings_limit_note">先頭 %1$d 件の検出結果を表示しています。レポートには前回のチェックの全検出結果が含まれます。</string>
+    <string name="findings_row_meta">%1$s · %2$s</string>
+    <string name="findings_row_times">初回 %1$s · 最終 %2$s</string>
+    <string name="findings_open_hint">OK で検出結果を開く</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow">検出結果</string>
+    <string name="finding_detail_section_why">重要な理由</string>
+    <string name="finding_detail_section_component">影響を受けるコンポーネント</string>
+    <string name="finding_detail_section_evidence">証跡</string>
+    <string name="finding_detail_section_recommendation">推奨手順</string>
+    <string name="finding_detail_section_meta">分類</string>
+    <string name="finding_detail_label_source">ソース</string>
+    <string name="finding_detail_label_collected">取得日時</string>
+    <string name="finding_detail_label_digest">ダイジェスト</string>
+    <string name="finding_detail_label_first_seen">初回検出</string>
+    <string name="finding_detail_label_last_seen">最終検出</string>
+    <string name="finding_detail_label_category">範囲</string>
+    <string name="finding_detail_label_policy">推奨アクション</string>
+    <string name="finding_detail_no_recommendation">この検出結果には自動アクションが設定されていません。分類を確認して手動で判断してください。</string>
+    <string name="finding_detail_missing_title">検出結果を利用できません</string>
+    <string name="finding_detail_missing_message">この検出結果は現在のチェックに含まれていません。検出結果一覧を開くか、新しいチェックを開始してください。</string>
+
+    <!-- ================================================================== Apps -->
+    <string name="apps_eyebrow">アプリ</string>
+    <string name="apps_title">表示可能なアプリ</string>
+    <string name="apps_subtitle">このデバイスのパッケージ可視性に基づき GeDefense TV が表示できるアプリです。</string>
+    <string name="apps_visibility_title">パッケージ可視性の制限</string>
+    <string name="apps_visibility_body">Android 11 以降、アプリは照会を許可されたパッケージと自身のみを認識できます。この一覧は完全なデバイスインベントリではなく、不可視アプリについて何も示しません。</string>
+    <string name="apps_counts">表示：%1$d · 新規：%2$d · 変更：%3$d · 起動可能：%4$d</string>
+    <string name="apps_baseline_missing">比較基準なし：新規/変更は2回目のチェック以降に利用できます。</string>
+    <string name="apps_baseline_time">比較基準：%1$s</string>
+    <string name="apps_no_inventory">前回のチェックにアプリインベントリが含まれていません。</string>
+    <string name="apps_empty_title">アプリインベントリを利用できません</string>
+    <string name="apps_empty_message">アプリインベントリを含むチェックがありません。チェックを開始して表示可能なアプリを収集してください。</string>
+    <string name="apps_no_changes">前回のチェックで新規または変更されたアプリはありません。</string>
+    <string name="apps_system_app">システムアプリ</string>
+    <string name="apps_user_app">ユーザーアプリ</string>
+    <string name="apps_installer">ソース：%1$s</string>
+    <string name="apps_installer_unknown">ソース：未指定</string>
+    <string name="apps_version">バージョン %1$s (%2$d)</string>
+    <string name="apps_version_unknown">バージョン不明</string>
+    <string name="apps_disabled">無効</string>
+    <string name="apps_badge_new">新規</string>
+    <string name="apps_badge_changed">変更</string>
+    <string name="apps_removed_note">比較基準以降に %1$d 個のパッケージが削除されました。</string>
+    <string name="apps_system_flag">システム</string>
+
+    <!-- ============================================================= Hardening -->
+    <string name="hardening_eyebrow">強化</string>
+    <string name="hardening_title">強化と設定</string>
+    <string name="hardening_subtitle">前回のチェックで検証可能だったデバッグ、インストール、管理の状態です。</string>
+    <string name="hardening_section_checks">チェック範囲</string>
+    <string name="hardening_section_findings">強化チェックの検出結果</string>
+    <string name="hardening_check_no_finding">検出結果なし</string>
+    <string name="hardening_check_not_readable">チェック不可</string>
+    <string name="hardening_check_finding">検出結果：%1$s</string>
+    <string name="hardening_note_absence">検出結果がないことは安全な設定の証明ではありません。読み取れない値は明示的に未チェックです。</string>
+    <string name="hardening_check_adb_title">ADB / デバッグ</string>
+    <string name="hardening_check_adb_guidance">システム設定のデバッグまたは開発者向けオプションで確認し、不要なら無効にしてください。</string>
+    <string name="hardening_check_developer_title">開発者向けオプション</string>
+    <string name="hardening_check_developer_guidance">テストで不要なら、システム設定で開発者向けオプションを無効にしてください。</string>
+    <string name="hardening_check_unknown_sources_title">提供元不明</string>
+    <string name="hardening_check_unknown_sources_guidance">システム設定でこのアプリの提供元不明アプリのインストールを無効にしてください。</string>
+    <string name="hardening_check_test_keys_title">ビルド署名（テストキー）</string>
+    <string name="hardening_check_test_keys_guidance">ビルドにテスト/デバッグ署名の兆候があります。ベンダーの更新を確認してください。</string>
+    <string name="hardening_check_device_admin_title">デバイス管理者</string>
+    <string name="hardening_check_device_admin_guidance">セキュリティ設定でデバイス管理者を確認し、不明な項目を削除してください。</string>
+    <string name="hardening_check_accessibility_title">ユーザー補助</string>
+    <string name="hardening_check_accessibility_guidance">有効なユーザー補助サービスを確認し、不明なサービスを無効にしてください。</string>
+    <string name="hardening_check_installers_title">インストール元</string>
+    <string name="hardening_check_installers_guidance">表示可能なアプリのインストール元を確認し、想定外の提供元を調査してください。</string>
+    <string name="hardening_no_collector">前回のチェックで強化データを利用できません。</string>
+    <string name="hardening_manual_step">推奨手順：%1$s</string>
+    <string name="hardening_open_finding">検出結果を開く</string>
+
+    <!-- ========================================================= Threat Intel -->
+    <string name="ti_eyebrow">脅威インテリジェンス</string>
+    <string name="ti_title">脅威インテリジェンス</string>
+    <string name="ti_subtitle">ローカルフィードの状態です。アプリは実際に観測できる指標のみを確認します。</string>
+    <string name="ti_section_feeds">フィード</string>
+    <string name="ti_section_scope">V1 の制限</string>
+    <string name="ti_scope_note">V1 はシステム全体のネットワーク通信、ポート、プロセスフローの対応付けを監視しません。特権センサーなしでは信頼性のある実装は不可能です。</string>
+    <string name="ti_scope_matches">一致は実際に観測された指標のみから生じます。システム全体の通信データには V1 のデータソースがありません。</string>
+    <string name="ti_sync_healthy">同期は正常</string>
+    <string name="ti_sync_unhealthy">同期に障害</string>
+    <string name="ti_last_sync">最終取得：%1$s</string>
+    <string name="ti_never_synced">未同期</string>
+    <string name="ti_feed_records">%1$d 件</string>
+    <string name="ti_feed_fetched">取得日時：%1$s</string>
+    <string name="ti_feed_enforcement">モード：%1$s</string>
+    <string name="ti_feed_available">利用可能</string>
+    <string name="ti_feed_unavailable">利用不可</string>
+    <string name="ti_feed_fresh">最新</string>
+    <string name="ti_feed_stale">古い</string>
+    <string name="ti_sync_started">フィード同期を開始しました。</string>
+    <string name="ti_sync_already">同期はすでに実行中です。</string>
+    <string name="ti_sync_ok">同期が完了しました。</string>
+    <string name="ti_sync_failed">同期に失敗しました。</string>
+    <string name="ti_sync_unavailable">同期を開始できませんでした。</string>
+    <string name="ti_no_feeds_title">フィード未読み込み</string>
+    <string name="ti_no_feeds_message">脅威インテリジェンスを同期してローカルフィードデータを取得してください。フィードがない場合、評価はローカルで可視のデータに限定されます。</string>
+    <string name="ti_auto_sync_hint">自動同期は設定で制御できます。</string>
+    <string name="ti_feed_note">注記：%1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_eyebrow">証跡</string>
+    <string name="evidence_title">証跡とレポート</string>
+    <string name="evidence_subtitle">検出結果とイベントによるローカルのハッシュチェーンログです。</string>
+    <string name="evidence_health_ok">証跡ストアは正常</string>
+    <string name="evidence_health_bad">証跡ストアは制限あり</string>
+    <string name="evidence_records">%1$d 件の記録を保存</string>
+    <string name="evidence_health_reason">理由：%1$s</string>
+    <string name="evidence_section_events">最近のイベント</string>
+    <string name="evidence_ledger_note">記録は HMAC で保護されたローカル台帳に保存されます。アップロードはありません。</string>
+    <string name="evidence_export_needs_scan">レポートの書き出しには完了したチェックが必要です。</string>
+    <string name="evidence_export_started">ドキュメント選択画面を開きました。</string>
+    <string name="evidence_export_ok">レポートを保存しました：%1$s</string>
+    <string name="evidence_export_failed">レポートを保存できませんでした。</string>
+    <string name="evidence_export_unavailable">このデバイスでは書き出しを利用できません。</string>
+    <string name="evidence_confirm_title">ローカル証跡を削除</string>
+    <string name="evidence_confirm_body">すべてのローカル証跡記録が完全に削除されます。元に戻すことはできません。データを残す場合は先にレポートを書き出してください。</string>
+    <string name="evidence_delete_ok">ローカル証跡を削除しました。</string>
+    <string name="evidence_delete_failed">証跡を完全に削除できませんでした。</string>
+    <string name="evidence_delete_empty">ローカル証跡の記録はありません。</string>
+    <string name="evidence_no_events_title">証跡はまだありません</string>
+    <string name="evidence_no_events_message">チェック後、検出結果とイベントがローカルに証跡として記録されます。</string>
+    <string name="evidence_row_meta">%1$s · %2$s</string>
+    <string name="evidence_severity_none">重大度なし</string>
+
+    <!-- ============================================================= Settings -->
+    <string name="settings_eyebrow">設定</string>
+    <string name="settings_title">設定</string>
+    <string name="settings_subtitle">更新、保存、プライバシーに関するローカルオプションです。</string>
+    <string name="settings_section_data">データと更新</string>
+    <string name="settings_ti_auto_sync">脅威インテリジェンスを自動同期</string>
+    <string name="settings_ti_auto_sync_desc">システムが許可する場合にバックグラウンドでフィードを読み込みます。デバイスデータはアップロードしません。</string>
+    <string name="settings_retention">証跡の保存期間</string>
+    <string name="settings_retention_desc">クリーンアップ時に古いローカル証跡が削除されます。</string>
+    <string name="settings_retention_value">%1$d 日</string>
+    <string name="settings_retention_changed">保存期間を %1$d 日に設定しました。</string>
+    <string name="settings_retention_note">注記：変更は次回のクリーンアップで有効になり、即時ではありません。</string>
+    <string name="settings_section_privacy">プライバシー</string>
+    <string name="settings_telemetry_title">テレメトリ</string>
+    <string name="settings_telemetry_body">V1 はテレメトリを送信しません。すべての評価と検出結果はデバイス上に残ります。アプリ一覧、利用状況、レポートの既定のアップロードはありません。</string>
+    <string name="settings_local_processing">ローカル処理</string>
+    <string name="settings_local_processing_body">チェックはデバイス上でのみ実行されます。ネットワークアクセスは脅威インテリジェンスフィードの読み込みにのみ使用されます。</string>
+    <string name="settings_section_app">アプリ</string>
+    <string name="settings_device_id">仮名デバイス ID</string>
+    <string name="settings_version">バージョン</string>
+    <string name="settings_about_row">GeDefense TV について</string>
+    <string name="settings_about_row_desc">バージョン、ソース識別子、機能の限界</string>
+    <string name="settings_state_enabled">有効</string>
+    <string name="settings_state_disabled">無効</string>
+    <string name="settings_section_limits">限界</string>
+    <string name="settings_limits_body">このアプリは EDR ではありません：システム全体のフロー、ポートスキャン、ファームウェア整合性の証明は行いません。</string>
+    <string name="settings_open_evidence">証跡とレポートを管理</string>
+    <string name="settings_open_evidence_desc">ローカルログの表示、書き出し、削除</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_eyebrow">情報</string>
+    <string name="about_title">GeDefense TV について</string>
+    <string name="about_subtitle">Android TV と Google TV 向けのスタンドアロンセキュリティアプリです。</string>
+    <string name="about_section_version">バージョンと識別子</string>
+    <string name="about_version">%1$s（ビルド %2$d）</string>
+    <string name="about_developer">発行元：VisionGaiaTechnology</string>
+    <string name="about_section_limits">機能の限界</string>
+    <string name="about_limit_inventory">完全なアプリインベントリはありません：Android のパッケージ可視性が表示可能なアプリを制限します。</string>
+    <string name="about_limit_network">システム全体のネットワーク監視はありません：フロー、ポート、フラッド検出は行いません。</string>
+    <string name="about_limit_privileged">特権 EDR ではありません：他アプリのプロセス、カーネル、ファイルは監視しません。</string>
+    <string name="about_limit_firmware">ビルドとファームウェアのメタデータは整合性の証明ではありません。</string>
+    <string name="about_limit_telemetry">V1 にはテレメトリがなく、音声、映像、画面内容も扱いません。</string>
+    <string name="about_section_collectors">V1 のチェック範囲</string>
+    <string name="about_collectors_body">デバイスとプラットフォーム、表示可能なアプリ、強化状態、接続、センサーとデータの健全性、ローカル脅威インテリジェンス。すべてのチェックは読み取りのみです。</string>
+    <string name="about_section_device">デバイス</string>
+    <string name="about_device_none">チェックによるデバイスデータはまだありません。</string>
+    <string name="about_device_model">モデル</string>
+    <string name="about_device_android">Android</string>
+    <string name="about_device_patch">パッチレベル</string>
+    <string name="about_section_legal">注意</string>
+    <string name="about_legal">検出結果はチェック上の指摘であり、マルウェア判定ではありません。可視性の欠如は安全の証明ではありません。</string>
+    <!-- ================================================================ Brand -->
+    <string name="brand_logo_description">GeDefense シールド</string>
+    <string name="brand_rail_caption">ローカルセキュリティコンソール</string>
+
+    <!-- ================================================================ V2 shell overlays -->
+    <string name="welcome_title">GeDefense TV へようこそ</string>
+    <string name="welcome_subtitle">Sir Quacksec が安全な視聴をお届けします — ローカル動作、クラウドなし。</string>
+    <string name="welcome_mascot_description">Sir Quacksec、GeDefense のマスコット</string>
+    <string name="sync_overlay_starting">脅威インテリジェンスフィードを同期中…</string>
+    <string name="sync_overlay_running">フィードを確認中…</string>
+    <string name="sync_overlay_progress">%1$d / %2$d 件のフィードを更新しました</string>
+
+</resources>

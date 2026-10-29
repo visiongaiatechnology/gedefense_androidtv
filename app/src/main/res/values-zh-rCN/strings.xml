@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GeDefense TV — German UI strings (default locale).
+
+  Every user-facing text of the TV UI is defined here; Kotlin code never hardcodes German copy.
+  Wording rules: honest capability states, no "sicher/Sauber" claim for partial or missing
+  visibility, concrete action verbs, no marketing claims.
+-->
+<resources>
+
+    <string name="app_name">GeDefense TV</string>
+    <string name="brand_mark_description">GeDefense TV 图标：带遮罩的盾牌</string>
+
+    <!-- ======================================================== navigation rail -->
+    <string name="nav_home">概览</string>
+    <string name="nav_home_desc">安全状态与最近一次检查</string>
+    <string name="nav_check">检查</string>
+    <string name="nav_check_desc">启动检查并跟踪进度</string>
+    <string name="nav_findings">发现项</string>
+    <string name="nav_findings_desc">查看发现的异常</string>
+    <string name="nav_apps">应用</string>
+    <string name="nav_apps_desc">可见应用与变更</string>
+    <string name="nav_hardening">加固</string>
+    <string name="nav_hardening_desc">调试、安装与管理</string>
+    <string name="nav_threat_intel">威胁情报</string>
+    <string name="nav_threat_intel_desc">情报源状态、时效与限制</string>
+    <string name="nav_evidence">证据</string>
+    <string name="nav_evidence_desc">本地日志与报告</string>
+    <string name="nav_settings">设置</string>
+    <string name="nav_settings_desc">保留、同步与遥测</string>
+
+    <!-- ================================================================= actions -->
+    <string name="action_start_check">开始检查</string>
+    <string name="action_rerun_check">重新检查</string>
+    <string name="action_cancel_check">取消检查</string>
+    <string name="action_show_progress">查看进度</string>
+    <string name="action_open_findings">查看发现项</string>
+    <string name="action_open_evidence">报告与证据</string>
+    <string name="action_open_settings">设置</string>
+    <string name="action_open_about">关于应用</string>
+    <string name="action_export_report">导出报告</string>
+    <string name="action_delete_evidence">删除证据</string>
+    <string name="action_confirm_delete">确认删除</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_back_to_list">返回发现项列表</string>
+    <string name="action_refresh">刷新</string>
+    <string name="action_sync_now">立即同步</string>
+    <string name="action_syncing">正在同步…</string>
+    <string name="action_change">更改</string>
+    <string name="action_filter_all">全部应用</string>
+    <string name="action_filter_changes">仅变更</string>
+    <string name="action_open_area">打开区域</string>
+    <string name="action_back">返回</string>
+
+    <!-- ============================================================ value states -->
+    <string name="value_unknown">未知</string>
+    <string name="value_not_available">不可用</string>
+    <string name="value_never">从未</string>
+    <string name="value_none">无</string>
+    <string name="value_not_checked">未检查</string>
+    <string name="value_dash">—</string>
+    <string name="value_yes">是</string>
+    <string name="value_no">否</string>
+    <string name="value_multiple">多个</string>
+
+    <!-- =================================================== posture band labels -->
+    <string name="posture_band_strong">强</string>
+    <string name="posture_band_moderate">中</string>
+    <string name="posture_band_weak">弱</string>
+    <string name="posture_band_unknown">无法评估</string>
+    <string name="posture_band_insufficient">可见范围受限</string>
+    <string name="posture_score_unit">/ 100</string>
+    <string name="posture_score_unknown">无法评估</string>
+
+    <!-- ========================================================== visibility -->
+    <string name="visibility_full">完整可见</string>
+    <string name="visibility_partial">部分可见</string>
+    <string name="visibility_stale">已过期</string>
+    <string name="visibility_none">不可见</string>
+
+    <!-- ========================================================== capability -->
+    <string name="capability_supported">支持</string>
+    <string name="capability_permission_required">需要权限</string>
+    <string name="capability_unsupported">不支持</string>
+    <string name="capability_failed">失败</string>
+
+    <!-- ======================================================== data quality -->
+    <string name="quality_fresh">最新</string>
+    <string name="quality_partial">部分</string>
+    <string name="quality_stale">已过期</string>
+    <string name="quality_unknown">未知</string>
+
+    <!-- ============================================================ severity -->
+    <string name="severity_info">提示</string>
+    <string name="severity_low">低</string>
+    <string name="severity_medium">中</string>
+    <string name="severity_high">高</string>
+    <string name="severity_critical">严重</string>
+
+    <!-- ========================================================== confidence -->
+    <string name="confidence_low">低</string>
+    <string name="confidence_medium">中</string>
+    <string name="confidence_high">高</string>
+
+    <!-- ========================================================== scan states -->
+    <string name="scan_state_completed">已完成</string>
+    <string name="scan_state_partial">部分完成</string>
+    <string name="scan_state_cancelled">已取消</string>
+    <string name="scan_state_failed">失败</string>
+    <string name="scan_state_running">检查进行中</string>
+    <string name="scan_state_idle">就绪</string>
+
+    <!-- ========================================================== patch state -->
+    <string name="patch_current">最新</string>
+    <string name="patch_aging">逐渐过时</string>
+    <string name="patch_outdated">已过期</string>
+    <string name="patch_critically_outdated">严重过期</string>
+    <string name="patch_unknown">未知</string>
+
+    <!-- ========================================================= policy action -->
+    <string name="policy_none">无需操作</string>
+    <string name="policy_observe">观察</string>
+    <string name="policy_recommend_manual">建议手动处理</string>
+    <string name="policy_escalate">需要决策</string>
+
+    <!-- ==================================================== collector category -->
+    <string name="category_platform">设备与平台</string>
+    <string name="category_apps">应用与清单</string>
+    <string name="category_hardening">加固</string>
+    <string name="category_connectivity">连接</string>
+    <string name="category_threat_intel">威胁情报</string>
+    <string name="category_sensor_health">传感器与数据健康</string>
+
+    <!-- ========================================================= event classes -->
+    <string name="event_class_device_state">设备状态</string>
+    <string name="event_class_app_inventory">应用清单</string>
+    <string name="event_class_usage_signal">使用信号</string>
+    <string name="event_class_connectivity_state">连接状态</string>
+    <string name="event_class_ti_match">威胁情报命中</string>
+    <string name="event_class_sensor_health">传感器/数据健康</string>
+    <string name="event_class_enforcement">强制执行</string>
+
+    <!-- ================================================== time and formatting -->
+    <string name="format_date_time">yyyy-MM-dd HH:mm</string>
+    <string name="format_date_time_with_clock">yyyy-MM-dd HH:mm</string>
+    <string name="format_date">yyyy-MM-dd</string>
+    <string name="age_just_now">刚刚</string>
+    <string name="age_minutes">%1$d 分钟前</string>
+    <string name="age_hours">%1$d 小时前</string>
+    <string name="age_days">%1$d 天前</string>
+    <string name="duration_seconds">%1$d 秒</string>
+    <string name="duration_minutes">%1$d 分钟</string>
+    <string name="duration_hours">%1$d 小时</string>
+
+    <!-- ============================================================ generic -->
+    <string name="label_state">状态</string>
+    <string name="label_time">时间</string>
+    <string name="label_duration">时长</string>
+    <string name="label_findings">发现项</string>
+    <string name="label_visibility">可见性</string>
+    <string name="label_quality">数据质量</string>
+    <string name="label_capability">能力</string>
+    <string name="label_source">来源</string>
+    <string name="label_confidence">置信度</string>
+    <string name="label_severity">严重程度</string>
+    <string name="label_coverage">覆盖范围</string>
+    <string name="count_findings">%1$d 个发现项</string>
+    <string name="count_events">%1$d 条记录</string>
+    <string name="count_of_total">%1$d / %2$d</string>
+    <string name="error_read_failed">无法读取数据。</string>
+    <string name="error_read_failed_detail">本地服务未响应。请通过“刷新”重试。</string>
+
+    <!-- ================================================================== Home -->
+    <string name="home_eyebrow">安全概览</string>
+    <string name="home_title">安全状态</string>
+    <string name="home_subtitle_no_scan">此设备尚未执行检查。评估完全在本地进行。</string>
+    <string name="home_subtitle_scan">基于最近一次本地检查的评估。可见性与覆盖范围分别显示。</string>
+    <string name="home_score_label">防护评分</string>
+    <string name="home_section_device">设备与检查范围</string>
+    <string name="home_section_findings">主要发现项</string>
+    <string name="home_section_last_check">最近一次检查</string>
+    <string name="home_label_device">设备</string>
+    <string name="home_label_android">Android</string>
+    <string name="home_label_patch">安全补丁</string>
+    <string name="home_label_collectors">支持的检查范围</string>
+    <string name="home_label_coverage">总体可见性</string>
+    <string name="home_scan_running_note">检查正在进行。完成后将更新结果。</string>
+    <string name="home_no_findings_note">可见范围内未发现异常。在可见范围受限时，这不代表安全。</string>
+    <string name="home_cap_reason">限制：%1$s</string>
+    <string name="home_more_findings">列表中还有 %1$d 个发现项</string>
+    <string name="home_no_scan_note">未执行检查，无法判断安全状态。</string>
+    <string name="home_running_pill">检查进行中</string>
+
+    <!-- ================================================================= Check -->
+    <string name="check_eyebrow">本地检查</string>
+    <string name="check_title">安全检查</string>
+    <string name="check_subtitle">各本地检查范围将依次执行。设备数据不会上传。</string>
+    <string name="check_section_progress">进度</string>
+    <string name="check_section_collectors">检查范围</string>
+    <string name="check_progress_count">已完成 %1$d / %2$d</string>
+    <string name="check_progress_current">当前：%1$s</string>
+    <string name="check_progress_findings">目前 %1$d 个发现项</string>
+    <string name="check_progress_idle">已就绪，可开始下一次检查。</string>
+    <string name="check_progress_unknown">检查正在进行。完成后将更新进度。</string>
+    <string name="check_last_result">最近结果</string>
+    <string name="check_collector_meta">%1$s · 能力：%2$s · 可见：%3$s · 数据：%4$s</string>
+    <string name="check_collector_findings">%1$d 个发现项</string>
+    <string name="check_collector_no_findings">无发现项</string>
+    <string name="check_coverage_no_denominator">覆盖范围：已观察 %1$d，无可信分母</string>
+    <string name="check_coverage">覆盖范围 %1$d / %2$d</string>
+    <string name="check_failed_title">检查失败</string>
+    <string name="check_failed_message">最近一次检查失败。请启动新检查；详情可能记录在证据日志中。</string>
+    <string name="check_cancelled_note">最近一次检查已取消。结果不完整。</string>
+    <string name="check_partial_note">最近一次检查仅部分完成。并非所有检查范围都提供了结果。</string>
+    <string name="check_no_collectors">没有可用的检查范围。</string>
+    <string name="check_started">检查已启动。</string>
+    <string name="check_already_running">检查已在运行。</string>
+    <string name="check_cancel_requested">已请求取消。</string>
+    <string name="check_cancel_unavailable">没有可取消的运行中检查。</string>
+    <string name="check_start_unavailable">无法启动检查。</string>
+    <string name="check_running_hint">启动后可实时查看进度。完成后此视图会自动更新。</string>
+
+    <!-- ============================================================== Findings -->
+    <string name="findings_eyebrow">发现项</string>
+    <string name="findings_title">发现项</string>
+    <string name="findings_subtitle_full">最近一次检查的发现项，按严重程度排序。</string>
+    <string name="findings_subtitle_partial">来自可见范围的发现项。可见范围受限。</string>
+    <string name="findings_summary">%1$d 个发现项，分布于 %2$d 个检查范围</string>
+    <string name="findings_summary_one">%1$d 个发现项，分布于 %2$d 个检查范围</string>
+    <string name="findings_severity_summary">高/严重：%1$d · 中：%2$d · 低/提示：%3$d</string>
+    <string name="findings_visibility_note">可见性：%1$s。不可见范围未检查。</string>
+    <string name="findings_limit_note">仅显示前 %1$d 个发现项；报告包含最近一次检查的全部发现项。</string>
+    <string name="findings_row_meta">%1$s · %2$s</string>
+    <string name="findings_row_times">首次 %1$s · 最近 %2$s</string>
+    <string name="findings_open_hint">按 OK 打开发现项</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow">发现项</string>
+    <string name="finding_detail_section_why">为何重要</string>
+    <string name="finding_detail_section_component">受影响组件</string>
+    <string name="finding_detail_section_evidence">证据</string>
+    <string name="finding_detail_section_recommendation">建议步骤</string>
+    <string name="finding_detail_section_meta">分类</string>
+    <string name="finding_detail_label_source">来源</string>
+    <string name="finding_detail_label_collected">采集时间</string>
+    <string name="finding_detail_label_digest">摘要</string>
+    <string name="finding_detail_label_first_seen">首次发现</string>
+    <string name="finding_detail_label_last_seen">最近发现</string>
+    <string name="finding_detail_label_category">范围</string>
+    <string name="finding_detail_label_policy">建议操作</string>
+    <string name="finding_detail_no_recommendation">此发现项没有预设的自动操作。请检查分类并手动决定。</string>
+    <string name="finding_detail_missing_title">发现项不可用</string>
+    <string name="finding_detail_missing_message">当前检查中不再包含该发现项。请打开发现项列表或启动新检查。</string>
+
+    <!-- ================================================================== Apps -->
+    <string name="apps_eyebrow">应用</string>
+    <string name="apps_title">可见应用</string>
+    <string name="apps_subtitle">根据此设备的软件包可见性，GeDefense TV 可以看到的应用。</string>
+    <string name="apps_visibility_title">软件包可见性受限</string>
+    <string name="apps_visibility_body">从 Android 11 起，应用只能看到它被允许查询的软件包以及自身。此列表并非完整的设备清单，也不能说明不可见应用的情况。</string>
+    <string name="apps_counts">可见：%1$d · 新增：%2$d · 变更：%3$d · 可启动：%4$d</string>
+    <string name="apps_baseline_missing">无对比基线：新增/变更需第二次检查后才可用。</string>
+    <string name="apps_baseline_time">对比基线：%1$s</string>
+    <string name="apps_no_inventory">最近一次检查未包含应用清单。</string>
+    <string name="apps_empty_title">无可用应用清单</string>
+    <string name="apps_empty_message">没有包含应用清单的检查。启动检查以采集可见应用。</string>
+    <string name="apps_no_changes">最近一次检查中没有新增或变更的应用。</string>
+    <string name="apps_system_app">系统应用</string>
+    <string name="apps_user_app">用户应用</string>
+    <string name="apps_installer">来源：%1$s</string>
+    <string name="apps_installer_unknown">来源：未指定</string>
+    <string name="apps_version">版本 %1$s (%2$d)</string>
+    <string name="apps_version_unknown">版本未知</string>
+    <string name="apps_disabled">已停用</string>
+    <string name="apps_badge_new">新增</string>
+    <string name="apps_badge_changed">已变更</string>
+    <string name="apps_removed_note">自对比基线以来移除了 %1$d 个软件包。</string>
+    <string name="apps_system_flag">系统</string>
+
+    <!-- ============================================================= Hardening -->
+    <string name="hardening_eyebrow">加固</string>
+    <string name="hardening_title">加固与设置</string>
+    <string name="hardening_subtitle">来自最近一次检查的可验证调试、安装与管理状态。</string>
+    <string name="hardening_section_checks">检查范围</string>
+    <string name="hardening_section_findings">加固检查发现项</string>
+    <string name="hardening_check_no_finding">无发现项</string>
+    <string name="hardening_check_not_readable">无法检查</string>
+    <string name="hardening_check_finding">发现项：%1$s</string>
+    <string name="hardening_note_absence">缺少发现项并不代表设置安全。无法读取的值明确仍属未检查。</string>
+    <string name="hardening_check_adb_title">ADB / 调试</string>
+    <string name="hardening_check_adb_guidance">在系统设置的调试或开发者选项中检查，如不需要请停用。</string>
+    <string name="hardening_check_developer_title">开发者选项</string>
+    <string name="hardening_check_developer_guidance">如不用于测试，请在系统设置中停用开发者选项。</string>
+    <string name="hardening_check_unknown_sources_title">未知来源</string>
+    <string name="hardening_check_unknown_sources_guidance">在系统设置中停用此应用从未知来源安装的权限。</string>
+    <string name="hardening_check_test_keys_title">构建签名（测试密钥）</string>
+    <string name="hardening_check_test_keys_guidance">构建中存在测试/调试签名的迹象。请检查厂商更新。</string>
+    <string name="hardening_check_device_admin_title">设备管理器</string>
+    <string name="hardening_check_device_admin_guidance">在安全设置中检查设备管理器并移除未知条目。</string>
+    <string name="hardening_check_accessibility_title">无障碍服务</string>
+    <string name="hardening_check_accessibility_guidance">检查已启用的无障碍服务并停用未知服务。</string>
+    <string name="hardening_check_installers_title">安装来源</string>
+    <string name="hardening_check_installers_guidance">检查可见应用的安装来源，调查异常来源。</string>
+    <string name="hardening_no_collector">最近一次检查中无加固数据。</string>
+    <string name="hardening_manual_step">建议步骤：%1$s</string>
+    <string name="hardening_open_finding">打开发现项</string>
+
+    <!-- ========================================================= Threat Intel -->
+    <string name="ti_eyebrow">威胁情报</string>
+    <string name="ti_title">威胁情报</string>
+    <string name="ti_subtitle">本地情报源状态。应用仅检查它实际能够观察到的指标。</string>
+    <string name="ti_section_feeds">情报源</string>
+    <string name="ti_section_scope">V1 的限制</string>
+    <string name="ti_scope_note">V1 不监控系统级网络流量、端口或进程流映射。没有特权传感器，这无法可靠实现。</string>
+    <string name="ti_scope_matches">命中仅来自实际观察到的指标。V1 缺少系统级流量数据的数据源。</string>
+    <string name="ti_sync_healthy">同步正常</string>
+    <string name="ti_sync_unhealthy">同步异常</string>
+    <string name="ti_last_sync">上次获取：%1$s</string>
+    <string name="ti_never_synced">尚未同步</string>
+    <string name="ti_feed_records">%1$d 条记录</string>
+    <string name="ti_feed_fetched">获取时间：%1$s</string>
+    <string name="ti_feed_enforcement">模式：%1$s</string>
+    <string name="ti_feed_available">可用</string>
+    <string name="ti_feed_unavailable">不可用</string>
+    <string name="ti_feed_fresh">最新</string>
+    <string name="ti_feed_stale">已过期</string>
+    <string name="ti_sync_started">情报源同步已启动。</string>
+    <string name="ti_sync_already">同步已在运行。</string>
+    <string name="ti_sync_ok">同步已完成。</string>
+    <string name="ti_sync_failed">同步失败。</string>
+    <string name="ti_sync_unavailable">无法启动同步。</string>
+    <string name="ti_no_feeds_title">尚未加载情报源</string>
+    <string name="ti_no_feeds_message">同步威胁情报以获取本地情报源数据。没有情报源时，评估仅限于本地可见数据。</string>
+    <string name="ti_auto_sync_hint">可在设置中控制自动同步。</string>
+    <string name="ti_feed_note">提示：%1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_eyebrow">证据</string>
+    <string name="evidence_title">证据与报告</string>
+    <string name="evidence_subtitle">由发现项和事件组成的本地哈希链日志。</string>
+    <string name="evidence_health_ok">证据存储正常</string>
+    <string name="evidence_health_bad">证据存储受限</string>
+    <string name="evidence_records">已存储 %1$d 条记录</string>
+    <string name="evidence_health_reason">原因：%1$s</string>
+    <string name="evidence_section_events">最近事件</string>
+    <string name="evidence_ledger_note">记录保存在受 HMAC 保护的本地账本中。不会上传。</string>
+    <string name="evidence_export_needs_scan">导出报告需要已完成的检查。</string>
+    <string name="evidence_export_started">已打开文档选择器。</string>
+    <string name="evidence_export_ok">报告已保存：%1$s</string>
+    <string name="evidence_export_failed">无法保存报告。</string>
+    <string name="evidence_export_unavailable">此设备不支持导出。</string>
+    <string name="evidence_confirm_title">删除本地证据</string>
+    <string name="evidence_confirm_body">所有本地证据记录将被永久删除，且无法撤销。如需保留数据，请先导出报告。</string>
+    <string name="evidence_delete_ok">本地证据已删除。</string>
+    <string name="evidence_delete_failed">无法完全删除证据。</string>
+    <string name="evidence_delete_empty">没有本地证据记录。</string>
+    <string name="evidence_no_events_title">尚无证据</string>
+    <string name="evidence_no_events_message">检查后，发现项和事件会在本地记录为证据。</string>
+    <string name="evidence_row_meta">%1$s · %2$s</string>
+    <string name="evidence_severity_none">无严重程度</string>
+
+    <!-- ============================================================= Settings -->
+    <string name="settings_eyebrow">设置</string>
+    <string name="settings_title">设置</string>
+    <string name="settings_subtitle">更新、保留与隐私的本地选项。</string>
+    <string name="settings_section_data">数据与更新</string>
+    <string name="settings_ti_auto_sync">自动同步威胁情报</string>
+    <string name="settings_ti_auto_sync_desc">在系统允许时后台加载情报源。不上传设备数据。</string>
+    <string name="settings_retention">证据保留时长</string>
+    <string name="settings_retention_desc">清理时会移除较旧的本地证据。</string>
+    <string name="settings_retention_value">%1$d 天</string>
+    <string name="settings_retention_changed">保留时长已设为 %1$d 天。</string>
+    <string name="settings_retention_note">提示：更改将在下次清理时生效，而非立即生效。</string>
+    <string name="settings_section_privacy">隐私</string>
+    <string name="settings_telemetry_title">遥测</string>
+    <string name="settings_telemetry_body">V1 不发送遥测。所有评估和发现项都保留在设备本地。不会默认上传应用列表、使用情况或报告。</string>
+    <string name="settings_local_processing">本地处理</string>
+    <string name="settings_local_processing_body">检查完全在设备上运行。网络访问仅用于加载威胁情报源。</string>
+    <string name="settings_section_app">应用</string>
+    <string name="settings_device_id">匿名设备 ID</string>
+    <string name="settings_version">版本</string>
+    <string name="settings_about_row">关于 GeDefense TV</string>
+    <string name="settings_about_row_desc">版本、来源标识与能力限制</string>
+    <string name="settings_state_enabled">已启用</string>
+    <string name="settings_state_disabled">已停用</string>
+    <string name="settings_section_limits">限制</string>
+    <string name="settings_limits_body">此应用不是 EDR：无系统级流量、无端口扫描、无固件完整性证明。</string>
+    <string name="settings_open_evidence">管理证据与报告</string>
+    <string name="settings_open_evidence_desc">查看、导出或删除本地日志</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_eyebrow">关于</string>
+    <string name="about_title">关于 GeDefense TV</string>
+    <string name="about_subtitle">面向 Android TV 和 Google TV 的独立安全应用。</string>
+    <string name="about_section_version">版本与标识</string>
+    <string name="about_version">%1$s（构建 %2$d）</string>
+    <string name="about_developer">发布者：VisionGaiaTechnology</string>
+    <string name="about_section_limits">能力限制</string>
+    <string name="about_limit_inventory">无完整应用清单：Android 软件包可见性限制了可见应用。</string>
+    <string name="about_limit_network">无系统级网络监控：无流量、端口或洪水检测。</string>
+    <string name="about_limit_privileged">非特权 EDR：不监控其他应用的进程、内核或文件。</string>
+    <string name="about_limit_firmware">构建与固件元数据不是完整性证明。</string>
+    <string name="about_limit_telemetry">V1 无遥测，也不涉及音频、视频或屏幕内容。</string>
+    <string name="about_section_collectors">V1 检查范围</string>
+    <string name="about_collectors_body">设备与平台、可见应用、加固状态、连接、传感器与数据健康，以及本地威胁情报。所有检查均为只读。</string>
+    <string name="about_section_device">设备</string>
+    <string name="about_device_none">尚无来自检查的设备数据。</string>
+    <string name="about_device_model">型号</string>
+    <string name="about_device_android">Android</string>
+    <string name="about_device_patch">补丁级别</string>
+    <string name="about_section_legal">注意</string>
+    <string name="about_legal">发现项是检查提示，不是恶意软件判定。缺少可见性不代表安全。</string>
+    <!-- ================================================================ Brand -->
+    <string name="brand_logo_description">GeDefense 盾牌</string>
+    <string name="brand_rail_caption">本地安全控制台</string>
+
+    <!-- ================================================================ V2 shell overlays -->
+    <string name="welcome_title">欢迎使用 GeDefense TV</string>
+    <string name="welcome_subtitle">Sir Quacksec 祝您安全娱乐——本地运行，无需云。</string>
+    <string name="welcome_mascot_description">Sir Quacksec，GeDefense 吉祥物</string>
+    <string name="sync_overlay_starting">正在同步威胁情报源…</string>
+    <string name="sync_overlay_running">正在检查情报源…</string>
+    <string name="sync_overlay_progress">已更新 %1$d / %2$d 个情报源</string>
+
+</resources>

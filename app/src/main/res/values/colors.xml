@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GeDefense TV — colour tokens (VGT GLASS 2100, 2026 redesign).
+
+  Mirrors `de.visiongaia.gedefense.tv.ui.TvTheme` exactly. Obsidian mineral environment, metallic
+  gold brand accent (logo/primary action), electric-blue protection light from the shield gem,
+  green only for verified health, signal red only for high/critical. State-list drawables live in
+  res/drawable and use these values.
+-->
+<resources>
+
+    <!-- Environment / canvas -->
+    <color name="tv_bg_deep">#FF04070A</color>
+    <color name="tv_bg">#FF080C11</color>
+    <color name="tv_canvas">#FF0B1016</color>
+    <color name="tv_canvas_raised">#FF0E141B</color>
+
+    <!-- Glass surfaces (functional layers, restrained opacity) -->
+    <color name="tv_glass_panel">#DE131A22</color>
+    <color name="tv_glass_panel_soft">#B80F151C</color>
+    <color name="tv_panel_top">#E6141B24</color>
+    <color name="tv_panel_bottom">#DE0C1219</color>
+    <color name="tv_glass_stroke">#52C9A24B</color>
+    <color name="tv_glass_stroke_cool">#40789CBE</color>
+    <color name="tv_glass_highlight">#26F4ECD6</color>
+    <color name="tv_scrim_heavy">#EC06090D</color>
+
+    <!-- Controls -->
+    <color name="tv_control_fill">#A612181F</color>
+    <color name="tv_control_fill_focus">#D72E2410</color>
+    <color name="tv_control_stroke">#40789CBE</color>
+    <color name="tv_divider">#33789CBE</color>
+
+    <!-- Brand pigment: metallic gold -->
+    <color name="tv_accent">#FFE6B95C</color>
+    <color name="tv_gold_bright">#FFF7D68A</color>
+    <color name="tv_accent_soft">#FFA47E34</color>
+    <color name="tv_accent_dim">#FF3A2D14</color>
+    <color name="tv_gold_fill">#D93A2D14</color>
+    <color name="tv_focus_ring">#FFF7D68A</color>
+
+    <!-- Protection light: electric blue -->
+    <color name="tv_electric_blue">#FF5AA9E6</color>
+    <color name="tv_gem_blue">#FF408CE6</color>
+    <color name="tv_blue_dim">#FF182C40</color>
+
+    <!-- Typography. Product rule: text on dark surfaces is always white-family (>=82% white). -->
+    <color name="tv_text_primary">#FFFFFFFF</color>
+    <color name="tv_text_secondary">#FFEAF0F5</color>
+    <color name="tv_text_muted">#FFDCE4EC</color>
+    <color name="tv_text_dim">#FFC9D3DD</color>
+
+    <!-- Functional status colours (always paired with glyph + German label) -->
+    <color name="tv_info">#FF5AA9E6</color>
+    <color name="tv_success">#FF4FD1A5</color>
+    <color name="tv_warning">#FFE6B95C</color>
+    <color name="tv_danger">#FFEF6A5A</color>
+    <color name="tv_critical">#FFF04B4B</color>
+
+    <!-- Primary (gold) action gradient -->
+    <color name="tv_gold_gradient_top">#FFF7D68A</color>
+    <color name="tv_gold_gradient_bottom">#FFE6B95C</color>
+
+    <!-- Status pill surfaces -->
+    <color name="tv_pill_neutral_fill">#1FDCE4EC</color>
+    <color name="tv_pill_neutral_stroke">#66DCE4EC</color>
+    <color name="tv_pill_success_fill">#264FD1A5</color>
+    <color name="tv_pill_success_stroke">#804FD1A5</color>
+    <color name="tv_pill_warning_fill">#26E6B95C</color>
+    <color name="tv_pill_warning_stroke">#80E6B95C</color>
+    <color name="tv_pill_danger_fill">#26EF6A5A</color>
+    <color name="tv_pill_danger_stroke">#80EF6A5A</color>
+    <color name="tv_pill_info_fill">#265AA9E6</color>
+    <color name="tv_pill_info_stroke">#805AA9E6</color>
+
+    <!-- Destructive control -->
+    <color name="tv_danger_fill">#33EF6A5A</color>
+    <color name="tv_danger_fill_focus">#4DEF6A5A</color>
+    <color name="tv_danger_stroke">#99EF6A5A</color>
+
+    <color name="tv_transparent">#00000000</color>
+
+</resources>

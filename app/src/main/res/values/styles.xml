@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+      TV application theme (2026 redesign): obsidian canvas, no action bar, no title, overscan-safe.
+      The window background is a calm obsidian tone shift with one faint warm brand wash at the top -
+      no grids, no dot patterns, no neon.
+    -->
+    <style name="TvAppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_tv_window</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowActivityTransitions">false</item>
+        <item name="android:windowContentTransitions">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorAccent">@color/tv_accent</item>
+        <item name="android:colorPrimary">@color/tv_bg_deep</item>
+        <item name="android:colorPrimaryDark">@color/tv_bg_deep</item>
+        <item name="android:colorBackground">@color/tv_bg_deep</item>
+        <item name="android:statusBarColor">@color/tv_bg_deep</item>
+        <item name="android:navigationBarColor">@color/tv_bg_deep</item>
+        <item name="android:textColorPrimary">@color/tv_text_primary</item>
+        <item name="android:textColorSecondary">@color/tv_text_secondary</item>
+        <item name="android:textColorHint">@color/tv_text_secondary</item>
+        <item name="android:textColorHighlight">@color/tv_focus_ring</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- Type scale styles. Programmatic screens use TvTheme tokens; these keep XML previews honest. -->
+    <style name="TextAppearance.Tv.Display" parent="android:style/TextAppearance.Material.Headline">
+        <item name="android:textSize">@dimen/tv_text_display</item>
+        <item name="android:textColor">@color/tv_text_primary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="TextAppearance.Tv.Score" parent="android:style/TextAppearance.Material.Headline">
+        <item name="android:textSize">@dimen/tv_text_score</item>
+        <item name="android:textColor">@color/tv_accent</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="TextAppearance.Tv.Title" parent="android:style/TextAppearance.Material.Headline">
+        <item name="android:textSize">@dimen/tv_text_title</item>
+        <item name="android:textColor">@color/tv_text_primary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="TextAppearance.Tv.Heading" parent="android:style/TextAppearance.Material.Title">
+        <item name="android:textSize">@dimen/tv_text_heading</item>
+        <item name="android:textColor">@color/tv_text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Tv.Body" parent="android:style/TextAppearance.Material.Body1">
+        <item name="android:textSize">@dimen/tv_text_body</item>
+        <item name="android:textColor">@color/tv_text_secondary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.Tv.Label" parent="android:style/TextAppearance.Material.Body2">
+        <item name="android:textSize">@dimen/tv_text_label</item>
+        <item name="android:textColor">@color/tv_text_secondary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Tv.Caption" parent="android:style/TextAppearance.Material.Caption">
+        <item name="android:textSize">@dimen/tv_text_caption</item>
+        <item name="android:textColor">@color/tv_text_secondary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+</resources>

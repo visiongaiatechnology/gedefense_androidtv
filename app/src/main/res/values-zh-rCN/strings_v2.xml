@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- V2 loopback VPN foreground-service texts (service-owned; the TV UI has its own strings). -->
+    <string name="v2_vpn_channel_name">本地防护状态</string>
+    <string name="v2_vpn_channel_desc">此电视上本地连接过滤的持续状态。</string>
+    <string name="v2_vpn_notification_title">GeDefense TV — 本地防护</string>
+    <string name="v2_vpn_session_name">GeDefense TV 本地防护</string>
+    <string name="v2_vpn_notification_starting">正在准备本地防护…</string>
+    <string name="v2_vpn_notification_active">本地防护已启用。数据不会离开设备。</string>
+    <string name="v2_vpn_notification_degraded">本地防护受限——正在恢复。</string>
+    <string name="v2_vpn_notification_stopped">本地防护未启用。</string>
+</resources>

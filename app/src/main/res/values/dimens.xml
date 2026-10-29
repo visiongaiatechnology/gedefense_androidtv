@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GeDefense TV — geometry and type scale (1080p / 4K baseline: canonical 960x540 dp canvas, VGT GLASS 2100).
+  Mirrors TvTheme.kt; the shell applies 36dp overscan, screens use the balanced spacing rhythm below.
+-->
+<resources>
+
+    <!-- Overscan / shell -->
+    <dimen name="tv_overscan">24dp</dimen>
+    <dimen name="tv_rail_width">196dp</dimen>
+
+    <!-- Radii -->
+    <dimen name="tv_radius_panel">12dp</dimen>
+    <dimen name="tv_radius_hero">14dp</dimen>
+    <dimen name="tv_radius_control">8dp</dimen>
+    <dimen name="tv_radius_pill">999dp</dimen>
+
+    <!-- Focus ring -->
+    <dimen name="tv_focus_stroke">3dp</dimen>
+
+    <!-- Spacing rhythm -->
+    <dimen name="tv_space_xxs">2dp</dimen>
+    <dimen name="tv_space_xs">4dp</dimen>
+    <dimen name="tv_space_sm">6dp</dimen>
+    <dimen name="tv_space_md">10dp</dimen>
+    <dimen name="tv_space_lg">14dp</dimen>
+    <dimen name="tv_space_xl">20dp</dimen>
+    <dimen name="tv_space_xxl">26dp</dimen>
+
+    <!-- Type scale (10-foot UI, canonical 960x540 dp coordinate space) -->
+    <dimen name="tv_text_display">28sp</dimen>
+    <dimen name="tv_text_score">34sp</dimen>
+    <dimen name="tv_text_metric">18sp</dimen>
+    <dimen name="tv_text_title">22sp</dimen>
+    <dimen name="tv_text_heading">16sp</dimen>
+    <dimen name="tv_text_body">13sp</dimen>
+    <dimen name="tv_text_label">12sp</dimen>
+    <dimen name="tv_text_caption">11sp</dimen>
+    <dimen name="tv_text_micro">10sp</dimen>
+
+    <!-- Components -->
+    <dimen name="tv_panel_padding_h">16dp</dimen>
+    <dimen name="tv_panel_padding_v">12dp</dimen>
+    <dimen name="tv_action_min_height">36dp</dimen>
+    <dimen name="tv_action_padding_h">16dp</dimen>
+    <dimen name="tv_row_min_height">44dp</dimen>
+    <dimen name="tv_row_padding_h">12dp</dimen>
+    <dimen name="tv_glyph_size">16dp</dimen>
+    <dimen name="tv_glyph_size_large">26dp</dimen>
+    <dimen name="tv_glyph_badge">26dp</dimen>
+    <dimen name="tv_progress_height">5dp</dimen>
+    <dimen name="tv_divider_height">1dp</dimen>
+    <dimen name="tv_text_max_width">960dp</dimen>
+    <dimen name="tv_body_max_width">800dp</dimen>
+
+    <!-- Home hero composition -->
+    <dimen name="tv_hero_height">124dp</dimen>
+    <dimen name="tv_hero_padding">14dp</dimen>
+    <dimen name="tv_score_ring">85dp</dimen>
+    <dimen name="tv_progress_ring">80dp</dimen>
+    <dimen name="tv_metric_tile_min_height">56dp</dimen>
+    <dimen name="tv_timeline_dot">10dp</dimen>
+    <dimen name="tv_app_initial">38dp</dimen>
+
+</resources>

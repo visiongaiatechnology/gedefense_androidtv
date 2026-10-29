@@ -1,0 +1,343 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:6f1f0a3e-7c1b-4c1a-9a7e-2b9c7d5e0a11",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-29T15:00:00Z",
+    "component": {
+      "type": "application",
+      "bom-ref": "pkg:generic/gedefense-tv@0.2.0-alpha1",
+      "name": "GeDefense TV",
+      "group": "de.visiongaia",
+      "version": "0.2.0-alpha1",
+      "description": "Standalone Android TV / Google TV security application. Alpha 0.2.0-alpha1 (VersionCode 2), test-signed; verification status is documented in RELEASE-NOTES.md and TEST-PLAN.md.",
+      "purl": "pkg:generic/gedefense-tv@0.2.0-alpha1",
+      "supplier": {
+        "name": "VisionGaiaTechnology"
+      },
+      "properties": [
+        {
+          "name": "vgt.applicationId",
+          "value": "de.visiongaia.gedefense.tv"
+        },
+        {
+          "name": "vgt.versionCode",
+          "value": "2"
+        },
+        {
+          "name": "vgt.minSdk",
+          "value": "26"
+        },
+        {
+          "name": "vgt.targetSdk",
+          "value": "36"
+        },
+        {
+          "name": "vgt.compileSdk",
+          "value": "36"
+        },
+        {
+          "name": "vgt.build.evidence",
+          "value": "Alpha artifact. Build and verification status are documented in RELEASE-NOTES.md; the published alpha APK is test-signed."
+        },
+        {
+          "name": "vgt.build.releaseStatus",
+          "value": "Test-signed alpha build. No production signing key is part of this alpha release."
+        },
+        {
+          "name": "vgt.test.evidence",
+          "value": "Pure-JVM domain harnesses: :tv-core:tvCoreCheck, :tvV2Check, :tvKineticCheck. Android TV emulator screenshots in docs/screenshots/. Real TV hardware: NOT TESTED."
+        },
+        {
+          "name": "vgt.quality.status",
+          "value": "ALPHA - see RELEASE-NOTES.md for the honest verification status."
+        },
+        {
+          "name": "vgt.v2.status",
+          "value": "V2 (Loopback-VPN/Traffic/XDR/Onboarding) in Arbeit; NOT_TESTED. Native Helper + V2-Assets als interne/vendorte Komponenten erfasst."
+        },
+        {
+          "name": "vgt.source.baselineCommit",
+          "value": "fe555cd (master); RC-Commit nach Doku-Abschluss"
+        }
+      ]
+    },
+    "tools": [
+      {
+        "vendor": "VisionGaiaTechnology",
+        "name": "manuell gepflegte Quell-/Build-SBOM",
+        "version": "1.1"
+      }
+    ],
+    "properties": [
+      {
+        "name": "vgt.sbom.scope",
+        "value": "Quellstand + Build-/Test-Evidenz; keine finalen RC-Artefakt-Hashes (Rebuild ausstehend)"
+      },
+      {
+        "name": "vgt.sbom.generated",
+        "value": "2026-10-29"
+      },
+      {
+        "name": "vgt.sbom.disclaimer",
+        "value": "Listet ausschließlich real existierende Projektmodule. Keine erfundenen Drittanbieter-Komponenten; Runtime-Drittabhängigkeiten: keine."
+      },
+      {
+        "name": "vgt.license.status",
+        "value": "Kein Lizenztext im Repository; keine Lizenzangabe möglich/belegt."
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/gedefense-mobile-core@0.28.0-beta1?vendor=vendored",
+      "name": "GeDefense Mobile Core (vendored)",
+      "group": "de.visiongaia.gedefense.mobile",
+      "version": "0.28.0-beta1",
+      "description": "Byte-identische Kopie des dependency-freien GeDefense-Mobile-Core-Moduls; Provenienz: GeDefense/Mobile/0.28.0-beta1/Source/core, VersionCode 59.",
+      "scope": "required",
+      "purl": "pkg:generic/gedefense-mobile-core@0.28.0-beta1",
+      "properties": [
+        {
+          "name": "vgt.provenance.source",
+          "value": "GeDefense/Mobile/0.28.0-beta1/Source/core"
+        },
+        {
+          "name": "vgt.provenance.versionCode",
+          "value": "59"
+        },
+        {
+          "name": "vgt.provenance.policy",
+          "value": "verbatim; keine Datei in core/ wurde durch das TV-Projekt verändert"
+        },
+        {
+          "name": "vgt.provenance.verification",
+          "value": "PASS: tools/verify-source-fidelity.ps1, Exitcode 0, 26/26 Dateien SHA-256-identisch zu SOURCE-MANIFEST.sha256 (2026-10-29, erneut nach RC-Integration)"
+        },
+        {
+          "name": "vgt.provenance.exception",
+          "value": "core/PROVENANCE.md ist eine TV-Projektdokumentation und nicht Teil des Mobile-Quellstands (dokumentierte Ausnahme im Fidelity-Skript)"
+        },
+        {
+          "name": "vgt.component.classification",
+          "value": "internal (vendored); kein Drittanbieter-Runtime-Paket"
+        },
+        {
+          "name": "vgt.usage",
+          "value": "Reuse von Evidenz-/Krypto-/TI-Cache-Bausteinen; keine Network-/VPN-Funktionen der Mobile-Edition."
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/gedefense-tv-core@0.2.0-alpha1",
+      "name": "GeDefense TV Domain Core",
+      "group": "de.visiongaia.gedefense.tv",
+      "version": "0.2.0-alpha1",
+      "description": "Pure-JVM domain module of the TV app (models, scan/scoring/rule/report/event implementations). No third-party dependencies.",
+      "scope": "required",
+      "purl": "pkg:generic/gedefense-tv-core@0.2.0-alpha1",
+      "properties": [
+        {
+          "name": "vgt.module",
+          "value": ":tv-core"
+        },
+        {
+          "name": "vgt.runtimeDependencies",
+          "value": "keine"
+        },
+        {
+          "name": "vgt.verification",
+          "value": ":tv-core:tvCoreCheck Exit 0, PASS 554 / FAIL 0, 35 Tests (2026-10-29)"
+        },
+        {
+          "name": "vgt.component.classification",
+          "value": "internal (First-Party-Modul); kein Drittanbieter-Runtime-Paket"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "pkg:generic/gedefense-gaianet-v2-helper@0.28.0-beta1?abi=arm64-v8a",
+      "name": "libgedefense_gaianet_v2.so (arm64-v8a)",
+      "group": "de.visiongaia.gedefense",
+      "version": "0.28.0-beta1",
+      "description": "Vendorter GaiaNet-V2-Datenplan-Helper (Go) für die lokale Loopback-VPN-Filterung; Kindprozess der App, kein Root, kein externer VPN-Server.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d34fda6f06ed7809c386af243b55e55cadd20794f1413b94ada3a729b26fd15e"
+        }
+      ],
+      "properties": [
+        {
+          "name": "vgt.artifact.sizeBytes",
+          "value": "3588356"
+        },
+        {
+          "name": "vgt.provenance.source",
+          "value": "GeDefense/Mobile/0.28.0-beta1/Source/app/src/main/jniLibs/arm64-v8a/libgedefense_gaianet_v2.so"
+        },
+        {
+          "name": "vgt.provenance.byteIdentical",
+          "value": "VERIFIED: Größe und SHA-256 identisch zum Mobile-Original (2026-10-29, Doku-Team); Lead-Endledger-Eintrag ausstehend"
+        },
+        {
+          "name": "vgt.packaging",
+          "value": "jniLibs.useLegacyPackaging=true; ausführbar aus nativeLibraryDir; ABI arm64-v8a"
+        },
+        {
+          "name": "vgt.component.classification",
+          "value": "internal (vendored); kein neues Drittanbieter-Runtime-Paket der TV-App"
+        },
+        {
+          "name": "vgt.evidence.status",
+          "value": "NOT_TESTED: V2-Laufzeit/Helper-Start/Filterwirkung nicht getestet"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "pkg:generic/gedefense-gaianet-v2-helper@0.28.0-beta1?abi=x86_64",
+      "name": "libgedefense_gaianet_v2.so (x86_64)",
+      "group": "de.visiongaia.gedefense",
+      "version": "0.28.0-beta1",
+      "description": "Vendorter GaiaNet-V2-Datenplan-Helper (Go) für Emulator/x86_64; Kindprozess der App, kein Root.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9f393ce49032a84f75717174b09748c08e86ff831886a38f68d0ac12975394f3"
+        }
+      ],
+      "properties": [
+        {
+          "name": "vgt.artifact.sizeBytes",
+          "value": "3899320"
+        },
+        {
+          "name": "vgt.provenance.source",
+          "value": "GeDefense/Mobile/0.28.0-beta1/Source/app/src/main/jniLibs/x86_64/libgedefense_gaianet_v2.so"
+        },
+        {
+          "name": "vgt.provenance.byteIdentical",
+          "value": "VERIFIED: Größe und SHA-256 identisch zum Mobile-Original (2026-10-29, Doku-Team); Lead-Endledger-Eintrag ausstehend"
+        },
+        {
+          "name": "vgt.packaging",
+          "value": "jniLibs.useLegacyPackaging=true; ausführbar aus nativeLibraryDir; ABI x86_64"
+        },
+        {
+          "name": "vgt.component.classification",
+          "value": "internal (vendored); kein neues Drittanbieter-Runtime-Paket der TV-App"
+        },
+        {
+          "name": "vgt.evidence.status",
+          "value": "NOT_TESTED: V2-Laufzeit/Helper-Start/Filterwirkung nicht getestet"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "pkg:generic/gedefense-tv-asset-sir-quacksec@0.2.0-alpha1",
+      "name": "sir_quacksec.png",
+      "group": "de.visiongaia.gedefense.tv",
+      "version": "0.2.0-alpha1",
+      "description": "Vom Nutzer bereitgestelltes Maskottchen-/Willkommens-Asset (V2-Onboarding).",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d64dd29fc5a3a4f07e19b9cfe04b1a258895f67b1de84188779f81444af8220a"
+        }
+      ],
+      "properties": [
+        {
+          "name": "vgt.artifact.sizeBytes",
+          "value": "772103"
+        },
+        {
+          "name": "vgt.artifact.dimensions",
+          "value": "749x820"
+        },
+        {
+          "name": "vgt.provenance.source",
+          "value": "Vom Nutzer bereitgestellt (User-Asset); Ablage app/src/main/res/drawable-nodpi/sir_quacksec.png"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "pkg:generic/gedefense-tv-asset-world-map@0.2.0-alpha1",
+      "name": "world_map_ambient.png",
+      "group": "de.visiongaia.gedefense.tv",
+      "version": "0.2.0-alpha1",
+      "description": "Statische Weltkarten-Hintergrundebene für die Traffic-Map.",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "99df4a066c175e136c8360f30ead08b2ba3eeabfa6c7247eaffc2c408410492a"
+        }
+      ],
+      "properties": [
+        {
+          "name": "vgt.artifact.sizeBytes",
+          "value": "493525"
+        },
+        {
+          "name": "vgt.artifact.dimensions",
+          "value": "2560x1280"
+        },
+        {
+          "name": "vgt.provenance.source",
+          "value": "GeDefense/Mobile/0.28.0-beta1/Source/app/src/main/res/drawable-nodpi/world_map_ambient.png"
+        },
+        {
+          "name": "vgt.provenance.byteIdentical",
+          "value": "VERIFIED: Größe und SHA-256 identisch zum Mobile-Original (2026-10-29, Doku-Team)"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:generic/gedefense-tv@0.2.0-alpha1",
+      "dependsOn": [
+        "pkg:generic/gedefense-mobile-core@0.28.0-beta1?vendor=vendored",
+        "pkg:generic/gedefense-tv-core@0.2.0-alpha1",
+        "pkg:generic/gedefense-gaianet-v2-helper@0.28.0-beta1?abi=arm64-v8a",
+        "pkg:generic/gedefense-gaianet-v2-helper@0.28.0-beta1?abi=x86_64",
+        "pkg:generic/gedefense-tv-asset-sir-quacksec@0.2.0-alpha1",
+        "pkg:generic/gedefense-tv-asset-world-map@0.2.0-alpha1"
+      ]
+    },
+    {
+      "ref": "pkg:generic/gedefense-gaianet-v2-helper@0.28.0-beta1?abi=arm64-v8a",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:generic/gedefense-gaianet-v2-helper@0.28.0-beta1?abi=x86_64",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:generic/gedefense-tv-asset-sir-quacksec@0.2.0-alpha1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:generic/gedefense-tv-asset-world-map@0.2.0-alpha1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:generic/gedefense-mobile-core@0.28.0-beta1?vendor=vendored",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:generic/gedefense-tv-core@0.2.0-alpha1",
+      "dependsOn": []
+    }
+  ]
+}

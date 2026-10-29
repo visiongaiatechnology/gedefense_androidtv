@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fit-safe short strings for the 1080p layout (single-line chips/pills, no word breaks). -->
+<resources>
+
+    <string name="apps_counts_short">可见：%1$d · 新增：%2$d · 变更：%3$d</string>
+    <string name="findings_count_short">%1$d</string>
+
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Additional French screen strings, kept separate from the base string table. -->
+<resources>
+
+    <!-- ==================================================== Persisted scan summary -->
+    <string name="summary_last_run">Dernière exécution</string>
+    <string name="label_collectors">Zones de vérification</string>
+    <string name="home_subtitle_summary">Dernière vérification terminée. Les détails des constats ne sont plus en mémoire après un redémarrage.</string>
+    <string name="home_summary_details_note">Les détails de la dernière exécution ne sont plus en mémoire après un redémarrage. Relancez la vérification pour des constats à jour.</string>
+    <string name="home_summary_findings_note">Les constats de la dernière exécution ne sont pas reconstruits en liste après un redémarrage. Relancez la vérification pour des constats à jour.</string>
+    <string name="home_device_details_note">Les données d\'appareil de la dernière exécution ne sont plus en mémoire après un redémarrage.</string>
+    <string name="findings_summary_title">Aucun détail de constat en mémoire</string>
+    <string name="findings_summary_message">La dernière vérification est terminée, mais les détails des constats ne sont pas reconstruits après un redémarrage. Relancez la vérification pour des constats à jour.</string>
+    <string name="check_collectors_after_restart">Les zones de vérification de la dernière exécution ne sont plus en mémoire après un redémarrage.</string>
+    <string name="apps_summary_empty_title">Inventaire d\'apps absent de la mémoire</string>
+    <string name="apps_summary_empty_message">La dernière vérification est terminée, mais les détails des apps ne sont plus en mémoire après un redémarrage. Lancez une nouvelle vérification pour recenser les apps visibles.</string>
+    <string name="hardening_summary_empty_title">Détails de durcissement absents de la mémoire</string>
+    <string name="hardening_summary_empty_message">La dernière vérification est terminée, mais les états détaillés ne sont plus en mémoire après un redémarrage. Relancez la vérification pour des constats de durcissement à jour.</string>
+
+    <!-- ================================================================= Home -->
+    <string name="home_android_value">%1$s (API %2$d)</string>
+    <string name="home_label_patch_assessment">Évaluation du correctif</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow_format">%1$s · %2$s</string>
+    <string name="finding_detail_digest_short">%1$s …</string>
+    <string name="finding_detail_digest_none">Absent</string>
+
+    <!-- ============================================================ Empty states -->
+    <string name="empty_no_check_title">Aucune vérification</string>
+    <string name="empty_no_check_message">Lancez la première vérification locale pour générer la posture de sécurité, les constats et les preuves.</string>
+    <string name="empty_no_findings_full_title">Aucun constat</string>
+    <string name="empty_no_findings_full_message">La dernière vérification n\'a trouvé aucun constat dans les zones visibles. Cela ne prouve pas une sécurité complète.</string>
+    <string name="empty_no_findings_partial_title">Aucun constat dans les zones visibles</string>
+    <string name="empty_no_findings_partial_message">La visibilité était limitée. Les zones non visibles ne sont pas vérifiées – cela ne prouve pas la sécurité.</string>
+
+    <!-- ================================================================= Apps -->
+    <string name="apps_section_list">Liste des apps</string>
+    <string name="apps_list_limit">Les %1$d premières apps visibles sont affichées.</string>
+    <string name="apps_visibility_scope">Visibilité dans cette vérification : %1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_records_label">Entrées</string>
+    <string name="evidence_events_limit">Les %1$d derniers événements sont affichés.</string>
+    <string name="evidence_event_none">Aucun type d\'événement</string>
+
+    <!-- ======================================================= Check details -->
+    <string name="check_collector_error">Erreur : %1$s</string>
+    <string name="check_collectors_pending">Les zones de vérification sont listées à la fin de la vérification en cours.</string>
+    <string name="check_previous_note">Les zones de vérification listées proviennent de la dernière vérification terminée.</string>
+
+    <!-- ========================================================= Threat intel -->
+    <string name="ti_status_value">Flux à jour : %1$d sur %2$d · obsolètes : %3$d</string>
+
+    <!-- ================================================= Settings (informational) -->
+    <string name="settings_retention_info_title">Conservation des preuves locales</string>
+    <string name="settings_retention_info_value">Jusqu\'à suppression manuelle</string>
+    <string name="settings_retention_info_body">La rotation automatique et la suppression planifiée ne sont pas actives en V1. Les preuves locales sont supprimées dans la section Preuves après confirmation explicite.</string>
+    <string name="settings_retention_cycle">Valeurs : 7, 30, 90 ou 180 jours. Une nouvelle activation passe à la suivante.</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_publisher_label">Éditeur</string>
+    <string name="about_publisher_value">VisionGaiaTechnology</string>
+    <string name="about_source_label">Paquet d\'application</string>
+
+</resources>

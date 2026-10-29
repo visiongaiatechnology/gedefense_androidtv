@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GeDefense TV — French UI strings.
+
+  Every user-facing text of the TV UI is defined here; Kotlin code never hardcodes user-facing copy.
+  Wording rules: honest capability states, no "sicher/Sauber" claim for partial or missing
+  visibility, concrete action verbs, no marketing claims.
+-->
+<resources>
+
+    <string name="app_name">GeDefense TV</string>
+    <string name="brand_mark_description">Symbole GeDefense TV : bouclier avec diaphragme</string>
+
+    <!-- ======================================================== navigation rail -->
+    <string name="nav_home">Vue d\'ensemble</string>
+    <string name="nav_home_desc">Posture et dernière vérification</string>
+    <string name="nav_check">Vérification</string>
+    <string name="nav_check_desc">Lancer et suivre la vérification</string>
+    <string name="nav_findings">Constats</string>
+    <string name="nav_findings_desc">Consulter les anomalies détectées</string>
+    <string name="nav_apps">Apps</string>
+    <string name="nav_apps_desc">Apps visibles et changements</string>
+    <string name="nav_hardening">Durcissement</string>
+    <string name="nav_hardening_desc">Débogage, installations, administration</string>
+    <string name="nav_threat_intel">Threat Intel</string>
+    <string name="nav_threat_intel_desc">État des flux, fraîcheur et limites</string>
+    <string name="nav_evidence">Preuves</string>
+    <string name="nav_evidence_desc">Journal local et rapport</string>
+    <string name="nav_settings">Réglages</string>
+    <string name="nav_settings_desc">Conservation, sync et télémétrie</string>
+
+    <!-- ================================================================= actions -->
+    <string name="action_start_check">Lancer la vérification</string>
+    <string name="action_rerun_check">Relancer la vérification</string>
+    <string name="action_cancel_check">Annuler la vérification</string>
+    <string name="action_show_progress">Voir la progression</string>
+    <string name="action_open_findings">Voir les constats</string>
+    <string name="action_open_evidence">Rapport et preuves</string>
+    <string name="action_open_settings">Réglages</string>
+    <string name="action_open_about">À propos de l\'app</string>
+    <string name="action_export_report">Exporter le rapport</string>
+    <string name="action_delete_evidence">Supprimer les preuves</string>
+    <string name="action_confirm_delete">Supprimer définitivement</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_back_to_list">Retour aux constats</string>
+    <string name="action_refresh">Actualiser</string>
+    <string name="action_sync_now">Synchroniser maintenant</string>
+    <string name="action_syncing">Synchronisation …</string>
+    <string name="action_change">Modifier</string>
+    <string name="action_filter_all">Toutes les apps</string>
+    <string name="action_filter_changes">Modifications uniquement</string>
+    <string name="action_open_area">Ouvrir la zone</string>
+    <string name="action_back">Retour</string>
+
+    <!-- ============================================================ value states -->
+    <string name="value_unknown">Inconnu</string>
+    <string name="value_not_available">Indisponible</string>
+    <string name="value_never">Jamais</string>
+    <string name="value_none">Aucun</string>
+    <string name="value_not_checked">Non vérifié</string>
+    <string name="value_dash">—</string>
+    <string name="value_yes">Oui</string>
+    <string name="value_no">Non</string>
+    <string name="value_multiple">Plusieurs</string>
+
+    <!-- =================================================== posture band labels -->
+    <string name="posture_band_strong">Fort</string>
+    <string name="posture_band_moderate">Moyen</string>
+    <string name="posture_band_weak">Faible</string>
+    <string name="posture_band_unknown">Non évaluable</string>
+    <string name="posture_band_insufficient">Visibilité limitée</string>
+    <string name="posture_score_unit">sur 100</string>
+    <string name="posture_score_unknown">Non évaluable</string>
+
+    <!-- ========================================================== visibility -->
+    <string name="visibility_full">Visibilité complète</string>
+    <string name="visibility_partial">Visibilité partielle</string>
+    <string name="visibility_stale">Obsolète</string>
+    <string name="visibility_none">Aucune visibilité</string>
+
+    <!-- ========================================================== capability -->
+    <string name="capability_supported">Pris en charge</string>
+    <string name="capability_permission_required">Autorisation requise</string>
+    <string name="capability_unsupported">Non pris en charge</string>
+    <string name="capability_failed">Échec</string>
+
+    <!-- ======================================================== data quality -->
+    <string name="quality_fresh">À jour</string>
+    <string name="quality_partial">Partiel</string>
+    <string name="quality_stale">Obsolète</string>
+    <string name="quality_unknown">Inconnu</string>
+
+    <!-- ============================================================ severity -->
+    <string name="severity_info">Information</string>
+    <string name="severity_low">Faible</string>
+    <string name="severity_medium">Moyen</string>
+    <string name="severity_high">Élevé</string>
+    <string name="severity_critical">Critique</string>
+
+    <!-- ========================================================== confidence -->
+    <string name="confidence_low">Faible</string>
+    <string name="confidence_medium">Moyen</string>
+    <string name="confidence_high">Élevé</string>
+
+    <!-- ========================================================== scan states -->
+    <string name="scan_state_completed">Terminée</string>
+    <string name="scan_state_partial">Partiellement terminée</string>
+    <string name="scan_state_cancelled">Annulée</string>
+    <string name="scan_state_failed">Échouée</string>
+    <string name="scan_state_running">Vérification en cours</string>
+    <string name="scan_state_idle">Prêt</string>
+
+    <!-- ========================================================== patch state -->
+    <string name="patch_current">À jour</string>
+    <string name="patch_aging">Vieillissant</string>
+    <string name="patch_outdated">Obsolète</string>
+    <string name="patch_critically_outdated">Gravement obsolète</string>
+    <string name="patch_unknown">Inconnu</string>
+
+    <!-- ========================================================= policy action -->
+    <string name="policy_none">Aucune action</string>
+    <string name="policy_observe">Surveiller</string>
+    <string name="policy_recommend_manual">Action manuelle conseillée</string>
+    <string name="policy_escalate">Décision requise</string>
+
+    <!-- ==================================================== collector category -->
+    <string name="category_platform">Appareil et plateforme</string>
+    <string name="category_apps">Apps et inventaire</string>
+    <string name="category_hardening">Durcissement</string>
+    <string name="category_connectivity">Connectivité</string>
+    <string name="category_threat_intel">Threat Intelligence</string>
+    <string name="category_sensor_health">Santé des capteurs et données</string>
+
+    <!-- ========================================================= event classes -->
+    <string name="event_class_device_state">État de l\'appareil</string>
+    <string name="event_class_app_inventory">Inventaire des apps</string>
+    <string name="event_class_usage_signal">Signal d\'usage</string>
+    <string name="event_class_connectivity_state">État de connexion</string>
+    <string name="event_class_ti_match">Correspondance TI</string>
+    <string name="event_class_sensor_health">Santé capteurs/données</string>
+    <string name="event_class_enforcement">Application</string>
+
+    <!-- ================================================== time and formatting -->
+    <string name="format_date_time">d/M/yyyy, HH:mm</string>
+    <string name="format_date_time_with_clock">d/M/yyyy, HH:mm</string>
+    <string name="format_date">d/M/yyyy</string>
+    <string name="age_just_now">à l\'instant</string>
+    <string name="age_minutes">il y a %1$d min</string>
+    <string name="age_hours">il y a %1$d h</string>
+    <string name="age_days">il y a %1$d jours</string>
+    <string name="duration_seconds">%1$d s</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+
+    <!-- ============================================================ generic -->
+    <string name="label_state">État</string>
+    <string name="label_time">Horodatage</string>
+    <string name="label_duration">Durée</string>
+    <string name="label_findings">Constats</string>
+    <string name="label_visibility">Visibilité</string>
+    <string name="label_quality">Qualité des données</string>
+    <string name="label_capability">Capacité</string>
+    <string name="label_source">Source</string>
+    <string name="label_confidence">Confiance</string>
+    <string name="label_severity">Gravité</string>
+    <string name="label_coverage">Couverture</string>
+    <string name="count_findings">%1$d constats</string>
+    <string name="count_events">%1$d entrées</string>
+    <string name="count_of_total">%1$d sur %2$d</string>
+    <string name="error_read_failed">Les données n\'ont pas pu être lues.</string>
+    <string name="error_read_failed_detail">Le service local n\'a pas répondu. Réessayez via « Actualiser ».</string>
+
+    <!-- ================================================================== Home -->
+    <string name="home_eyebrow">Aperçu de sécurité</string>
+    <string name="home_title">Posture de sécurité</string>
+    <string name="home_subtitle_no_scan">Aucune vérification sur cet appareil. L\'évaluation est exclusivement locale.</string>
+    <string name="home_subtitle_scan">Évaluation issue de la dernière vérification locale. Visibilité et couverture sont indiquées séparément.</string>
+    <string name="home_score_label">Posture</string>
+    <string name="home_section_device">Appareil et périmètre</string>
+    <string name="home_section_findings">Principaux constats</string>
+    <string name="home_section_last_check">Dernière vérification</string>
+    <string name="home_label_device">Appareil</string>
+    <string name="home_label_android">Android</string>
+    <string name="home_label_patch">Correctif de sécurité</string>
+    <string name="home_label_collectors">Zones de vérification prises en charge</string>
+    <string name="home_label_coverage">Visibilité globale</string>
+    <string name="home_scan_running_note">Une vérification est en cours. Les résultats seront mis à jour à la fin.</string>
+    <string name="home_no_findings_note">Aucun constat dans les zones visibles. Avec une visibilité limitée, cela ne prouve pas la sécurité.</string>
+    <string name="home_cap_reason">Limitation : %1$s</string>
+    <string name="home_more_findings">%1$d constats supplémentaires dans la liste</string>
+    <string name="home_no_scan_note">Sans vérification, aucune évaluation de la posture.</string>
+    <string name="home_running_pill">Vérification en cours</string>
+
+    <!-- ================================================================= Check -->
+    <string name="check_eyebrow">Vérification locale</string>
+    <string name="check_title">Vérification de sécurité</string>
+    <string name="check_subtitle">Les zones de vérification locales s\'exécutent l\'une après l\'autre. Aucune donnée de l\'appareil n\'est envoyée.</string>
+    <string name="check_section_progress">Progression</string>
+    <string name="check_section_collectors">Zones de vérification</string>
+    <string name="check_progress_count">%1$d sur %2$d terminées</string>
+    <string name="check_progress_current">En cours : %1$s</string>
+    <string name="check_progress_findings">%1$d constats jusqu\'ici</string>
+    <string name="check_progress_idle">Prêt pour la prochaine vérification.</string>
+    <string name="check_progress_unknown">Vérification en cours. La progression sera mise à jour à la fin.</string>
+    <string name="check_last_result">Dernier résultat</string>
+    <string name="check_collector_meta">%1$s · Capacité : %2$s · Visibilité : %3$s · Données : %4$s</string>
+    <string name="check_collector_findings">%1$d constats</string>
+    <string name="check_collector_no_findings">Aucun constat</string>
+    <string name="check_coverage_no_denominator">Couverture : %1$d observés, dénominateur non fiable</string>
+    <string name="check_coverage">Couverture %1$d sur %2$d</string>
+    <string name="check_failed_title">Vérification échouée</string>
+    <string name="check_failed_message">La dernière vérification a échoué. Lancez une nouvelle vérification ; des détails peuvent figurer dans le journal des preuves.</string>
+    <string name="check_cancelled_note">La dernière vérification a été annulée. Les résultats sont incomplets.</string>
+    <string name="check_partial_note">La dernière vérification n\'est que partiellement terminée. Toutes les zones n\'ont pas fourni de résultats.</string>
+    <string name="check_no_collectors">Aucune zone de vérification disponible.</string>
+    <string name="check_started">Vérification lancée.</string>
+    <string name="check_already_running">Une vérification est déjà en cours.</string>
+    <string name="check_cancel_requested">Annulation demandée.</string>
+    <string name="check_cancel_unavailable">Aucune vérification en cours à annuler.</string>
+    <string name="check_start_unavailable">La vérification n\'a pas pu être lancée.</string>
+    <string name="check_running_hint">La progression est visible en direct après le lancement. Cette vue se met à jour automatiquement à la fin.</string>
+
+    <!-- ============================================================== Findings -->
+    <string name="findings_eyebrow">Constats</string>
+    <string name="findings_title">Constats</string>
+    <string name="findings_subtitle_full">Constats de la dernière vérification, triés par gravité.</string>
+    <string name="findings_subtitle_partial">Constats des zones visibles. La visibilité était limitée.</string>
+    <string name="findings_summary">%1$d constats dans %2$d zones de vérification</string>
+    <string name="findings_summary_one">%1$d constat dans %2$d zones de vérification</string>
+    <string name="findings_severity_summary">Élevé/Critique : %1$d · Moyen : %2$d · Faible/Info : %3$d</string>
+    <string name="findings_visibility_note">Visibilité : %1$s. Les zones non visibles ne sont pas vérifiées.</string>
+    <string name="findings_limit_note">Les %1$d premiers constats sont affichés ; le rapport contient tous les constats de la dernière vérification.</string>
+    <string name="findings_row_meta">%1$s · %2$s</string>
+    <string name="findings_row_times">Première vue %1$s · dernière vue %2$s</string>
+    <string name="findings_open_hint">Ouvrir le constat avec OK</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow">Constat</string>
+    <string name="finding_detail_section_why">Pourquoi c\'est important</string>
+    <string name="finding_detail_section_component">Composant concerné</string>
+    <string name="finding_detail_section_evidence">Preuves</string>
+    <string name="finding_detail_section_recommendation">Étapes recommandées</string>
+    <string name="finding_detail_section_meta">Qualification</string>
+    <string name="finding_detail_label_source">Source</string>
+    <string name="finding_detail_label_collected">Collecté</string>
+    <string name="finding_detail_label_digest">Empreinte</string>
+    <string name="finding_detail_label_first_seen">Première observation</string>
+    <string name="finding_detail_label_last_seen">Dernière observation</string>
+    <string name="finding_detail_label_category">Catégorie</string>
+    <string name="finding_detail_label_policy">Action recommandée</string>
+    <string name="finding_detail_no_recommendation">Aucune action automatique n\'est prévue pour ce constat. Vérifiez la qualification et décidez manuellement.</string>
+    <string name="finding_detail_missing_title">Constat indisponible</string>
+    <string name="finding_detail_missing_message">Le constat ne fait plus partie de la vérification actuelle. Ouvrez la liste des constats ou lancez une nouvelle vérification.</string>
+
+    <!-- ================================================================== Apps -->
+    <string name="apps_eyebrow">Apps</string>
+    <string name="apps_title">Apps visibles</string>
+    <string name="apps_subtitle">Apps visibles pour GeDefense TV selon la visibilité des paquets de cet appareil.</string>
+    <string name="apps_visibility_title">Visibilité des paquets limitée</string>
+    <string name="apps_visibility_body">Depuis Android 11, l\'app ne voit que les paquets qu\'elle peut interroger explicitement, plus elle-même. Cette liste n\'est pas un inventaire complet de l\'appareil et ne dit rien des apps invisibles.</string>
+    <string name="apps_counts">Visibles : %1$d · Nouvelles : %2$d · Modifiées : %3$d · Lançables : %4$d</string>
+    <string name="apps_baseline_missing">Aucune base de comparaison : nouveau/modifié n\'est disponible qu\'à partir de la deuxième vérification.</string>
+    <string name="apps_baseline_time">Base de comparaison : %1$s</string>
+    <string name="apps_no_inventory">Aucun inventaire d\'apps dans la dernière vérification.</string>
+    <string name="apps_empty_title">Aucun inventaire d\'apps disponible</string>
+    <string name="apps_empty_message">Aucune vérification avec inventaire d\'apps n\'est disponible. Lancez une vérification pour recenser les apps visibles.</string>
+    <string name="apps_no_changes">Aucune app nouvelle ou modifiée dans la dernière vérification.</string>
+    <string name="apps_system_app">App système</string>
+    <string name="apps_user_app">App utilisateur</string>
+    <string name="apps_installer">Source : %1$s</string>
+    <string name="apps_installer_unknown">Source : non indiquée</string>
+    <string name="apps_version">Version %1$s (%2$d)</string>
+    <string name="apps_version_unknown">Version inconnue</string>
+    <string name="apps_disabled">Désactivée</string>
+    <string name="apps_badge_new">Nouvelle</string>
+    <string name="apps_badge_changed">Modifiée</string>
+    <string name="apps_removed_note">%1$d paquets supprimés depuis la base de comparaison.</string>
+    <string name="apps_system_flag">Système</string>
+
+    <!-- ============================================================= Hardening -->
+    <string name="hardening_eyebrow">Durcissement</string>
+    <string name="hardening_title">Durcissement et réglages</string>
+    <string name="hardening_subtitle">États vérifiables de débogage, d\'installation et d\'administration issus de la dernière vérification.</string>
+    <string name="hardening_section_checks">Zones de vérification</string>
+    <string name="hardening_section_findings">Constats de la vérification du durcissement</string>
+    <string name="hardening_check_no_finding">Aucun constat visible</string>
+    <string name="hardening_check_not_readable">Non vérifiable</string>
+    <string name="hardening_check_finding">Constat : %1$s</string>
+    <string name="hardening_note_absence">L\'absence de constat ne prouve pas qu\'un réglage est sûr. Les valeurs illisibles restent explicitement non vérifiées.</string>
+    <string name="hardening_check_adb_title">ADB / débogage</string>
+    <string name="hardening_check_adb_guidance">Vérifiez dans les réglages système, sous Débogage ou Options pour développeurs, et désactivez si inutile.</string>
+    <string name="hardening_check_developer_title">Options pour développeurs</string>
+    <string name="hardening_check_developer_guidance">Désactivez les options pour développeurs dans les réglages système si elles ne servent pas aux tests.</string>
+    <string name="hardening_check_unknown_sources_title">Sources inconnues</string>
+    <string name="hardening_check_unknown_sources_guidance">Désactivez l\'installation depuis des sources inconnues pour cette app dans les réglages système.</string>
+    <string name="hardening_check_test_keys_title">Signature de build (clés de test)</string>
+    <string name="hardening_check_test_keys_guidance">Indique une signature de test/débogage dans le build. Vérifiez une mise à jour du fabricant.</string>
+    <string name="hardening_check_device_admin_title">Administrateurs d\'appareil</string>
+    <string name="hardening_check_device_admin_guidance">Vérifiez les administrateurs d\'appareil dans les réglages de sécurité et retirez les entrées inconnues.</string>
+    <string name="hardening_check_accessibility_title">Services d\'accessibilité</string>
+    <string name="hardening_check_accessibility_guidance">Vérifiez les services d\'accessibilité activés et désactivez les services inconnus.</string>
+    <string name="hardening_check_installers_title">Sources d\'installation</string>
+    <string name="hardening_check_installers_guidance">Vérifiez les sources d\'installation des apps visibles et examinez les sources inattendues.</string>
+    <string name="hardening_no_collector">Les données de durcissement ne sont pas disponibles dans la dernière vérification.</string>
+    <string name="hardening_manual_step">Étape recommandée : %1$s</string>
+    <string name="hardening_open_finding">Ouvrir le constat</string>
+
+    <!-- ========================================================= Threat Intel -->
+    <string name="ti_eyebrow">Threat Intelligence</string>
+    <string name="ti_title">Threat Intelligence</string>
+    <string name="ti_subtitle">État local des flux. L\'app ne vérifie que les indicateurs qu\'elle peut réellement observer.</string>
+    <string name="ti_section_feeds">Flux</string>
+    <string name="ti_section_scope">Limites en V1</string>
+    <string name="ti_scope_note">La V1 ne surveille pas le trafic réseau à l\'échelle du système, ni les ports, ni l\'association processus-flux. Sans capteurs privilégiés, cela ne peut être fiable.</string>
+    <string name="ti_scope_matches">Les correspondances ne proviennent que d\'indicateurs réellement observés. La V1 n\'a pas de source pour le trafic à l\'échelle du système.</string>
+    <string name="ti_sync_healthy">Synchronisation saine</string>
+    <string name="ti_sync_unhealthy">Synchronisation perturbée</string>
+    <string name="ti_last_sync">Dernier téléchargement : %1$s</string>
+    <string name="ti_never_synced">Pas encore synchronisé</string>
+    <string name="ti_feed_records">%1$d entrées</string>
+    <string name="ti_feed_fetched">Téléchargé : %1$s</string>
+    <string name="ti_feed_enforcement">Mode : %1$s</string>
+    <string name="ti_feed_available">Disponible</string>
+    <string name="ti_feed_unavailable">Indisponible</string>
+    <string name="ti_feed_fresh">À jour</string>
+    <string name="ti_feed_stale">Obsolète</string>
+    <string name="ti_sync_started">Synchronisation des flux lancée.</string>
+    <string name="ti_sync_already">Une synchronisation est déjà en cours.</string>
+    <string name="ti_sync_ok">Synchronisation terminée.</string>
+    <string name="ti_sync_failed">Échec de la synchronisation.</string>
+    <string name="ti_sync_unavailable">La synchronisation n\'a pas pu être lancée.</string>
+    <string name="ti_no_feeds_title">Aucun flux chargé</string>
+    <string name="ti_no_feeds_message">Synchronisez le renseignement sur les menaces pour obtenir des données locales. Sans flux, l\'évaluation reste limitée aux données localement visibles.</string>
+    <string name="ti_auto_sync_hint">La synchronisation automatique se règle dans les réglages.</string>
+    <string name="ti_feed_note">Remarque : %1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_eyebrow">Preuves</string>
+    <string name="evidence_title">Preuves et rapport</string>
+    <string name="evidence_subtitle">Journal local enchaîné par hachage des constats et événements.</string>
+    <string name="evidence_health_ok">Stockage des preuves sain</string>
+    <string name="evidence_health_bad">Stockage des preuves dégradé</string>
+    <string name="evidence_records">%1$d entrées enregistrées</string>
+    <string name="evidence_health_reason">Raison : %1$s</string>
+    <string name="evidence_section_events">Événements récents</string>
+    <string name="evidence_ledger_note">Les entrées sont stockées localement dans un registre protégé par HMAC. Aucun envoi n\'a lieu.</string>
+    <string name="evidence_export_needs_scan">L\'export du rapport nécessite une vérification terminée.</string>
+    <string name="evidence_export_started">Sélecteur de document ouvert.</string>
+    <string name="evidence_export_ok">Rapport enregistré : %1$s</string>
+    <string name="evidence_export_failed">Le rapport n\'a pas pu être enregistré.</string>
+    <string name="evidence_export_unavailable">L\'export n\'est pas disponible sur cet appareil.</string>
+    <string name="evidence_confirm_title">Supprimer les preuves locales</string>
+    <string name="evidence_confirm_body">Toutes les entrées de preuves locales seront définitivement supprimées. Cette action est irréversible. Exportez d\'abord un rapport si les données doivent être conservées.</string>
+    <string name="evidence_delete_ok">Preuves locales supprimées.</string>
+    <string name="evidence_delete_failed">Les preuves n\'ont pas pu être entièrement supprimées.</string>
+    <string name="evidence_delete_empty">Aucune entrée de preuve locale n\'existe.</string>
+    <string name="evidence_no_events_title">Aucune preuve</string>
+    <string name="evidence_no_events_message">Après une vérification, les constats et événements sont consignés localement comme preuves.</string>
+    <string name="evidence_row_meta">%1$s · %2$s</string>
+    <string name="evidence_severity_none">sans gravité</string>
+
+    <!-- ============================================================= Settings -->
+    <string name="settings_eyebrow">Réglages</string>
+    <string name="settings_title">Réglages</string>
+    <string name="settings_subtitle">Options locales pour la mise à jour, la conservation et la confidentialité.</string>
+    <string name="settings_section_data">Données et mises à jour</string>
+    <string name="settings_ti_auto_sync">Synchroniser le renseignement automatiquement</string>
+    <string name="settings_ti_auto_sync_desc">Télécharge les flux en arrière-plan si le système le permet. Aucune donnée de l\'appareil n\'est envoyée.</string>
+    <string name="settings_retention">Durée de conservation des preuves</string>
+    <string name="settings_retention_desc">Les anciennes preuves locales sont supprimées lors du nettoyage.</string>
+    <string name="settings_retention_value">%1$d jours</string>
+    <string name="settings_retention_changed">Conservation réglée sur %1$d jours.</string>
+    <string name="settings_retention_note">Remarque : la modification s\'applique au prochain nettoyage, pas immédiatement.</string>
+    <string name="settings_section_privacy">Confidentialité</string>
+    <string name="settings_telemetry_title">Télémétrie</string>
+    <string name="settings_telemetry_body">La V1 n\'envoie aucune télémétrie. Toutes les analyses et constats restent locaux sur l\'appareil. Aucun envoi par défaut de listes d\'apps, d\'usage ou de rapports.</string>
+    <string name="settings_local_processing">Traitement local</string>
+    <string name="settings_local_processing_body">Les vérifications s\'exécutent uniquement sur l\'appareil. L\'accès réseau sert uniquement à charger les flux de renseignement.</string>
+    <string name="settings_section_app">App</string>
+    <string name="settings_device_id">ID d\'appareil pseudonyme</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_about_row">À propos de GeDefense TV</string>
+    <string name="settings_about_row_desc">Version, identité de la source et limites de capacité</string>
+    <string name="settings_state_enabled">Activé</string>
+    <string name="settings_state_disabled">Désactivé</string>
+    <string name="settings_section_limits">Limites</string>
+    <string name="settings_limits_body">Cette app n\'est pas un EDR : pas de flux à l\'échelle du système, pas de scan de ports, pas d\'attestation d\'intégrité du firmware.</string>
+    <string name="settings_open_evidence">Gérer les preuves et le rapport</string>
+    <string name="settings_open_evidence_desc">Consulter, exporter ou supprimer le journal local</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_eyebrow">À propos</string>
+    <string name="about_title">À propos de GeDefense TV</string>
+    <string name="about_subtitle">App de sécurité autonome pour Android TV et Google TV.</string>
+    <string name="about_section_version">Version et identité</string>
+    <string name="about_version">%1$s (build %2$d)</string>
+    <string name="about_developer">Éditeur : VisionGaiaTechnology</string>
+    <string name="about_section_limits">Limites de capacité</string>
+    <string name="about_limit_inventory">Pas d\'inventaire complet des apps : la visibilité des paquets Android limite les apps visibles.</string>
+    <string name="about_limit_network">Pas de surveillance réseau à l\'échelle du système : pas de détection de flux, de ports ou d\'inondation.</string>
+    <string name="about_limit_privileged">Pas d\'EDR privilégié : pas de surveillance des processus, du noyau ou des fichiers d\'autres apps.</string>
+    <string name="about_limit_firmware">Les métadonnées de build et de firmware ne prouvent pas l\'intégrité.</string>
+    <string name="about_limit_telemetry">Aucune télémétrie en V1 et aucun contenu audio, vidéo ou d\'écran.</string>
+    <string name="about_section_collectors">Périmètre de vérification V1</string>
+    <string name="about_collectors_body">Appareil et plateforme, apps visibles, états de durcissement, connectivité, santé des capteurs et des données, ainsi que renseignement local. Toutes les vérifications sont en lecture seule.</string>
+    <string name="about_section_device">Appareil</string>
+    <string name="about_device_none">Aucune donnée d\'appareil issue d\'une vérification.</string>
+    <string name="about_device_model">Modèle</string>
+    <string name="about_device_android">Android</string>
+    <string name="about_device_patch">Niveau de correctif</string>
+    <string name="about_section_legal">Remarque</string>
+    <string name="about_legal">Les constats sont des indices de vérification, pas des verdicts de logiciel malveillant. L\'absence de visibilité ne prouve pas la sécurité.</string>
+    <!-- ================================================================ Brand -->
+    <string name="brand_logo_description">Bouclier GeDefense</string>
+    <string name="brand_rail_caption">Console de sécurité locale</string>
+
+    <!-- ================================================================ V2 shell overlays -->
+    <string name="welcome_title">Bienvenue sur GeDefense TV</string>
+    <string name="welcome_subtitle">Sir Quacksec vous souhaite un divertissement sûr – en local, sans cloud.</string>
+    <string name="welcome_mascot_description">Sir Quacksec, la mascotte de GeDefense</string>
+    <string name="sync_overlay_starting">Synchronisation des flux de renseignement …</string>
+    <string name="sync_overlay_running">Vérification des flux …</string>
+    <string name="sync_overlay_progress">%1$d flux sur %2$d mis à jour</string>
+
+</resources>

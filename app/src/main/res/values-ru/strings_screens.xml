@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Additional German screens strings, kept separate from the base string table. -->
+<resources>
+
+    <!-- ==================================================== Persisted scan summary -->
+    <string name="summary_last_run">Последний запуск</string>
+    <string name="label_collectors">Области проверки</string>
+    <string name="home_subtitle_summary">Последняя проверка завершена. Детали обнаружений после перезапуска больше не хранятся в памяти.</string>
+    <string name="home_summary_details_note">Детали последнего запуска после перезапуска больше не хранятся в памяти. Проверьте снова ради актуальных обнаружений.</string>
+    <string name="home_summary_findings_note">Обнаружения последнего запуска после перезапуска не восстанавливаются в виде списка. Проверьте снова ради актуальных обнаружений.</string>
+    <string name="home_device_details_note">Данные устройства последнего запуска после перезапуска больше не хранятся в памяти.</string>
+    <string name="findings_summary_title">Нет деталей обнаружений в памяти</string>
+    <string name="findings_summary_message">Последняя проверка завершена, но детали обнаружений после перезапуска не восстанавливаются. Проверьте снова ради актуальных обнаружений.</string>
+    <string name="check_collectors_after_restart">Области проверки последнего запуска после перезапуска больше не хранятся в памяти.</string>
+    <string name="apps_summary_empty_title">Инвентарь приложений не в памяти</string>
+    <string name="apps_summary_empty_message">Последняя проверка завершена, но детали приложений после перезапуска больше не хранятся в памяти. Запустите новую проверку, чтобы зафиксировать видимые приложения.</string>
+    <string name="hardening_summary_empty_title">Детали усиления не в памяти</string>
+    <string name="hardening_summary_empty_message">Последняя проверка завершена, но подробные состояния после перезапуска больше не хранятся в памяти. Проверьте снова ради актуальных обнаружений усиления.</string>
+
+    <!-- ================================================================= Home -->
+    <string name="home_android_value">%1$s (API %2$d)</string>
+    <string name="home_label_patch_assessment">Оценка патча</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow_format">%1$s · %2$s</string>
+    <string name="finding_detail_digest_short">%1$s …</string>
+    <string name="finding_detail_digest_none">Отсутствует</string>
+
+    <!-- ============================================================ Empty states -->
+    <string name="empty_no_check_title">Проверки ещё не было</string>
+    <string name="empty_no_check_message">Запустите первую локальную проверку, чтобы получить состояние безопасности, обнаружения и доказательства.</string>
+    <string name="empty_no_findings_full_title">Обнаружений нет</string>
+    <string name="empty_no_findings_full_message">Последняя проверка не выявила обнаружений в видимых областях. Это не доказывает полную безопасность.</string>
+    <string name="empty_no_findings_partial_title">Нет обнаружений в видимых областях</string>
+    <string name="empty_no_findings_partial_message">Обзор был ограничен. Невидимые области не проверены — это не доказательство безопасности.</string>
+
+    <!-- ================================================================= Apps -->
+    <string name="apps_section_list">Список приложений</string>
+    <string name="apps_list_limit">Показаны первые %1$d видимых приложений.</string>
+    <string name="apps_visibility_scope">Видимость в этой проверке: %1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_records_label">Записи</string>
+    <string name="evidence_events_limit">Показаны последние %1$d событий.</string>
+    <string name="evidence_event_none">Нет типа события</string>
+
+    <!-- ======================================================= Check details -->
+    <string name="check_collector_error">Ошибка: %1$s</string>
+    <string name="check_collectors_pending">Области проверки будут показаны после завершения текущей проверки.</string>
+    <string name="check_previous_note">Перечисленные области проверки относятся к последней завершённой проверке.</string>
+
+    <!-- ========================================================= Threat intel -->
+    <string name="ti_status_value">Фиды актуальны: %1$d из %2$d · устарели: %3$d</string>
+
+    <!-- ================================================= Settings (informational) -->
+    <string name="settings_retention_info_title">Хранение локальных доказательств</string>
+    <string name="settings_retention_info_value">До ручного удаления</string>
+    <string name="settings_retention_info_body">Автоматическая ротация и удаление по расписанию в V1 не активны. Локальные доказательства удаляются в разделе «Доказательства» после явного подтверждения.</string>
+    <string name="settings_retention_cycle">Значения: 7, 30, 90 или 180 дней. Повторное включение переключает дальше.</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_publisher_label">Издатель</string>
+    <string name="about_publisher_value">VisionGaiaTechnology</string>
+    <string name="about_source_label">Пакет приложения</string>
+
+</resources>

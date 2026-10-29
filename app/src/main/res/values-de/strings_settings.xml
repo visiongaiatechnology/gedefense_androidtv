@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings strings for the user-adjustable UI scale (Darstellung). -->
+<resources>
+
+    <string name="settings_section_appearance">Darstellung</string>
+    <string name="settings_ui_scale_label">UI-Skalierung</string>
+    <string name="settings_ui_scale_desc">Skaliert Inhalte und Schrift für den Betrachtungsabstand.</string>
+    <string name="settings_ui_scale_hint">Gilt sofort für die Inhalte; die Navigation wird erst nach einem App-Neustart skaliert.</string>
+    <string name="settings_ui_scale_compact">Kompakt</string>
+    <string name="settings_ui_scale_normal">Normal</string>
+    <string name="settings_ui_scale_large">Groß</string>
+    <string name="settings_ui_scale_changed">UI-Skalierung: %1$s.</string>
+
+</resources>

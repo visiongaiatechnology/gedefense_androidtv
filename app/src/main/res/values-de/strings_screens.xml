@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Additional German screens strings, kept separate from the base string table. -->
+<resources>
+
+    <!-- ==================================================== Persisted scan summary -->
+    <string name="summary_last_run">Letzter Lauf</string>
+    <string name="label_collectors">Prüfbereiche</string>
+    <string name="home_subtitle_summary">Letzte Prüfung abgeschlossen. Befunddetails sind nach einem Neustart nicht mehr im Speicher.</string>
+    <string name="home_summary_details_note">Details des letzten Laufs sind nach einem Neustart nicht mehr im Speicher. Erneut prüfen für aktuelle Befunde.</string>
+    <string name="home_summary_findings_note">Befunde des letzten Laufs werden nach einem Neustart nicht erneut als Liste aufgebaut. Erneut prüfen für aktuelle Befunde.</string>
+    <string name="home_device_details_note">Gerätedaten des letzten Laufs sind nach einem Neustart nicht mehr im Speicher.</string>
+    <string name="findings_summary_title">Keine Befunddetails im Speicher</string>
+    <string name="findings_summary_message">Die letzte Prüfung ist abgeschlossen, aber Befunddetails werden nach einem Neustart nicht rekonstruiert. Erneut prüfen für aktuelle Befunde.</string>
+    <string name="check_collectors_after_restart">Die Prüfbereiche des letzten Laufs sind nach einem Neustart nicht mehr im Speicher.</string>
+    <string name="apps_summary_empty_title">App-Inventar nicht im Speicher</string>
+    <string name="apps_summary_empty_message">Die letzte Prüfung ist abgeschlossen, aber App-Details sind nach einem Neustart nicht mehr im Speicher. Starte eine erneute Prüfung, um sichtbare Apps zu erfassen.</string>
+    <string name="hardening_summary_empty_title">Härtungsdetails nicht im Speicher</string>
+    <string name="hardening_summary_empty_message">Die letzte Prüfung ist abgeschlossen, aber Detailzustände sind nach einem Neustart nicht mehr im Speicher. Erneut prüfen für aktuelle Härtungsbefunde.</string>
+
+    <!-- ================================================================= Home -->
+    <string name="home_android_value">%1$s (API %2$d)</string>
+    <string name="home_label_patch_assessment">Patch-Bewertung</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow_format">%1$s · %2$s</string>
+    <string name="finding_detail_digest_short">%1$s …</string>
+    <string name="finding_detail_digest_none">Nicht vorhanden</string>
+
+    <!-- ============================================================ Empty states -->
+    <string name="empty_no_check_title">Noch keine Prüfung</string>
+    <string name="empty_no_check_message">Starte die erste lokale Prüfung, um Sicherheitslage, Befunde und Evidenz zu erzeugen.</string>
+    <string name="empty_no_findings_full_title">Keine Befunde</string>
+    <string name="empty_no_findings_full_message">Die letzte Prüfung hat in den sichtbaren Bereichen keine Befunde ergeben. Das ist kein Beweis für vollständige Sicherheit.</string>
+    <string name="empty_no_findings_partial_title">Keine Befunde in sichtbaren Bereichen</string>
+    <string name="empty_no_findings_partial_message">Die Sicht war eingeschränkt. Nicht sichtbare Bereiche sind ungeprüft – das ist kein Beweis für Sicherheit.</string>
+
+    <!-- ================================================================= Apps -->
+    <string name="apps_section_list">App-Liste</string>
+    <string name="apps_list_limit">Es werden die ersten %1$d sichtbaren Apps angezeigt.</string>
+    <string name="apps_visibility_scope">Sichtbarkeit in dieser Prüfung: %1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_records_label">Einträge</string>
+    <string name="evidence_events_limit">Es werden die letzten %1$d Ereignisse angezeigt.</string>
+    <string name="evidence_event_none">Kein Ereignistyp</string>
+
+    <!-- ======================================================= Check details -->
+    <string name="check_collector_error">Fehler: %1$s</string>
+    <string name="check_collectors_pending">Die Prüfbereiche werden nach Abschluss der laufenden Prüfung aufgelistet.</string>
+    <string name="check_previous_note">Die aufgeführten Prüfbereiche stammen aus der letzten abgeschlossenen Prüfung.</string>
+
+    <!-- ========================================================= Threat intel -->
+    <string name="ti_status_value">Feeds aktuell: %1$d von %2$d · veraltet: %3$d</string>
+
+    <!-- ================================================= Settings (informational) -->
+    <string name="settings_retention_info_title">Aufbewahrung lokaler Evidenz</string>
+    <string name="settings_retention_info_value">Bis zur manuellen Löschung</string>
+    <string name="settings_retention_info_body">Automatische Rotation und zeitgesteuerte Löschung sind in V1 nicht aktiv. Lokale Evidenz wird im Bereich Evidenz nach ausdrücklicher Bestätigung gelöscht.</string>
+    <string name="settings_retention_cycle">Werte: 7, 30, 90 oder 180 Tage. Erneutes Aktivieren schaltet weiter.</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_publisher_label">Herausgeber</string>
+    <string name="about_publisher_value">VisionGaiaTechnology</string>
+    <string name="about_source_label">Anwendungspaket</string>
+
+</resources>

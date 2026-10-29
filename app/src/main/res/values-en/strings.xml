@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GeDefense TV — English UI strings.
+
+  Every user-facing text of the TV UI is defined here; Kotlin code never hardcodes user-facing copy.
+  Wording rules: honest capability states, no "sicher/Sauber" claim for partial or missing
+  visibility, concrete action verbs, no marketing claims.
+-->
+<resources>
+
+    <string name="app_name">GeDefense TV</string>
+    <string name="brand_mark_description">GeDefense TV symbol: shield with aperture</string>
+
+    <!-- ======================================================== navigation rail -->
+    <string name="nav_home">Overview</string>
+    <string name="nav_home_desc">Security posture and last check</string>
+    <string name="nav_check">Check</string>
+    <string name="nav_check_desc">Start a check and follow progress</string>
+    <string name="nav_findings">Findings</string>
+    <string name="nav_findings_desc">Review detected anomalies</string>
+    <string name="nav_apps">Apps</string>
+    <string name="nav_apps_desc">Visible apps and changes</string>
+    <string name="nav_hardening">Hardening</string>
+    <string name="nav_hardening_desc">Debugging, installs and admin</string>
+    <string name="nav_threat_intel">Threat Intel</string>
+    <string name="nav_threat_intel_desc">Feed status, freshness and limits</string>
+    <string name="nav_evidence">Evidence</string>
+    <string name="nav_evidence_desc">Local log and report</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_settings_desc">Retention, sync and telemetry</string>
+
+    <!-- ================================================================= actions -->
+    <string name="action_start_check">Start check</string>
+    <string name="action_rerun_check">Re-run check</string>
+    <string name="action_cancel_check">Cancel check</string>
+    <string name="action_show_progress">View progress</string>
+    <string name="action_open_findings">View findings</string>
+    <string name="action_open_evidence">Report &amp; evidence</string>
+    <string name="action_open_settings">Settings</string>
+    <string name="action_open_about">About the app</string>
+    <string name="action_export_report">Export report</string>
+    <string name="action_delete_evidence">Delete evidence</string>
+    <string name="action_confirm_delete">Delete permanently</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_back_to_list">Back to findings</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_sync_now">Sync now</string>
+    <string name="action_syncing">Syncing …</string>
+    <string name="action_change">Change</string>
+    <string name="action_filter_all">All apps</string>
+    <string name="action_filter_changes">Changes only</string>
+    <string name="action_open_area">Open section</string>
+    <string name="action_back">Back</string>
+
+    <!-- ============================================================ value states -->
+    <string name="value_unknown">Unknown</string>
+    <string name="value_not_available">Not available</string>
+    <string name="value_never">Never</string>
+    <string name="value_none">None</string>
+    <string name="value_not_checked">Not checked</string>
+    <string name="value_dash">—</string>
+    <string name="value_yes">Yes</string>
+    <string name="value_no">No</string>
+    <string name="value_multiple">Multiple</string>
+
+    <!-- =================================================== posture band labels -->
+    <string name="posture_band_strong">Strong</string>
+    <string name="posture_band_moderate">Moderate</string>
+    <string name="posture_band_weak">Weak</string>
+    <string name="posture_band_unknown">Not assessable</string>
+    <string name="posture_band_insufficient">Limited visibility</string>
+    <string name="posture_score_unit">of 100</string>
+    <string name="posture_score_unknown">Not assessable</string>
+
+    <!-- ========================================================== visibility -->
+    <string name="visibility_full">Full visibility</string>
+    <string name="visibility_partial">Partial visibility</string>
+    <string name="visibility_stale">Stale</string>
+    <string name="visibility_none">No visibility</string>
+
+    <!-- ========================================================== capability -->
+    <string name="capability_supported">Supported</string>
+    <string name="capability_permission_required">Permission required</string>
+    <string name="capability_unsupported">Not supported</string>
+    <string name="capability_failed">Failed</string>
+
+    <!-- ======================================================== data quality -->
+    <string name="quality_fresh">Current</string>
+    <string name="quality_partial">Partial</string>
+    <string name="quality_stale">Stale</string>
+    <string name="quality_unknown">Unknown</string>
+
+    <!-- ============================================================ severity -->
+    <string name="severity_info">Info</string>
+    <string name="severity_low">Low</string>
+    <string name="severity_medium">Medium</string>
+    <string name="severity_high">High</string>
+    <string name="severity_critical">Critical</string>
+
+    <!-- ========================================================== confidence -->
+    <string name="confidence_low">Low</string>
+    <string name="confidence_medium">Medium</string>
+    <string name="confidence_high">High</string>
+
+    <!-- ========================================================== scan states -->
+    <string name="scan_state_completed">Completed</string>
+    <string name="scan_state_partial">Partially completed</string>
+    <string name="scan_state_cancelled">Cancelled</string>
+    <string name="scan_state_failed">Failed</string>
+    <string name="scan_state_running">Check running</string>
+    <string name="scan_state_idle">Ready</string>
+
+    <!-- ========================================================== patch state -->
+    <string name="patch_current">Current</string>
+    <string name="patch_aging">Aging</string>
+    <string name="patch_outdated">Outdated</string>
+    <string name="patch_critically_outdated">Critically outdated</string>
+    <string name="patch_unknown">Unknown</string>
+
+    <!-- ========================================================= policy action -->
+    <string name="policy_none">No action</string>
+    <string name="policy_observe">Observe</string>
+    <string name="policy_recommend_manual">Manual action advised</string>
+    <string name="policy_escalate">Decision required</string>
+
+    <!-- ==================================================== collector category -->
+    <string name="category_platform">Device &amp; platform</string>
+    <string name="category_apps">Apps &amp; inventory</string>
+    <string name="category_hardening">Hardening</string>
+    <string name="category_connectivity">Connectivity</string>
+    <string name="category_threat_intel">Threat Intelligence</string>
+    <string name="category_sensor_health">Sensor &amp; data health</string>
+
+    <!-- ========================================================= event classes -->
+    <string name="event_class_device_state">Device state</string>
+    <string name="event_class_app_inventory">App inventory</string>
+    <string name="event_class_usage_signal">Usage signal</string>
+    <string name="event_class_connectivity_state">Connectivity state</string>
+    <string name="event_class_ti_match">TI match</string>
+    <string name="event_class_sensor_health">Sensor/data health</string>
+    <string name="event_class_enforcement">Enforcement</string>
+
+    <!-- ================================================== time and formatting -->
+    <string name="format_date_time">M/d/yyyy, HH:mm</string>
+    <string name="format_date_time_with_clock">M/d/yyyy, HH:mm</string>
+    <string name="format_date">M/d/yyyy</string>
+    <string name="age_just_now">just now</string>
+    <string name="age_minutes">%1$d min ago</string>
+    <string name="age_hours">%1$d hr ago</string>
+    <string name="age_days">%1$d days ago</string>
+    <string name="duration_seconds">%1$d s</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+
+    <!-- ============================================================ generic -->
+    <string name="label_state">Status</string>
+    <string name="label_time">Time</string>
+    <string name="label_duration">Duration</string>
+    <string name="label_findings">Findings</string>
+    <string name="label_visibility">Visibility</string>
+    <string name="label_quality">Data quality</string>
+    <string name="label_capability">Capability</string>
+    <string name="label_source">Source</string>
+    <string name="label_confidence">Confidence</string>
+    <string name="label_severity">Severity</string>
+    <string name="label_coverage">Coverage</string>
+    <string name="count_findings">%1$d findings</string>
+    <string name="count_events">%1$d entries</string>
+    <string name="count_of_total">%1$d of %2$d</string>
+    <string name="error_read_failed">Data could not be read.</string>
+    <string name="error_read_failed_detail">The local service did not respond. Try again via “Refresh”.</string>
+
+    <!-- ================================================================== Home -->
+    <string name="home_eyebrow">Security overview</string>
+    <string name="home_title">Security posture</string>
+    <string name="home_subtitle_no_scan">No check on this device yet. The assessment is local only.</string>
+    <string name="home_subtitle_scan">Assessment from the last local check. Visibility and coverage are reported separately.</string>
+    <string name="home_score_label">Posture</string>
+    <string name="home_section_device">Device &amp; check scope</string>
+    <string name="home_section_findings">Top findings</string>
+    <string name="home_section_last_check">Last check</string>
+    <string name="home_label_device">Device</string>
+    <string name="home_label_android">Android</string>
+    <string name="home_label_patch">Security patch</string>
+    <string name="home_label_collectors">Supported check areas</string>
+    <string name="home_label_coverage">Overall visibility</string>
+    <string name="home_scan_running_note">A check is running. Results update when it finishes.</string>
+    <string name="home_no_findings_note">No findings in visible areas. With limited visibility this is not proof of security.</string>
+    <string name="home_cap_reason">Limitation: %1$s</string>
+    <string name="home_more_findings">%1$d more findings in the list</string>
+    <string name="home_no_scan_note">No check, no statement on security posture.</string>
+    <string name="home_running_pill">Check running</string>
+
+    <!-- ================================================================= Check -->
+    <string name="check_eyebrow">Local check</string>
+    <string name="check_title">Security check</string>
+    <string name="check_subtitle">Local check areas run one by one. No device data is uploaded.</string>
+    <string name="check_section_progress">Progress</string>
+    <string name="check_section_collectors">Check areas</string>
+    <string name="check_progress_count">%1$d of %2$d completed</string>
+    <string name="check_progress_current">Current: %1$s</string>
+    <string name="check_progress_findings">%1$d findings so far</string>
+    <string name="check_progress_idle">Ready for the next check.</string>
+    <string name="check_progress_unknown">Check in progress. Progress updates when it finishes.</string>
+    <string name="check_last_result">Last result</string>
+    <string name="check_collector_meta">%1$s · Capability: %2$s · Visibility: %3$s · Data: %4$s</string>
+    <string name="check_collector_findings">%1$d findings</string>
+    <string name="check_collector_no_findings">No findings</string>
+    <string name="check_coverage_no_denominator">Coverage %1$d observed, no reliable denominator</string>
+    <string name="check_coverage">Coverage %1$d of %2$d</string>
+    <string name="check_failed_title">Check failed</string>
+    <string name="check_failed_message">The last check failed. Start a new check; details may be in the evidence log.</string>
+    <string name="check_cancelled_note">The last check was cancelled. Results are incomplete.</string>
+    <string name="check_partial_note">The last check only partially completed. Not all check areas returned results.</string>
+    <string name="check_no_collectors">No check areas available.</string>
+    <string name="check_started">Check started.</string>
+    <string name="check_already_running">A check is already running.</string>
+    <string name="check_cancel_requested">Cancellation requested.</string>
+    <string name="check_cancel_unavailable">No check is running to cancel.</string>
+    <string name="check_start_unavailable">The check could not be started.</string>
+    <string name="check_running_hint">Progress is live after start. This view updates automatically when the check finishes.</string>
+
+    <!-- ============================================================== Findings -->
+    <string name="findings_eyebrow">Findings</string>
+    <string name="findings_title">Findings</string>
+    <string name="findings_subtitle_full">Findings from the last check, sorted by severity.</string>
+    <string name="findings_subtitle_partial">Findings from visible areas. Visibility was limited.</string>
+    <string name="findings_summary">%1$d findings in %2$d check areas</string>
+    <string name="findings_summary_one">%1$d finding in %2$d check areas</string>
+    <string name="findings_severity_summary">High/Critical: %1$d · Medium: %2$d · Low/Info: %3$d</string>
+    <string name="findings_visibility_note">Visibility: %1$s. Non-visible areas are unchecked.</string>
+    <string name="findings_limit_note">The first %1$d findings are shown; the report contains all findings from the last check.</string>
+    <string name="findings_row_meta">%1$s · %2$s</string>
+    <string name="findings_row_times">First seen %1$s · last seen %2$s</string>
+    <string name="findings_open_hint">Open finding with OK</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow">Finding</string>
+    <string name="finding_detail_section_why">Why this matters</string>
+    <string name="finding_detail_section_component">Affected component</string>
+    <string name="finding_detail_section_evidence">Evidence</string>
+    <string name="finding_detail_section_recommendation">Recommended steps</string>
+    <string name="finding_detail_section_meta">Assessment</string>
+    <string name="finding_detail_label_source">Source</string>
+    <string name="finding_detail_label_collected">Collected</string>
+    <string name="finding_detail_label_digest">Digest</string>
+    <string name="finding_detail_label_first_seen">First seen</string>
+    <string name="finding_detail_label_last_seen">Last seen</string>
+    <string name="finding_detail_label_category">Category</string>
+    <string name="finding_detail_label_policy">Recommended action</string>
+    <string name="finding_detail_no_recommendation">No automatic action is planned for this finding. Review the assessment and decide manually.</string>
+    <string name="finding_detail_missing_title">Finding not available</string>
+    <string name="finding_detail_missing_message">The finding is no longer part of the current check. Open the findings list or start a new check.</string>
+
+    <!-- ================================================================== Apps -->
+    <string name="apps_eyebrow">Apps</string>
+    <string name="apps_title">Visible apps</string>
+    <string name="apps_subtitle">Apps visible to GeDefense TV under this device\'s package visibility.</string>
+    <string name="apps_visibility_title">Limited package visibility</string>
+    <string name="apps_visibility_body">From Android 11 the app only sees packages it may query explicitly, plus itself. This list is not a full device inventory and says nothing about invisible apps.</string>
+    <string name="apps_counts">Visible: %1$d · New: %2$d · Changed: %3$d · Launchable: %4$d</string>
+    <string name="apps_baseline_missing">No baseline: new/changed is only available from the second check.</string>
+    <string name="apps_baseline_time">Baseline: %1$s</string>
+    <string name="apps_no_inventory">No app inventory in the last check.</string>
+    <string name="apps_empty_title">No app inventory available</string>
+    <string name="apps_empty_message">No check with an app inventory is available. Start a check to capture visible apps.</string>
+    <string name="apps_no_changes">No new or changed apps in the last check.</string>
+    <string name="apps_system_app">System app</string>
+    <string name="apps_user_app">User app</string>
+    <string name="apps_installer">Source: %1$s</string>
+    <string name="apps_installer_unknown">Source: not specified</string>
+    <string name="apps_version">Version %1$s (%2$d)</string>
+    <string name="apps_version_unknown">Version unknown</string>
+    <string name="apps_disabled">Disabled</string>
+    <string name="apps_badge_new">New</string>
+    <string name="apps_badge_changed">Changed</string>
+    <string name="apps_removed_note">%1$d packages removed since the baseline.</string>
+    <string name="apps_system_flag">System</string>
+
+    <!-- ============================================================= Hardening -->
+    <string name="hardening_eyebrow">Hardening</string>
+    <string name="hardening_title">Hardening &amp; settings</string>
+    <string name="hardening_subtitle">Checkable debugging, install and admin states from the last check.</string>
+    <string name="hardening_section_checks">Check areas</string>
+    <string name="hardening_section_findings">Hardening check findings</string>
+    <string name="hardening_check_no_finding">No finding visible</string>
+    <string name="hardening_check_not_readable">Not checkable</string>
+    <string name="hardening_check_finding">Finding: %1$s</string>
+    <string name="hardening_note_absence">A missing finding is not proof of a secure setting. Unreadable values remain explicitly unchecked.</string>
+    <string name="hardening_check_adb_title">ADB / debugging</string>
+    <string name="hardening_check_adb_guidance">Check in system settings under Debugging or Developer options and disable it if not needed.</string>
+    <string name="hardening_check_developer_title">Developer options</string>
+    <string name="hardening_check_developer_guidance">Disable developer options in system settings if they are not needed for tests.</string>
+    <string name="hardening_check_unknown_sources_title">Unknown sources</string>
+    <string name="hardening_check_unknown_sources_guidance">Disable installing from unknown sources for this app in system settings.</string>
+    <string name="hardening_check_test_keys_title">Build signature (test keys)</string>
+    <string name="hardening_check_test_keys_guidance">Indicates a test/debug signature in the build. Check for a vendor update.</string>
+    <string name="hardening_check_device_admin_title">Device administrators</string>
+    <string name="hardening_check_device_admin_guidance">Check device administrators in security settings and remove unknown entries.</string>
+    <string name="hardening_check_accessibility_title">Accessibility services</string>
+    <string name="hardening_check_accessibility_guidance">Check enabled accessibility services and disable unknown ones.</string>
+    <string name="hardening_check_installers_title">Install sources</string>
+    <string name="hardening_check_installers_guidance">Check install sources of visible apps and investigate unexpected ones.</string>
+    <string name="hardening_no_collector">Hardening data is not available from the last check.</string>
+    <string name="hardening_manual_step">Recommended step: %1$s</string>
+    <string name="hardening_open_finding">Open finding</string>
+
+    <!-- ========================================================= Threat Intel -->
+    <string name="ti_eyebrow">Threat Intelligence</string>
+    <string name="ti_title">Threat Intelligence</string>
+    <string name="ti_subtitle">Local feed status. The app only checks indicators it can actually observe.</string>
+    <string name="ti_section_feeds">Feeds</string>
+    <string name="ti_section_scope">Limits in V1</string>
+    <string name="ti_scope_note">V1 does not monitor system-wide network traffic, ports or process-to-flow mapping. Without privileged sensors that cannot be done reliably.</string>
+    <string name="ti_scope_matches">Matches only come from indicators actually observed. V1 lacks the data source for system-wide traffic.</string>
+    <string name="ti_sync_healthy">Sync healthy</string>
+    <string name="ti_sync_unhealthy">Sync impaired</string>
+    <string name="ti_last_sync">Last fetch: %1$s</string>
+    <string name="ti_never_synced">Not synced yet</string>
+    <string name="ti_feed_records">%1$d records</string>
+    <string name="ti_feed_fetched">Fetched: %1$s</string>
+    <string name="ti_feed_enforcement">Mode: %1$s</string>
+    <string name="ti_feed_available">Available</string>
+    <string name="ti_feed_unavailable">Unavailable</string>
+    <string name="ti_feed_fresh">Current</string>
+    <string name="ti_feed_stale">Stale</string>
+    <string name="ti_sync_started">Feed sync started.</string>
+    <string name="ti_sync_already">A sync is already running.</string>
+    <string name="ti_sync_ok">Sync complete.</string>
+    <string name="ti_sync_failed">Sync failed.</string>
+    <string name="ti_sync_unavailable">Sync could not be started.</string>
+    <string name="ti_no_feeds_title">No feed loaded yet</string>
+    <string name="ti_no_feeds_message">Sync threat intelligence to get local feed data. Without a feed the assessment stays limited to locally visible data.</string>
+    <string name="ti_auto_sync_hint">Automatic sync can be controlled in settings.</string>
+    <string name="ti_feed_note">Note: %1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_eyebrow">Evidence</string>
+    <string name="evidence_title">Evidence &amp; report</string>
+    <string name="evidence_subtitle">Local hash-chained log of findings and events.</string>
+    <string name="evidence_health_ok">Evidence store healthy</string>
+    <string name="evidence_health_bad">Evidence store impaired</string>
+    <string name="evidence_records">%1$d records stored</string>
+    <string name="evidence_health_reason">Reason: %1$s</string>
+    <string name="evidence_section_events">Recent events</string>
+    <string name="evidence_ledger_note">Records are stored locally in an HMAC-protected ledger. Nothing is uploaded.</string>
+    <string name="evidence_export_needs_scan">Report export requires a completed check.</string>
+    <string name="evidence_export_started">Document picker opened.</string>
+    <string name="evidence_export_ok">Report saved: %1$s</string>
+    <string name="evidence_export_failed">Report could not be saved.</string>
+    <string name="evidence_export_unavailable">Export is not available on this device.</string>
+    <string name="evidence_confirm_title">Delete local evidence</string>
+    <string name="evidence_confirm_body">All local evidence records will be permanently removed. This cannot be undone. Export a report first if the data should be kept.</string>
+    <string name="evidence_delete_ok">Local evidence deleted.</string>
+    <string name="evidence_delete_failed">Evidence could not be fully deleted.</string>
+    <string name="evidence_delete_empty">No local evidence records exist.</string>
+    <string name="evidence_no_events_title">No evidence yet</string>
+    <string name="evidence_no_events_message">After a check, findings and events are logged locally as evidence.</string>
+    <string name="evidence_row_meta">%1$s · %2$s</string>
+    <string name="evidence_severity_none">no severity</string>
+
+    <!-- ============================================================= Settings -->
+    <string name="settings_eyebrow">Settings</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Local options for updates, retention and privacy.</string>
+    <string name="settings_section_data">Data &amp; updates</string>
+    <string name="settings_ti_auto_sync">Sync threat intel automatically</string>
+    <string name="settings_ti_auto_sync_desc">Fetches feeds in the background when the system allows. No device data is uploaded.</string>
+    <string name="settings_retention">Evidence retention period</string>
+    <string name="settings_retention_desc">Older local evidence is removed during cleanup.</string>
+    <string name="settings_retention_value">%1$d days</string>
+    <string name="settings_retention_changed">Retention set to %1$d days.</string>
+    <string name="settings_retention_note">Note: the change applies at the next cleanup, not immediately.</string>
+    <string name="settings_section_privacy">Privacy</string>
+    <string name="settings_telemetry_title">Telemetry</string>
+    <string name="settings_telemetry_body">V1 sends no telemetry. All analysis and findings stay local on the device. There is no default upload of app lists, usage or reports.</string>
+    <string name="settings_local_processing">Local processing</string>
+    <string name="settings_local_processing_body">Checks run on the device only. Network access is only used to load threat intel feeds.</string>
+    <string name="settings_section_app">App</string>
+    <string name="settings_device_id">Pseudonymous device ID</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_about_row">About GeDefense TV</string>
+    <string name="settings_about_row_desc">Version, source identity and capability limits</string>
+    <string name="settings_state_enabled">Enabled</string>
+    <string name="settings_state_disabled">Disabled</string>
+    <string name="settings_section_limits">Limits</string>
+    <string name="settings_limits_body">This app is not an EDR: no system-wide flows, no port scans, no firmware integrity attestation.</string>
+    <string name="settings_open_evidence">Manage evidence &amp; report</string>
+    <string name="settings_open_evidence_desc">View, export or delete the local log</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_eyebrow">About</string>
+    <string name="about_title">About GeDefense TV</string>
+    <string name="about_subtitle">Standalone security app for Android TV and Google TV.</string>
+    <string name="about_section_version">Version &amp; identity</string>
+    <string name="about_version">%1$s (build %2$d)</string>
+    <string name="about_developer">Publisher: VisionGaiaTechnology</string>
+    <string name="about_section_limits">Capability limits</string>
+    <string name="about_limit_inventory">No full app inventory: Android package visibility limits the visible apps.</string>
+    <string name="about_limit_network">No system-wide network monitoring: no flow, port or flood detection.</string>
+    <string name="about_limit_privileged">No privileged EDR: no process, kernel or file monitoring of other apps.</string>
+    <string name="about_limit_firmware">Build and firmware metadata are not proof of integrity.</string>
+    <string name="about_limit_telemetry">No telemetry in V1 and no audio, video or screen content.</string>
+    <string name="about_section_collectors">V1 check scope</string>
+    <string name="about_collectors_body">Device &amp; platform, visible apps, hardening states, connectivity, sensor &amp; data health and local threat intelligence. All checks are read-only.</string>
+    <string name="about_section_device">Device</string>
+    <string name="about_device_none">No device data from a check yet.</string>
+    <string name="about_device_model">Model</string>
+    <string name="about_device_android">Android</string>
+    <string name="about_device_patch">Patch level</string>
+    <string name="about_section_legal">Note</string>
+    <string name="about_legal">Findings are check indications, not malware verdicts. Missing visibility is not proof of security.</string>
+    <!-- ================================================================ Brand -->
+    <string name="brand_logo_description">GeDefense shield</string>
+    <string name="brand_rail_caption">Local security console</string>
+
+    <!-- ================================================================ V2 shell overlays -->
+    <string name="welcome_title">Welcome to GeDefense TV</string>
+    <string name="welcome_subtitle">Sir Quacksec wishes you safe entertainment – local, no cloud.</string>
+    <string name="welcome_mascot_description">Sir Quacksec, the GeDefense mascot</string>
+    <string name="sync_overlay_starting">Syncing threat intelligence feeds …</string>
+    <string name="sync_overlay_running">Checking feeds …</string>
+    <string name="sync_overlay_progress">%1$d of %2$d feeds updated</string>
+
+</resources>

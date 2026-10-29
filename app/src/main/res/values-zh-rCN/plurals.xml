@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Localized plural forms for GeDefense TV (zh-rCN). -->
+<resources>
+
+    <plurals name="count_findings">
+        <item quantity="one">%1$d 个发现项</item>
+        <item quantity="other">%1$d 个发现项</item>
+    </plurals>
+
+    <plurals name="count_events">
+        <item quantity="one">%1$d 条记录</item>
+        <item quantity="other">%1$d 条记录</item>
+    </plurals>
+
+    <plurals name="count_collectors">
+        <item quantity="one">%1$d 个检查范围</item>
+        <item quantity="other">%1$d 个检查范围</item>
+    </plurals>
+
+    <plurals name="count_apps">
+        <item quantity="one">%1$d 个应用</item>
+        <item quantity="other">%1$d 个应用</item>
+    </plurals>
+
+    <plurals name="count_feeds">
+        <item quantity="one">%1$d 个情报源</item>
+        <item quantity="other">%1$d 个情报源</item>
+    </plurals>
+
+    <plurals name="count_evidence_records">
+        <item quantity="one">已存储 %1$d 条记录</item>
+        <item quantity="other">已存储 %1$d 条记录</item>
+    </plurals>
+
+    <plurals name="count_collector_findings">
+        <item quantity="one">%1$d 个发现项</item>
+        <item quantity="other">%1$d 个发现项</item>
+    </plurals>
+
+    <plurals name="count_more_findings">
+        <item quantity="one">列表中还有 %1$d 个发现项</item>
+        <item quantity="other">列表中还有 %1$d 个发现项</item>
+    </plurals>
+
+    <plurals name="count_removed_packages">
+        <item quantity="one">自对比基线以来移除了 %1$d 个软件包。</item>
+        <item quantity="other">自对比基线以来移除了 %1$d 个软件包。</item>
+    </plurals>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings strings for the user-adjustable UI scale (Darstellung). -->
+<resources>
+
+    <string name="settings_section_appearance">Оформление</string>
+    <string name="settings_ui_scale_label">Масштаб интерфейса</string>
+    <string name="settings_ui_scale_desc">Масштабирует содержимое и шрифт под расстояние просмотра.</string>
+    <string name="settings_ui_scale_hint">Сразу применяется к содержимому; навигация масштабируется только после перезапуска приложения.</string>
+    <string name="settings_ui_scale_compact">Компактный</string>
+    <string name="settings_ui_scale_normal">Обычный</string>
+    <string name="settings_ui_scale_large">Крупный</string>
+    <string name="settings_ui_scale_changed">Масштаб интерфейса: %1$s.</string>
+
+</resources>

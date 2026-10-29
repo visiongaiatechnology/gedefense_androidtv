@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GeDefense TV — German UI strings (default locale).
+
+  Every user-facing text of the TV UI is defined here; Kotlin code never hardcodes German copy.
+  Wording rules: honest capability states, no "sicher/Sauber" claim for partial or missing
+  visibility, concrete action verbs, no marketing claims.
+-->
+<resources>
+
+    <string name="app_name">GeDefense TV</string>
+    <string name="brand_mark_description">Значок GeDefense TV: щит с блендой</string>
+
+    <!-- ======================================================== navigation rail -->
+    <string name="nav_home">Обзор</string>
+    <string name="nav_home_desc">Состояние защиты и последняя проверка</string>
+    <string name="nav_check">Проверка</string>
+    <string name="nav_check_desc">Запуск проверки и отслеживание хода</string>
+    <string name="nav_findings">Обнаружения</string>
+    <string name="nav_findings_desc">Просмотр обнаруженных отклонений</string>
+    <string name="nav_apps">Приложения</string>
+    <string name="nav_apps_desc">Видимые приложения и изменения</string>
+    <string name="nav_hardening">Усиление</string>
+    <string name="nav_hardening_desc">Отладка, установки и администрирование</string>
+    <string name="nav_threat_intel">Разведданные</string>
+    <string name="nav_threat_intel_desc">Состояние фидов, актуальность и ограничения</string>
+    <string name="nav_evidence">Доказательства</string>
+    <string name="nav_evidence_desc">Локальный журнал и отчёт</string>
+    <string name="nav_settings">Настройки</string>
+    <string name="nav_settings_desc">Хранение, синхронизация и телеметрия</string>
+
+    <!-- ================================================================= actions -->
+    <string name="action_start_check">Начать проверку</string>
+    <string name="action_rerun_check">Проверить снова</string>
+    <string name="action_cancel_check">Отменить проверку</string>
+    <string name="action_show_progress">Показать ход</string>
+    <string name="action_open_findings">Открыть обнаружения</string>
+    <string name="action_open_evidence">Отчёт и доказательства</string>
+    <string name="action_open_settings">Настройки</string>
+    <string name="action_open_about">О приложении</string>
+    <string name="action_export_report">Экспортировать отчёт</string>
+    <string name="action_delete_evidence">Удалить доказательства</string>
+    <string name="action_confirm_delete">Удалить окончательно</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_back_to_list">К списку обнаружений</string>
+    <string name="action_refresh">Обновить</string>
+    <string name="action_sync_now">Синхронизировать сейчас</string>
+    <string name="action_syncing">Синхронизация …</string>
+    <string name="action_change">Изменить</string>
+    <string name="action_filter_all">Все приложения</string>
+    <string name="action_filter_changes">Только изменения</string>
+    <string name="action_open_area">Открыть раздел</string>
+    <string name="action_back">Назад</string>
+
+    <!-- ============================================================ value states -->
+    <string name="value_unknown">Неизвестно</string>
+    <string name="value_not_available">Недоступно</string>
+    <string name="value_never">Никогда</string>
+    <string name="value_none">Нет</string>
+    <string name="value_not_checked">Не проверено</string>
+    <string name="value_dash">—</string>
+    <string name="value_yes">Да</string>
+    <string name="value_no">Нет</string>
+    <string name="value_multiple">Несколько</string>
+
+    <!-- =================================================== posture band labels -->
+    <string name="posture_band_strong">Высокая</string>
+    <string name="posture_band_moderate">Средняя</string>
+    <string name="posture_band_weak">Низкая</string>
+    <string name="posture_band_unknown">Не оценивается</string>
+    <string name="posture_band_insufficient">Ограниченный обзор</string>
+    <string name="posture_score_unit">из 100</string>
+    <string name="posture_score_unknown">Не оценивается</string>
+
+    <!-- ========================================================== visibility -->
+    <string name="visibility_full">Полный обзор</string>
+    <string name="visibility_partial">Частичный обзор</string>
+    <string name="visibility_stale">Устарело</string>
+    <string name="visibility_none">Нет обзора</string>
+
+    <!-- ========================================================== capability -->
+    <string name="capability_supported">Поддерживается</string>
+    <string name="capability_permission_required">Требуется разрешение</string>
+    <string name="capability_unsupported">Не поддерживается</string>
+    <string name="capability_failed">Ошибка</string>
+
+    <!-- ======================================================== data quality -->
+    <string name="quality_fresh">Актуально</string>
+    <string name="quality_partial">Частично</string>
+    <string name="quality_stale">Устарело</string>
+    <string name="quality_unknown">Неизвестно</string>
+
+    <!-- ============================================================ severity -->
+    <string name="severity_info">Информация</string>
+    <string name="severity_low">Низкая</string>
+    <string name="severity_medium">Средняя</string>
+    <string name="severity_high">Высокая</string>
+    <string name="severity_critical">Критическая</string>
+
+    <!-- ========================================================== confidence -->
+    <string name="confidence_low">Низкая</string>
+    <string name="confidence_medium">Средняя</string>
+    <string name="confidence_high">Высокая</string>
+
+    <!-- ========================================================== scan states -->
+    <string name="scan_state_completed">Завершено</string>
+    <string name="scan_state_partial">Завершено частично</string>
+    <string name="scan_state_cancelled">Отменено</string>
+    <string name="scan_state_failed">Ошибка</string>
+    <string name="scan_state_running">Проверка выполняется</string>
+    <string name="scan_state_idle">Готово</string>
+
+    <!-- ========================================================== patch state -->
+    <string name="patch_current">Актуально</string>
+    <string name="patch_aging">Устаревает</string>
+    <string name="patch_outdated">Устарело</string>
+    <string name="patch_critically_outdated">Критически устарело</string>
+    <string name="patch_unknown">Неизвестно</string>
+
+    <!-- ========================================================= policy action -->
+    <string name="policy_none">Нет действий</string>
+    <string name="policy_observe">Наблюдать</string>
+    <string name="policy_recommend_manual">Рекомендуется вручную</string>
+    <string name="policy_escalate">Требуется решение</string>
+
+    <!-- ==================================================== collector category -->
+    <string name="category_platform">Устройство и платформа</string>
+    <string name="category_apps">Приложения и инвентарь</string>
+    <string name="category_hardening">Усиление защиты</string>
+    <string name="category_connectivity">Подключение</string>
+    <string name="category_threat_intel">Разведданные об угрозах</string>
+    <string name="category_sensor_health">Датчики и данные</string>
+
+    <!-- ========================================================= event classes -->
+    <string name="event_class_device_state">Состояние устройства</string>
+    <string name="event_class_app_inventory">Инвентарь приложений</string>
+    <string name="event_class_usage_signal">Сигнал использования</string>
+    <string name="event_class_connectivity_state">Состояние подключения</string>
+    <string name="event_class_ti_match">Совпадение с Threat Intelligence</string>
+    <string name="event_class_sensor_health">Датчики и данные</string>
+    <string name="event_class_enforcement">Применение</string>
+
+    <!-- ================================================== time and formatting -->
+    <string name="format_date_time">dd.MM.yyyy, HH:mm</string>
+    <string name="format_date_time_with_clock">dd.MM.yyyy, HH:mm</string>
+    <string name="format_date">dd.MM.yyyy</string>
+    <string name="age_just_now">только что</string>
+    <string name="age_minutes">%1$d мин назад</string>
+    <string name="age_hours">%1$d ч назад</string>
+    <string name="age_days">%1$d дн. назад</string>
+    <string name="duration_seconds">%1$d с</string>
+    <string name="duration_minutes">%1$d мин</string>
+    <string name="duration_hours">%1$d ч</string>
+
+    <!-- ============================================================ generic -->
+    <string name="label_state">Статус</string>
+    <string name="label_time">Время</string>
+    <string name="label_duration">Длительность</string>
+    <string name="label_findings">Обнаружения</string>
+    <string name="label_visibility">Видимость</string>
+    <string name="label_quality">Качество данных</string>
+    <string name="label_capability">Возможность</string>
+    <string name="label_source">Источник</string>
+    <string name="label_confidence">Достоверность</string>
+    <string name="label_severity">Критичность</string>
+    <string name="label_coverage">Покрытие</string>
+    <string name="count_findings">Обнаружений: %1$d</string>
+    <string name="count_events">Записей: %1$d</string>
+    <string name="count_of_total">%1$d из %2$d</string>
+    <string name="error_read_failed">Не удалось прочитать данные.</string>
+    <string name="error_read_failed_detail">Локальная служба не ответила. Повторите попытку через «Обновить».</string>
+
+    <!-- ================================================================== Home -->
+    <string name="home_eyebrow">Обзор безопасности</string>
+    <string name="home_title">Состояние безопасности</string>
+    <string name="home_subtitle_no_scan">На этом устройстве ещё не было проверки. Оценка выполняется исключительно локально.</string>
+    <string name="home_subtitle_scan">Оценка по последней локальной проверке. Видимость и покрытие показаны отдельно.</string>
+    <string name="home_score_label">Защищённость</string>
+    <string name="home_section_device">Устройство и охват проверки</string>
+    <string name="home_section_findings">Важнейшие обнаружения</string>
+    <string name="home_section_last_check">Последняя проверка</string>
+    <string name="home_label_device">Устройство</string>
+    <string name="home_label_android">Android</string>
+    <string name="home_label_patch">Патч безопасности</string>
+    <string name="home_label_collectors">Поддерживаемые области проверки</string>
+    <string name="home_label_coverage">Общая видимость</string>
+    <string name="home_scan_running_note">Проверка выполняется. Результаты обновятся после завершения.</string>
+    <string name="home_no_findings_note">В видимых областях обнаружений нет. При ограниченном обзоре это не доказательство безопасности.</string>
+    <string name="home_cap_reason">Ограничение: %1$s</string>
+    <string name="home_more_findings">Ещё %1$d обнаружений в списке</string>
+    <string name="home_no_scan_note">Без проверки нельзя судить о состоянии безопасности.</string>
+    <string name="home_running_pill">Проверка выполняется</string>
+
+    <!-- ================================================================= Check -->
+    <string name="check_eyebrow">Локальная проверка</string>
+    <string name="check_title">Проверка безопасности</string>
+    <string name="check_subtitle">Локальные области проверки выполняются поочерёдно. Данные устройства никуда не отправляются.</string>
+    <string name="check_section_progress">Ход выполнения</string>
+    <string name="check_section_collectors">Области проверки</string>
+    <string name="check_progress_count">Завершено %1$d из %2$d</string>
+    <string name="check_progress_current">Сейчас: %1$s</string>
+    <string name="check_progress_findings">Обнаружений на данный момент: %1$d</string>
+    <string name="check_progress_idle">Готово к следующей проверке.</string>
+    <string name="check_progress_unknown">Проверка выполняется. Ход обновится после завершения.</string>
+    <string name="check_last_result">Последний результат</string>
+    <string name="check_collector_meta">%1$s · Возможность: %2$s · Обзор: %3$s · Данные: %4$s</string>
+    <string name="check_collector_findings">Обнаружений: %1$d</string>
+    <string name="check_collector_no_findings">Обнаружений нет</string>
+    <string name="check_coverage_no_denominator">Покрытие: наблюдается %1$d, надёжный знаменатель отсутствует</string>
+    <string name="check_coverage">Покрытие %1$d из %2$d</string>
+    <string name="check_failed_title">Проверка не удалась</string>
+    <string name="check_failed_message">Последняя проверка не удалась. Запустите новую проверку; подробности могут быть в журнале доказательств.</string>
+    <string name="check_cancelled_note">Последняя проверка была отменена. Результаты неполные.</string>
+    <string name="check_partial_note">Последняя проверка завершена лишь частично. Не все области проверки дали результаты.</string>
+    <string name="check_no_collectors">Области проверки отсутствуют.</string>
+    <string name="check_started">Проверка запущена.</string>
+    <string name="check_already_running">Проверка уже выполняется.</string>
+    <string name="check_cancel_requested">Запрошена отмена.</string>
+    <string name="check_cancel_unavailable">Нет выполняющейся проверки для отмены.</string>
+    <string name="check_start_unavailable">Не удалось запустить проверку.</string>
+    <string name="check_running_hint">После запуска ход виден в реальном времени. По завершении этот экран обновится автоматически.</string>
+
+    <!-- ============================================================== Findings -->
+    <string name="findings_eyebrow">Обнаружения</string>
+    <string name="findings_title">Обнаружения</string>
+    <string name="findings_subtitle_full">Обнаружения из последней проверки, отсортированы по критичности.</string>
+    <string name="findings_subtitle_partial">Обнаружения в видимых областях. Обзор был ограничен.</string>
+    <string name="findings_summary">Обнаружений: %1$d в %2$d областях проверки</string>
+    <string name="findings_summary_one">%1$d обнаружение в %2$d областях проверки</string>
+    <string name="findings_severity_summary">Высокая/критическая: %1$d · Средняя: %2$d · Низкая/информация: %3$d</string>
+    <string name="findings_visibility_note">Видимость: %1$s. Невидимые области не проверены.</string>
+    <string name="findings_limit_note">Показаны первые %1$d обнаружений; отчёт содержит все обнаружения последней проверки.</string>
+    <string name="findings_row_meta">%1$s · %2$s</string>
+    <string name="findings_row_times">Первое: %1$s · последнее: %2$s</string>
+    <string name="findings_open_hint">Открыть обнаружение кнопкой OK</string>
+
+    <!-- ======================================================= Finding detail -->
+    <string name="finding_detail_eyebrow">Обнаружение</string>
+    <string name="finding_detail_section_why">Почему это важно</string>
+    <string name="finding_detail_section_component">Затронутый компонент</string>
+    <string name="finding_detail_section_evidence">Доказательства</string>
+    <string name="finding_detail_section_recommendation">Рекомендуемые шаги</string>
+    <string name="finding_detail_section_meta">Классификация</string>
+    <string name="finding_detail_label_source">Источник</string>
+    <string name="finding_detail_label_collected">Зафиксировано</string>
+    <string name="finding_detail_label_digest">Дайджест</string>
+    <string name="finding_detail_label_first_seen">Первое обнаружение</string>
+    <string name="finding_detail_label_last_seen">Последнее обнаружение</string>
+    <string name="finding_detail_label_category">Область</string>
+    <string name="finding_detail_label_policy">Рекомендуемое действие</string>
+    <string name="finding_detail_no_recommendation">Для этого обнаружения автоматическое действие не предусмотрено. Проверьте классификацию и решите вручную.</string>
+    <string name="finding_detail_missing_title">Обнаружение недоступно</string>
+    <string name="finding_detail_missing_message">Это обнаружение отсутствует в текущей проверке. Откройте список обнаружений или запустите новую проверку.</string>
+
+    <!-- ================================================================== Apps -->
+    <string name="apps_eyebrow">Приложения</string>
+    <string name="apps_title">Видимые приложения</string>
+    <string name="apps_subtitle">Приложения, видимые GeDefense TV с учётом видимости пакетов на этом устройстве.</string>
+    <string name="apps_visibility_title">Ограниченная видимость пакетов</string>
+    <string name="apps_visibility_body">Начиная с Android 11 приложение видит только те пакеты, которые ему разрешено запрашивать, и само себя. Этот список не является полным инвентарём устройства и ничего не говорит о невидимых приложениях.</string>
+    <string name="apps_counts">Видно: %1$d · Новых: %2$d · Изменено: %3$d · Запускаемых: %4$d</string>
+    <string name="apps_baseline_missing">Нет базы сравнения: «новые/изменённые» появятся только после второй проверки.</string>
+    <string name="apps_baseline_time">База сравнения: %1$s</string>
+    <string name="apps_no_inventory">В последней проверке нет инвентаря приложений.</string>
+    <string name="apps_empty_title">Инвентарь приложений недоступен</string>
+    <string name="apps_empty_message">Нет проверки с инвентарём приложений. Запустите проверку, чтобы зафиксировать видимые приложения.</string>
+    <string name="apps_no_changes">В последней проверке нет новых или изменённых приложений.</string>
+    <string name="apps_system_app">Системное приложение</string>
+    <string name="apps_user_app">Пользовательское приложение</string>
+    <string name="apps_installer">Источник: %1$s</string>
+    <string name="apps_installer_unknown">Источник: не указан</string>
+    <string name="apps_version">Версия %1$s (%2$d)</string>
+    <string name="apps_version_unknown">Версия неизвестна</string>
+    <string name="apps_disabled">Отключено</string>
+    <string name="apps_badge_new">Новое</string>
+    <string name="apps_badge_changed">Изменено</string>
+    <string name="apps_removed_note">Удалённых пакетов с момента базы сравнения: %1$d.</string>
+    <string name="apps_system_flag">Системное</string>
+
+    <!-- ============================================================= Hardening -->
+    <string name="hardening_eyebrow">Усиление</string>
+    <string name="hardening_title">Усиление и настройки</string>
+    <string name="hardening_subtitle">Проверяемые состояния отладки, установки и администрирования из последней проверки.</string>
+    <string name="hardening_section_checks">Области проверки</string>
+    <string name="hardening_section_findings">Обнаружения проверки усиления</string>
+    <string name="hardening_check_no_finding">Обнаружений нет</string>
+    <string name="hardening_check_not_readable">Не проверяется</string>
+    <string name="hardening_check_finding">Обнаружение: %1$s</string>
+    <string name="hardening_note_absence">Отсутствие обнаружения не доказывает безопасную настройку. Нечитаемые значения явно остаются непроверенными.</string>
+    <string name="hardening_check_adb_title">ADB / отладка</string>
+    <string name="hardening_check_adb_guidance">Проверьте в системных настройках в разделе «Отладка» или «Параметры разработчика» и отключите, если не требуется.</string>
+    <string name="hardening_check_developer_title">Параметры разработчика</string>
+    <string name="hardening_check_developer_guidance">Отключите параметры разработчика в системных настройках, если они не нужны для тестов.</string>
+    <string name="hardening_check_unknown_sources_title">Неизвестные источники</string>
+    <string name="hardening_check_unknown_sources_guidance">Отключите в системных настройках установку из неизвестных источников для этого приложения.</string>
+    <string name="hardening_check_test_keys_title">Подпись сборки (тестовые ключи)</string>
+    <string name="hardening_check_test_keys_guidance">Признак тестовой/отладочной подписи в сборке. Проверьте обновление у производителя.</string>
+    <string name="hardening_check_device_admin_title">Администраторы устройства</string>
+    <string name="hardening_check_device_admin_guidance">Проверьте администраторов устройства в настройках безопасности и удалите неизвестные записи.</string>
+    <string name="hardening_check_accessibility_title">Специальные возможности</string>
+    <string name="hardening_check_accessibility_guidance">Проверьте включённые службы специальных возможностей и отключите неизвестные.</string>
+    <string name="hardening_check_installers_title">Источники установки</string>
+    <string name="hardening_check_installers_guidance">Проверьте источники установки видимых приложений и изучите неожиданные источники.</string>
+    <string name="hardening_no_collector">Данные усиления недоступны в последней проверке.</string>
+    <string name="hardening_manual_step">Рекомендуемый шаг: %1$s</string>
+    <string name="hardening_open_finding">Открыть обнаружение</string>
+
+    <!-- ========================================================= Threat Intel -->
+    <string name="ti_eyebrow">Разведданные об угрозах</string>
+    <string name="ti_title">Разведданные об угрозах</string>
+    <string name="ti_subtitle">Состояние локальных фидов. Приложение проверяет только те индикаторы, которые действительно может наблюдать.</string>
+    <string name="ti_section_feeds">Фиды</string>
+    <string name="ti_section_scope">Ограничения в V1</string>
+    <string name="ti_scope_note">V1 не отслеживает общесистемный сетевой трафик, порты и сопоставление потоков процессов. Без привилегированных датчиков это невозможно надёжно.</string>
+    <string name="ti_scope_matches">Совпадения возникают только по фактически наблюдаемым индикаторам. Для общесистемных данных трафика в V1 нет источника.</string>
+    <string name="ti_sync_healthy">Синхронизация работает</string>
+    <string name="ti_sync_unhealthy">Синхронизация нарушена</string>
+    <string name="ti_last_sync">Последнее получение: %1$s</string>
+    <string name="ti_never_synced">Ещё не синхронизировано</string>
+    <string name="ti_feed_records">Записей: %1$d</string>
+    <string name="ti_feed_fetched">Получено: %1$s</string>
+    <string name="ti_feed_enforcement">Режим: %1$s</string>
+    <string name="ti_feed_available">Доступен</string>
+    <string name="ti_feed_unavailable">Недоступен</string>
+    <string name="ti_feed_fresh">Актуален</string>
+    <string name="ti_feed_stale">Устарел</string>
+    <string name="ti_sync_started">Синхронизация фидов запущена.</string>
+    <string name="ti_sync_already">Синхронизация уже выполняется.</string>
+    <string name="ti_sync_ok">Синхронизация завершена.</string>
+    <string name="ti_sync_failed">Синхронизация не удалась.</string>
+    <string name="ti_sync_unavailable">Не удалось запустить синхронизацию.</string>
+    <string name="ti_no_feeds_title">Фиды ещё не загружены</string>
+    <string name="ti_no_feeds_message">Синхронизируйте разведданные об угрозах, чтобы получить локальные данные фидов. Без фида оценка ограничена локально видимыми данными.</string>
+    <string name="ti_auto_sync_hint">Автоматическую синхронизацию можно настроить в настройках.</string>
+    <string name="ti_feed_note">Примечание: %1$s</string>
+
+    <!-- ============================================================= Evidence -->
+    <string name="evidence_eyebrow">Доказательства</string>
+    <string name="evidence_title">Доказательства и отчёт</string>
+    <string name="evidence_subtitle">Локальный журнал обнаружений и событий с хеш-цепочкой.</string>
+    <string name="evidence_health_ok">Хранилище доказательств в порядке</string>
+    <string name="evidence_health_bad">Хранилище доказательств ограничено</string>
+    <string name="evidence_records">Сохранено записей: %1$d</string>
+    <string name="evidence_health_reason">Причина: %1$s</string>
+    <string name="evidence_section_events">Последние события</string>
+    <string name="evidence_ledger_note">Записи хранятся локально в журнале, защищённом HMAC. Отправка не выполняется.</string>
+    <string name="evidence_export_needs_scan">Для экспорта отчёта нужна завершённая проверка.</string>
+    <string name="evidence_export_started">Открыт выбор документа.</string>
+    <string name="evidence_export_ok">Отчёт сохранён: %1$s</string>
+    <string name="evidence_export_failed">Не удалось сохранить отчёт.</string>
+    <string name="evidence_export_unavailable">Экспорт недоступен на этом устройстве.</string>
+    <string name="evidence_confirm_title">Удалить локальные доказательства</string>
+    <string name="evidence_confirm_body">Все локальные записи доказательств будут удалены безвозвратно. Отменить это нельзя. Сначала экспортируйте отчёт, если данные нужно сохранить.</string>
+    <string name="evidence_delete_ok">Локальные доказательства удалены.</string>
+    <string name="evidence_delete_failed">Не удалось полностью удалить доказательства.</string>
+    <string name="evidence_delete_empty">Локальных записей доказательств нет.</string>
+    <string name="evidence_no_events_title">Доказательств ещё нет</string>
+    <string name="evidence_no_events_message">После проверки обнаружения и события локально записываются как доказательства.</string>
+    <string name="evidence_row_meta">%1$s · %2$s</string>
+    <string name="evidence_severity_none">без критичности</string>
+
+    <!-- ============================================================= Settings -->
+    <string name="settings_eyebrow">Настройки</string>
+    <string name="settings_title">Настройки</string>
+    <string name="settings_subtitle">Локальные параметры обновления, хранения и защиты данных.</string>
+    <string name="settings_section_data">Данные и обновление</string>
+    <string name="settings_ti_auto_sync">Автоматически синхронизировать Threat Intelligence</string>
+    <string name="settings_ti_auto_sync_desc">Загружает фиды в фоне, если система позволяет. Данные устройства не отправляются.</string>
+    <string name="settings_retention">Срок хранения доказательств</string>
+    <string name="settings_retention_desc">Более старые локальные доказательства удаляются при очистке.</string>
+    <string name="settings_retention_value">%1$d дней</string>
+    <string name="settings_retention_changed">Хранение установлено на %1$d дней.</string>
+    <string name="settings_retention_note">Примечание: изменение вступит в силу при следующей очистке, не сразу.</string>
+    <string name="settings_section_privacy">Конфиденциальность</string>
+    <string name="settings_telemetry_title">Телеметрия</string>
+    <string name="settings_telemetry_body">V1 не отправляет телеметрию. Все результаты и обнаружения остаются локально на устройстве. Нет автоматической отправки списков приложений, использования или отчётов.</string>
+    <string name="settings_local_processing">Локальная обработка</string>
+    <string name="settings_local_processing_body">Проверки выполняются исключительно на устройстве. Сетевой доступ используется только для загрузки фидов Threat Intelligence.</string>
+    <string name="settings_section_app">Приложение</string>
+    <string name="settings_device_id">Псевдонимный ID устройства</string>
+    <string name="settings_version">Версия</string>
+    <string name="settings_about_row">О GeDefense TV</string>
+    <string name="settings_about_row_desc">Версия, идентичность источника и границы возможностей</string>
+    <string name="settings_state_enabled">Включено</string>
+    <string name="settings_state_disabled">Отключено</string>
+    <string name="settings_section_limits">Ограничения</string>
+    <string name="settings_limits_body">Это приложение не является EDR: нет общесистемных потоков, сканирования портов и подтверждения целостности прошивки.</string>
+    <string name="settings_open_evidence">Управление доказательствами и отчётом</string>
+    <string name="settings_open_evidence_desc">Просмотр, экспорт или удаление локального журнала</string>
+
+    <!-- ================================================================ About -->
+    <string name="about_eyebrow">О приложении</string>
+    <string name="about_title">О GeDefense TV</string>
+    <string name="about_subtitle">Автономное приложение безопасности для Android TV и Google TV.</string>
+    <string name="about_section_version">Версия и идентичность</string>
+    <string name="about_version">%1$s (сборка %2$d)</string>
+    <string name="about_developer">Издатель: VisionGaiaTechnology</string>
+    <string name="about_section_limits">Границы возможностей</string>
+    <string name="about_limit_inventory">Нет полного инвентаря приложений: видимость пакетов Android ограничивает видимые приложения.</string>
+    <string name="about_limit_network">Нет общесистемного мониторинга сети: нет обнаружения потоков, портов и флуда.</string>
+    <string name="about_limit_privileged">Не привилегированный EDR: нет мониторинга процессов, ядра или файлов чужих приложений.</string>
+    <string name="about_limit_firmware">Метаданные сборки и прошивки не являются доказательством целостности.</string>
+    <string name="about_limit_telemetry">В V1 нет телеметрии, а также аудио-, видео- или экранного содержимого.</string>
+    <string name="about_section_collectors">Охват проверки V1</string>
+    <string name="about_collectors_body">Устройство и платформа, видимые приложения, состояния усиления, подключение, работоспособность датчиков и данных, а также локальные разведданные об угрозах. Все проверки только читают.</string>
+    <string name="about_section_device">Устройство</string>
+    <string name="about_device_none">Данных устройства из проверки пока нет.</string>
+    <string name="about_device_model">Модель</string>
+    <string name="about_device_android">Android</string>
+    <string name="about_device_patch">Уровень патча</string>
+    <string name="about_section_legal">Примечание</string>
+    <string name="about_legal">Обнаружения — это указания для проверки, а не вердикт о вредоносности. Отсутствие обзора не доказывает безопасность.</string>
+    <!-- ================================================================ Brand -->
+    <string name="brand_logo_description">Щит GeDefense</string>
+    <string name="brand_rail_caption">Локальная консоль безопасности</string>
+
+    <!-- ================================================================ V2 shell overlays -->
+    <string name="welcome_title">Добро пожаловать в GeDefense TV</string>
+    <string name="welcome_subtitle">Сэр Кваксек желает безопасных развлечений — локально, без облака.</string>
+    <string name="welcome_mascot_description">Сэр Кваксек, талисман GeDefense</string>
+    <string name="sync_overlay_starting">Синхронизация фидов Threat Intelligence …</string>
+    <string name="sync_overlay_running">Проверка фидов …</string>
+    <string name="sync_overlay_progress">Обновлено фидов: %1$d из %2$d</string>
+
+</resources>

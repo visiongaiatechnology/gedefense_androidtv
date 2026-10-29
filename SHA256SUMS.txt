@@ -1,0 +1,19 @@
+# SHA256SUMS — GeDefense TV 0.2.0-alpha1 (VersionCode 2)
+#
+# PLACEHOLDER: the release owner fills this file with the checksums of the exact
+# artifacts uploaded to the GitHub release. Do not trust checksums from other builds.
+#
+# The authoritative checksums are generated next to the published artifacts, e.g.:
+#   sha256sum VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-debugsigned.apk
+# and attached to the release page together with the APK.
+#
+# Expected artifact names:
+#   <sha256>  VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-debugsigned.apk
+#   <sha256>  VGT_GeDefense_TV_0.2.0-alpha1_VC2_debug.apk
+#
+# Verification after download (Linux/macOS):
+#   sha256sum -c SHA256SUMS.txt
+# Verification on Windows (PowerShell):
+#   Get-FileHash .\VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-debugsigned.apk -Algorithm SHA256
+#
+# Release page: https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest

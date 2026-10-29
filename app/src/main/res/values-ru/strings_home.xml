@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hero / KPI strings for the 2026 Home redesign. -->
+<resources>
+
+    <string name="home_hero_eyebrow">Обзор</string>
+    <string name="home_hero_title">Состояние безопасности</string>
+    <string name="home_top_findings">Главные обнаружения</string>
+    <string name="home_hero_last_check">Последняя проверка: %1$s · %2$s</string>
+    <string name="home_hero_never_checked">На этом устройстве ещё не было проверки</string>
+    <string name="home_hero_band_caption">Оценка по последней локальной проверке</string>
+
+    <string name="home_metric_android">Android</string>
+    <string name="home_metric_android_caption">Патч: %1$s</string>
+    <string name="home_metric_apps">Приложения</string>
+    <string name="home_metric_apps_caption">Видимость пакетов ограничена</string>
+    <string name="home_metric_feeds">Фиды</string>
+    <string name="home_metric_feeds_caption">Threat Intelligence локально</string>
+    <string name="home_metric_collectors">Проверки</string>
+    <string name="home_metric_collectors_caption">Покрытие: %1$s</string>
+    <string name="home_metric_no_data">—</string>
+    <string name="home_metric_unknown">Недоступно</string>
+
+    <string name="home_summary_title">Последний запуск</string>
+    <string name="home_hero_cta">Начать проверку</string>
+    <string name="home_hero_cta_rerun">Проверить снова</string>
+
+</resources>

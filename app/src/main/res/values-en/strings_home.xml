@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hero / KPI strings for the 2026 Home redesign. -->
+<resources>
+
+    <string name="home_hero_eyebrow">Overview</string>
+    <string name="home_hero_title">Security posture</string>
+    <string name="home_top_findings">Top findings</string>
+    <string name="home_hero_last_check">Last check: %1$s · %2$s</string>
+    <string name="home_hero_never_checked">No check on this device yet</string>
+    <string name="home_hero_band_caption">Assessment from the last local check</string>
+
+    <string name="home_metric_android">Android</string>
+    <string name="home_metric_android_caption">Patch: %1$s</string>
+    <string name="home_metric_apps">Apps</string>
+    <string name="home_metric_apps_caption">Limited package visibility</string>
+    <string name="home_metric_feeds">Feeds</string>
+    <string name="home_metric_feeds_caption">Threat intelligence local</string>
+    <string name="home_metric_collectors">Checks</string>
+    <string name="home_metric_collectors_caption">Coverage: %1$s</string>
+    <string name="home_metric_no_data">—</string>
+    <string name="home_metric_unknown">Not available</string>
+
+    <string name="home_summary_title">Last run</string>
+    <string name="home_hero_cta">Start check</string>
+    <string name="home_hero_cta_rerun">Re-run check</string>
+
+</resources>

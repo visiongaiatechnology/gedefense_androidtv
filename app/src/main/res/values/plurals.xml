@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Plural forms for counted UI text (values-en). -->
+<resources>
+
+    <plurals name="count_findings">
+        <item quantity="one">%1$d finding</item>
+        <item quantity="other">%1$d findings</item>
+    </plurals>
+
+    <plurals name="count_events">
+        <item quantity="one">%1$d entry</item>
+        <item quantity="other">%1$d entries</item>
+    </plurals>
+
+    <plurals name="count_collectors">
+        <item quantity="one">%1$d check area</item>
+        <item quantity="other">%1$d check areas</item>
+    </plurals>
+
+    <plurals name="count_apps">
+        <item quantity="one">%1$d app</item>
+        <item quantity="other">%1$d apps</item>
+    </plurals>
+
+    <plurals name="count_feeds">
+        <item quantity="one">%1$d feed</item>
+        <item quantity="other">%1$d feeds</item>
+    </plurals>
+
+    <plurals name="count_evidence_records">
+        <item quantity="one">%1$d record stored</item>
+        <item quantity="other">%1$d records stored</item>
+    </plurals>
+
+    <plurals name="count_collector_findings">
+        <item quantity="one">%1$d finding</item>
+        <item quantity="other">%1$d findings</item>
+    </plurals>
+
+    <plurals name="count_more_findings">
+        <item quantity="one">%1$d more finding in the list</item>
+        <item quantity="other">%1$d more findings in the list</item>
+    </plurals>
+
+    <plurals name="count_removed_packages">
+        <item quantity="one">%1$d package removed since the baseline.</item>
+        <item quantity="other">%1$d packages removed since the baseline.</item>
+    </plurals>
+
+</resources>

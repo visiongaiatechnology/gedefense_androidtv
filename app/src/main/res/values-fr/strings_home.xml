@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hero / KPI strings for the 2026 Home redesign. -->
+<resources>
+
+    <string name="home_hero_eyebrow">Vue d\'ensemble</string>
+    <string name="home_hero_title">Posture de sécurité</string>
+    <string name="home_top_findings">Principaux constats</string>
+    <string name="home_hero_last_check">Dernière vérification : %1$s · %2$s</string>
+    <string name="home_hero_never_checked">Aucune vérification sur cet appareil</string>
+    <string name="home_hero_band_caption">Évaluation issue de la dernière vérification locale</string>
+
+    <string name="home_metric_android">Android</string>
+    <string name="home_metric_android_caption">Correctif : %1$s</string>
+    <string name="home_metric_apps">Apps</string>
+    <string name="home_metric_apps_caption">Visibilité des paquets limitée</string>
+    <string name="home_metric_feeds">Flux</string>
+    <string name="home_metric_feeds_caption">Renseignement local</string>
+    <string name="home_metric_collectors">Vérifications</string>
+    <string name="home_metric_collectors_caption">Couverture : %1$s</string>
+    <string name="home_metric_no_data">—</string>
+    <string name="home_metric_unknown">Indisponible</string>
+
+    <string name="home_summary_title">Dernière exécution</string>
+    <string name="home_hero_cta">Lancer la vérification</string>
+    <string name="home_hero_cta_rerun">Relancer la vérification</string>
+
+</resources>

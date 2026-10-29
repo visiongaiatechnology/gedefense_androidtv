@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German plural forms for counted UI text. Android resolves quantity "one"/"other" for German; the
+  TV screens always render counts through these resources so a single finding never reads
+  "1 Befunde".
+-->
+<resources>
+
+    <plurals name="count_findings">
+        <item quantity="one">%1$d Befund</item>
+        <item quantity="other">%1$d Befunde</item>
+    </plurals>
+
+    <plurals name="count_events">
+        <item quantity="one">%1$d Eintrag</item>
+        <item quantity="other">%1$d Einträge</item>
+    </plurals>
+
+    <plurals name="count_collectors">
+        <item quantity="one">%1$d Prüfbereich</item>
+        <item quantity="other">%1$d Prüfbereiche</item>
+    </plurals>
+
+    <plurals name="count_apps">
+        <item quantity="one">%1$d App</item>
+        <item quantity="other">%1$d Apps</item>
+    </plurals>
+
+    <plurals name="count_feeds">
+        <item quantity="one">%1$d Feed</item>
+        <item quantity="other">%1$d Feeds</item>
+    </plurals>
+
+    <plurals name="count_evidence_records">
+        <item quantity="one">%1$d Eintrag gespeichert</item>
+        <item quantity="other">%1$d Einträge gespeichert</item>
+    </plurals>
+
+    <plurals name="count_collector_findings">
+        <item quantity="one">%1$d Befund</item>
+        <item quantity="other">%1$d Befunde</item>
+    </plurals>
+
+    <plurals name="count_more_findings">
+        <item quantity="one">%1$d weiterer Befund in der Liste</item>
+        <item quantity="other">%1$d weitere Befunde in der Liste</item>
+    </plurals>
+
+    <plurals name="count_removed_packages">
+        <item quantity="one">%1$d entferntes Paket seit der Vergleichsbasis.</item>
+        <item quantity="other">%1$d entfernte Pakete seit der Vergleichsbasis.</item>
+    </plurals>
+
+</resources>
