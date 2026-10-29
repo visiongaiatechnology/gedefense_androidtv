@@ -9,7 +9,7 @@
 外部 VPN サーバーなし。クラウドなし。テレメトリなし。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="リリース 0.2.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="リリース 0.2.0-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -30,9 +30,9 @@
 
 ## ダウンロード
 
-[![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest)
+[![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk)
 
-常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest)を使用してください。
+常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk)を使用してください。
 正確な APK アセット、チェックサム、ビルドノートはそこにあります。アルファ APK はテスト署名されているため、
 サイドロード時に Android が警告を表示することがあります。インストール前に SHA-256 を
 [SHA256SUMS.txt](SHA256SUMS.txt) またはリリースに添付されたチェックサムと照合してください。
@@ -265,7 +265,7 @@ GeDefense TV は意図的に次では**ありません**：
 
 1. テレビで、APK のインストールに使用するアプリ（サイドロード/ファイルマネージャー、または ADB）に対して
    提供元不明アプリのインストールを許可します。
-2. [最新リリース](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest)から APK をインストールします。
+2. [最新リリース](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk)から APK をインストールします。
 3. **GeDefense TV** を起動し、初回セットアップに従い、Android の一度限りの VPN 同意ダイアログを承認します。
 4. 任意で ADB を使用：
 

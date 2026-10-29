@@ -9,7 +9,7 @@
 无外部 VPN 服务器。无云。无遥测。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="版本 0.2.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="版本 0.2.0-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -29,9 +29,9 @@
 
 ## 下载
 
-[![下载最新 Alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest)
+[![下载最新 Alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk)
 
-请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest)：
+请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk)：
 确切的 APK 文件、校验和与构建说明都在那里。Alpha APK 使用测试签名——侧载时 Android 可能会警告。
 安装前请对照 [SHA256SUMS.txt](SHA256SUMS.txt) 或发布页附带的校验和核对 SHA-256。
 
@@ -222,7 +222,7 @@ GeDefense TV 有意**不是**：
 ## 安装（侧载）
 
 1. 在电视上，为你用来安装 APK 的应用（侧载/文件管理器应用或 ADB）允许安装未知来源应用。
-2. 从[最新发布](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest)安装 APK。
+2. 从[最新发布](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk)安装 APK。
 3. 启动 **GeDefense TV**，按首次向导操作，并接受 Android 的一次性 VPN 同意对话框。
 4. 可选，通过 ADB：
 
