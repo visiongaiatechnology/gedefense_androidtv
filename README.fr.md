@@ -29,6 +29,18 @@ Aucun serveur VPN externe. Aucun cloud. Aucune télémétrie.</p>
 > vous y fier : lisez la [portée et les limites](#portée-et-limites), les [notes de version](RELEASE-NOTES.md)
 > et traitez chaque résultat comme une indication, jamais comme une garantie.
 
+## 🌐 L'univers GeDefense
+
+GeDefense est une seule structure de sécurité locale — pour Linux, Windows, Android et WordPress. Chaque projet frère partage la même philosophie : contrôle local, visibilité honnête, aucune télémétrie silencieuse.
+
+| Projet | Spécialité |
+| --- | --- |
+| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *(ce dépôt)* | Console de sécurité pour Android TV / Google TV : VPN loopback, carte du trafic, XDR-Light et confinement Kinetic-Lite réversible. |
+| [![Linux](https://img.shields.io/badge/Linux-D4AF37?style=flat-square&logo=linux&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense) **GeDefense Linux** | Défense réseau au plus près du noyau : application eBPF/XDP, WAF L7, XDR hôte avec preuves signées et durcissement réversible (Rust/Go, 100 % local). |
+| [![Windows](https://img.shields.io/badge/Windows-8B5CF6?style=flat-square&logo=windows&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewin) **GeDefense Windows** | Console de sécurité Windows 11 locale et souveraine : Defender/ASR/WFP/App Control, durcissement, MHX EDR/XDR, renseignement local et preuves chaînées HMAC. |
+| [![Android](https://img.shields.io/badge/Android-22D3EE?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefenseandroid) **GeDefense Android** | Plateforme de sécurité Android native : application VPN locale, télémétrie des terminaux, corrélation XDR/EDR, renseignement sur les menaces, analyse des risques applicatifs et preuves chiffrées. |
+| [![WordPress](https://img.shields.io/badge/WordPress-1F8FFF?style=flat-square&logo=wordpress&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewp) **GeDefense WordPress** | Suite open-core AGPL-3.0 pour WordPress : WAF ZEUS, inspection approfondie AEGIS, TRINITY XDR, verrouillage ThroneGuard et masquage d'admin HADES. |
+
 ## Téléchargement
 
 [![Télécharger le dernier APK alpha](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)

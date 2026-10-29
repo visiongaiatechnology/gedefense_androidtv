@@ -28,6 +28,18 @@
 > ポリシーはアルファ版ごとに変わります。依拠する前に[適用範囲と制限](#適用範囲と制限)と
 > [リリースノート](RELEASE-NOTES.md)を読み、すべての結果を保証ではなく手がかりとして扱ってください。
 
+## 🌐 GeDefense の宇宙
+
+GeDefense は Linux、Windows、Android、WordPress のための単一のローカルファースト・セキュリティファブリックです。すべての兄弟プロジェクトが同じ哲学を共有します：ローカル制御、誠実な可視性、静かなテレメトリなし。
+
+| プロジェクト | 重点 |
+| --- | --- |
+| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *（このリポジトリ）* | Android TV / Google TV 向けセキュリティコンソール：ループバック VPN、トラフィックマップ、XDR-Light、可逆的 Kinetic-Lite コンテインメント。 |
+| [![Linux](https://img.shields.io/badge/Linux-D4AF37?style=flat-square&logo=linux&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense) **GeDefense Linux** | カーネル近傍のネットワーク防御：eBPF/XDP 適用、L7 WAF、署名付き証跡を備えたホスト XDR、可逆的ハードニング（Rust/Go、完全ローカル）。 |
+| [![Windows](https://img.shields.io/badge/Windows-8B5CF6?style=flat-square&logo=windows&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewin) **GeDefense Windows** | ローカルで主権的な Windows 11 セキュリティコンソール：Defender/ASR/WFP/App Control、ハードニング、MHX EDR/XDR、ローカル脅威情報、HMAC 連鎖証跡。 |
+| [![Android](https://img.shields.io/badge/Android-22D3EE?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefenseandroid) **GeDefense Android** | ネイティブ Android セキュリティプラットフォーム：ローカル VPN 適用、エンドポイントテレメトリ、XDR/EDR 相関、脅威情報、アプリリスク分析、暗号化証跡。 |
+| [![WordPress](https://img.shields.io/badge/WordPress-1F8FFF?style=flat-square&logo=wordpress&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewp) **GeDefense WordPress** | AGPL-3.0 オープンコア WordPress スイート：ZEUS WAF、AEGIS ディープパケット検査、TRINITY XDR、ThroneGuard ロックダウン、HADES 管理画面隠蔽。 |
+
 ## ダウンロード
 
 [![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)
