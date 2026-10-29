@@ -9,7 +9,7 @@
 Без внешнего VPN-сервера. Без облака. Без телеметрии.</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Релиз 0.2.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Релиз 0.2.0-alpha2"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="Ранняя alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -23,7 +23,7 @@
 
 > ## ⚠️ РАННЯЯ ALPHA (early alpha) — каждый пользователь является альфа-тестером
 >
-> GeDefense TV **0.2.0-alpha1** — это ранняя alpha-версия. Это не готовый потребительский продукт и
+> GeDefense TV **0.2.0-alpha2** — это ранняя alpha-версия. Это не готовый потребительский продукт и
 > не прошедший аудит продукт безопасности; опубликованный APK подписан **тестовым ключом**.
 > Поведение, интерфейс и политика фильтрации будут меняться между alpha-сборками. Прежде чем
 > полагаться на приложение: прочитайте [область применения и ограничения](#область-применения-и-ограничения),
@@ -31,9 +31,9 @@
 
 ## Загрузка
 
-[![Скачать последний alpha-APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk)
+[![Скачать последний alpha-APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)
 
-Всегда используйте [страницу последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk):
+Всегда используйте [страницу последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk):
 там находятся точный файл APK, его контрольные суммы и заметки о сборке. Alpha-APK подписан тестовым
 ключом — Android может предупредить при установке из неизвестного источника. Перед установкой
 сверьте SHA-256 с [SHA256SUMS.txt](SHA256SUMS.txt) или с суммами, приложенными к релизу.
@@ -279,13 +279,13 @@ GeDefense TV намеренно **не является**:
 
 1. На телевизоре разрешите установку из неизвестных источников для приложения, которым вы
    устанавливаете APK (sideload/файловый менеджер или ADB).
-2. Установите APK из [последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk).
+2. Установите APK из [последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk).
 3. Запустите **GeDefense TV**, пройдите первичную настройку и подтвердите разовый диалог согласия на VPN.
 4. Необязательно, через ADB:
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-debugsigned.apk
+adb install -r VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 

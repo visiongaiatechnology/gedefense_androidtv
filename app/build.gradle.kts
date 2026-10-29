@@ -1,4 +1,4 @@
-plugins {
+﻿plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
@@ -23,8 +23,8 @@ android {
         applicationId = "de.visiongaia.gedefense.tv"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.2.0-alpha1"
+        versionCode = 3
+        versionName = "0.2.0-alpha2"
         // SECV2-13: pin the audited GaiaNet helper per ABI; NativeGaiaNet verifies before exec.
         buildConfigField("String", "GAIANET_SHA_ARM64", "\"d34fda6f06ed7809c386af243b55e55cadd20794f1413b94ada3a729b26fd15e\"")
         buildConfigField("String", "GAIANET_SHA_X86_64", "\"9f393ce49032a84f75717174b09748c08e86ff831886a38f68d0ac12975394f3\"")
@@ -54,11 +54,8 @@ android {
             // SECV2-01: never fall back to the well-known Android debug key for a release artefact.
             // A missing signing configuration fails the build instead of silently producing an
             // un-upgradable, publicly reproducible debug-signed APK.
+            // SECV2-01: debug builds need no signing env; release build validation is below.
             signingConfig = signingConfigs.findByName("release")
-                ?: throw GradleException(
-                    "Release signing requires GEDEFENSE_RELEASE_STORE_FILE / _PASSWORD / _KEY_ALIAS / _KEY_PASSWORD. " +
-                        "Use _keys/signing-env.ps1 to configure an alpha/production keystore."
-                )
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -88,6 +85,19 @@ android {
         // child process; legacy (extracted) packaging is mandatory for the native data plane.
         jniLibs.useLegacyPackaging = true
         jniLibs.keepDebugSymbols += setOf("**/*.so")
+    }
+}
+
+afterEvaluate {
+    tasks.matching { it.name == "assembleRelease" || it.name == "bundleRelease" }.configureEach {
+        doFirst {
+            if (android.signingConfigs.findByName("release") == null) {
+                throw org.gradle.api.GradleException(
+                    "Release signing requires GEDEFENSE_RELEASE_STORE_FILE / _PASSWORD / _KEY_ALIAS / _KEY_PASSWORD. " +
+                        "Use _keys/signing-env.ps1 to configure an alpha/production keystore."
+                )
+            }
+        }
     }
 }
 

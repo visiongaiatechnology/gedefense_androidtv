@@ -91,6 +91,9 @@ class TvMainActivity : Activity(), ScreenHost {
         services = TvServices.get(this)
         registry = ScreenRegistry(services)
         ContainmentNotifier.addListener(containmentListener)
+        if (android.os.Build.VERSION.SDK_INT >= 33 && checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            try { requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 101) } catch (_: Throwable) {}
+        }
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         applyImmersiveLayout()
         root = buildRoot()
@@ -806,6 +809,12 @@ class TvMainActivity : Activity(), ScreenHost {
     }
 
     private fun showTop(recreate: Boolean = false) {
+        // SECV2-17: release builds protect flow/domain screens from screen capture/HDMI copies.
+        if (!BuildConfig.DEBUG) {
+            val sensitive = current?.route in setOf(TvRoute.TRAFFIC, TvRoute.XDR, TvRoute.PROTECTION, TvRoute.EVIDENCE)
+            if (sensitive) window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+            else window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        }
         val entry = current ?: return
         setRailVisible(entry.route != TvRoute.ONBOARDING)
         contentFrame.removeAllViews()

@@ -1,9 +1,9 @@
-# Release notes — GeDefense TV 0.2.0-alpha1
+# Release notes — GeDefense TV 0.2.0-alpha2
 
 | Field | Value |
 | --- | --- |
 | Product | GeDefense TV (`de.visiongaia.gedefense.tv`) |
-| Version | `0.2.0-alpha1` |
+| Version | `0.2.0-alpha2` |
 | VersionCode | `2` |
 | Release date | 29 October 2026 |
 | Status | **Early alpha** — test-signed build for evaluation and alpha feedback |
@@ -52,7 +52,7 @@
   German resources.
 - Vendored native helper `libgedefense_gaianet_v2.so` for `arm64-v8a` and `x86_64`
   (byte-identical to GeDefense Mobile `0.28.0-beta1`; see `THIRD_PARTY_NOTICES.md`).
-- Version bump to `0.2.0-alpha1` / VersionCode `2`.
+- Version bump to `0.2.0-alpha2` / VersionCode `2`.
 
 ## Verification status
 
@@ -75,8 +75,8 @@ Do not interpret this alpha as a guaranteed protection product. See the limitati
 
 The APK is published as a GitHub release asset. Expected file names:
 
-- `VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-debugsigned.apk` (R8-minified, test-signed)
-- `VGT_GeDefense_TV_0.2.0-alpha1_VC2_debug.apk` (debug build, for development only)
+- `VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk` (R8-minified, test-signed)
+- `VGT_GeDefense_TV_0.2.0-alpha2_VC3_debug.apk` (debug build, for development only)
 
 Checksums: see [SHA256SUMS.txt](SHA256SUMS.txt). Verify the downloaded APK against the checksums
 attached to the exact release before installing it.
@@ -84,7 +84,7 @@ attached to the exact release before installing it.
 ## Install / upgrade
 
 1. Enable installation from unknown sources for your file manager / sideload tool on the TV.
-2. Install `VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-debugsigned.apk`
+2. Install `VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk`
    (`adb install -r <file>` over ADB, or a sideload app on the TV).
 3. Start GeDefense TV, follow the onboarding and grant the Android VPN consent dialog once.
 

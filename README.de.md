@@ -9,7 +9,7 @@ Lokale Loopback-VPN-Filterung, Traffic-Map mit Geo-Zuordnung, XDR-Light und ein 
 Kein externer VPN-Server. Keine Cloud. Keine Telemetrie.</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Release 0.2.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Release 0.2.0-alpha2"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="Frühe Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -23,7 +23,7 @@ Kein externer VPN-Server. Keine Cloud. Keine Telemetrie.</p>
 
 > ## ⚠️ FRÜHE ALPHA (early alpha) — jeder Nutzer ist Alpha-Tester
 >
-> GeDefense TV **0.2.0-alpha1** ist ein früher Alpha-Build. Es ist kein fertiges Verbraucherprodukt
+> GeDefense TV **0.2.0-alpha2** ist ein früher Alpha-Build. Es ist kein fertiges Verbraucherprodukt
 > und kein auditiertes Sicherheitsprodukt; die veröffentlichte APK ist mit einem **Test-Signaturschlüssel**
 > signiert. Verhalten, Oberfläche und Filterrichtlinie ändern sich zwischen Alpha-Builds. Bevor du
 > dich darauf verlässt: lies den [Umfang und die Grenzen](#umfang-und-grenzen), die
@@ -31,9 +31,9 @@ Kein externer VPN-Server. Keine Cloud. Keine Telemetrie.</p>
 
 ## Download
 
-[![Die neueste Alpha-APK herunterladen](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk)
+[![Die neueste Alpha-APK herunterladen](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)
 
-Verwende immer die [Seite des neuesten Releases](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk):
+Verwende immer die [Seite des neuesten Releases](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk):
 Dort liegen das genaue APK-Artefakt, seine Prüfsummen und die Build-Hinweise. Die Alpha-APK ist
 test-signiert — Android kann beim Sideloading warnen. Prüfe die SHA-256-Prüfsumme gegen
 [SHA256SUMS.txt](SHA256SUMS.txt) bzw. gegen die Prüfsummen am Release, bevor du installierst.
@@ -279,13 +279,13 @@ Sicherheitsdesign und Bedrohungsmodell: [SECURITY.md](SECURITY.md) · [THREAT-MO
 
 1. Erlaube auf dem Fernseher die Installation aus unbekannten Quellen für die App, mit der du APKs
    installierst (Sideload-/Dateimanager-App oder ADB).
-2. Installiere die APK aus dem [neuesten Release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk).
+2. Installiere die APK aus dem [neuesten Release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk).
 3. Starte **GeDefense TV**, folge dem Onboarding und bestätige den einmaligen Android-VPN-Dialog.
 4. Optional per ADB:
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-debugsigned.apk
+adb install -r VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 

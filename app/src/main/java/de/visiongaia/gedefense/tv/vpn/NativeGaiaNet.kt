@@ -34,6 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 object NativeGaiaNet {
     private const val HELPER_NAME = "libgedefense_gaianet_v2.so"
+    private const val MAX_THREAT_RECORDS = 150_000
     private const val PROTOCOL_VERSION: Byte = 5
     private const val TOKEN_BYTES = 32
     private const val HELPER_INIT_BYTES = 44
@@ -185,6 +186,11 @@ object NativeGaiaNet {
         telemetryDetailed: Boolean,
     ): Session? {
         lastStartFailureCode = null
+        // SECV2-14: hard cap on policy/index size; fail honestly instead of exhausting memory.
+        if (index.count > MAX_THREAT_RECORDS) {
+            lastStartFailureCode = "policy_too_large"
+            return null
+        }
         if (activeSession != null) {
             lastStartFailureCode = "session_already_active"
             return null

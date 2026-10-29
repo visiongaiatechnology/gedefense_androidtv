@@ -1,1 +1,1 @@
-﻿933930d7f051933ef8b0015842462fcc348805214cf109836b8b9631be09c7e2  VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk
+﻿dc623308e19c5e5da3bf6887628ce4a3b2b2755b93920c8ef30966ba942fcfd1  VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk
