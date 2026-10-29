@@ -140,3 +140,29 @@ Architecture: [ARCHITECTURE.md](ARCHITECTURE.md) and [docs/V2-ARCHITECTURE.md](d
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The app contains no analytics, advertising,
 crash-reporting or third-party networking SDK and no AndroidX.
+
+---
+
+## Alpha security hardening status (0.2.0-alpha1)
+
+This is an early alpha. The following hardening is implemented in this source snapshot:
+
+- **Release signing gate:** a release build fails without an explicit signing configuration; debug-key fallback was removed. The published 0.2.0-alpha1 APK is signed with a dedicated VGT alpha key (certificate SHA-256 `1ad1b120…05c75f7`), not the Android debug key.
+- **Fail-closed VPN anchor:** on helper failure the TUN anchor and foreground service are kept, traffic stays blocked and the UI reports `FAILED`; the tunnel is only torn down on user stop/revoke.
+- **Honest protection state:** only `ACTIVE` counts as protected; `DEGRADED` is presented as limited (e.g. missing threat-intel filters).
+- **Containment guardrails:** temporary containments require opt-in + strict profile + at least two independent signals, known country, public /24 or /64 aggregation with at least two observed destinations, exact protected-package matching and private/loopback/link-local/multicast allowlisting.
+- **No plaintext traffic history:** traffic metadata (domains, destinations, per-app countries) is kept in memory only and not persisted to SharedPreferences.
+- **QA hooks:** the `route` navigation extra and the containment test hook are compiled into debug builds only (`BuildConfig.DEBUG`); release builds ignore them.
+- **Helper integrity pin:** the vendored GaiaNet helper is verified against per-ABI SHA-256 build constants before execution.
+- **Containment audit trail:** applied/released/expired containments are appended to the local tamper-evident evidence ledger as bounded `containment.*` events.
+
+### Known alpha limitations (not production claims)
+
+- Upstream threat-intel/geo feeds are integrity-checked locally (HTTPS, SHA-256, HMAC generations) but their publisher authenticity is not yet cryptographically signed (TOFU). Do not treat feed content as a signed vendor statement.
+- The containment policy acknowledgement is best-effort: the record is published immediately and a failed policy refresh is surfaced, but there is no end-to-end helper policy acknowledgement in this alpha. Treat containment as a convenience control, not a certified enforcement boundary.
+- Automatic containment is opt-in and destination-prefix based; it never blocks whole apps or system/launcher/Play traffic.
+- No dynamic analysis on real TV hardware, no independent audit certification, no Play Store production review. `POST_NOTIFICATIONS` is declared but not prompted; always-on VPN/FGS store declarations are pending.
+- Traffic/domain screens are not yet `FLAG_SECURE` (screen capture possible). Do not display sensitive account data next to them.
+- The alpha APK is signed with a project alpha key; production distribution requires a VGT production key and a clean, reproducible release build.
+
+Report suspected security issues privately to VGT before public disclosure.
