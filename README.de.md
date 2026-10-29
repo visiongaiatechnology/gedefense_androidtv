@@ -9,7 +9,7 @@ Lokale Loopback-VPN-Filterung, Traffic-Map mit Geo-Zuordnung, XDR-Light und ein 
 Kein externer VPN-Server. Keine Cloud. Keine Telemetrie.</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Release 0.2.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Release 0.2.0-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="Frühe Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -31,9 +31,9 @@ Kein externer VPN-Server. Keine Cloud. Keine Telemetrie.</p>
 
 ## Download
 
-[![Die neueste Alpha-APK herunterladen](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk)
+[![Die neueste Alpha-APK herunterladen](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk)
 
-Verwende immer die [Seite des neuesten Releases](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk):
+Verwende immer die [Seite des neuesten Releases](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk):
 Dort liegen das genaue APK-Artefakt, seine Prüfsummen und die Build-Hinweise. Die Alpha-APK ist
 test-signiert — Android kann beim Sideloading warnen. Prüfe die SHA-256-Prüfsumme gegen
 [SHA256SUMS.txt](SHA256SUMS.txt) bzw. gegen die Prüfsummen am Release, bevor du installierst.
@@ -279,7 +279,7 @@ Sicherheitsdesign und Bedrohungsmodell: [SECURITY.md](SECURITY.md) · [THREAT-MO
 
 1. Erlaube auf dem Fernseher die Installation aus unbekannten Quellen für die App, mit der du APKs
    installierst (Sideload-/Dateimanager-App oder ADB).
-2. Installiere die APK aus dem [neuesten Release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release.apk).
+2. Installiere die APK aus dem [neuesten Release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha1/VGT_GeDefense_TV_0.2.0-alpha1_VC2_release-signed.apk).
 3. Starte **GeDefense TV**, folge dem Onboarding und bestätige den einmaligen Android-VPN-Dialog.
 4. Optional per ADB:
 
