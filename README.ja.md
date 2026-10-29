@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
   <img src="https://img.shields.io/badge/minSdk-26-3DDC84?style=flat-square&logo=android&logoColor=white" alt="minSdk 26">
-  <img src="https://img.shields.io/badge/license-VGT%20proprietary-B08D57?style=flat-square" alt="VGT 専有ライセンス">
+  <img src="https://img.shields.io/badge/license-AGPL--3.0-1F8FFF?style=flat-square" alt="AGPL-3.0">
 </p>
 
 [English](README.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [简体中文](README.zh-CN.md) · **日本語**
@@ -345,9 +345,10 @@ Android TV エミュレーターガイドは [docs/TV-EMULATOR-TESTING.md](docs/
 
 ## ライセンスと第三者通知
 
-GeDefense TV は **VisionGaiaTechnology（VGT）の専有ソフトウェア**です。このリポジトリは透明性、レビュー、
-アルファテストのために公開されています。公開によって再配布や派生作品の作成を許諾するものではありません。
-[LICENSE](LICENSE) を参照してください。
+GeDefense TV は **GNU Affero General Public License v3.0（AGPL-3.0）** の下で公開される自由ソフトウェアです。
+AGPL-3.0 の条件に従って使用、研究、変更、再配布できます。変更したバージョンをネットワークサービスとして
+提供する場合、AGPL は利用者に対応するソースコードを提供することを要求します。完全なライセンス本文は
+[LICENSE](LICENSE) を参照してください。本ソフトウェアはライセンスに記載のとおり無保証で提供されます。
 
 第三者コンポーネント、同梱バイナリ、アセット、実行時データソース（公開脅威インテリジェンスフィード、
 公開 IP→国データセット、ネイティブヘルパー内の Go 標準ライブラリ）は

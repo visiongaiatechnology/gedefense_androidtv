@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
   <img src="https://img.shields.io/badge/minSdk-26-3DDC84?style=flat-square&logo=android&logoColor=white" alt="minSdk 26">
-  <img src="https://img.shields.io/badge/license-VGT%20proprietary-B08D57?style=flat-square" alt="VGT 专有许可证">
+  <img src="https://img.shields.io/badge/license-AGPL--3.0-1F8FFF?style=flat-square" alt="AGPL-3.0">
 </p>
 
 [English](README.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [Français](README.fr.md) · **简体中文** · [日本語](README.ja.md)
@@ -300,8 +300,10 @@ export ANDROID_HOME=/path/to/android-sdk
 
 ## 许可证与第三方声明
 
-GeDefense TV 是 **VisionGaiaTechnology（VGT）的专有软件**。本仓库的发布是为了透明、审查和 Alpha 测试。
-发布本身不授予再分发或创作衍生作品的许可——参见 [LICENSE](LICENSE)。
+GeDefense TV 是依据 **GNU Affero General Public License v3.0（AGPL-3.0）** 发布的自由软件。
+你可以按照 AGPL-3.0 的条款使用、研究、修改和再分发。若你将修改后的版本作为网络服务运行，
+AGPL 要求你向用户提供相应的源代码。完整许可证文本见 [LICENSE](LICENSE)。
+如许可证所述，本软件不提供任何担保。
 
 第三方组件、随附二进制、资源以及运行时数据源（公开威胁情报订阅源、公开的 IP→国家数据集、原生助手中的 Go 标准库）
 记录在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 中。

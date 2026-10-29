@@ -14,7 +14,7 @@ Aucun serveur VPN externe. Aucun cloud. Aucune télémétrie.</p>
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
   <img src="https://img.shields.io/badge/minSdk-26-3DDC84?style=flat-square&logo=android&logoColor=white" alt="minSdk 26">
-  <img src="https://img.shields.io/badge/license-VGT%20proprietary-B08D57?style=flat-square" alt="Licence propriétaire VGT">
+  <img src="https://img.shields.io/badge/license-AGPL--3.0-1F8FFF?style=flat-square" alt="AGPL-3.0">
 </p>
 
 [English](README.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · **Français** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
@@ -374,9 +374,11 @@ Android TV, avec la création d'AVD et la capture d'écran, se trouve dans
 
 ## Licence et mentions tierces
 
-GeDefense TV est un **logiciel propriétaire de VisionGaiaTechnology (VGT)**. Ce dépôt est publié à des
-fins de transparence, d'examen et de tests alpha. La publication n'accorde aucune licence de
-redistribution ni de création d'œuvres dérivées — voir [LICENSE](LICENSE).
+GeDefense TV est un logiciel libre distribué sous la **GNU Affero General Public License v3.0
+(AGPL-3.0)**. Vous pouvez l'utiliser, l'étudier, le modifier et le redistribuer selon les termes de
+l'AGPL-3.0. Si vous exploitez une version modifiée en tant que service réseau, l'AGPL exige de mettre
+le code source correspondant à disposition de ses utilisateurs. Le texte complet figure dans
+[LICENSE](LICENSE). Le logiciel est fourni sans garantie, comme indiqué dans la licence.
 
 Les composants tiers, binaires vendus, assets et sources de données d'exécution (flux publics de
 renseignement sur les menaces, jeu de données public IP→pays, bibliothèque standard Go intégrée à
