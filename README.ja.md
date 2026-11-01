@@ -9,7 +9,7 @@
 外部 VPN サーバーなし。クラウドなし。テレメトリなし。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="リリース 0.3.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="リリース 0.3.0-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -45,7 +45,7 @@ GeDefense は Linux、Windows、Android、WordPress のための単一のロー�
 
 [![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
 
-常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)を使用してください。
+常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1)を使用してください。
 正確な APK アセット、チェックサム、ビルドノートはそこにあります。詳細なサイドロードおよびハードウェアテストの手順は **[アルファテスターガイド](docs/ALPHA-TESTER-GUIDE.md)** をご覧ください。
 インストール前に SHA-256 を [SHA256SUMS.txt](SHA256SUMS.txt) またはリリースに添付されたチェックサムと照合してください：
 

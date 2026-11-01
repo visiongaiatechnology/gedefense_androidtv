@@ -9,7 +9,7 @@
 无外部 VPN 服务器。无云。无遥测。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="版本 0.3.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="版本 0.3.0-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -43,7 +43,7 @@ GeDefense 是一套本地优先的安全架构，覆盖 Linux、Windows、Androi
 
 [![下载最新 Alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
 
-请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)：
+请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1)：
 确切的 APK 文件、校验和与构建说明都在那里。详细的侧载与硬件测试说明请参见 **[Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md)**。
 安装前请对照 [SHA256SUMS.txt](SHA256SUMS.txt) 或发布页附带的校验和核对 SHA-256：
 
