@@ -119,6 +119,12 @@ interface EvidenceApi {
      */
     fun recordSecurityEvent(type: String, severity: String, subject: String, detail: String): Boolean
 
+    /**
+     * Appends structured XDR-lite events (for example Titan engine events) to the evidence ledger.
+     * Unknown/foreign event data is rejected by the store; this never accepts secrets.
+     */
+    fun recordEvents(events: List<de.visiongaia.gedefense.tv.core.model.TvEvent>): Boolean
+
     fun rows(limit: Int): List<EvidenceRow>
 
     /** Deletes local evidence data. Returns false when the deletion could not be completed. */
@@ -186,4 +192,24 @@ interface SettingsApi {
     fun containmentEnabled(): Boolean
 
     fun setContainmentEnabled(enabled: Boolean)
+
+    // ------------------------------------------------------------------ Titan Engine (V3)
+
+    /**
+     * True once the user explicitly activated the Titan Engine and consented to the privileged
+     * command channel. A passive detection never sets this flag; without it the app stays Level 1.
+     */
+    fun titanConsentGranted(): Boolean
+
+    fun setTitanConsentGranted(granted: Boolean)
+
+    /** User-enabled C2 socket guard (socket provenance pass during a Titan scan). */
+    fun titanSocketGuardEnabled(): Boolean
+
+    fun setTitanSocketGuardEnabled(enabled: Boolean)
+
+    /** User-enabled FIM Anti-Planting guard (hash/delta pass during a Titan scan). */
+    fun titanFimGuardEnabled(): Boolean
+
+    fun setTitanFimGuardEnabled(enabled: Boolean)
 }

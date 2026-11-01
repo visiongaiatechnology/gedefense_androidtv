@@ -1,8 +1,5 @@
 # GeDefense TV — Onboarding (Erststart-Assistent)
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Version:** 2.0-plan · **Stand:** 29. Oktober 2026 · **Status:** Design/Plan ·
 **Implementierung: NOT_TESTED** (keine V2-Läufe, keine Screenshots vorhanden)
 
@@ -102,6 +99,6 @@ Diagnose-Tool nutzbar.
 | Sir-Quacksec-Animation, Skip per D-Pad | **NOT_TESTED** |
 | TI-Sync-Popup Fortschritt/Fehler | **NOT_TESTED** |
 | Erste Prüfung + Statusübergang zu ACTIVE | **NOT_TESTED** |
-| Screenshots des Onboardings | **noch nicht vorhanden** (Projektteam platziert V2-Screenshots) |
+| Screenshots des Onboardings | **noch nicht vorhanden** (Lead platziert V2-Screenshots) |
 
 Die Abnahmefälle stehen in [TEST-PLAN.md](../TEST-PLAN.md) (V2-Matrix).

@@ -9,8 +9,9 @@ Filtrage VPN loopback local, carte du trafic avec attribution géographique, XDR
 Aucun serveur VPN externe. Aucun cloud. Aucune télémétrie.</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Version 0.2.0-alpha2"></a>
-  <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="Alpha précoce">
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="Version 0.3.0-alpha1"></a>
+  <img src="https://img.shields.io/badge/Moteur_Titan-v3_Actif-5FBFA8?style=flat-square" alt="Moteur Titan V3 Actif">
+  <img src="https://img.shields.io/badge/status-alpha-E86A5A?style=flat-square" alt="Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
   <img src="https://img.shields.io/badge/minSdk-26-3DDC84?style=flat-square&logo=android&logoColor=white" alt="minSdk 26">
@@ -21,13 +22,11 @@ Aucun serveur VPN externe. Aucun cloud. Aucune télémétrie.</p>
 
 ---
 
-> ## ⚠️ ALPHA PRÉCOCE (early alpha) — chaque utilisateur est un testeur alpha
+> ## 🛡️ VERSION ALPHA — Moteur Titan & Tests Matériels
 >
-> GeDefense TV **0.2.0-alpha2** est une version alpha précoce. Ce n'est pas un produit grand public
-> fini ni un produit de sécurité audité, et l'APK publié est signé avec une **clé de test**. Le
-> comportement, l'interface et la politique de filtrage changeront entre les versions alpha. Avant de
-> vous y fier : lisez la [portée et les limites](#portée-et-limites), les [notes de version](RELEASE-NOTES.md)
-> et traitez chaque résultat comme une indication, jamais comme une garantie.
+> GeDefense TV **0.3.0-alpha1 (VersionCode 4)** introduit le **moteur Titan (Titan Engine)** — une architecture de protection du terminal en 3 niveaux spécialement conçue pour les plateformes TV.
+> Cette version est prête pour les tests réels sur des téléviseurs Android TV / Google TV physiques et des boîtiers TV rootés.
+> Veuillez consulter notre **[Guide du Testeur Alpha](docs/ALPHA-TESTER-GUIDE.md)**, lire les [notes de version](RELEASE-NOTES.md) et signaler toute anomalie via [GitHub Issues](https://github.com/visiongaiatechnology/gedefense_androidtv/issues).
 
 ## 🌐 L'univers GeDefense
 
@@ -35,7 +34,7 @@ GeDefense est une seule structure de sécurité locale — pour Linux, Windows, 
 
 | Projet | Spécialité |
 | --- | --- |
-| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *(ce dépôt)* | Console de sécurité pour Android TV / Google TV : VPN loopback, carte du trafic, XDR-Light et confinement Kinetic-Lite réversible. |
+| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *(ce dépôt)* | Console de sécurité pour Android TV / Google TV : VPN loopback, carte du trafic, Moteur Titan, XDR-Light et confinement réversible. |
 | [![Linux](https://img.shields.io/badge/Linux-D4AF37?style=flat-square&logo=linux&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense) **GeDefense Linux** | Défense réseau au plus près du noyau : application eBPF/XDP, WAF L7, XDR hôte avec preuves signées et durcissement réversible (Rust/Go, 100 % local). |
 | [![Windows](https://img.shields.io/badge/Windows-8B5CF6?style=flat-square&logo=windows&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewin) **GeDefense Windows** | Console de sécurité Windows 11 locale et souveraine : Defender/ASR/WFP/App Control, durcissement, MHX EDR/XDR, renseignement local et preuves chaînées HMAC. |
 | [![Android](https://img.shields.io/badge/Android-22D3EE?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefenseandroid) **GeDefense Android** | Plateforme de sécurité Android native : application VPN locale, télémétrie des terminaux, corrélation XDR/EDR, renseignement sur les menaces, analyse des risques applicatifs et preuves chiffrées. |
@@ -43,12 +42,16 @@ GeDefense est une seule structure de sécurité locale — pour Linux, Windows, 
 
 ## Téléchargement
 
-[![Télécharger le dernier APK alpha](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)
+[![Télécharger le dernier APK alpha](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
 
-Utilisez toujours la [page de la dernière version](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk) :
-l'APK exact, ses sommes de contrôle et les notes de build s'y trouvent. L'APK alpha est signé avec une
-clé de test — Android peut afficher un avertissement lors de l'installation. Vérifiez la somme SHA-256
-par rapport à [SHA256SUMS.txt](SHA256SUMS.txt) ou aux sommes jointes à la version avant d'installer.
+Utilisez toujours la [page de la dernière version](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1) :
+les APK officiels, leurs signatures cryptographiques et les sommes de contrôle SHA-256 s'y trouvent.
+L'APK de publication est signé avec le certificat VGT Alpha (`CN=VisionGaiaTechnology GeDefense TV Alpha`). Vérifiez la somme SHA-256 dans [SHA256SUMS.txt](SHA256SUMS.txt) avant l'installation :
+
+| Artefact | Taille | Somme de contrôle SHA-256 |
+| :--- | :--- | :--- |
+| **`VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk`** | **6 522 110 octets** | `DA4110EB18ED9376B2C16AD70065C9F39A1F7592865B612A469E969B0F3F2934` |
+| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8 811 121 octets | `2FB107BB473BFF4C6BCDBE8ED97605D057BD7E18B404BF80561331A25087B2D4` |
 
 ## Captures d'écran
 
@@ -174,6 +177,23 @@ un score minimal, un pays de destination connu, une courte durée de vie (1–30
 au maximum quatre confinements actifs et des listes d'autorisation pour les plages plateforme, Google
 et CDN. Chaque confinement est réversible : une fenêtre TV apparaît, l'utilisateur peut appuyer sur
 **Annuler**, et le blocage se lève automatiquement à l'expiration.
+
+### V3 Moteur Titan (Gardien de Terminaison)
+
+Une architecture de défense et d'audit d'intégrité à trois niveaux spécialement conçue pour Android TV :
+
+- **Modèle de Privilège à Trois Niveaux :**
+  - **Niveau 1 · Standard (Défaut sur tous les téléviseurs) :** Espace utilisateur sans root. Filtrage VPN loopback local. Les 7 boucliers privilégiés indiquent honnêtement *Indisponible*.
+  - **Niveau 2 · Supervisé (Détection uniquement) :** Détecte les ponts Shizuku Binder et le débogage réseau actif (port ADB TCP 5555).
+  - **Niveau 3 · Racine Souveraine (Root Privilégié) :** Activé uniquement après confirmation explicite dans une boîte de dialogue en deux étapes (focus par défaut sur *Annuler*). Nécessite un `su -c id` vérifié retournant `uid=0(root)`.
+- **Radar de Provenance des Sockets :**
+  Lit `/proc/net/tcp` et `/proc/net/tcp6` en temps réel pour mapper : `Inode → PID → UID → Nom du paquet`. Signale les ports ADB ouverts (5555) et les connexions C2.
+- **Surveillance de l'Intégrité des Fichiers (FIM) :**
+  Surveille les répertoires système (`/system/bin`, `/system/xbin`, `/vendor/bin`, `/system/etc/init`, `/data/adb/modules`) et détecte les deltas SHA-256.
+- **Réponse Active Réversible (Confinement) :**
+  Actions strictement sécurisées (`FREEZE_APP`, `RESTORE_APP`, `ISOLATE_NETWORK_UID`, `KILL_PROCESS`, `CLOSE_ADB_PORT`). **Aucune commande destructrice** (`rm -rf` interdit). Limité à 8 actions / 60 secondes.
+- **Points de Contrôle Témoins Ed25519 / HMAC :**
+  Points de contrôle cryptographiques locaux certifiant l'intégrité et la séquence du registre de preuves.
 
 ### Assistant de premier démarrage avec Sir Quacksec
 
@@ -301,21 +321,22 @@ Conception de sécurité et modèle de menace : [SECURITY.md](SECURITY.md) · [T
 
 ## Installation (sideload)
 
+Pour un guide détaillé sur les différentes méthodes d'installation (Wi-Fi ADB, clé USB, application Downloader), consultez le **[Guide du Testeur Alpha](docs/ALPHA-TESTER-GUIDE.md)**.
+
 1. Sur le téléviseur, autorisez l'installation depuis des sources inconnues pour l'application utilisée
    pour installer des APK (application de sideload/gestionnaire de fichiers, ou ADB).
-2. Installez l'APK depuis la [dernière version](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk).
+2. Installez l'APK depuis la [dernière version](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk).
 3. Lancez **GeDefense TV**, suivez l'assistant et acceptez la boîte de dialogue de consentement VPN
    Android (une seule fois).
 4. Facultatif, via ADB :
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk
+adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
-L'APK alpha est **signé avec une clé de test**. Aucune clé de signature de production ne fait partie
-de cette alpha.
+L'APK alpha est signé avec le certificat VGT Alpha (`CN=VisionGaiaTechnology GeDefense TV Alpha`).
 
 ## Compiler depuis les sources
 
@@ -338,10 +359,12 @@ la distribution. Plus de détails : [BUILD-RUNBOOK.md](BUILD-RUNBOOK.md).
 ## Tests
 
 ```bash
-./gradlew :tv-core:tvCoreCheck     # harnais du domaine cœur
-./gradlew :tv-core:tvV2Check       # harnais trafic / confidentialité / XDR
-./gradlew :tv-core:tvKineticCheck  # harnais anomalies + confinement V2.1
-./gradlew :app:lintDebug           # lint Android
+./gradlew :tv-core:tvCoreCheck     # harnais du domaine cœur (554 réussis)
+./gradlew :tv-core:tvV2Check       # harnais trafic / confidentialité / XDR (4 398 réussis)
+./gradlew :tv-core:tvKineticCheck  # harnais anomalies + confinement V2.1 (3 025 réussis)
+./gradlew :tv-core:tvTitanCheck    # harnais du moteur Titan V3 (6 624 réussis)
+# Total : 14 601 tests JVM réussis avec 0 échec
+./gradlew :app:lintDebug           # lint Android (0 erreur / 305 avertissements)
 ```
 
 Le harnais du cœur vendu (`:core:coreCheck`) nécessite une JVM Linux/macOS : son code de fichiers
@@ -357,9 +380,9 @@ Android TV, avec la création d'AVD et la capture d'écran, se trouve dans
 ├── app/                    module d'application Android TV (Views, sans AndroidX)
 │   └── src/main/            java/ · res/ (6 langues) · assets/ · jniLibs/ · AndroidManifest.xml
 ├── core/                   cœur GeDefense Mobile vendu, identique octet pour octet (JVM pure)
-├── tv-core/                domaine JVM pur : scan, scoring, trafic, XDR, anomalies, rapports
+├── tv-core/                domaine JVM pur : scan, scoring, trafic, XDR, moteur Titan, rapports
 ├── docs/                   architecture, carte du trafic, onboarding, design DNA, guide émulateur,
-│                           screenshots/ et assets/
+│                           guide du testeur alpha, screenshots/ et assets/
 ├── tools/                  scripts build/test/émulateur/télécommande/vérification
 ├── gradle/ + gradlew*      wrapper Gradle 8.7 (SHA-256 de distribution épinglé)
 ├── build.gradle.kts        AGP 8.5.2 · Kotlin 1.9.24 · Java 17
@@ -370,7 +393,11 @@ Android TV, avec la création d'AVD et la capture d'écran, se trouve dans
 
 | Document | Contenu |
 | --- | --- |
+| **[docs/ALPHA-TESTER-GUIDE.md](docs/ALPHA-TESTER-GUIDE.md)** | **Guide du testeur alpha, méthodes de sideload et modèle d'issue GitHub** |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Graphe des modules, flux de données, collecteurs, preuves, budgets de performance |
+| [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md) | Architecture technique approfondie du moteur Titan |
+| [docs/TITAN-TV-CONCEPT.md](docs/TITAN-TV-CONCEPT.md) | Fondements conceptuels et garanties de sécurité de Titan TV |
+| [CHANGELOG.md](CHANGELOG.md) | Journal des modifications complet (Keep a Changelog) |
 | [docs/V2-ARCHITECTURE.md](docs/V2-ARCHITECTURE.md) | VPN loopback, télémétrie, agrégation du trafic, chaîne d'approvisionnement de l'assistant natif |
 | [docs/TRAFFIC-MAP.md](docs/TRAFFIC-MAP.md) | Sources de la carte du trafic, limites, couleurs et confidentialité |
 | [docs/ONBOARDING.md](docs/ONBOARDING.md) | Assistant de premier démarrage, explications du consentement et des autorisations |
@@ -378,8 +405,12 @@ Android TV, avec la création d'AVD et la capture d'écran, se trouve dans
 | [SECURITY.md](SECURITY.md) | Conception de sécurité, garde des clés, autorisations, politique de signalement |
 | [THREAT-MODEL.md](THREAT-MODEL.md) | Actifs, frontières de confiance, analyse STRIDE, risques propres à la TV |
 | [PRIVACY.md](PRIVACY.md) | Inventaire des données, conservation, export, justification des autorisations |
+| [DATA-SAFETY.md](DATA-SAFETY.md) | Déclaration Google Play Data Safety |
 | [TEST-PLAN.md](TEST-PLAN.md) | Matrice d'acceptation et exigences de preuve |
 | [BUILD-RUNBOOK.md](BUILD-RUNBOOK.md) | Build, signature, journaux et dépannage |
+| [docs/TV-EMULATOR-TESTING.md](docs/TV-EMULATOR-TESTING.md) | Guide pas à pas de l'émulateur Android TV |
+| [docs/SOURCES.md](docs/SOURCES.md) | Sources et références |
+| [RELEASE-NOTES.md](RELEASE-NOTES.md) | Changements de cette alpha et état de vérification |
 | [docs/TV-EMULATOR-TESTING.md](docs/TV-EMULATOR-TESTING.md) | Guide pas à pas de l'émulateur Android TV |
 | [docs/SOURCES.md](docs/SOURCES.md) | Sources et références |
 | [RELEASE-NOTES.md](RELEASE-NOTES.md) | Changements de cette alpha et état de vérification |

@@ -14,6 +14,7 @@ import de.visiongaia.gedefense.tv.ui.screens.OnboardingScreen
 import de.visiongaia.gedefense.tv.ui.screens.ProtectionScreen
 import de.visiongaia.gedefense.tv.ui.screens.SettingsScreen
 import de.visiongaia.gedefense.tv.ui.screens.ThreatIntelScreen
+import de.visiongaia.gedefense.tv.ui.screens.TitanScreen
 import de.visiongaia.gedefense.tv.ui.screens.TrafficScreen
 import de.visiongaia.gedefense.tv.ui.screens.XdrScreen
 
@@ -57,6 +58,7 @@ class ScreenRegistry(private val services: TvServices) {
         TvRoute.FINDING_DETAIL -> FindingDetailScreen(services, argument)
         TvRoute.APPS -> AppsScreen(services)
         TvRoute.HARDENING -> HardeningScreen(services)
+        TvRoute.TITAN -> TitanScreen(services)
         TvRoute.THREAT_INTEL -> ThreatIntelScreen(services)
         TvRoute.EVIDENCE -> EvidenceScreen(services)
         TvRoute.SETTINGS -> SettingsScreen(services)
@@ -72,6 +74,7 @@ class ScreenRegistry(private val services: TvServices) {
             NavItem(TvRoute.FINDINGS, R.string.nav_findings, R.string.nav_findings_desc),
             NavItem(TvRoute.APPS, R.string.nav_apps, R.string.nav_apps_desc),
             NavItem(TvRoute.HARDENING, R.string.nav_hardening, R.string.nav_hardening_desc),
+            NavItem(TvRoute.TITAN, R.string.nav_titan, R.string.nav_titan_desc),
             NavItem(TvRoute.THREAT_INTEL, R.string.nav_threat_intel, R.string.nav_threat_intel_desc),
             NavItem(TvRoute.EVIDENCE, R.string.nav_evidence, R.string.nav_evidence_desc),
             NavItem(TvRoute.SETTINGS, R.string.nav_settings, R.string.nav_settings_desc),

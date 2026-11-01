@@ -1,12 +1,9 @@
 # GeDefense TV — Threat Model
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
-**Version:** 0.2.0-alpha1 · **Stand:** 29. Oktober 2026 · **Methode:** STRIDE-orientierte
+**Version:** 0.1.0-alpha1 · **Stand:** 29. Oktober 2026 · **Methode:** STRIDE-orientierte
 Analyse der tatsächlich vorgesehenen Architektur · **Status:** Dokumentation belegt; Build/Lint/
 JVM-Harnesse und zentrale Emulator-Pfade verifiziert, reale TV-Hardware und adversariale Tests
-**NOT_TESTED** (PARTIAL_VERIFIED)
+**NOT_TESTED** (GOLD / PARTIAL_VERIFIED)
 
 Dieses Threat Model beschreibt, wovor GeDefense TV schützt, welche Daten und Grenzen es besitzt,
 welche Eingaben als feindlich zu behandeln sind und welche Risiken bewusst akzeptiert oder
@@ -17,10 +14,17 @@ Umsetzungs-/Prüfstatus versehen.
 
 ## 1. Systemkontext und Schutzziele
 
-GeDefense TV ist eine **nicht privilegierte Consumer-App** auf Android TV OS / Google TV. Sie
-liest öffentliche Plattformdaten, lädt öffentliche Threat-Intelligence-Feeds, bewertet lokal und
-exportiert auf Wunsch einen Bericht. Sie besitzt keinen Root-Zugriff, keine System-App-Rechte,
-keine Device-Owner-Rolle, keinen VPN-Datenpfad und keine systemweite Netzwerksicht.
+GeDefense TV ist im Standardbetrieb (Level 1) eine **nicht privilegierte Consumer-App** auf
+Android TV OS / Google TV. Sie liest öffentliche Plattformdaten, lädt öffentliche
+Threat-Intelligence-Feeds, bewertet lokal und exportiert auf Wunsch einen Bericht. Ohne
+Nutzer-Consent besitzt sie keinen Root-Zugriff, keine System-App-Rechte, keine Device-Owner-Rolle,
+keinen VPN-Datenpfad und keine systemweite Netzwerksicht.
+
+**Ausnahme V3 (Titan, opt-in):** Auf ausdrücklichen Nutzerwunsch und nur mit bestätigtem `su`-Kanal
+kann Titan (a) Socket→UID/Paket-Provenance über `/proc` und (b) FIM-Delta auf festen Plant-Pfaden
+lesen sowie (c) allow-listete, **reversible** Containment-Aktionen ausführen. Das ist **kein**
+Kernel-/EDR-Sensor: kein Syscall-Monitoring, keine Kernel-Module, keine vollständige Sicht, und
+ohne Consent bleibt es vollständig inaktiv (§16 ff.).
 
 Schutzziele (in Prioritätsreihenfolge):
 
@@ -123,7 +127,7 @@ verifiziert ist.
 | T-02 | Spoofing | Fremde App gibt sich als Store-Installation aus (Installer-Angabe) | falsches „vertrauenswürdig“ | Installer nur Review-Heuristik; Signatur-Digest + sichtbare Quelle; keine Vertrauensaussage | Design; **NOT_TESTED** |
 | T-03 | Tampering | Evidenz-Ledger wird lokal verändert/gelöscht | Vertrauensverlust in Historie | HMAC-Kette + AES-GCM + `verify()`; Löschung durch Nutzer ist legitim und sichtbar; Alt-Ledger wird archiviert statt still verworfen | Emulator: gesundes Ledger (40 Einträge); Tamper-Test **NOT_TESTED** |
 | T-04 | Tampering | Vendored Core wird in-place gepatcht | manipulierte Logik unter „auditiertem“ Anschein | Byte-Fidelity-Manifest + Script als Release-Gate | **PASS** (29.10.2026, 26/26 Dateien, Exitcode 0) |
-| T-05 | Tampering | Release-APK mit falschem/fehlendem Schlüssel gebaut | Update-/Vertrauensbruch | vorgesehene Release-Signatur über Env-Variablen; **Fallback auf Debug-Keystore ist ein offener offener Punkt für die Produktion** | **FAIL für Produktion** – Release-APK existiert, ist aber debug-signiert (F-01) |
+| T-05 | Tampering | Release-APK mit falschem/fehlendem Schlüssel gebaut | Update-/Vertrauensbruch | Release-Signatur über Env-Variablen; Debug-Key-Fallback wurde aus dem Code entfernt; Artefakt ist mit **Alpha-Zertifikat** signiert | **PARTIAL** – kein Debug-Key mehr, aber Produktions-/Upload-Zertifikat fehlt (F-01) |
 | T-06 | Repudiation | Nutzer/Support kann Befundherkunft nicht nachvollziehen | Vertrauensverlust | `EvidenceRef` (Quelle, Zeit, Digest), `ruleId`, Report mit Scope | Design; **NOT_TESTED** |
 | T-07 | Information Disclosure | Report/Backup/Logs leaken Gerätezustand oder Secrets | Datenschutzverletzung | `allowBackup=false`, keine Debug-Logs mit Secrets, Report ohne Tokens/rohe Paketlisten | Statisch: `allowBackup=false` **PASS**; Runtime **NOT_TESTED** |
 | T-08 | Information Disclosure | Export landet an unerwartetem Ort/Cloud-Sync | Verbreitung des Reports | SAF-Nutzerentscheidung, minimierter Inhalt, Report als „sicherheitsrelevant“ gekennzeichnet; bei TV-ohne-Picker permission-freier Fallback in `Downloads/GeDefenseTV` | Emulator-Beleg; Restrisiko dokumentiert (Datei bleibt außerhalb App-Verwaltung) |
@@ -158,7 +162,7 @@ verifiziert ist.
 | TV-03 | **Sideloading / unbekannte Installer** | TV-Geräte erlauben oft Installation aus unbekannten Quellen; Installer-Angaben sind fälschbar. | Sichtbare Nicht-Store-Installer als Review-Signal, Signatur-Digests, keine automatische Malware-Klassifikation. | Falsch-positive/-negative Bewertung möglich; Nutzerentscheidung nötig. |
 | TV-04 | **ADB-/Debugging aktiv** | Entwickleroptionen/ADB-Zugriff erweitern Angriffsfläche erheblich. | Hardening-Collector erkennt, was über öffentliche APIs lesbar ist; nicht Lesbares bleibt `Observed.unreadable`; Empfehlung an Nutzer, keine Automatik. | ADB-Zustand ist als normaler App nicht zuverlässig abfragbar → `PARTIAL`/`UNKNOWN`. |
 | TV-05 | **Kein privilegierter Sensor** | Keine systemweiten Flows, Ports, Socket-/Prozesszuordnung, PPS-/SYN-/UDP-Raten, keine Flood-Erkennung. | Produkt- und UI-Sprache behauptet diese Fähigkeiten nicht; Datenblatt §7 als verbindliche Grenze. | Ein echter Inbound-Flood/systemweite Kompromittierung bleibt unsichtbar. |
-| TV-06 | **10-Fuß-UX / Remote-only** | Kleine Schrift, versteckter Fokus, Hover-/Touch-Abhängigkeit oder Fallen im Back-Stack machen die App unbedienbar. | D-Pad-Verträge, sichtbarer 4-dp-Gold-Fokusring, 10-Fuß-Typo (15–92 sp), Overscan 48 dp, `handleBack`-Hierarchie, keine Hover-Pfade. | Emulator: D-Pad-vollständig, keine Touch-Abhängigkeit (Screenshots); reale TV-/OEM-Remote **NOT_TESTED**. |
+| TV-06 | **10-Fuß-UX / Remote-only** | Kleine Schrift, versteckter Fokus, Hover-/Touch-Abhängigkeit oder Fallen im Back-Stack machen die App unbedienbar. | D-Pad-Verträge, sichtbarer 4-dp-Gold-Fokusring, 10-Fuß-Typo (15–92 sp), Overscan 48 dp, `handleBack`-Hierarchie, keine Hover-Pfade. | Emulator: D-Pad-vollständig, keine Touch-Abhängigkeit (Screenshots 80–97); reale TV-/OEM-Remote **NOT_TESTED**. |
 | TV-07 | **Streaming-/DRM-Sensibilität** | Kein Eingriff in Wiedergabe/Netzwerk; keine VPN-/TUN-Nutzung in V1. | Kein VPN, kein MITM, keine Netzwerkmanipulation; nur lesende Metadaten. | Keine (bewusst außerhalb des Designs). |
 | TV-08 | **Doze/Background-Limits** | Hintergrundjobs können verzögert/gestoppt werden. | Keine Dauerüberwachung versprechen; nutzerinitiierter Scan, Job-basierter TI-Sync, sichtbarer letzter Lauf/Stale-Status. | Kein „kontinuierlich überwacht“-Versprechen möglich. |
 | TV-09 | **Gemeinsame Gerätenutzung** | Mehrere Haushaltsmitglieder, keine Nutzertrennung. | Lokale Datenminimierung, keine personenbezogenen Profile, pseudonyme Geräte-ID. | Report/Export kann Gerätezustand offenlegen, wenn geteilt. |
@@ -192,8 +196,8 @@ Schadsoftware **nicht** beweisen. Jede „grün“-Darstellung setzt `DataVisibi
 
 | Risiko | Einstufung | Begründung / offener Punkt |
 | --- | --- | --- |
-| Öffentliche Feeds ohne Signatur (T-01) | mittel | TLS + Sichtbarkeit von Quelle/Alter/Confidence; kryptografische Feed-Signaturen fehlen (Gap, VGT-Sicherheitsprofil). |
-| Release-Signatur-Fallback auf Debug-Keystore (T-05) | **hoch (offener Punkt für die Produktion)** | Release-APK ist debug-signiert; erst mit `GEDEFENSE_RELEASE_*` korrekt. |
+| Öffentliche Feeds ohne Signatur (T-01) | mittel | TLS + Sichtbarkeit von Quelle/Alter/Confidence; kryptografische Feed-Signaturen fehlen (Gap, VGT-058). |
+| Release-Signatur (T-05) | **hoch (Produktions-Blocker)** | Debug-Key-Fallback entfernt; Release mit Alpha-Zertifikat signiert. Produktions-/Upload-Zertifikat und Signatur-Policy fehlen weiterhin. |
 | Retention nicht automatisch (Daten bleiben bis `clear()`) | niedrig-mittel | **V2**; nicht als wirksame Löschautomatik darstellen. |
 | Keine Fuzz-/Negativtests der Parser | mittel | Bounded Parser vorhanden, nicht adversarial getestet (**NOT_TESTED**). |
 | Keine reale Geräte-/OEM-Verifikation | hoch für Produktion | Capability-Modell ehrlich, aber reale TV-Aussagen fehlen. |
@@ -235,7 +239,7 @@ ehrlich als Risiko dokumentiert und **nicht** als geschützt behauptet werden.
 | V2-B-04 App ↔ Netzwerk | direkter Egress, **kein** externer VPN-Server | Keine VGT-/Drittanbieter-Zentrale; TLS-Inhalte bleiben unlesbar |
 | V2-B-05 Policy ↔ Datenpfad | lokale Regeln/Indizes | Policy-Fehler → konservative Aktion (Block/Correlate), kein stiller Allow |
 | V2-B-06 Traffic-Metadaten ↔ UI/Export | lokale Aggregation | Kein Upload; Export nur Nutzeraktion, begrenzte Felder |
-| V2-B-07 Native-Binary ↔ Build | vendorte `.so` aus Mobile-Dossier | Nur byte-identische, gehashte Binaries; Abweichung = offener Punkt |
+| V2-B-07 Native-Binary ↔ Build | vendorte `.so` aus Mobile-Dossier | Nur byte-identische, gehashte Binaries; Abweichung = Release-Blocker |
 
 ## 11. V2-Untrusted-Inputs
 
@@ -298,10 +302,132 @@ ehrlich als Risiko dokumentiert und **nicht** als geschützt behauptet werden.
 | Risiko | Einstufung | Begründung / offener Punkt |
 | --- | --- | --- |
 | V2-Implementierung ungetestet | **hoch** | Keine V2-Laufzeittests, keine Screenshots, keine Emulator-Evidenz (**NOT_TESTED**). |
-| Helper-Binary-Provenienz | mittel | Byte-Identität + SHA-256 zum Mobile-Original verifiziert; Laufzeit-Self-Check/Verifikationsprotokoll offen. |
+| Helper-Binary-Provenienz | mittel | Byte-Identität + SHA-256 zum Mobile-Original verifiziert; Laufzeit-Self-Check/Lead-Ledger offen. |
 | Policy-Integrität unsigniert | mittel-hoch | Manipulierte Policy könnte Filterwirkung ändern; Signatur/Integritätsprüfung offen. |
 | Fail-Closed/Recovery auf realen TVs | **hoch** | Nur Design; OEM-/Always-On-Verhalten unbekannt. |
 | Streamings-/DRM-Kompatibilität | mittel-hoch | Fehlblockungen wahrscheinlich; reale Tests fehlen. |
 | Traffic-Metadaten-Retention | mittel | Persistenzdauer/-löschung noch nicht final; Datenschutztext muss folgen. |
 | Akku-/Thermik-Last | mittel | Keine Messung auf TV-Hardware. |
 | Play-/FGS-Policy (`specialUse`) | mittel | Deklaration/Prüfung vor Veröffentlichung offen. |
+
+---
+
+# V3-Erweiterung: Titan Engine (privilegienabhängige Sicht & Active Response)
+
+**Status dieses Abschnitts:** Code integriert (31.10.2026) · **Evidenz: NOT_TESTED** ·
+**kein Produktionsanspruch.** Architektur: [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md).
+Die V2-Grenze „kein Kernel-/Prozess-EDR, keine Root-Rechte“ gilt unverändert für V2; V3 ergänzt sie
+um einen **optionalen, nutzerbestätigten** privilegierten Pfad, der hier separat modelliert wird.
+
+V3 verändert die Grundannahme des bisherigen Threat Models: Die App kann auf ausdrücklichen
+Nutzerwunsch einen **privilegierten Kommandokanal** erhalten. Damit entstehen die höchsten neuen
+Risiken des Produkts (Brick, Injection, falsche Sicherheitsaussage) — und genau deshalb ist V3
+standardmäßig **inaktiv**: Ohne bestätigten Kanal bleibt alles bei Level 1.
+
+## 16. V3-Assets (zusätzlich zu A-01…A-17)
+
+| ID | Asset | Sensitivität | Speicherort / Lebensdauer |
+| --- | --- | --- | --- |
+| A-18 | Privilegierter Kommandokanal (`su`-Shell) | **kritisch (höchste Wirkung)** | nur Laufzeit, nur nach `activate()`-Consent; kein persistenter Kanal |
+| A-19 | Privileg-Snapshot (`level`, `rootKind`, `suPaths`, Root-Manager, Build-Integrität) | hoch (ermöglicht/limitiert alle Fähigkeiten) | in-memory + gecachter Status; keine Secrets |
+| A-20 | Socket-Provenance-Daten (`/proc/net/*`, Inode→PID→UID→Paket, Feed-Matches) | hoch (Netzwerknutzung) | in-memory Snapshot, ≤ 512 Beobachtungen |
+| A-21 | FIM-Baseline (Pfad→SHA-256, Größe, Rechte, mtime) | hoch (Integritätsanker) | privater App-Speicher (persistiert), ≤ 4096 Einträge |
+| A-22 | Vault (verschobene Binaries + Metadaten) | kritisch (fremder Code) | `/data/local/gedefense_vault` (nur Level 3); Rechte `chmod 000`; Metadaten-MAC-Kette |
+| A-23 | Containment-Historie (Aktionen, Ziele, Ergebnisse) | hoch (was wurde verändert) | Evidenzkette + Vault-Metadaten |
+| A-24 | Witness-Checkpoints (Ledger-Digest + MAC) | hoch (Integritätsbeleg) | lokal; keine Zustellung in dieser Alpha |
+| A-25 | Effektive Capability-Menge / `TitanStatus` | hoch (Grundlage jeder Aussage) | in-memory, abgeleitet — nie „höher als belegt“ |
+
+## 17. V3-Trust-Boundaries
+
+| Grenze | Verlauf | Vertrauensannahme / Risiko |
+| --- | --- | --- |
+| V3-B-01 App ↔ `su`-Kanal | allow-listete Programme über bestätigten Shell-Kanal | Höchste neue Grenze; Kompromittierung = Systemwirkung. Gegenmaßnahme: feste Programm-Whitelist, Argument-Charset, kein freies `exec` |
+| V3-B-02 App ↔ `/proc` | fremde Prozess-/Socket-Metadaten | Kernel-Werte sind nicht per se „wahr“ gegenüber einem kompromittierten Kernel; Parsing bounded/defensiv |
+| V3-B-03 App ↔ FIM-Pfade | lesendes Walken von System-/Plant-Pfaden | TOCTOU zwischen Hash und Bewertung; unlesbar bleibt unlesbar |
+| V3-B-04 App ↔ Vault | `mv` + `chmod 000` in `/data/local/gedefense_vault` | Path-Traversal-/Symlink-Risiko; nur Watch-Pfade, feste Dateinamen |
+| V3-B-05 App ↔ Containment-Wirkung | `pm disable/enable`, `iptables`, `kill` | Fehlziel = Brick/Selbstausschluss; Fail-Safe-Policy vor Ausführung |
+| V3-B-06 App ↔ Evidenz | Titan-Events in HMAC-Kette | Attribut-Leak/Fälschung; secret-freie, bounded Attribute |
+| V3-B-07 Nutzer ↔ Consent | `activate()`/Containment-Bestätigung | Social Engineering/Überrumpelung; explizite Aktion, kein Hintergrund-Prompt |
+
+## 18. V3-Untrusted-Inputs
+
+| ID | Eingabe | Quelle | Gegenmaßnahme | Status |
+| --- | --- | --- | --- | --- |
+| I-17 | `/proc/net/*`-Zeilen, `/proc/<pid>/fd`, `/proc/<pid>/status` | Kernel/Fremdprozesse | strikter Parser, Bounds (4096/4096/512), `UNKNOWN` statt Raten, Truncation-Signal | Code vorhanden; **NOT_TESTED** |
+| I-18 | Dateinamen/Pfade in FIM-Roots | fremde Apps/Plant-Akteure | `isSafeAbsolutePath` (kein `..`, kein Metazeichen), feste Roots/Watch-Policy | Code vorhanden; **NOT_TESTED** |
+| I-19 | `su`-Binary-/Root-Manager-Marker | Gerät/Angreifer (fälschbar) | Marker sind nur **Indiz**, keine Freigabe; Level nur mit bestätigtem Kanal; Dirty Root = Befund | Code vorhanden; **NOT_TESTED** |
+| I-20 | `getenforce`-Ausgabe | ROM/OEM | tri-state (`true`/`false`/`null`), ≤ 32 Zeichen, kein Vertrauen aus Roh-String | Code vorhanden; **NOT_TESTED** |
+| I-21 | Kommando-Ausgaben (`pm`, `iptables`, `kill -0`, `getprop`) | Gerät/Root-Kontext | nur als Verifikationssignal, Ergebnis `verified` getrennt von `ok`; Parsing bounded | Code vorhanden; **NOT_TESTED** |
+| I-22 | Ledger-Tail für Witness-Digest | eigene Evidenz (manipulierbar) | HMAC-Kette prüfen, Digest+MAC formatvalidiert; Manipulation = nicht vertrauenswürdig | Code vorhanden; **NOT_TESTED** |
+| I-23 | D-Pad-/Containment-Eingaben | Nutzer/Fernbedienung | nur vordefinierte Aktionen + validierte Ziele; keine freie Eingabe | Code vorhanden; **NOT_TESTED** |
+
+## 19. V3-STRIDE-Ergänzungen
+
+| ID | STRIDE | Szenario | Wirkung | Mitigation | Status |
+| --- | --- | --- | --- | --- | --- |
+| T-31 | Spoofing | Gefälschtes `su`-File/Manager-Marker simuliert Root | fälschliche Höherstufung | Level nur mit bestätigtem `id`-Kanal; Marker allein wirkungslos | Code vorhanden; **NOT_TESTED** |
+| T-32 | Tampering | Command-Injection über Paket-/Pfad-/Dateinamen in `su -c` | Systemmanipulation | `TitanShellCommand`-Charset + feste Programme + Factory-Validierung | Code vorhanden; **NOT_TESTED** |
+| T-33 | Tampering | Vault-Pfad-Traversal/Symlink verschiebt Systemdatei | Systemschaden | `isSafeAbsolutePath`/`isWatched`, feste Vault-Pfade, `TitanVaultGuard`-Symlink-Vorprüfung; Rest-TOCTOU dokumentiert | Code vorhanden; Laufzeit **NOT_TESTED** |
+| T-34 | Tampering | FIM-Baseline lokal manipuliert | falsches „clean“ | Baseline im privaten Speicher; Manipulation durch lokalen Angreifer = Restrisiko; `UNREADABLE` bleibt ehrlich | Code vorhanden; **NOT_TESTED** |
+| T-35 | Repudiation | „Wir haben nichts verändert“, obwohl Containment lief | Vertrauensverlust | jede Ausführung **und Ablehnung** als `titan-containment`-Evidenz | Code vorhanden; **NOT_TESTED** |
+| T-36 | Information Disclosure | Socket-/FIM-Attribute oder Pfade leaken in Logs/Export | Privatsphäre/Infrastruktur-Leak | secret-freie Attribute, Kürzung (160/256), keine Dateiinhalte | Code vorhanden; **NOT_TESTED** |
+| T-37 | Denial of Service | Rate-Limit/Mengenlimit umgangen → Massen-Freeze | TV unbedienbar | 8 Aktionen/60 s, max. 16 aktive, Policy-Gate vor jeder Aktion | Code vorhanden; **NOT_TESTED** |
+| T-38 | Elevation of Privilege | Level 1/2 erhält Root-Fähigkeit durch Bug | unautorisierte Systemwirkung | Effective-Capability-Gate; Command-Ausführung nur nach `activate()` | Code vorhanden; **NOT_TESTED** |
+| T-39 | Elevation of Privilege | Containment zielt auf System-UI/Settings/Launcher/IME/eigene UID/PID | Brick/Selbstabschaltung | geschützte Paketliste, UID ≥ 10 000, PID ≠ 1/Selbst, `TitanTargetGuard` für System-UID/OEM-Launcher/Settings/IME | Code vorhanden; JVM-Assertions, Laufzeit **NOT_TESTED** |
+| T-40 | Spoofing/Integrität | UI zeigt „geschützt/clean“, obwohl Capabilities leer sind | falsches Sicherheitsgefühl | nur `effectiveCapabilities`; `attentionRequired`; keine Grün-Aussage ohne `FULL` | Code vorhanden; **NOT_TESTED** |
+
+## 20. V3-Kettenrisiken
+
+| Chain | Kette | Wirkung | Breakpoint |
+| --- | --- | --- | --- |
+| C-09 | Dirty Root (T-19) → Malware nutzt `su` ohne Prompt → Titan-Aktionen werden von Malware mitgenutzt/umgangen | falscher Schutz | Dirty Root sichtbar als Befund; keine Capability aus bloßer Existenz; Nutzer-Empfehlung statt Automatik |
+| C-10 | Fehlvalidiertes Ziel (T-32/T-33/T-39) → Freeze/Vault auf Systemkomponente → TV unbedienbar | Brick | Programm-Whitelist, Charset, geschützte Pakete, PID-/UID-Grenzen, reversible Aktionen |
+| C-11 | Falsches Level/Visibility (T-31/T-40) → UI behauptet `FULL`/„geschützt“ → Nutzer unterlässt manuelle Härtung | Vertrauensschaden | Level-Invarianten im Datenmodell, nur effektive Capabilities, ehrliche Notes |
+| C-12 | Nicht zuordenbarer C2-Socket (I-17) → UI wertet als App-Verdacht → Fehl-Finding | Fehlentscheidung | `UNATTRIBUTED` ≠ Malware; keine Einzelmerkmal-Kritikalität; Evidenz mit Kontext |
+| C-13 | Witness-Checkpoint ohne Gegenpart (A-24) → Nutzer glaubt an Fernalarm → reagiert nicht | Fehlschutz-Annahme | `PAIRED` nie ohne echten Gegenpart; Note „nicht gekoppelt“; Alpha-Gap dokumentiert |
+
+## 21. V3-TV-spezifische Risiken
+
+| ID | Risiko | Beschreibung | Gegenmaßnahme | Restrisiko |
+| --- | --- | --- | --- | --- |
+| TV-17 | **Pre-Rooted-Boxen (Dirty Root)** | Billig-/China-TV-Boxen liefern `su` ohne Manager; jede App kann es nutzen. | Dirty-Root-Befund, ehrliche Bewertung, keine Fähigkeit aus der Existenz | Ohne Nutzerentscheidung keine Gegenwirkung möglich |
+| TV-18 | **Brick durch Containment** | Freeze/Deaktivierung falscher Komponenten macht TV unbedienbar. | geschützte Systemliste, `TitanTargetGuard` (System-UID < 10 000, Launcher/Settings/IME), reversible Aktionen, Restore von Limits ausgenommen | Restrisiko bei OEM-Sonderkomponenten; reale Geräteläufe **NOT_TESTED** |
+| TV-19 | **`/proc`-Sichtbarkeit auf TV-ROMs** | OEM-Kernel können `/proc`-Layouts/Felder abweichen oder sperren. | defensiver Parser, `UNKNOWN`/`truncated`, keine Vollständigkeitsbehauptung | Vollständige Sicht nicht garantiert |
+| TV-20 | **Fehlender Root-Manager-UI-Kanal** | Auf TVs ist Magisk/Superuser oft nicht per D-Pad bedienbar; Consent-Prompt kann unsichtbar sein. | nur explizite `activate()`-Aktion, ehrlicher Zustand bei Verweigerung | Nutzer kann Root-Prompt nicht bestätigen → Level 1 bleibt |
+| TV-21 | **ADB-Lockdown-Risiko** | Schließen von Port 5555/`adbd` kann Entwickler-Setups brechen. | nur explizite Nutzeraktion, kein stiller Eingriff, dokumentiert | Entwickler müssen ADB neu aktivieren |
+
+## 22. V3-Nicht-Ziele und Missbrauchsgrenzen
+
+- Kein Root-Exploit, kein automatisches Erlangen von Root, kein Hintergrund-`su`-Prompt.
+- Kein Löschen, kein Formatieren, kein Schreiben auf Systempartitionen.
+- Keine freie Shell, keine generische Kommandoausführung, keine Nutzereingaben in Kommandos.
+- Kein Mobile-Pairing/Push in dieser Alpha; keine Fernsteuerung, kein versteckter Kanal.
+- Keine Garantie „frei von Malware/Rootkits“; `UNATTRIBUTED`/`UNREADABLE` bleiben Lücken.
+- Kein Shizuku-Kommando-Bridge (detection-only); keine Ausweitung auf Nicht-TV-Plattformen.
+
+## 23. V3-Restrestrisiken
+
+**Audit-Stand (31.10.2026):** Unabhängiges Read-only-Audit ohne kritischen Befund und ohne
+Shell-Injection-Blocker; Allowlist/Charset des privilegierten Kanals sind wirksam begrenzt.
+Domain-Harness PASS (6624/0), Build/Lint/Release Exit 0 und Level-1-Emulatorlauf samt
+Witness-Runtime PASS; Level 3 (Root) **NOT_TESTED**.
+Die folgenden Risiken bleiben offen bzw. sind als Alpha-Grenzen zu dokumentieren.
+
+| Risiko | Einstufung | Begründung / offener Punkt |
+| --- | --- | --- |
+| Privilegierter Kanal kompromittierbar (A-18) | **hoch** | Höchste Wirkung; Sicherheit hängt am bestätigten Kanal und der Validierung — Laufzeit Level 3 **NOT_TESTED**. |
+| Keine Level-3-/Root-Geräte-Evidenz | **hoch** | Domain-Harness, Build/Lint/Release, Level-1-Emulator und lokale Witness-Runtime belegt; Emulator ohne `su`; produktives Google-TV erlaubt kein `adb root`; Kommandopfad nur JVM-verifiziert. |
+| Brick-Restrisiko auf OEM-Sonderkomponenten | mittel | Geschützte Domänenliste + `TitanTargetGuard` (System-UID < 10 000, aufgelöster Launcher/Settings/IME) — Laufzeit **NOT_TESTED**. |
+| Unabhängige Vollprüfung der Laufzeitpfade | **hoch** | Read-only-Audit ohne Blocker; Laufzeit-/Adversarialprüfung offen (SECURITY §17/§18). |
+| FIM-Coverage-Gap (TF-01) | mittel | Ungewöhnliche Dateinamen/unvollständige Listings müssen `truncated`/`PARTIAL` erzeugen; Fix im Code, Laufzeit **NOT_TESTED**. |
+| Parser-Fehler als „keine Verbindungen“ (TF-02) | mittel | Unvollständiger Read ⇒ leerer `PARTIAL`-Snapshot mit Note; Verhalten **NOT_TESTED**. |
+| Kill-Verifikation (TF-03) | mittel | `/proc/<pid>/status`-Probe statt Non-Zero-Exit; **NOT_TESTED**. |
+| Cold-Start-Root-Vertrauen (TF-08) | **behoben** | Kaltstart fällt auf `STANDARD` zurück; erneute Aktivierung nötig. |
+| Recovery durch Limits blockiert (TF-05) | **behoben** | RESTORE/RELEASE von Aktiv-/Rate-Limits ausgenommen. |
+| Vault-Rest-TOCTOU (TF-07) | mittel | Symlink-Vorprüfung vorhanden; Prüfung und `mkdir` sind zwei Kommandos; Quarantäne hat in dieser Alpha keinen UI-Aufrufer. |
+| Shared-UID-Misattribution (TF-11) | mittel | Deterministische Paketwahl + `UNATTRIBUTED`-Modell; Fix/Verifikation in Arbeit. |
+| Geräte-Policy mit einmaliger `su`-Freigabe (TF-06) | niedrig | Mehrere Superuser-Prompts während eines FIM-Passes möglich; dokumentierte Gerätegrenze. |
+| „Dirty Root“ nur Indiz | mittel | Erkennung über Marker/Pfade, nicht über Kernel-Beweis. |
+| Witness ohne Gegenpart / Mobile-Push fehlt | mittel | Kein Fernalarm in dieser Alpha; lokale Witness-Runtime **PASS** (Emulator: `READY`, `checkpoints=1`, Ledger 9 Records, „nicht gekoppelt“); Mobile-Zustellung **nicht ausgeliefert**. |
+| Vault ohne Binärverschlüsselung | mittel | Metadaten-MAC-Kette vorhanden; Binärdaten nicht verschlüsselt. |
+| Fehlende Fuzz-/Negativtests | mittel | JVM-Assertions vorhanden (6624), Fuzzing von `/proc`-Parser, Ledger-Tail und Command-Factory **NOT_TESTED**. |

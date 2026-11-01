@@ -1,11 +1,11 @@
 # GeDefense TV — Architektur
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
-**Version:** 0.2.0-alpha1 · **Stand:** 29. Oktober 2026 · **Status:** Architekturdokumentation mit
-realer Build-/Emulator-Evidenz; `:tv-core` und `:core` (Linux-JVM) verifiziert, `:app` gebaut,
-gelintet und auf Android-16-TV-Emulator (API 36) getestet; reale TV-Hardware **NOT_TESTED**
+**Version:** 0.3.0-alpha1 („Titan Engine“, V3) · **Stand:** 31. Oktober 2026 · **Status:**
+Architekturdokumentation mit realer Build-/Emulator-Evidenz für V1/V2; `:tv-core` und `:core`
+(Linux-JVM) verifiziert, `:app` gebaut, gelintet und auf Android-16-TV-Emulator (API 36) getestet;
+**V3/Titan:** Domain-Harness `tvTitanCheck` PASS (6624/0, 17 Tests), Build/Lint/Release Exit 0
+(Release Alpha-signiert), Level-1-Emulatorlauf und lokale Witness-Runtime PASS; **Level 3 (Root)
+ist NOT_TESTED**, reale TV-Hardware **NOT_TESTED**
 
 Dieses Dokument beschreibt die tatsächlich angelegte Modul- und Klassens­truktur, die
 Vertragsgrenzen und die verbindlichen Architekturregeln. Wo ein Nachweis noch fehlt
@@ -80,33 +80,45 @@ sondern nur im Mobile-Quellstand mit anschließendem vollständigem Neuimport un
 | --- | --- | --- |
 | Root-Projekt | `VGT-GeDefense-TV`, Module `:core`, `:tv-core`, `:app` | `settings.gradle.kts` |
 | Anwendungspaket / Namespace | `de.visiongaia.gedefense.tv` | `app/build.gradle.kts` |
-| Version | `0.2.0-alpha1`, versionCode 2 | `app/build.gradle.kts`, `VERSION`, `VERSION_CODE` |
+| Version | `0.3.0-alpha1` („Titan Engine“, V3), versionCode 4 | `app/build.gradle.kts`, `VERSION`, `VERSION_CODE` |
 | SDK | `minSdk 26`, `targetSdk 36`, `compileSdk 36`, Build-Tools `36.0.0` | `app/build.gradle.kts` |
 | JVM | Java/Kotlin-Ziel 17, `-Xjsr305=strict` | `app/build.gradle.kts` |
 | Toolchain | AGP 8.5.2, Kotlin 1.9.24, Gradle 8.7 (Wrapper, Distribution-SHA-256 gepinnt) | `build.gradle.kts`, `gradle/wrapper/gradle-wrapper.properties` |
 | Runtime-Abhängigkeiten | **keine** Drittanbieter-Bibliotheken | `app/build.gradle.kts` |
 | AndroidX | **deaktiviert** (`android.useAndroidX=false`) | `gradle.properties` |
 | UI-Technologie | Android-View-System, programmatische Views, kein Compose/WebView | `ui/TvTheme.kt`, `TvMainActivity.kt` |
-| Release-Härtung | R8 minify + shrinkResources, `-keepattributes SourceFile,LineNumberTable`, keine Reflection-Serialisierung | `app/build.gradle.kts`, `app/proguard-rules.pro`; `assembleRelease` Exit 0, APK 1.626.209 B, R8-minifiziert (debug-signiert) |
-| Lint | `abortOnError = true`, `checkReleaseBuilds = true` | `app/build.gradle.kts`; `lintDebug` Exit 0, **0 Errors / 169 Warnings** |
+| Release-Härtung | R8 minify + shrinkResources, `-keepattributes SourceFile,LineNumberTable`, keine Reflection-Serialisierung | `app/build.gradle.kts`, `app/proguard-rules.pro`; `assembleRelease` Exit 0, APK 6.522.110 B (V3), R8-minifiziert, **Alpha-signiert** |
+| Lint | `abortOnError = true`, `checkReleaseBuilds = true` | `app/build.gradle.kts`; `lintDebug` Exit 0, **0 Errors / 305 Warnings** (V3-Stand) |
 | Repositories | `google()`, `mavenCentral()`, optional lokaler Mirror via `VGT_LOCAL_MAVEN`; `FAIL_ON_PROJECT_REPOS` | `settings.gradle.kts` |
 
 **Signaturhinweis (Release-Gate):** Die Release-Signatur wird nur konfiguriert, wenn alle vier
 Umgebungsvariablen `GEDEFENSE_RELEASE_STORE_FILE`, `GEDEFENSE_RELEASE_STORE_PASSWORD`,
-`GEDEFENSE_RELEASE_KEY_ALIAS`, `GEDEFENSE_RELEASE_KEY_PASSWORD` gesetzt sind. Andernfalls fällt
-`release` auf die **Debug-Signatur** zurück. Ein 0.2.0-alpha1-Artefakt ist ausdrücklich ein
-**debug-signiertes Testartefakt**; für eine echte Veröffentlichung ist der Fallback unzulässig und
-muss vor dem Release-Gate erzwungen werden (offener Punkt).
+`GEDEFENSE_RELEASE_KEY_ALIAS`, `GEDEFENSE_RELEASE_KEY_PASSWORD` gesetzt sind. Der frühere
+Debug-Key-Fallback ist **entfernt** (`signingConfig = signingConfigs.findByName("release")`);
+das 0.3.0-alpha1-Artefakt ist mit einem **Alpha-Zertifikat** signiert
+(CN=VisionGaiaTechnology GeDefense TV Alpha), ausdrücklich **kein** Produktions-/Upload-Zertifikat
+und kein Debug-Key. Produktions-Signatur und Signatur-Policy bleiben offen (F-01).
 
-**Verifikationsstand der Module (29.10.2026):** `:tv-core` – `tvCoreCheck` verifiziert
-(Exitcode 0, `PASS 554 / FAIL 0`, 35 Tests, `BUILD SUCCESSFUL`). `:core` – `coreCheck` unter
-Win32 **BLOCKED** (Verzeichnis-`fsync` via `FileChannel`), auf Linux-JVM (WSL Ubuntu 24.04,
+**Verifikationsstand der Module (Stand 29.10.2026, historisch):** `:tv-core` – `tvCoreCheck`
+verifiziert (Exitcode 0, `PASS 554 / FAIL 0`, 35 Tests, `BUILD SUCCESSFUL`). `:core` – `coreCheck`
+unter Win32 **BLOCKED** (Verzeichnis-`fsync` via `FileChannel`), auf Linux-JVM (WSL Ubuntu 24.04,
 OpenJDK 17.0.20.1) `CORE_TESTS_PASS`, Exitcode 0. `:app` – `compileDebugKotlin` Exit 0,
-`lintDebug` Exit 0 (0 Errors / 169 Warnings), `assembleDebug` Exit 0 (`app-debug.apk`
-2.860.091 B), `assembleRelease` Exit 0 (`app-release.apk` 1.626.209 B, R8, debug-signiert).
+`lintDebug` Exit 0 (damals 0 Errors / 169 Warnings), `assembleDebug` Exit 0 (`app-debug.apk`
+2.860.091 B), `assembleRelease` Exit 0 (`app-release.apk` 1.626.209 B, R8).
 Emulator (Android 16 Google TV, API 36, AVD `gedefense_tv`, 1080p): Scan/TI/Evidenz/
 Export-Fallback/Restart-Summary/D-Pad verifiziert; Kaltstart 1,81–2,29 s. Reale TV-Hardware
 **NOT_TESTED**.
+
+**V3/Titan (31.10.2026):** `:tv-core:tvTitanCheck` **PASS 6624 / FAIL 0** (17 Tests, Exit 0);
+Regression tvCoreCheck 554/0, tvV2Check 4398/0, tvKineticCheck 3025/0 in einem Lauf Exit 0;
+`:app:compileDebugKotlin` Exit 0, `:app:lintDebug` Exit 0 (**0 Errors / 305 Warnings**),
+`:app:assembleDebug` Exit 0 (8.811.121 B), `:app:assembleRelease` Exit 0 (6.522.110 B, SHA-256
+`da4110…f2934`, **Alpha-Zertifikat**, nicht Debug-Key); **Level-1-Emulatorlauf PASS** (TITAN LIVE,
+7 Capabilities „Unavailable“, `titan scan ms=754 level=STANDARD caps=0`, kein Crash, Ledger gesund
+9 Records inkl. Witness-Checkpoint, D-Pad/Home-Strip, Screenshots `titan-02…05`, `titan-13…15`)
+und **Witness-Runtime PASS** (lokal). **Level 3 (Root-Kanal) NOT_TESTED** (Emulator ohne `su`;
+produktives Google-TV ohne `adb root`); Produktions-/Upload-Signatur und echtes 2K-/4K-Framebuffer
+offen. Details §17, [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md) §13.
 
 ---
 
@@ -188,7 +200,7 @@ selbst keine Activities.
 > **Status:** `ui/ScreenRegistry`, alle 10 Screens, die Komponenten unter `ui/components/` sowie
 > die Ressourcen (inkl. Brand-PNGs) sind vorhanden. `compileDebugKotlin` und
 > `assembleDebug`/`lintDebug` sind **Exit 0**; die UI wurde auf dem Android-16-TV-Emulator
-> (API 36) über D-Pad getestet (Screenshots). Reale TV-Hardware: **NOT_TESTED**.
+> (API 36) über D-Pad getestet (Screenshots 80–97). Reale TV-Hardware: **NOT_TESTED**.
 
 ---
 
@@ -506,7 +518,7 @@ nicht behauptet.
 > `/sdcard/Download/GeDefenseTV/GeDefense-TV-Report-20261029-103244.txt` (**30.246 B**) und
 > `.json` (**4.562 B**, valides JSON) ohne Storage-Permission. Der Datei-Nachweis stammt aus
 > 10:32 UTC; ein separater Export-Retest nach dem letzten Redesign ist nicht belegt. Eine
-> vollständige inhaltliche Prüfung durch das Dokumentationsteam erfolgte stichprobenartig (keine
+> vollständige inhaltliche Prüfung durch das Doku-Team erfolgte stichprobenartig (keine
 > Tokens/Secrets, pseudonyme Geräte-ID, Scope/Limitations enthalten).
 
 ---
@@ -559,6 +571,8 @@ Telemetrie- oder Cloud-Pfad in V1.
 | App ↔ Nutzer/SAF | Report-Export in nutzergewählten Speicherort; Fallback schreibt in öffentliches `Downloads/GeDefenseTV` | Report kann geteilt/gefunden werden → keine Secrets, minimierte Inhalte; Fallback ist explizit nutzerinitiiert |
 | App ↔ vendored Core | statische API, byte-identische Provenienz | Manipulation der Kopie muss durch Fidelity-Gate auffallen |
 | Build ↔ Runtime | Gradle-Abhängigkeiten, Wrapper, Signatur | Supply-Chain-Punkt; keine Runtime-Drittdeps reduziert Angriffsfläche |
+| App ↔ privilegierter Shell-Kanal (V3/Titan, nur Level 3) | vom Nutzer bestätigter `su`-Kanal, allow-listete Programme | höchste neue Grenze: Argument-Charset + feste Programm-Whitelist + Fail-Safe-Policy; Laufzeit **NOT_TESTED** |
+| App ↔ `/proc` und FIM-Pfade (V3/Titan) | fremde Prozess-/Socket-Metadaten, Systempfade | Sichtbarkeit nur soweit lesbar; `UNATTRIBUTED`/`UNREADABLE` statt Urteil; Laufzeit **NOT_TESTED** |
 
 ---
 
@@ -575,7 +589,7 @@ Telemetrie- oder Cloud-Pfad in V1.
 | TI-Frische | Refresh ≥ 15 min … 24 h je Feed; Stale ≤ 14 Tage | Core `ThreatFeed` |
 | Evidenzgröße | 16 MiB Default (Core), Bounded-Recovery ≤ 8 KiB Manifest | `EvidenceLedger` |
 | UI-Animation | Focus-Scale 1.02 in 140 ms, Eingang 220 ms, Banner-Fades | `TvTheme.MOTION_*`, `TvMainActivity` |
-| Kaltstart (Debug, Emulator, Software-GPU) | `am start -W` TotalTime **1,81–2,29 s**; Bootstrap 191–261 ms; `navigate(HOME)` 118–135 ms; ~1,4 s Window/Theme/Inflate | Projektteam-Messung 29.10.2026 (Emulator-Anteil) |
+| Kaltstart (Debug, Emulator, Software-GPU) | `am start -W` TotalTime **1,81–2,29 s**; Bootstrap 191–261 ms; `navigate(HOME)` 118–135 ms; ~1,4 s Window/Theme/Inflate | Lead-Messung 29.10.2026 (Emulator-Anteil) |
 | Startzeit reale TV-Hardware | kein Messwert | **NOT_TESTED** |
 | CPU/RAM/Frame-Zeit | kein Messwert | **NOT_TESTED** |
 
@@ -615,6 +629,11 @@ Restrisiken: Kompromittierung von Build-Plugins/Repositories, Geräte-OEM-Firmwa
 7. Evidenz ist append-only und fail-closed; keine stillen Reparaturen ohne Protokoll.
 8. Vendored Core wird nie in-place verändert.
 9. Keine Telemetrie, kein stiller Upload, keine systemweite Überwachungsbehauptung.
+10. **(V3/Titan)** Nur die *effektiven* Titan-Capabilities dürfen UI/Report/Evidenz erreichen;
+    `theoreticalCapabilities` sind ausschließlich Dokumentation/Konzept. `DataVisibility.FULL` gilt
+    im Titan-Kontext nur bei bestätigtem Root-Kanal.
+11. **(V3/Titan)** Keine Containment-Ausführung ohne `TitanActionDecision.allowed`; keine freie
+    Shell, kein Lösch-/Partitionskommando, jede Aktion reversibel (ADB-Lockdown explizit).
 
 ---
 
@@ -622,10 +641,12 @@ Restrisiken: Kompromittierung von Build-Plugins/Repositories, Geräte-OEM-Firmwa
 
 | Punkt | Status |
 | --- | --- |
-| Finaler RC-Rebuild (Debug+Release mit dokumentiertem Stand) | **offen**; Release-Pipeline bereits Exit 0, Artefakt davor gebaut |
+| Finaler RC-Rebuild 0.3.0-alpha1 (Debug+Release) | **belegt** – Exit 0, Artefakte in `dist/` (Debug 8.811.121 B, Release 6.522.110 B, Alpha-signiert) |
 | Reale TV-Hardware (≥ 2 OEM-Profile) | **NOT_TESTED** |
-| Security-Review / VGT-Sicherheitsprofil-Vollaudit, Fuzz-/Negativtests | **NOT_TESTED** |
-| Produktions-Release-Signatur | **Blocker**; Alpha-Artefakt ist debug-signiertes Testartefakt |
+| Security-Review / VGT-100-Vollaudit, Fuzz-/Negativtests | **PARTIAL** – Titan-Read-only-Audit ohne Blocker; VGT-100-Vollaudit/Fuzzing **offen** |
+| Produktions-/Upload-Signatur | **Blocker**; Alpha-Artefakt ist Alpha-signiert (nicht Debug-Key, nicht Produktions-Zertifikat) |
+| Level-3-Root-Lauf (Titan) | **NOT_TESTED** (Emulator ohne `su`; produktives Google-TV ohne `adb root`) |
+| Echtes 2K-/4K-Framebuffer | **NOT_TESTED** (nur Density 426/640 auf 1080p-Framebuffer geprüft) |
 | Automatische Retention/Rotation | **V2**; in V1 nicht aktiv, Einstellung wird nicht als wirksam dargestellt |
 | Launcher-Visual auf provisioniertem TV | **NOT_TESTED** (Intent + Banner-Ressource statisch belegt) |
 | Periodisches TI-Sync-Intervall (`JobService`) | implementiert; Intervall/Doze-Verhalten **NOT_TESTED** |
@@ -684,7 +705,7 @@ Zustände keinen Schutz behaupten. Details zu Telemetrie-Modellen, Geo, Profilen
 ### 16.3 Native Helper und Build
 
 - `libgedefense_gaianet_v2.so` ist **byte-identisch** aus dem Mobile-Dossier
-  (`0.28.0-beta1/Source/app/src/main/jniLibs`) übernommen; SHA-256 (Dokumentationsteam):
+  (`0.28.0-beta1/Source/app/src/main/jniLibs`) übernommen; SHA-256 (Doku-Team):
   arm64-v8a `d34fda6f…26fd15e`, x86_64 `9f393ce4…2975394f3`.
 - `abiFilters = arm64-v8a, x86_64`; `jniLibs.useLegacyPackaging = true` (ausführbare Datei in
   `nativeLibraryDir`), damit der Helper als Kindprozess startbar ist; `keepDebugSymbols`.
@@ -708,5 +729,63 @@ Zustände keinen Schutz behaupten. Details zu Telemetrie-Modellen, Geo, Profilen
 2. Keine Traffic-Inhalte, kein TLS-MITM, keine Cloud-Telemetrie.
 3. Kein stiller Fail-Open; Policy-/Helper-Fehler werden sichtbar und konservativ behandelt.
 4. Traffic-Metadaten bleiben lokal und begrenzt; Export nur Nutzeraktion, minimierte Felder.
-5. Vendorte Binaries nur byte-identisch mit Hash-Nachweis; Abweichung = offener Punkt.
+5. Vendorte Binaries nur byte-identisch mit Hash-Nachweis; Abweichung = Release-Blocker.
 6. V2-UI bleibt D-Pad-vollständig, ehrlich und GLASS-2100-konform.
+
+---
+
+## 17. V3-Erweiterung: Titan Engine (privilegienabhängige Endpoint-Sicht)
+
+**Status:** Code integriert (31.10.2026) · **Domain-Harness, Build/Lint/Release, Level-1-Emulator
+und lokale Witness-Runtime PASS** · **Level 3 (Root) NOT_TESTED** · **kein Produktionsanspruch.**
+Vollständige Architektur: [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md); Konzept:
+[docs/TITAN-TV-CONCEPT.md](docs/TITAN-TV-CONCEPT.md). Belegte Zahlen: §2 und
+[TEST-PLAN.md](TEST-PLAN.md) §9.4.
+
+V3 ergänzt V1/V2 um ein **dynamisches Privileg- und Fähigkeitsmodell** und eine optionale aktive
+Antwort. Die V1-/V2-Schichten bleiben unverändert; Titan ist eine zusätzliche Domänen- und
+Plattformschicht mit derselben Ehrlichkeits-/Evidenz-DNA.
+
+### 17.1 Modulgraph (V3-Ergänzungen)
+
+```text
+:tv-core
+ ├─ core/titan/model/   TitanPrivilege · TitanSocket · TitanFim · TitanContainment · TitanStatus
+ ├─ core/titan/         TitanCapabilityMatrix · TitanStatusComposer
+ ├─ core/titan/response/  TitanShellCommand · TitanCommandFactory · TitanContainmentPolicy
+ └─ core/titan/events/    TitanEventFactory
+:app
+ ├─ platform/titan/privilege/  passive Privilegdetektion · bestätigter Root-Shell-Kanal · Executor
+ ├─ platform/titan/collect/    Socket-Provenance-Collector · FIM-Walker/Baseline
+ ├─ data/                      Titan-Stores (letzter Status, FIM-Baseline, Vault-Metadaten, Witness)
+ ├─ contract/TitanContracts.kt TitanApi (Threading-/Honesty-Vertrag)
+ ├─ TitanController            Scan-/Aktions-Orchestrierung (Hintergrund-Worker → Main)
+ └─ ui/                        neuer Screen TITAN LIVE (D-Pad-Containment, GLASS 2100)
+```
+
+### 17.2 Kernregeln
+
+1. **Drei Stufen** (`STANDARD`/`SHIZUKU`/`ROOT`); eine Stufe über `STANDARD` setzt einen **bestätigten
+   Kommandokanal** voraus, nie den bloßen Fund eines `su`-Files.
+2. **Theoretisch ≠ effektiv:** Nur `TitanCapabilityMatrix.effectiveCapabilities` erreicht UI/Report/
+   Evidenz. Ohne bestätigten Kanal ist die Menge leer; Sichtbarkeit bleibt `PARTIAL`.
+3. **Level 2 (Shizuku) ist detection-only** in dieser Alpha — keine Binder-Kommando-Bridge.
+4. **Root-Aktionen** laufen ausschließlich über den nutzerbestätigten `su`-Shell-Kanal mit
+   allow-listeten, reversiblen Kommandos; keine freie Shell, kein Löschen, keine Partition-Writes.
+5. **Fail-Safe-Policy** vor jeder Aktion (geschützte System-/Launcher-/IME-Pakete, UID ≥ 10 000,
+   PID ≠ 1/Selbst, Mengen-/Rate-Limits).
+6. **Witness** erzeugt nur lokale Checkpoints; Mobile-Pairing/Push ist **nicht** implementiert.
+7. **Evidenz** über die bestehende HMAC-Kette (`titan-root-audit`, `titan-c2-socket`,
+   `titan-unattributed-socket`, `titan-adb-exposed`, `titan-fim-delta`, `titan-containment`,
+   `titan-witness-checkpoint`), secret-frei und bounded.
+8. **Level 1 bleibt crash- und behauptungsfrei:** Titan-Capabilities melden „nicht verfügbar“;
+   im Emulator-Lauf belegt (7× „Unavailable“, `caps=0`, kein Crash).
+
+### 17.3 V3-Invarianten
+
+1. `DataVisibility.FULL` im Titan-Kontext nur bei bestätigtem Root-Kanal.
+2. `UNATTRIBUTED`/`UNREADABLE` sind Sichtbarkeitslücken, keine Malware-/Clean-Urteile.
+3. Dirty Root ist ein Befund, keine Freigabe.
+4. Keine Containment-Ausführung ohne Policy-Entscheidung; jede Aktion ist reversibel
+   (Ausnahme: expliziter ADB-Lockdown).
+5. Kein Hintergrund-`su`-Prompt: nur `activate()` (expliziter Nutzerwunsch) darf den Kanal bestätigen.

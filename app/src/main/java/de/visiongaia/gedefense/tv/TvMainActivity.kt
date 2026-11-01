@@ -64,6 +64,7 @@ class TvMainActivity : Activity(), ScreenHost {
         TvRoute.FINDINGS,
         TvRoute.APPS,
         TvRoute.HARDENING,
+        TvRoute.TITAN,
         TvRoute.THREAT_INTEL,
         TvRoute.EVIDENCE,
         TvRoute.SETTINGS,
@@ -811,7 +812,7 @@ class TvMainActivity : Activity(), ScreenHost {
     private fun showTop(recreate: Boolean = false) {
         // SECV2-17: release builds protect flow/domain screens from screen capture/HDMI copies.
         if (!BuildConfig.DEBUG) {
-            val sensitive = current?.route in setOf(TvRoute.TRAFFIC, TvRoute.XDR, TvRoute.PROTECTION, TvRoute.EVIDENCE)
+            val sensitive = current?.route in setOf(TvRoute.TRAFFIC, TvRoute.XDR, TvRoute.PROTECTION, TvRoute.EVIDENCE, TvRoute.TITAN)
             if (sensitive) window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
             else window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
         }

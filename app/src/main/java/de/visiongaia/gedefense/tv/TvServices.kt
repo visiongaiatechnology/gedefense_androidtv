@@ -31,6 +31,7 @@ class TvServices private constructor(
     val xdr: de.visiongaia.gedefense.tv.contract.XdrApi,
     val anomaly: de.visiongaia.gedefense.tv.contract.AnomalyApi,
     val containment: de.visiongaia.gedefense.tv.contract.ContainmentApi,
+    val titan: de.visiongaia.gedefense.tv.contract.TitanApi,
 ) {
     companion object {
         @Volatile
@@ -67,6 +68,7 @@ class TvServices private constructor(
             xdr: de.visiongaia.gedefense.tv.contract.XdrApi,
             anomaly: de.visiongaia.gedefense.tv.contract.AnomalyApi,
             containment: de.visiongaia.gedefense.tv.contract.ContainmentApi,
+            titan: de.visiongaia.gedefense.tv.contract.TitanApi,
         ): TvServices = TvServices(
             appContext = appContext,
             catalog = catalog,
@@ -83,6 +85,7 @@ class TvServices private constructor(
             xdr = xdr,
             anomaly = anomaly,
             containment = containment,
+            titan = titan,
         )
     }
 }

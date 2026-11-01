@@ -1,8 +1,5 @@
 # GeDefense TV — Data-Safety-Entwurf (Google Play)
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Status:** ENTWURF · **Stand:** 29. Oktober 2026 · **NICHT bei Google Play eingereicht**
 (`Play-Console-Status: NOT_SUBMITTED`). Dieses Dokument ist eine interne Vorbereitung, keine
 Rechtsberatung und keine offizielle Erklärung gegenüber Google.
@@ -67,8 +64,10 @@ erklärt werden.
   `QUERY_ALL_PACKAGES`.
 - **Löschung:** lokale Datenlöschung über App-Funktion und Android-System; kein Serverbestand.
   Automatische Retention/Rotation ist **V2** und in V1 nicht aktiv (keine Fake-Löschautomatik).
-- **Alpha-Artefakt:** Ein 0.1.0-alpha1-Build ist ausdrücklich ein debug-signiertes
-  Testartefakt, kein produktionsfähiges Release.
+- **Alpha-Artefakt:** Ein 0.3.0-alpha1-Build ist ausdrücklich ein **Alpha-signiertes Testartefakt**
+  (nicht Produktions-/Upload-Zertifikat), kein produktionsfähiges Release. Titan ist auf dem
+  Emulator nur als Level 1 (keine Capabilities) belegt; Level 3 (Root) ist **NOT_TESTED** und
+  ändert nichts an der lokalen, upload-freien Datenhaltung.
 
 ---
 
@@ -124,3 +123,34 @@ Grundlage: [docs/V2-ARCHITECTURE.md](docs/V2-ARCHITECTURE.md), [PRIVACY.md](PRIV
 Dienstdeklaration/-erklärung, Benachrichtigungsnutzung; Datenschutztext für Traffic-Metadaten.
 **Status:** V2-Datenflüsse sind implementierungs- und testabhängig (**NOT_TESTED**); dieser
 Abschnitt darf erst nach Code-/Laufzeitprüfung als offizielle Erklärung verwendet werden.
+
+---
+
+## 7. V3-Ergänzung: Titan Engine
+
+**Status:** Code integriert (31.10.2026) · **Laufzeit/Tests: NOT_TESTED** · **kein Produktionsanspruch.**
+Grundlage: [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md), [PRIVACY.md](PRIVACY.md) §11,
+[THREAT-MODEL.md](THREAT-MODEL.md) §16 ff.
+
+Titan arbeitet nur mit **lokal beobachtbaren** Endpoint-Metadaten und wird nur nach ausdrücklichem
+Nutzer-Consent aktiv (privilegierter Pfad). Es gibt **keinen** Upload, keine Cloud-Analyse und keine
+Fernsteuerung.
+
+| Frage (Data-Safety-Formular) | Entwurfsantwort V3 | Begründung |
+| --- | --- | --- |
+| Erhebt/teilt die App Nutzerdaten? | **Nein** | Titan-Metadaten (Privileg-/Socket-/FIM-/Containment-Daten) bleiben **lokal**; kein Upload, keine Telemetrie. |
+| Werden Daten verschlüsselt übertragen? | **Keine Übertragung** | Titan hat keinen Netzwerkpfad; Witness-Checkpoints bleiben lokal (kein Push/Pairing in dieser Alpha). |
+| Werden Inhalte erfasst? | **Nein** | Nur Metadaten: Endpunkte, UID/PID/Paket, Datei-Hashes/Rechte, Aktionsergebnisse; keine Payloads, keine Dateiinhalte, kein TLS-MITM. |
+| Werden Standortdaten erhoben? | **Nein** | Keine Standortberechtigung/-APIs in Titan. |
+| Werden Benachrichtigungen gesendet? | **Nein (Titan)** | Titan erzeugt keine Push-/Fernbenachrichtigung; V2-VPN-FGS-Benachrichtigung bleibt separat. |
+| Neue Berechtigungen? | **Nein** | Titan fordert keine neuen Manifest-Rechte; der privilegierte Pfad ist ein **nutzerbestätigter** Root-Kanal, kein App-Recht. |
+| Löschung? | **Lokal/manuell** | App-Daten löschen/deinstallieren entfernt private Titan-Daten; der Vault unter `/data/local/gedefense_vault` liegt außerhalb der App-Verwaltung und ist gesondert zu dokumentieren. |
+| Teilen mit Dritten? | **Nein** | Keine Weitergabe; Export nur Nutzeraktion mit minimierten Feldern. |
+| Warum ein privilegierter Pfad? | **Opt-in-Sicherheitsfunktion** | Nur für Nutzer, die ihr Gerät bewusst rooten; ohne Consent bleibt die App auf Level 1, Titan-Capabilities „nicht verfügbar“. |
+
+**Zusätzliche Play-/Store-Hinweise (offen):** Der privilegierte Pfad ist **kein** Standardverhalten
+und darf nicht als solches beworben werden. Vor einer Veröffentlichung sind zu klären: Store-Policy
+zu Root-/Device-Control-Funktionen, Formulierung des Consents, Vault-Aufbewahrung/Löschung und die
+ehrliche Kommunikation, dass Level 2 (Shizuku) in dieser Alpha nur erkennt und nicht steuert.
+**Status:** Titan-Datenflüsse sind **NOT_TESTED**; dieser Abschnitt darf erst nach Code-/
+Laufzeitprüfung als offizielle Erklärung verwendet werden.

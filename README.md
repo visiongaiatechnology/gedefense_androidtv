@@ -9,8 +9,9 @@ Local loopback VPN filtering, traffic map with geo attribution, XDR-Light and an
 No external VPN server. No cloud. No telemetry.</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="Release 0.2.0-alpha2"></a>
-  <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="Early alpha">
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="Release 0.3.0-alpha1"></a>
+  <img src="https://img.shields.io/badge/Titan_Engine-v3_active-5FBFA8?style=flat-square" alt="Titan Engine V3 Active">
+  <img src="https://img.shields.io/badge/status-alpha-E86A5A?style=flat-square" alt="Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
   <img src="https://img.shields.io/badge/minSdk-26-3DDC84?style=flat-square&logo=android&logoColor=white" alt="minSdk 26">
@@ -21,13 +22,11 @@ No external VPN server. No cloud. No telemetry.</p>
 
 ---
 
-> ## ⚠️ EARLY ALPHA — every user is an alpha tester
+> ## 🛡️ ALPHA RELEASE — Titan Engine & Hardware Alpha Testing
 >
-> GeDefense TV **0.2.0-alpha2** is an early alpha build. It is not a finished consumer product, not
-> an audited security product, and the published APK is signed with a **test signing key**.
-> Behaviour, UI and the filtering policy will change between alpha builds. Before you rely on it:
-> understand the [scope and limitations](#scope-and-limitations), read the [release notes](RELEASE-NOTES.md)
-> and treat every result as a hint, never as a guarantee.
+> GeDefense TV **0.3.0-alpha1 (VersionCode 4)** introduces the **Titan Engine** — a three-tier endpoint guardian architecture designed specifically for TV platforms.
+> This release is ready for real-world testing on physical Android TV / Google TV devices and rooted TV boxes.
+> Before installing, please review our **[Alpha-Tester Guide](docs/ALPHA-TESTER-GUIDE.md)**, check the [release notes](RELEASE-NOTES.md), and report any findings via [GitHub Issues](https://github.com/visiongaiatechnology/gedefense_androidtv/issues).
 
 ## 🌐 The GeDefense universe
 
@@ -35,7 +34,7 @@ GeDefense is one local-first security fabric — for Linux, Windows, Android and
 
 | Project | Focus |
 | --- | --- |
-| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *(this repository)* | Security console for Android TV / Google TV: loopback VPN, traffic map, XDR-Light and reversible Kinetic-Lite containment. |
+| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *(this repository)* | Security console for Android TV / Google TV: loopback VPN, traffic map, Titan Engine, XDR-Light and reversible containment. |
 | [![Linux](https://img.shields.io/badge/Linux-D4AF37?style=flat-square&logo=linux&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense) **GeDefense Linux** | Kernel-near network defense: eBPF/XDP enforcement, L7 WAF, host XDR with signed evidence and reversible hardening (Rust/Go, fully local). |
 | [![Windows](https://img.shields.io/badge/Windows-8B5CF6?style=flat-square&logo=windows&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewin) **GeDefense Windows** | Local sovereign Windows 11 security console: Defender/ASR/WFP/App Control, hardening, MHX EDR/XDR, local threat intelligence and HMAC-chained evidence. |
 | [![Android](https://img.shields.io/badge/Android-22D3EE?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefenseandroid) **GeDefense Android** | Native Android security platform: local VPN enforcement, endpoint telemetry, XDR/EDR correlation, threat intelligence, app-risk analysis and encrypted evidence. |
@@ -43,12 +42,16 @@ GeDefense is one local-first security fabric — for Linux, Windows, Android and
 
 ## Download
 
-[![Download the latest alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)
+[![Download the latest alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
 
-Always use the [latest release page](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk):
-the exact APK asset, its checksums and the build notes live there. The alpha APK is test-signed —
-Android may warn when you sideload it. Verify the SHA-256 checksum against [SHA256SUMS.txt](SHA256SUMS.txt)
-or the checksums attached to the release before installing.
+Always use the [latest release page](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1):
+the official APK assets, their cryptographic signatures, and SHA-256 checksums live there.
+The release APK is signed with the VGT Alpha Certificate (`CN=VisionGaiaTechnology GeDefense TV Alpha`). Verify the SHA-256 checksum against [SHA256SUMS.txt](SHA256SUMS.txt) before installing:
+
+| Artifact | Size | SHA-256 Checksum |
+| :--- | :--- | :--- |
+| **`VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk`** | **6,522,110 Bytes** | `DA4110EB18ED9376B2C16AD70065C9F39A1F7592865B612A469E969B0F3F2934` |
+| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8,811,121 Bytes | `2FB107BB473BFF4C6BCDBE8ED97605D057BD7E18B404BF80561331A25087B2D4` |
 
 ## Screenshots
 
@@ -164,6 +167,23 @@ TTL (1–30 minutes, default 10), a maximum of four active containments, and all
 Google and CDN ranges. Every containment is reversible: a TV popup appears, the user can press
 **Undo**, and the block lifts automatically when the TTL expires.
 
+### V3 Titan Engine (Endpoint Guardian)
+
+A three-tier privileged endpoint defense and provenance architecture built specifically for Android TV:
+
+- **Three-Tier Privilege Model:**
+  - **Level 1 · Standard (Default on all Android TVs):** Non-root user space. Pure observability and loopback VPN filtering. All 7 privileged capability shields report *Unavailable* without nag prompts.
+  - **Level 2 · Supervised (Detection-Only):** Detection of Shizuku Binder bridges and active network debugging (ADB TCP port 5555).
+  - **Level 3 · Sovereign Root (Privileged TV Endpoint):** Explicitly activated via a 2-step confirmation dialog (default focus on *Cancel*). Requires verified `su -c id` yielding `uid=0(root)`.
+- **Socket Provenance Radar:**
+  Parses `/proc/net/tcp` and `/proc/net/tcp6` in real-time to correlate sockets: `Inode → PID → UID → Package Name`. Flags exposed ADB ports (port 5555), unattributed sockets, and known C2 matches.
+- **File Integrity Monitoring (FIM):**
+  Baseline delta auditing of system paths (`/system/bin`, `/system/xbin`, `/vendor/bin`, `/system/etc/init`, `/data/adb/modules`). Detects unauthorized or planted binaries against SHA-256 baselines.
+- **Reversible Active Response (Containment):**
+  Allowlisted, safe actions (`FREEZE_APP`, `RESTORE_APP`, `ISOLATE_NETWORK_UID`, `KILL_PROCESS`, `CLOSE_ADB_PORT`). Absolute zero destructive code (`rm -rf` and partition wiping are forbidden). Protected system packages (Launcher, Settings, System UI) are immune. Rate-limited to 8 actions / 60 seconds with automatic expiry.
+- **Ed25519 / HMAC Witness Checkpoints:**
+  Local cryptographic checkpoints certifying the integrity and sequence of the evidence ledger.
+
 ### First-run onboarding with Sir Quacksec
 
 A six-step, D-pad-only setup wizard: welcome, how local protection works, VPN consent, threat-intel
@@ -277,19 +297,21 @@ Security design and threat model: [SECURITY.md](SECURITY.md) · [THREAT-MODEL.md
 
 ## Install (sideload)
 
+For a detailed walkthrough across different TV hardware, ADB Wi-Fi pairing, and USB installation, see the **[Alpha-Tester Guide](docs/ALPHA-TESTER-GUIDE.md)**.
+
 1. On the TV, allow installation from unknown sources for the app you use to install APKs
    (a sideload/file manager app, or ADB).
-2. Install the APK from the [latest release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk).
+2. Install the APK from the [latest release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk).
 3. Start **GeDefense TV**, follow the onboarding and accept Android's one-time VPN consent dialog.
 4. Optional, over ADB:
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk
+adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
-The alpha APK is **test-signed**. A production signing key is not part of this alpha.
+The alpha APK is signed with the VGT Alpha Certificate (`CN=VisionGaiaTechnology GeDefense TV Alpha`).
 
 ## Build from source
 
@@ -312,10 +334,12 @@ More details: [BUILD-RUNBOOK.md](BUILD-RUNBOOK.md).
 ## Tests
 
 ```bash
-./gradlew :tv-core:tvCoreCheck     # core domain harness
-./gradlew :tv-core:tvV2Check       # traffic / privacy / XDR domain harness
-./gradlew :tv-core:tvKineticCheck  # V2.1 anomaly + containment harness
-./gradlew :app:lintDebug           # Android lint
+./gradlew :tv-core:tvCoreCheck     # core domain harness (554 passed)
+./gradlew :tv-core:tvV2Check       # traffic / privacy / XDR domain harness (4,398 passed)
+./gradlew :tv-core:tvKineticCheck  # V2.1 anomaly + containment harness (3,025 passed)
+./gradlew :tv-core:tvTitanCheck    # V3 Titan Engine harness (6,624 passed)
+# Total: 14,601 JVM tests with 0 failures
+./gradlew :app:lintDebug           # Android lint (0 Errors / 305 Warnings)
 ```
 
 The vendored core harness (`:core:coreCheck`) needs a Linux/macOS JVM: its durable-file code uses
@@ -330,9 +354,9 @@ The acceptance matrix is [TEST-PLAN.md](TEST-PLAN.md).
 ├── app/                    Android TV application module (Views, no AndroidX)
 │   └── src/main/            java/ · res/ (6 locales) · assets/ · jniLibs/ · AndroidManifest.xml
 ├── core/                   vendored, byte-identical GeDefense Mobile core (pure JVM)
-├── tv-core/                pure JVM domain: scan, scoring, traffic, XDR, anomalies, reports
+├── tv-core/                pure JVM domain: scan, scoring, traffic, XDR, Titan Engine, reports
 ├── docs/                   architecture, traffic map, onboarding, design DNA, emulator guide,
-│                           screenshots/ and assets/
+│                           alpha-tester guide, screenshots/ and assets/
 ├── tools/                  build/test/emulator/remote/verification scripts
 ├── gradle/ + gradlew*      Gradle 8.7 wrapper (distribution SHA-256 pinned)
 ├── build.gradle.kts        AGP 8.5.2 · Kotlin 1.9.24 · Java 17
@@ -343,14 +367,19 @@ The acceptance matrix is [TEST-PLAN.md](TEST-PLAN.md).
 
 | Document | Content |
 | --- | --- |
+| **[docs/ALPHA-TESTER-GUIDE.md](docs/ALPHA-TESTER-GUIDE.md)** | **Alpha-tester guide, sideloading methods, and GitHub issue template** |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Module graph, data flow, collectors, evidence, performance budgets |
+| [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md) | Technical architecture of the Titan Engine (privilege gates & containment) |
+| [docs/TITAN-TV-CONCEPT.md](docs/TITAN-TV-CONCEPT.md) | Conceptual foundation and security guarantees of Titan TV |
+| [CHANGELOG.md](CHANGELOG.md) | Full changelog following Keep a Changelog |
 | [docs/V2-ARCHITECTURE.md](docs/V2-ARCHITECTURE.md) | Loopback VPN, telemetry, traffic aggregation, native helper supply chain |
 | [docs/TRAFFIC-MAP.md](docs/TRAFFIC-MAP.md) | Traffic map data sources, limits, colors and privacy |
 | [docs/ONBOARDING.md](docs/ONBOARDING.md) | First-run wizard, consent and permission explanations |
 | [docs/DESIGN-DNA.md](docs/DESIGN-DNA.md) | TV design system, focus/interaction rules, forbidden patterns |
-| [SECURITY.md](SECURITY.md) | Security design, key custody, permissions, reporting policy |
+| [SECURITY.md](SECURITY.md) | Security design, audit findings (TF-01..TF-12), and reporting policy |
 | [THREAT-MODEL.md](THREAT-MODEL.md) | Assets, trust boundaries, STRIDE analysis, TV-specific risks |
 | [PRIVACY.md](PRIVACY.md) | Data inventory, retention, export, permissions rationale |
+| [DATA-SAFETY.md](DATA-SAFETY.md) | Google Play Data Safety declaration |
 | [TEST-PLAN.md](TEST-PLAN.md) | Acceptance matrix and evidence requirements |
 | [BUILD-RUNBOOK.md](BUILD-RUNBOOK.md) | Build, signing, logs and troubleshooting |
 | [docs/TV-EMULATOR-TESTING.md](docs/TV-EMULATOR-TESTING.md) | Step-by-step Android TV emulator guide |

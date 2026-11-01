@@ -9,7 +9,7 @@
 外部 VPN サーバーなし。クラウドなし。テレメトリなし。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="リリース 0.2.0-alpha2"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="リリース 0.3.0-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -23,10 +23,11 @@
 
 > ## ⚠️ 早期 ALPHA（early alpha）— すべてのユーザーがアルファテスターです
 >
-> GeDefense TV **0.2.0-alpha2** は早期アルファ版です。完成したコンシューマー製品でも、監査済みの
-> セキュリティ製品でもありません。公開 APK は**テスト署名鍵**で署名されています。動作、UI、フィルタリング
-> ポリシーはアルファ版ごとに変わります。依拠する前に[適用範囲と制限](#適用範囲と制限)と
-> [リリースノート](RELEASE-NOTES.md)を読み、すべての結果を保証ではなく手がかりとして扱ってください。
+> GeDefense TV **0.3.0-alpha1** は早期アルファ版です。完成したコンシューマー製品でも、監査済みの
+> セキュリティ製品でもありません。公開 APK は専用の VGT Alpha 証明書で署名されています。
+> 動作、UI、フィルタリングポリシーはアルファ版ごとに変わります。依拠する前に[適用範囲と制限](#適用範囲と制限)、
+> **[アルファテスターガイド](docs/ALPHA-TESTER-GUIDE.md)**、および [リリースノート](RELEASE-NOTES.md) を読み、
+> すべての結果を保証ではなく手がかりとして扱ってください。
 
 ## 🌐 GeDefense の宇宙
 
@@ -34,7 +35,7 @@ GeDefense は Linux、Windows、Android、WordPress のための単一のロー�
 
 | プロジェクト | 重点 |
 | --- | --- |
-| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *（このリポジトリ）* | Android TV / Google TV 向けセキュリティコンソール：ループバック VPN、トラフィックマップ、XDR-Light、可逆的 Kinetic-Lite コンテインメント。 |
+| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *（このリポジトリ）* | Android TV / Google TV 向けセキュリティコンソール：ループバック VPN、トラフィックマップ、XDR-Light、Titan エンジン、可逆的 Kinetic-Lite コンテインメント。 |
 | [![Linux](https://img.shields.io/badge/Linux-D4AF37?style=flat-square&logo=linux&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense) **GeDefense Linux** | カーネル近傍のネットワーク防御：eBPF/XDP 適用、L7 WAF、署名付き証跡を備えたホスト XDR、可逆的ハードニング（Rust/Go、完全ローカル）。 |
 | [![Windows](https://img.shields.io/badge/Windows-8B5CF6?style=flat-square&logo=windows&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewin) **GeDefense Windows** | ローカルで主権的な Windows 11 セキュリティコンソール：Defender/ASR/WFP/App Control、ハードニング、MHX EDR/XDR、ローカル脅威情報、HMAC 連鎖証跡。 |
 | [![Android](https://img.shields.io/badge/Android-22D3EE?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefenseandroid) **GeDefense Android** | ネイティブ Android セキュリティプラットフォーム：ローカル VPN 適用、エンドポイントテレメトリ、XDR/EDR 相関、脅威情報、アプリリスク分析、暗号化証跡。 |
@@ -42,12 +43,16 @@ GeDefense は Linux、Windows、Android、WordPress のための単一のロー�
 
 ## ダウンロード
 
-[![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)
+[![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
 
-常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)を使用してください。
-正確な APK アセット、チェックサム、ビルドノートはそこにあります。アルファ APK はテスト署名されているため、
-サイドロード時に Android が警告を表示することがあります。インストール前に SHA-256 を
-[SHA256SUMS.txt](SHA256SUMS.txt) またはリリースに添付されたチェックサムと照合してください。
+常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)を使用してください。
+正確な APK アセット、チェックサム、ビルドノートはそこにあります。詳細なサイドロードおよびハードウェアテストの手順は **[アルファテスターガイド](docs/ALPHA-TESTER-GUIDE.md)** をご覧ください。
+インストール前に SHA-256 を [SHA256SUMS.txt](SHA256SUMS.txt) またはリリースに添付されたチェックサムと照合してください：
+
+| アーティファクト | サイズ | SHA-256 チェックサム |
+| --- | --- | --- |
+| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk` | 6,522,110 バイト | `da4110eb18ed9376b2c16ad70065c9f39a1f7592865b612a469e969b0f3f2934` |
+| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8,811,121 バイト | `2fb107bb473bff4c6bcdbe8ed97605d057bd7e18b404bf80561331a25087b2d4` |
 
 ## スクリーンショット
 
@@ -163,6 +168,23 @@ DNS バースト、宛先ファンアウト、ビーコンパターン、ボリ�
 最大 4 件のアクティブ封じ込め、プラットフォーム・Google・CDN 範囲の許可リスト。すべての封じ込めは取り
 消し可能で、テレビにポップアップが表示され、**元に戻す**を押すことができ、TTL の満了で自動的に解除されます。
 
+### V3 Titan エンジン（エンドポイント・ガーディアン）
+
+Android TV 向けに特化して構築された、3 層の特権エンドポイント防御および出所証明アーキテクチャ：
+
+- **3 層特権モデル：**
+  - **レベル 1 · 標準（すべての Android TV での既定）：** root 権限なしのユーザー空間。純粋な可観測性とループバック VPN フィルタリング。7 つすべての特権シールドは催促ダイアログなしで*利用不可*を誠実に報告。
+  - **レベル 2 · 監視下（検出のみ）：** Shizuku Binder ブリッジおよびアクティブなネットワークデバッグ（ADB TCP ポート 5555）の検出。
+  - **レベル 3 · 主権 Root（特権 TV エンドポイント）：** 2 ステップ確認ダイアログ（既定のフォーカスは*キャンセル*）経由で明示的に有効化。`uid=0(root)` を返す検証済み `su -c id` が必要。
+- **ソケット出所レーダー：**
+  `/proc/net/tcp` および `/proc/net/tcp6` をリアルタイムで解析しソケットを相関：`Inode → PID → UID → パッケージ名`。露出した ADB ポート（ポート 5555）、所属不明ソケット、既知の C2 一致をフラグ付け。
+- **ファイル整合性監視（FIM）：**
+  システムパス（`/system/bin`、`/system/xbin`、`/vendor/bin`、`/system/etc/init`、`/data/adb/modules`）のベースライン差分監査。SHA-256 ベースラインと照合し不正または仕込まれたバイナリを検出。
+- **可逆的アクティブレスポンス（封じ込め）：**
+  許可リストに登録された安全なアクションのみ（`FREEZE_APP`、`RESTORE_APP`、`ISOLATE_NETWORK_UID`、`KILL_PROCESS`、`CLOSE_ADB_PORT`）。破壊的コードは完全ゼロ（`rm -rf` やパーティション消去は禁止）。保護されたシステムパッケージ（ランチャー、設定、System UI）は免除。自動満了付きで 60 秒あたり最大 8 アクションのレート制限。
+- **Ed25519 / HMAC 証拠チェックポイント：**
+  証拠レジャーの完全性と順序を証明するローカル暗号化チェックポイント。
+
 ### Sir Quacksec による初回セットアップ
 
 6 ステップの D-pad 専用ウィザード：ようこそ、ローカル保護の仕組み、VPN 同意、脅威インテリジェンス同期
@@ -275,19 +297,21 @@ GeDefense TV は意図的に次では**ありません**：
 
 ## インストール（サイドロード）
 
+さまざまなテレビハードウェア、ADB Wi-Fi ペアリング、および USB インストールの詳細な手順については、**[アルファテスターガイド](docs/ALPHA-TESTER-GUIDE.md)** をご覧ください。
+
 1. テレビで、APK のインストールに使用するアプリ（サイドロード/ファイルマネージャー、または ADB）に対して
    提供元不明アプリのインストールを許可します。
-2. [最新リリース](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)から APK をインストールします。
+2. [最新リリース](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)から APK をインストールします。
 3. **GeDefense TV** を起動し、初回セットアップに従い、Android の一度限りの VPN 同意ダイアログを承認します。
 4. 任意で ADB を使用：
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk
+adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
-アルファ APK は**テスト署名**されています。本番署名鍵はこのアルファには含まれません。
+アルファ APK は VGT Alpha 証明書（`CN=VisionGaiaTechnology GeDefense TV Alpha`）で署名されています。
 
 ## ソースからビルド
 
@@ -310,10 +334,12 @@ export ANDROID_HOME=/path/to/android-sdk
 ## テスト
 
 ```bash
-./gradlew :tv-core:tvCoreCheck     # コアドメインのハーネス
-./gradlew :tv-core:tvV2Check       # トラフィック / プライバシー / XDR ハーネス
-./gradlew :tv-core:tvKineticCheck  # V2.1 異常検知と封じ込めのハーネス
-./gradlew :app:lintDebug           # Android lint
+./gradlew :tv-core:tvCoreCheck     # コアドメインのハーネス（554 件合格）
+./gradlew :tv-core:tvV2Check       # トラフィック / プライバシー / XDR ハーネス（4,398 件合格）
+./gradlew :tv-core:tvKineticCheck  # V2.1 異常検知と封じ込めのハーネス（3,025 件合格）
+./gradlew :tv-core:tvTitanCheck    # V3 Titan エンジンハーネス（6,624 件合格）
+# 合計：14,601 件の JVM テスト、失敗 0
+./gradlew :app:lintDebug           # Android lint（エラー 0 / 警告 305）
 ```
 
 同梱コアのハーネス（`:core:coreCheck`）は Linux/macOS の JVM が必要です。堅牢なファイル処理がディレクトリの
@@ -328,9 +354,9 @@ Android TV エミュレーターガイドは [docs/TV-EMULATOR-TESTING.md](docs/
 ├── app/                    Android TV アプリモジュール（Views、AndroidX なし）
 │   └── src/main/            java/ · res/（6 言語）· assets/ · jniLibs/ · AndroidManifest.xml
 ├── core/                   同梱の GeDefense Mobile コア（バイト単位で同一、純粋な JVM）
-├── tv-core/                純粋な JVM ドメイン：スキャン、スコアリング、トラフィック、XDR、異常、レポート
+├── tv-core/                純粋な JVM ドメイン：スキャン、スコアリング、トラフィック、XDR、Titan エンジン、レポート
 ├── docs/                   アーキテクチャ、トラフィックマップ、オンボーディング、デザイン DNA、
-│                           エミュレーターガイド、screenshots/ と assets/
+│                           エミュレーターガイド、アルファテスターガイド、screenshots/ と assets/
 ├── tools/                  ビルド/テスト/エミュレーター/リモート/検証スクリプト
 ├── gradle/ + gradlew*      Gradle 8.7 wrapper（ディストリビューション SHA-256 を固定）
 ├── build.gradle.kts        AGP 8.5.2 · Kotlin 1.9.24 · Java 17
@@ -341,12 +367,16 @@ Android TV エミュレーターガイドは [docs/TV-EMULATOR-TESTING.md](docs/
 
 | ドキュメント | 内容 |
 | --- | --- |
+| **[docs/ALPHA-TESTER-GUIDE.md](docs/ALPHA-TESTER-GUIDE.md)** | **アルファテスターガイド、サイドロード手順、Issue 報告テンプレート** |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | モジュールグラフ、データフロー、コレクター、証拠、パフォーマンス予算 |
+| [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md) | Titan エンジンの技術アーキテクチャ（特権ゲートと封じ込め） |
+| [docs/TITAN-TV-CONCEPT.md](docs/TITAN-TV-CONCEPT.md) | Titan TV の概念的基盤とセキュリティ保証 |
+| [CHANGELOG.md](CHANGELOG.md) | Keep a Changelog に準拠した完全な変更履歴 |
 | [docs/V2-ARCHITECTURE.md](docs/V2-ARCHITECTURE.md) | ループバック VPN、テレメトリ、トラフィック集計、ネイティブヘルパーのサプライチェーン |
 | [docs/TRAFFIC-MAP.md](docs/TRAFFIC-MAP.md) | トラフィックマップのデータソース、制限、色、プライバシー |
 | [docs/ONBOARDING.md](docs/ONBOARDING.md) | 初回起動ウィザード、同意と権限の説明 |
 | [docs/DESIGN-DNA.md](docs/DESIGN-DNA.md) | テレビ向けデザインシステム、フォーカス/インタラクション規則、禁止パターン |
-| [SECURITY.md](SECURITY.md) | セキュリティ設計、鍵の保管、権限、報告ポリシー |
+| [SECURITY.md](SECURITY.md) | セキュリティ設計、監査結果（TF-01..TF-12）、報告ポリシー |
 | [THREAT-MODEL.md](THREAT-MODEL.md) | 資産、信頼境界、STRIDE 分析、テレビ固有のリスク |
 | [PRIVACY.md](PRIVACY.md) | データインベントリ、保持、エクスポート、権限の根拠 |
 | [TEST-PLAN.md](TEST-PLAN.md) | 受け入れマトリクスと証拠要件 |

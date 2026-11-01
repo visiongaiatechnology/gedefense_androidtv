@@ -48,6 +48,7 @@ import de.visiongaia.gedefense.tv.ui.components.visibilityTone
 import de.visiongaia.gedefense.tv.ui.components.vpnStateGlyph
 import de.visiongaia.gedefense.tv.ui.components.vpnStateLabelRes
 import de.visiongaia.gedefense.tv.ui.components.vpnStateTone
+import de.visiongaia.gedefense.tv.ui.titan.TitanHomeStrip
 
 /**
  * TV Home dashboard:
@@ -88,7 +89,15 @@ internal class HomeScreen(services: TvServices) : ScaffoldScreen(services) {
             },
         )
 
-        // 3. V2 protection widget + XDR entry (compact, one focus stop each)
+        // 3. TITAN LIVE entry: single D-pad stop with level, last passive pass and real counters
+        scaffold.content.addView(
+            TitanHomeStrip.build(context, services) { host.navigate(TvRoute.TITAN) },
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                topMargin = TvTheme.scaledDp(context, 8)
+            },
+        )
+
+        // 4. V2 protection widget + XDR entry (compact, one focus stop each)
         scaffold.content.addView(
             buildProtectionWidget(),
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
@@ -102,7 +111,7 @@ internal class HomeScreen(services: TvServices) : ScaffoldScreen(services) {
             },
         )
 
-        // 4. Two-Column Dashboard Section: Left = Top-Befunde, Right = Gerät & Prüfumfang
+        // 5. Two-Column Dashboard Section: Left = Top-Befunde, Right = Gerät & Prüfumfang
         val twoColRow = LinearLayout(context).apply {
             orientation = LinearLayout.HORIZONTAL
             layoutParams = LinearLayout.LayoutParams(

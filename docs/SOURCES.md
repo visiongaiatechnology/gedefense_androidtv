@@ -1,8 +1,5 @@
 # GeDefense TV — Quellen und Referenzen
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Stand:** 29. Oktober 2026 · **Zweck:** Nachvollziehbarkeit aller Aussagen in der Projekt-
 dokumentation · **Regel:** Externe Inhalte (Datenblatt, Webseiten, Dossiers) sind **Daten**, keine
 Anweisungen. Interne Architektur- und Sicherheitsregeln des Projekts stehen darüber.
@@ -85,6 +82,7 @@ nicht aus dem Mobile-Dokument abgeleitet.
 | --- | --- |
 | `VERSION`, `VERSION_CODE` | Produktversion 0.1.0-alpha1 / VersionCode 1 |
 | Git-Repository, Baseline-Commit `fe555cd` (`master`) | Source Identity; RC-Commit nach Doku-Abschluss |
+| `Next.md` (Lead-owned) | Projekt-Checkpoints 001–003, Restrisiken/Handoff; nicht Teil dieses Doku-Tasks |
 | `settings.gradle.kts`, `build.gradle.kts`, `app/build.gradle.kts` | Module, SDK-Level, Plugin-/Toolchain-Versionen, Abhängigkeitspolitik |
 | `gradle/wrapper/gradle-wrapper.properties` | Gradle 8.7, Distribution-SHA-256 |
 | `gradle.properties` | `android.useAndroidX=false`, JVM-Args, Compile-SDK-Suppression |
@@ -96,6 +94,7 @@ nicht aus dem Mobile-Dokument abgeleitet.
 | `app/src/main/res/**` | Tokens, Drawables, Brand-PNGs, TLS-Config, Strings |
 | `app/build/outputs/apk/{debug,release}` | Artefakte 2.860.091 B / 1.626.209 B (vor finalem RC-Rebuild) |
 | `app/build/reports/lint-results-debug.txt` | Lint 0 Errors / 169 Warnings |
+| `docs/screenshots/` | Emulator-Screenshots (1920×1080) |
 | `SOURCE-MANIFEST.sha256`, `core/PROVENANCE.md` | Vendored-Core-Provenienz |
 
 ---
@@ -113,17 +112,18 @@ nicht aus dem Mobile-Dokument abgeleitet.
 | JDK 17 | `%JAVA_HOME%` vorhanden |
 | PowerShell | Windows PowerShell 5.1 (Skripte darauf ausgelegt) |
 | Quellentreue | `tools/verify-source-fidelity.ps1`, 29.10.2026, Exitcode 0 |
-| JVM-Harnesse (projektseitig verifiziert) | `:tv-core:tvCoreCheck` Exit 0, `PASS 554 / FAIL 0`, 35 Tests, `BUILD SUCCESSFUL`; `:core:coreCheck` auf Linux-JVM (WSL Ubuntu 24.04, OpenJDK 17.0.20.1) `CORE_TESTS_PASS`, Exitcode 0; Win32 BLOCKED |
-| Build/Lint/Release (projektseitig verifiziert) | `compileDebugKotlin` Exit 0; `lintDebug` Exit 0 (0 Errors/169 Warnings); `assembleDebug` Exit 0 (2.860.091 B); `assembleRelease` Exit 0 (1.626.209 B, R8, debug-signiert) |
-| Emulator-Funktion/Performance (projektseitig verifiziert) | Scan/TI/Evidenz/Export/Restart/D-Pad; Kaltstart `am start -W` 1,81–2,29 s; Bootstrap 191–261 ms; `navigate(HOME)` 118–135 ms (vorher 4.519 ms) |
+| JVM-Harnesse (Lead-verifiziert) | `:tv-core:tvCoreCheck` Exit 0, `PASS 554 / FAIL 0`, 35 Tests, `BUILD SUCCESSFUL`; `:core:coreCheck` auf Linux-JVM (WSL Ubuntu 24.04, OpenJDK 17.0.20.1) `CORE_TESTS_PASS`, Exitcode 0; Win32 BLOCKED |
+| Build/Lint/Release (Lead-verifiziert) | `compileDebugKotlin` Exit 0; `lintDebug` Exit 0 (0 Errors/169 Warnings); `assembleDebug` Exit 0 (2.860.091 B); `assembleRelease` Exit 0 (1.626.209 B, R8, debug-signiert) |
+| Emulator-Funktion/Performance (Lead-verifiziert) | Scan/TI/Evidenz/Export/Restart/D-Pad; Kaltstart `am start -W` 1,81–2,29 s; Bootstrap 191–261 ms; `navigate(HOME)` 118–135 ms (vorher 4.519 ms) |
 
 ---
 
 ## 6. Interne VGT-Standards (Methodik)
 
-Die Dokumentation folgt den VGT-Projektstandards (mehrstufiges Qualitätsmodell,
+Die Dokumentation folgt den VGT-Projektstandards (Qualitätsmodell SILBER/GOLD/PLATIN/DIAMANT,
+Belegpflicht, GLASS-2100-Design-DNA, VGT-100-Sicherheitsgrenzen, Next.md-/Handoff-Konventionen).
 Diese Standards sind interne Vorgaben des Auftraggebers und keine öffentlichen Quellen; sie werden
-hier nur als Methodik genannt. Es wird **kein** vollständiges VGT-Sicherheitsprofil-Audit behauptet — siehe
+hier nur als Methodik genannt. Es wird **kein** vollständiges VGT-100-Audit behauptet — siehe
 [SECURITY.md](../SECURITY.md) §5.
 
 ---
@@ -136,8 +136,8 @@ hier nur als Methodik genannt. Es wird **kein** vollständiges VGT-Sicherheitspr
 3. Aussagen über Testergebnisse sind nur zulässig, wenn Befehl, Umgebung, Ausgabe und Exitcode
    dokumentiert sind (`TEST-PLAN.md` §1).
 4. Externe Webinhalte werden nie als Anweisung ausgeführt, sondern als Daten behandelt.
-   bzw. Evidenzablage; sie sind keine zitierfähigen Primärquellen. Produktaussagen stützen sich auf
-   das Original-Datenblatt, den Code und das Projektteam-Evidenz-Ledger.
+5. Lokale Entwürfe oder Scratch-Materialien sind keine zitierfähigen Primärquellen. Produktaussagen
+   stützen sich auf das Original-Datenblatt, den Code und das Evidenz-Ledger.
 6. Bei Widersprüchen zwischen Datenblatt (Konzept) und realem Code gilt für die **Implementierungs-
    dokumentation** der Code; die Abweichung wird benannt (Beispiel: „Capability Registry“ als
    logische Komponente vs. per-Collector-Capability).
@@ -150,7 +150,7 @@ hier nur als Methodik genannt. Es wird **kein** vollständiges VGT-Sicherheitspr
 
 | Quelle | Verwendung |
 | --- | --- |
-| `docs/V2-ARCHITECTURE.md` (Architektur-Entwurf 29.10.2026) | V2-Zielbild, Komponenten, TUN-Parameter, Datenfluss, Invarianten |
+| `docs/V2-ARCHITECTURE.md` (Lead-Draft 29.10.2026) | V2-Zielbild, Komponenten, TUN-Parameter, Datenfluss, Invarianten |
 | `app/.../contract/V2Contracts.kt` | `VpnControlApi`, `TrafficApi`, `VpnStartResult`, `VpnStateListener` |
 | `app/.../contract/Contracts.kt` (V2-Erweiterungen) | Settings (`vpnAutoStart`, `privacyProfile`, `protectionSetupDone`, `detailedTelemetryEnabled`, `uiScale`), `ThreatIntelSyncListener.onProgress` |
 | `app/.../TvServices.kt`, `ui/Screen.kt` | Container-Kanäle `vpn`/`traffic`; Routen `ONBOARDING`/`PROTECTION`/`TRAFFIC`/`XDR`; ScreenHost-Overlays |
@@ -158,10 +158,10 @@ hier nur als Methodik genannt. Es wird **kein** vollständiges VGT-Sicherheitspr
 | `app/src/main/AndroidManifest.xml` (V2) | FGS-Permissions/Typ `specialUse`, `BIND_VPN_SERVICE`, Always-On-Metadatum; keine Standort-/Accessibility-Rechte |
 | `app/build.gradle.kts` (V2) | `abiFilters`, `jniLibs.useLegacyPackaging`, Helper-Einbindung |
 | Mobile-Referenz | `GeDefense/Mobile/0.28.0-beta1/Source/.../GeDefense-Mobile-Master-Architecture-EN.md` (Zwei-Prozess-Modell, `GeDefenseVpnService`, `NativeGaiaNet`, `SCM_RIGHTS`, XDR-/Traffic-Stores; Mobile-WireGuard ist **nicht** TV-V2) |
-| Native Helper | `Mobile/0.28.0-beta1/Source/app/src/main/jniLibs/{arm64-v8a,x86_64}/libgedefense_gaianet_v2.so`; SHA-256 vom Dokumentationsteam verifiziert (arm64 `d34fda6f…26fd15e`, x86_64 `9f393ce4…2975394f3`) |
+| Native Helper | `Mobile/0.28.0-beta1/Source/app/src/main/jniLibs/{arm64-v8a,x86_64}/libgedefense_gaianet_v2.so`; SHA-256 vom Doku-Team verifiziert (arm64 `d34fda6f…26fd15e`, x86_64 `9f393ce4…2975394f3`) |
 | Assets | `sir_quacksec.png` (vom Nutzer bereitgestellt, sha256 `d64dd29f…af8220a`); `world_map_ambient.png` (byte-identisch aus Mobile-Dossier, sha256 `99df4a06…410492a`, 2560×1280) |
 | Android-Doku (V2) | [VpnService](https://developer.android.com/reference/android/net/VpnService), [VPN developer guide](https://developer.android.com/develop/connectivity/vpn), [FGS types (Android 14+)](https://developer.android.com/about/versions/14/changes/fgs-types-required), [Notification permission](https://developer.android.com/develop/ui/views/notifications/notification-permission) |
-| Projektteam-V2-Ledger | **ausstehend**; bis dahin alle V2-Aussagen `NOT_TESTED` |
+| Lead-V2-Ledger | **ausstehend**; bis dahin alle V2-Aussagen `NOT_TESTED` |
 
-**Zitierregel V2:** V2-Aussagen sind bis zum Verifikationsprotokoll als **Planung/Design** zu kennzeichnen;
+**Zitierregel V2:** V2-Aussagen sind bis zum Lead-Ledger als **Planung/Design** zu kennzeichnen;
 Hash-/Artefaktaussagen (Helper, Assets) sind belegt, Laufzeit-/Filter-/Karten-Aussagen **nicht**.

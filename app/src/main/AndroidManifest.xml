@@ -36,6 +36,31 @@
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />
         </intent>
+        <!--
+          Titan containment guard (Level 3): resolve the system launcher, the settings app and the
+          default input method so they can never be frozen even if a third-party package pretends to
+          be them. These queries are read-only discovery intents, not permissions.
+        -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.view.InputMethod" />
+        </intent>
+        <!--
+          Titan privilege audit: API 30+ package visibility requires explicit package queries to see
+          the known root managers and the Shizuku helper. Without these queries the detection would
+          silently report "absent" instead of "not visible". No QUERY_ALL_PACKAGES permission is used.
+        -->
+        <package android:name="com.topjohnwu.magisk" />
+        <package android:name="me.weishu.kernelsu" />
+        <package android:name="me.bmax.apatch" />
+        <package android:name="eu.chainfire.supersu" />
+        <package android:name="moe.shizuku.privileged.api" />
     </queries>
 
     <application

@@ -1,8 +1,5 @@
 # GeDefense TV — Datenschutz / Privacy
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Version:** 0.2.0-alpha1 · **Stand:** 29. Oktober 2026 · **Status:** Design- und
 Dokumentationsstand; keine Datenschutzerklärung im Rechtssinn veröffentlicht, keine
 Aufsichts-/Anwaltsprüfung erfolgt.
@@ -167,7 +164,7 @@ entstehen durch Plattform-APIs (Package Visibility, OEM-Verhalten) und werden al
 ## 9. Offene Punkte (vor Veröffentlichung)
 
 1. **Datenschutzerklärung/Impressum** veröffentlichen (Verantwortlicher, Kontakt, Rechte) –
-   **offener Punkt**, derzeit offen.
+   **Release-Blocker**, derzeit offen.
 2. **Retention/Rotation (V2):** in V1 bewusst nicht aktiv; bis dahin klar kommunizieren, dass
    Daten bis zur manuellen Löschung bleiben.
 3. **Data-Safety-Erklärung** für Google Play erstellen und einreichen (Entwurf vorhanden).
@@ -259,3 +256,76 @@ versprechen.
 4. Play-Data-Safety und FGS-/VPN-Deklaration aktualisieren.
 5. Nachweis „keine Uploads“ (Code-Review + Netzwerk-/Proxy-Test) führen.
 6. Löschkonzept für Traffic-Metadaten (Session, App-Daten, Deinstallation) dokumentieren.
+
+---
+
+## 11. V3: Titan Engine (lokale Endpoint-Metadaten, nur mit Consent)
+
+**Status:** Code integriert (31.10.2026) · **Laufzeit/Tests: NOT_TESTED** · **kein Produktionsanspruch.**
+Architektur: [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md); Threat-Model:
+[THREAT-MODEL.md](THREAT-MODEL.md) §16 ff.
+
+Titan verarbeitet ausschließlich **lokal** zusätzliche Sicherheits-Metadaten. Es gibt **keinen**
+Upload, keine Cloud-Analyse, keine Telemetrie und keine Fernsteuerung. Ohne bestätigten Root-Kanal
+(Level 1) bleibt Titan inaktiv; dann entstehen keine Titan-Daten außer einem ehrlichen
+„nicht verfügbar“-Status.
+
+### 11.1 Zusätzliches Dateninventar (V3)
+
+| Kategorie | Felder (Beispiele) | Zweck | Verbleib | Verlässt Gerät? |
+| --- | --- | --- | --- | --- |
+| Privileg-Snapshot | Level, Root-Art, `su`-Pfade (≤ 16), Root-Manager-Marker, SELinux-State, test-keys, ADB-TCP-Flag | ehrliche Capability-Anzeige | in-memory/gecachter Status | **nein** |
+| Socket-Provenance | Protokoll, lokale/remote Adresse+Port, State, UID, PID (optional), Paketname (optional), Feed-Match-IDs | C2-/Botnet-Erkennung, Evidenz | in-memory Snapshot ≤ 512 Beobachtungen | **nein** |
+| FIM-Baseline/-Delta | Pfad (nur Watch-Roots), SHA-256, Größe, mtime, Rechte, Status | Anti-Planting | privater App-Speicher (persistiert), ≤ 4096 Einträge | **nein** |
+| Containment-Historie | Aktion, Zielkennung (Paket/UID/PID), Zeit, Ergebnis, Verifikationsstatus, Fehlercode | Nachvollziehbarkeit | HMAC-Evidenzkette + Vault-Metadaten | **nein** |
+| Vault-Metadaten | UUID, Dateiname, Original-Pfad, SHA-256, Größe, Zeit, Rechte | Quarantäne-Übersicht | privater Speicher + `/data/local/gedefense_vault` | **nein** |
+| Witness-Checkpoint | Sequenz, Zeit, Ledger-Digest, HMAC | Integritätsbeleg | lokal; **keine** Zustellung | **nein** |
+| Titan-Status | effektive Capabilities, Sichtbarkeit, Hinweise (`MessageRef`) | UI/Report/Ehrlichkeit | in-memory/gecacht | **nein** |
+
+**Nicht verarbeitet:** Dateiinhalte fremder Binaries (nur Hash/Metadaten), Socket-Payloads,
+TLS-Klartexte, Bildschirminhalte, Audio/Video, Standort (GPS), Kontakte, Nachrichten, Werbe-ID,
+Konten. Die App fordert durch Titan **keine** neuen Manifest-Berechtigungen an; ergänzt werden
+lediglich gezielte `<queries>`-Pakete für bekannte Root-Manager und Shizuku (Package Visibility,
+kein `QUERY_ALL_PACKAGES`), damit die Erkennung „nicht sichtbar“ nicht als „nicht vorhanden“ meldet.
+
+### 11.2 Sichtbarkeitsgrenzen als Datenschutz-Aussage
+
+- Socket-Attribution und FIM reichen nur so weit, wie der Prozess auf der jeweiligen Privilegstufe
+  tatsächlich lesen darf. Nicht Zuordenbares (`UNATTRIBUTED`) und Unlesbares (`UNREADABLE`) werden
+  als Lücke ausgewiesen, nicht als Befund über Personen/Apps.
+- PID/UID/Paketname sind technische Zuordnungen, kein Nutzerprofil; es findet keine Verhaltens-/
+  Profilbildung statt.
+
+### 11.3 Retention und Löschung (V3)
+
+| Datenart | Festlegung | Status |
+| --- | --- | --- |
+| Titan-Status (in-memory/gecacht) | Laufzeit; Neustart verwirft bzw. lädt letzten ehrlichen Stand | **PARTIAL (Emulator)** – Level 1, Status in app-privaten Prefs persistiert, kein Crash |
+| FIM-Baseline | persistiert im privaten App-Speicher; Löschung über App-Daten/Deinstallation | Code vorhanden; **NOT_TESTED** |
+| Vault (Binaries + Metadaten) | `/data/local/gedefense_vault`; bleibt bei App-Löschung ggf. bestehen (Root-Pfad) → muss dokumentiert/verwaltet werden | **offener Punkt** |
+| Containment/Witness-Evidenz | bestehende HMAC-Evidenz; Retention wie V1 (manuell; Automatik V2/V3 offen) | **PARTIAL (Emulator)** – Ledger gesund, 9 Records inkl. `witness-checkpoint`; Witness-Runtime PASS (lokal), vollständige Titan-Event-Matrix Level 3 **NOT_TESTED** |
+| Titan-Ereignisse im Report | minimierte Attribute (Endpunkt, Paket/UID, Fehlercode, Hash-Präfix) | Design; Export **NOT_TESTED** |
+
+**Ehrlichkeit:** Eine Binärverschlüsselung der Vault-Dateien ist **nicht** implementiert (nur
+Metadaten-/MAC-Kette). Der Vault liegt in einem Root-Pfad außerhalb der App-Verwaltung; das ist vor
+einer Veröffentlichung zu bewerten und im Datenschutztext zu erklären.
+
+### 11.4 Nutzerkontrolle (V3)
+
+| Kontrolle | Wirkung |
+| --- | --- |
+| Titan aktivieren (`activate()`) | expliziter Consent; nur danach darf die Root-Bestätigung laufen |
+| Titan-Scan starten | passive Aktualisierung von Privileg-/Socket-/FIM-Status |
+| Containment bestätigen | jede Aktion explizit; reversibel (Restore/Freigabe) |
+| Vault-Übersicht | zeigt quarantänisierte Objekte (Metadaten) |
+| Witness-Status | ehrlich „nicht gekoppelt“; keine Push-Behauptung |
+| App-Daten löschen/deinstallieren | entfernt private Titan-Daten; Vault-/Root-Pfade gesondert prüfen |
+
+### 11.5 Offene Punkte (V3, vor Veröffentlichung)
+
+1. Datenschutztext um Titan-Metadaten, Vault-Pfad und Consent erweitern.
+2. Export-Inhalte der Titan-Evidenz prüfen (keine rohen Socket-/Dateilisten).
+3. Vault-Lösch-/Aufbewahrungskonzept für Root-Geräte festlegen (bleibt außerhalb der App-Verwaltung).
+4. Nachweis „keine Uploads“ für Titan-Pfade führen (Code-Review + Netzwerktest).
+5. Verhältnis zu V2-Traffic-Metadaten dokumentieren (Titan-Sockets vs. VPN-Flows: Überschneidung,
+   Priorität, keine doppelte Erhebung).

@@ -9,7 +9,7 @@
 无外部 VPN 服务器。无云。无遥测。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk"><img src="https://img.shields.io/badge/release-0.2.0--alpha1-E8C46A?style=flat-square" alt="版本 0.2.0-alpha2"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="版本 0.3.0-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -23,9 +23,9 @@
 
 > ## ⚠️ 早期 ALPHA（early alpha）——每一位用户都是 Alpha 测试者
 >
-> GeDefense TV **0.2.0-alpha2** 是早期 Alpha 版本。它不是成品消费级产品，也不是经过审计的安全产品，
-> 发布的 APK 使用**测试签名密钥**签名。行为、界面和过滤策略会在不同 Alpha 版本之间变化。在依赖它之前：
-> 请阅读[适用范围与限制](#适用范围与限制)和[发布说明](RELEASE-NOTES.md)，并将每个结果视为提示，而不是保证。
+> GeDefense TV **0.3.0-alpha1** 是早期 Alpha 版本。它不是成品消费级产品，也不是经过审计的安全产品。
+> 发布的 APK 使用专用的 VGT Alpha 证书签名。行为、界面和过滤策略会在不同 Alpha 版本之间变化。在依赖它之前：
+> 请阅读[适用范围与限制](#适用范围与限制)、**[Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md)** 和 [发布说明](RELEASE-NOTES.md)，并将每个结果视为提示，而不是保证。
 
 ## 🌐 GeDefense 宇宙
 
@@ -33,7 +33,7 @@ GeDefense 是一套本地优先的安全架构，覆盖 Linux、Windows、Androi
 
 | 项目 | 方向 |
 | --- | --- |
-| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *（本仓库）* | Android TV / Google TV 安全控制台：回环 VPN、流量地图、XDR-Light 与可逆 Kinetic-Lite 遏制。 |
+| [![Android TV](https://img.shields.io/badge/Android_TV-3DDC84?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense_androidtv) **GeDefense TV** *（本仓库）* | Android TV / Google TV 安全控制台：回环 VPN、流量地图、XDR-Light、Titan 引擎与可逆 Kinetic-Lite 遏制。 |
 | [![Linux](https://img.shields.io/badge/Linux-D4AF37?style=flat-square&logo=linux&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefense) **GeDefense Linux** | 内核级网络防御：eBPF/XDP 执行、L7 WAF、带签名证据的主机 XDR、可逆加固（Rust/Go，完全本地）。 |
 | [![Windows](https://img.shields.io/badge/Windows-8B5CF6?style=flat-square&logo=windows&logoColor=ffffff)](https://github.com/visiongaiatechnology/gedefensewin) **GeDefense Windows** | 本地自主的 Windows 11 安全控制台：Defender/ASR/WFP/App Control、加固、MHX EDR/XDR、本地威胁情报与 HMAC 链式证据。 |
 | [![Android](https://img.shields.io/badge/Android-22D3EE?style=flat-square&logo=android&logoColor=0B1220)](https://github.com/visiongaiatechnology/gedefenseandroid) **GeDefense Android** | 原生 Android 安全平台：本地 VPN 执行、端点遥测、XDR/EDR 关联、威胁情报、应用风险分析与加密证据。 |
@@ -41,11 +41,16 @@ GeDefense 是一套本地优先的安全架构，覆盖 Linux、Windows、Androi
 
 ## 下载
 
-[![下载最新 Alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)
+[![下载最新 Alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
 
-请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)：
-确切的 APK 文件、校验和与构建说明都在那里。Alpha APK 使用测试签名——侧载时 Android 可能会警告。
-安装前请对照 [SHA256SUMS.txt](SHA256SUMS.txt) 或发布页附带的校验和核对 SHA-256。
+请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)：
+确切的 APK 文件、校验和与构建说明都在那里。详细的侧载与硬件测试说明请参见 **[Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md)**。
+安装前请对照 [SHA256SUMS.txt](SHA256SUMS.txt) 或发布页附带的校验和核对 SHA-256：
+
+| 构件 | 大小 | SHA-256 校验和 |
+| --- | --- | --- |
+| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk` | 6.522.110 字节 | `da4110eb18ed9376b2c16ad70065c9f39a1f7592865b612a469e969b0f3f2934` |
+| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8.811.121 字节 | `2fb107bb473bff4c6bcdbe8ed97605d057bd7e18b404bf80561331a25087b2d4` |
 
 ## 截图
 
@@ -136,6 +141,23 @@ C2 情报匹配以及高风险国家通道（仅作提示）。每个事件都�
 **默认仅观察。**临时封堵是显式选择加入的功能，仅在“Strict”配置文件中可用。启用后仅封堵目标前缀（绝不封堵应用），
 并带有严格护栏：至少两个独立信号、最低评分、已知目标国家、短 TTL（1–30 分钟，默认 10 分钟）、最多四个活动封堵，
 以及平台、Google 和 CDN 网段的允许列表。每次封堵都可撤销：会显示电视弹窗，用户可按**撤销**，封堵会在 TTL 到期后自动解除。
+
+### V3 Titan 引擎（终端守护者）
+
+专为 Android TV 打造的三层特权终端防御与物证存证架构：
+
+- **三层特权模型：**
+  - **Level 1 · 标准（所有 Android TV 上的默认模式）：** 非 root 用户空间。纯粹的可观测性与回环 VPN 过滤。所有 7 个特权防护盾诚实汇报*不可用*，绝无骚扰弹窗。
+  - **Level 2 · 监管（仅检测）：** 检测 Shizuku Binder 桥接与活动的网络调试（ADB TCP 端口 5555）。
+  - **Level 3 · 主权 Root（特权 TV 终端）：** 通过两步确认对话框显式激活（默认焦点在*取消*）。需要经过验证的 `su -c id` 返回 `uid=0(root)`。
+- **套接字溯源雷达：**
+  实时解析 `/proc/net/tcp` 与 `/proc/net/tcp6` 关联套接字：`Inode → PID → UID → 软件包名`。标记暴露的 ADB 端口（端口 5555）、无归属套接字以及已知的 C2 匹配。
+- **文件完整性监控（FIM）：**
+  对系统路径（`/system/bin`、`/system/xbin`、`/vendor/bin`、`/system/etc/init`、`/data/adb/modules`）进行基线差分审计。基于 SHA-256 基线检测未经授权或植入的二进制文件。
+- **可逆主动响应（封堵）：**
+  仅限允许列表中的安全操作（`FREEZE_APP`、`RESTORE_APP`、`ISOLATE_NETWORK_UID`、`KILL_PROCESS`、`CLOSE_ADB_PORT`）。绝对零破坏性代码（禁止 `rm -rf` 与分区擦除）。受保护的系统包（桌面 Launcher、系统设置、System UI）具有绝对豁免权。限速：60 秒内最多 8 次操作，带有自动过期机制。
+- **Ed25519 / HMAC 物证检查点：**
+  本地加密检查点，用于证明证据账本的完整性与时间序列。
 
 ### 由 Sir Quacksec 引导的首次启动向导
 
@@ -233,18 +255,20 @@ GeDefense TV 有意**不是**：
 
 ## 安装（侧载）
 
+有关不同电视硬件、ADB Wi-Fi 配对及 USB 安装的详细说明，请参见 **[Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md)**。
+
 1. 在电视上，为你用来安装 APK 的应用（侧载/文件管理器应用或 ADB）允许安装未知来源应用。
-2. 从[最新发布](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.2.0-alpha2/VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-signed.apk)安装 APK。
+2. 从[最新发布](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)安装 APK。
 3. 启动 **GeDefense TV**，按首次向导操作，并接受 Android 的一次性 VPN 同意对话框。
 4. 可选，通过 ADB：
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.2.0-alpha2_VC3_release-debugsigned.apk
+adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
-Alpha APK 使用**测试签名**。本 Alpha 不包含生产签名密钥。
+Alpha APK 使用 VGT Alpha 证书（`CN=VisionGaiaTechnology GeDefense TV Alpha`）签名。
 
 ## 从源码构建
 
@@ -266,10 +290,12 @@ export ANDROID_HOME=/path/to/android-sdk
 ## 测试
 
 ```bash
-./gradlew :tv-core:tvCoreCheck     # 核心领域测试
-./gradlew :tv-core:tvV2Check       # 流量 / 隐私 / XDR 领域测试
-./gradlew :tv-core:tvKineticCheck  # V2.1 异常与封堵测试
-./gradlew :app:lintDebug           # Android lint
+./gradlew :tv-core:tvCoreCheck     # 核心领域测试（554 通过）
+./gradlew :tv-core:tvV2Check       # 流量 / 隐私 / XDR 领域测试（4,398 通过）
+./gradlew :tv-core:tvKineticCheck  # V2.1 异常与封堵测试（3,025 通过）
+./gradlew :tv-core:tvTitanCheck    # V3 Titan 引擎测试（6,624 通过）
+# 总计：14,601 项 JVM 测试，0 失败
+./gradlew :app:lintDebug           # Android lint（0 错误 / 305 警告）
 ```
 
 随附核心的测试（`:core:coreCheck`）需要 Linux/macOS JVM：其持久化文件代码使用目录 `fsync`，Windows 不支持。
@@ -283,9 +309,9 @@ export ANDROID_HOME=/path/to/android-sdk
 ├── app/                    Android TV 应用模块（Views，无 AndroidX）
 │   └── src/main/            java/ · res/（6 种语言）· assets/ · jniLibs/ · AndroidManifest.xml
 ├── core/                   随附的 GeDefense Mobile 核心，字节级一致（纯 JVM）
-├── tv-core/                纯 JVM 领域：扫描、评分、流量、XDR、异常、报告
+├── tv-core/                纯 JVM 领域：扫描、评分、流量、XDR、Titan 引擎、报告
 ├── docs/                   架构、流量地图、首次向导、设计 DNA、模拟器指南、
-│                           screenshots/ 与 assets/
+│                           Alpha 测试者指南、screenshots/ 与 assets/
 ├── tools/                  构建/测试/模拟器/遥控/校验脚本
 ├── gradle/ + gradlew*      Gradle 8.7 wrapper（发行包 SHA-256 已固定）
 ├── build.gradle.kts        AGP 8.5.2 · Kotlin 1.9.24 · Java 17
@@ -296,12 +322,16 @@ export ANDROID_HOME=/path/to/android-sdk
 
 | 文档 | 内容 |
 | --- | --- |
+| **[docs/ALPHA-TESTER-GUIDE.md](docs/ALPHA-TESTER-GUIDE.md)** | **Alpha 测试者指南、侧载方式与 Issue 报告模板** |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | 模块图、数据流、采集器、证据、性能预算 |
+| [docs/TITAN-TV-ARCHITECTURE.md](docs/TITAN-TV-ARCHITECTURE.md) | Titan 引擎技术架构（特权门禁与主动响应） |
+| [docs/TITAN-TV-CONCEPT.md](docs/TITAN-TV-CONCEPT.md) | Titan TV 的概念基础与安全保证 |
+| [CHANGELOG.md](CHANGELOG.md) | 遵循 Keep a Changelog 规范的完整变更日志 |
 | [docs/V2-ARCHITECTURE.md](docs/V2-ARCHITECTURE.md) | 回环 VPN、遥测、流量聚合、原生助手供应链 |
 | [docs/TRAFFIC-MAP.md](docs/TRAFFIC-MAP.md) | 流量地图的数据来源、限制、颜色与隐私 |
 | [docs/ONBOARDING.md](docs/ONBOARDING.md) | 首次启动向导、同意与权限说明 |
 | [docs/DESIGN-DNA.md](docs/DESIGN-DNA.md) | 电视设计系统、焦点/交互规则、禁止模式 |
-| [SECURITY.md](SECURITY.md) | 安全设计、密钥保管、权限、报告政策 |
+| [SECURITY.md](SECURITY.md) | 安全设计、审计发现（TF-01..TF-12）与报告政策 |
 | [THREAT-MODEL.md](THREAT-MODEL.md) | 资产、信任边界、STRIDE 分析、电视特有风险 |
 | [PRIVACY.md](PRIVACY.md) | 数据清单、保留、导出、权限理由 |
 | [TEST-PLAN.md](TEST-PLAN.md) | 验收矩阵与证据要求 |

@@ -1,10 +1,7 @@
 # GeDefense TV — Android-TV-Emulator: Einrichtung und verifizierter Test
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
-**Stand:** 29. Oktober 2026 · **Produktversion:** 0.2.0-alpha1 ·
-**Status:** Anleitung **plus realer Emulator-Lauf** (Verifikationsprotokoll, read-only durch das Dokumentationsteam
+**Stand:** 29. Oktober 2026 · **Produktversion:** 0.1.0-alpha1 ·
+**Status:** Anleitung **plus realer Emulator-Lauf** (Lead-Endledger, read-only durch das Doku-Team
 gegengeprüft). Reale TV-Hardware bleibt **NOT_TESTED**.
 
 Diese Anleitung beschreibt, wie ein Android-TV-/Google-TV-Emulator eingerichtet, die APK installiert
@@ -39,7 +36,7 @@ die nur Anleitung sind, sind entsprechend eingeordnet.
 | App-Installation | `de.visiongaia.gedefense.tv`, `versionName=0.1.0-alpha1`, versionCode 1, DEBUGGABLE |
 | cmdline-tools | `23.0.0` (alt); `sdkmanager --list` erzeugte die Paketliste, endete danach abnorm mit `-1073740791` |
 
-Eigene read-only Gegenprüfung (Dokumentationsteam) per `adb`/`run-as`: App-Paket installiert und laufend
+Eigene read-only Gegenprüfung (Doku-Team) per `adb`/`run-as`: App-Paket installiert und laufend
 (PID vorhanden), Exportdateien im Download-Ordner, Ledger/Keyring im privaten
 `no_backup/evidence` (siehe §9).
 
@@ -207,7 +204,7 @@ Wichtig für GeDefense TV (T-11/T-12):
 - Kein Element darf ausschließlich per Touch/Hover erreichbar sein.
 
 Belegt: alle Screens per D-Pad erreichbar, Listen fokussierbar/scrollbar, Delete zweistufig,
-LEFT/BACK korrekt, keine Touch-Abhängigkeit (Screenshots).
+LEFT/BACK korrekt, keine Touch-Abhängigkeit (Screenshots 80–97).
 
 ---
 
@@ -218,12 +215,14 @@ $adb = "$sdk\platform-tools\adb.exe"
 
 # Auf dem Gerät speichern und abziehen (robust unter Windows PowerShell 5.1)
 & $adb shell screencap -p /sdcard/gedefense-tv-01.png
+& $adb pull /sdcard/gedefense-tv-01.png .\docs\screenshots\gedefense-tv-01.png
 & $adb shell rm /sdcard/gedefense-tv-01.png
 ```
 
 > Unter Windows PowerShell 5.1 kann `>` Binärdaten beschädigen; daher `screencap` + `adb pull`
 > verwenden. Für Abläufe: `adb shell screenrecord /sdcard/demo.mp4` (max. ~180 s) + `adb pull`.
 
+**Screenshots:** `docs/screenshots/`,
 1920×1080, Dateien **10–105**: Home, Rail, Check (ready/running/result), Findings (inkl. Scroll/
 Fokus), Apps, Hardening, ThreatIntel, Evidence, Settings, Export-Dialog/Fallback, Restart-Summary,
 RC-Stand 80–96.
@@ -291,11 +290,11 @@ mindestens zwei reale Geräte mit unterschiedlichem OEM erforderlich (Datenblatt
 | AVD-Erstellung `gedefense_tv` | **ja** |
 | Emulatorstart / Boot | **ja** (`emulator-5554 device`, API 36/Android 16) |
 | APK-Installation / App-Start | **ja** (Debug; Release-Smoke vor Redesign) |
-| Screenshots / D-Pad-Testläufe | **ja** (Screenshots, 1920×1080) |
+| Screenshots / D-Pad-Testläufe | **ja** (Screenshots 10–105, 1920×1080) |
 | Reale TV-Hardware | **nein (NOT_TESTED)** |
 | Offizielle Doku-URL zitiert | **ja** (siehe Kopf) |
 
-Die Anleitung bleibt reproduzierbar; die Evidenz stammt aus dem Verifikationsprotokoll und einer eigenen
+Die Anleitung bleibt reproduzierbar; die Evidenz stammt aus dem Lead-Endledger und einer eigenen
 read-only `adb`-Gegenprüfung.
 
 ---
@@ -333,4 +332,4 @@ $adb = "$sdk\platform-tools\adb.exe"
 
 **Wichtig:** V2-Erwartungen (Consent, Fail-Closed, Blocking, Karte, Onboarding, Sir Quacksec,
 TI-Modal) sind in TEST-PLAN §8 dokumentiert. Es werden **keine** V2-Ergebnisse behauptet, bis der
-Projektteam den V2-Ledger liefert.
+Lead den V2-Ledger liefert.

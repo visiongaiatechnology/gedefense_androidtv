@@ -1,8 +1,5 @@
 # GeDefense TV — Design-DNA (VGT GLASS 2100, Redesign 2026)
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Version:** 2.0 · **Stand:** 29. Oktober 2026 · **Status:** Design-DNA dokumentiert; Runtime-
 Tokens implementiert; **visuelle QA auf dem Android-TV-Emulator (API 36, 1080p) belegt**;
 reale TV-Hardware **NOT_TESTED**
@@ -279,18 +276,18 @@ Backdrop-Blur-Rendering, WebView, 3D/Canvas-Dekoration.
 
 | # | Prüfung | Status |
 | --- | --- | --- |
-| 1 | Product DNA vorhanden, eigenständiger Markeneindruck | **PASS (Emulator)** – Original-Logo, Obsidian/Gold, Screenshots |
+| 1 | Product DNA vorhanden, eigenständiger Markeneindruck | **PASS (Emulator)** – Original-Logo, Obsidian/Gold, Screenshots 80–96 |
 | 2 | Keine dekorativen Hintergrundgitter/Dot-Grids | **PASS (Code + Screenshots)** |
 | 3 | Glas-Materialsprache konsistent, keine Karteninflation | **PASS (Emulator, visuell)** |
 | 4 | Farbtheorie/Kontrast geprüft | **PARTIAL** – visuell begutachtet (Weiß-Familie, ≥ 4,5:1), keine formale Messung |
 | 5 | Primärer Fokus/Lesefluss/Makro-Hierarchie | **PASS (Emulator, Screenshots)** |
 | 6 | Bedienpfade per D-Pad erreichbar | **PASS (Emulator)** |
-| 7 | Emulator-Renderprüfung | **PASS (1080p-Screenshots)**; reale TV-Hardware **NOT_TESTED** |
+| 7 | Emulator-Renderprüfung | **PASS (1080p-Screenshots 10–105)**; reale TV-Hardware **NOT_TESTED** |
 | 8 | Empty/Loading/Error/Permission/Stale/Offline-Zustände | **PARTIAL** – Teil-/Restart-/Empty-Zustände belegt; Offline/Error nicht vollständig |
 | 9 | Motion reduziert/deaktivierbar | Design: nur kurze Fades/Scale; nicht separat getestet |
 | 10 | Keine Performance-Einbußen | **PASS (Emulator Kaltstart)**, reale Hardware offen |
 | 11 | Ohne Blur/Gradient/Shadow/3D weiterhin attraktiv und bedienbar | Designentscheidung (kein Blur/keine Gradienten) |
-| 12 | Screenshots/Previews mit Korrekturrunde | **PASS** – Redesign-Runde nach Nutzerfeedback (Screenshots → 80–96) |
+| 12 | Screenshots/Previews mit Korrekturrunde | **PASS** – Redesign-Runde nach Nutzerfeedback (Screenshots 50–57 → 80–96) |
 
 **Konsequenz:** Design-DNA und Emulator-Render sind belegt; reale TV-Hardware (OEM-Panel,
 Launcher-Darstellung, Fernbedienung) bleibt **NOT_TESTED**. Keine „fertig“-Bewertung für
@@ -335,4 +332,4 @@ Hintergrundgitter, keine Karteninflation, Status nur mit Glyph + Label.
 Asset: `res/drawable-nodpi/sir_quacksec.png` (vom Nutzer bereitgestellt, 749×820;
 Provenienz im SBOM). Kartenhintergrund: `world_map_ambient.png` (2560×1280, byte-identisch aus
 dem Mobile-Dossier). V2-Screenshots sind **noch nicht vorhanden**; sie werden erst nach
-Bereitstellung unter `docs/screenshots/` referenziert.
+Lead-Bereitstellung unter `docs/screenshots/` referenziert.

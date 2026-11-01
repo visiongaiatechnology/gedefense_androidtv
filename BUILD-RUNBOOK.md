@@ -1,10 +1,7 @@
 # GeDefense TV — Build-Runbook
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Version:** 0.2.0-alpha1 · **Stand:** 29. Oktober 2026 · **Status:** Runbook vollständig;
-Build-/Lint-/Emulator-Evidenz übernommen (PARTIAL_VERIFIED); finaler RC-Rebuild erfolgt (1.626.209 B, debug-signiert, Emulator-Smoke-Test)
+Build-/Lint-/Emulator-Evidenz übernommen (GOLD / PARTIAL_VERIFIED); finaler RC-Rebuild erfolgt (1.626.209 B, debug-signiert, Emulator-Smoke-Test)
 
 Dieses Runbook beschreibt die realen Build-/Testbefehle, Umgebungsannahmen, Artefaktpfade und
 Fehlerbehebung. Es dient dazu, jeden Lauf reproduzierbar und mit ehrlicher Evidenz zu protokollieren.
@@ -102,14 +99,14 @@ Zeitpunkt, Befehl, Umgebung, Exitcode und Rohausgabe. Es interpretiert das Ergeb
 .\tools\test.ps1 -IncludeAppTests -Lint
 ```
 
-> **Belegter Stand (29.10.2026, Verifikationsprotokoll):**
+> **Belegter Stand (29.10.2026, Lead-Endledger):**
 > `:tv-core:tvCoreCheck` → Exit 0, `PASS 554 / FAIL 0`, 35 Tests, `BUILD SUCCESSFUL`.
 > `:core:coreCheck` auf Linux-JVM (WSL Ubuntu 24.04, OpenJDK 17.0.20.1) → `CORE_TESTS_PASS`,
 > Exit 0; auf dem Windows-Host BLOCKED (Win32-`fsync`-Limitierung).
 > `:app:compileDebugKotlin` → Exit 0; `:app:lintDebug` → Exit 0, **0 Errors / 169 Warnings**;
 > `:app:assembleDebug` → Exit 0 (`app-debug.apk` **2.860.091 B** ≈ 2,86 MB);
 > `:app:assembleRelease` → Exit 0 (`app-release.apk` **1.626.209 B**, R8-minifiziert,
-> **debug-signiert**; offener Punkt für die Produktion F-01); Release installiert/gestartet (Smoke-Test,
+> **debug-signiert**; Produktions-Blocker F-01); Release installiert/gestartet (Smoke-Test,
 > Artefakt vor letztem Redesign → finaler RC-Rebuild erfolgt (1.626.209 B, debug-signiert, Emulator-Smoke-Test)).
 > Kaltstart (Debug, Emulator, Software-GPU): `am start -W` TotalTime **1,81–2,29 s**,
 > App-Bootstrap 191–261 ms, `navigate(HOME)` 118–135 ms; TI-Status O(1) (vorher 4.519 ms).
@@ -137,6 +134,7 @@ mit `-ForceCoreCheck` wird der Lauf versucht (erwartbar BLOCKED).
 > Release-Hashes festgeschrieben. Für den aktuellen Build können sie mit `Get-FileHash` gelesen
 > werden (siehe §5).
 
+`.gitignore` schließt `.gradle/`, `build/`, `.output/`, `*.log`, `local.properties` und
 Keystores aus. **Keine** Keystores/Passwörter committen.
 
 ---
@@ -153,11 +151,11 @@ $env:GEDEFENSE_RELEASE_KEY_ALIAS      = 'gedefense'
 $env:GEDEFENSE_RELEASE_KEY_PASSWORD   = '<Key-Passwort>'
 ```
 
-**Offener offener Punkt:** Fehlen die Variablen, fällt die `release`-Konfiguration
+**Offener Produktions-Release-Blocker:** Fehlen die Variablen, fällt die `release`-Konfiguration
 auf die **Debug-Signatur** zurück. Ein so signiertes 0.2.0-alpha1-APK ist ausdrücklich ein
 **debug-signiertes Testartefakt**, kein veröffentlichungsfähiges Release. Vor einer
 Veröffentlichung muss der Build ohne echte Release-Signatur abbrechen
-(Konfigurationsänderung durch den Projektteam). Dieser Punkt ist in [SECURITY.md](SECURITY.md) als F-01
+(Konfigurationsänderung durch den Lead). Dieser Punkt ist in [SECURITY.md](SECURITY.md) als F-01
 dokumentiert.
 
 Prüfung des erzeugten Artefakts:

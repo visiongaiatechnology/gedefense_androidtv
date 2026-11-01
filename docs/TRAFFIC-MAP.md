@@ -1,8 +1,5 @@
 # GeDefense TV — Traffic-Map
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Version:** 2.0-plan · **Stand:** 29. Oktober 2026 · **Status:** Design/Plan ·
 **Implementierung: NOT_TESTED** (UI/Telemetrie in Arbeit, keine V2-Screenshots vorhanden)
 
@@ -125,6 +122,6 @@ byte-identisch) als stille Hintergrundebene.
 | D-Pad-Detailnavigation ohne Fokusfalle | **NOT_TESTED** |
 | Kein Upload (Netzwerk-Trace/Proxy-Nachweis) | **NOT_TESTED** |
 | Performance/Frame-Zeit auf Emulator + realem TV | **NOT_TESTED** |
-| Screenshots der Map | **noch nicht vorhanden** (Projektteam platziert V2-Screenshots unter `docs/screenshots`) |
+| Screenshots der Map | **noch nicht vorhanden** (Lead platziert V2-Screenshots unter `docs/screenshots`) |
 
 Die zugehörigen Testfälle stehen in [TEST-PLAN.md](../TEST-PLAN.md) (V2-Matrix).

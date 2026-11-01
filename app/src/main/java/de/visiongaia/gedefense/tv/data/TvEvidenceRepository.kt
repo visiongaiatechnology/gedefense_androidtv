@@ -275,7 +275,7 @@ class TvEvidenceRepository(context: Context) : EvidenceApi {
      * authenticated evidence rows. The event schema stays exactly [TvEvent]; this method only adds
      * the evidence sink that the read-only contract does not model.
      */
-    fun recordEvents(events: List<TvEvent>): Boolean {
+    override fun recordEvents(events: List<TvEvent>): Boolean {
         if (events.isEmpty()) return true
         awaitReady()
         val records = events.map { event ->

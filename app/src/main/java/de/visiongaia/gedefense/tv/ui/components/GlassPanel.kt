@@ -11,7 +11,7 @@ import de.visiongaia.gedefense.tv.ui.TvTheme
  * Panels mark real boundaries (hero, posture, progress, notices, confirmation) - ordinary rows do
  * not get a panel. This keeps the composition structural instead of a card graveyard.
  */
-class GlassPanel @JvmOverloads constructor(
+open class GlassPanel @JvmOverloads constructor(
     context: Context,
     soft: Boolean = false,
 ) : LinearLayout(context) {

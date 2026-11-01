@@ -1,18 +1,15 @@
 # GeDefense TV V2 — Architektur: On-Device-Loopback-VPN, Traffic-Map, XDR-Light, Onboarding
 
-> **Release-Tree 0.2.0-alpha1:** Dieses Dokument ist für den Quellstand `0.2.0-alpha1` (VersionCode 2) kuratiert. Evidenzangaben mit Datum 29.10.2026 beziehen sich auf den jeweils genannten Build; V2/V2.1-Funktionen sind Alpha und nicht vollständig auf realer TV-Hardware abgenommen.
-
-
 **Version:** 2.0-plan · **Stand:** 29.10.2026 · **Dokumentstatus:** Architektur/Plan
-(Architektur-Entwurf erweitert) · **Implementierungsstand:** Verträge/Modelle/Manifest/Build und ein
+(Lead-Draft erweitert) · **Implementierungsstand:** Verträge/Modelle/Manifest/Build und ein
 Großteil der Klassen (VPN/Traffic/XDR/V2-Screens) sind angelegt; **Compile-, Laufzeit- und
 Emulator-Evidenz fehlen** · **Evidenzstatus: NOT_TESTED**
 
 > **Ehrlichkeit:** Dieses Dokument beschreibt die geplante V2-Architektur auf Basis des
-> Architektur-Entwurfs, der Verträge (`app/.../contract/V2Contracts.kt`), der Modelle
+> Lead-Drafts, der Verträge (`app/.../contract/V2Contracts.kt`), der Modelle
 > (`tv-core/.../model/{Traffic,Vpn}.kt`), des geänderten Manifest-/Build-Setups und des
 > Mobile-Referenzdossiers. Es werden **keine** V2-Testergebnisse, Screenshots oder Messwerte
-> behauptet. Sobald der Projektteam den V2-Endledger liefert, werden Status und Evidenz nachgetragen.
+> behauptet. Sobald der Lead den V2-Endledger liefert, werden Status und Evidenz nachgetragen.
 
 ---
 
@@ -119,7 +116,7 @@ Neue `TvRoute`-Ziele sind bereits definiert: `ONBOARDING`, `PROTECTION`, `TRAFFI
 
 ## 4. VPN-Datenplan und Fail-Closed-Verhalten
 
-- **TUN-Konfiguration (Architektur-Entwurf):** IPv4 `10.253.0.2/32`, IPv6 `fd7a:4744::2/128`;
+- **TUN-Konfiguration (Lead-Draft):** IPv4 `10.253.0.2/32`, IPv6 `fd7a:4744::2/128`;
   Full-Flow-Direktmodus (kein externer VPN-Server, kein WireGuard in V2.0).
 - **Datenpfad:** App → TUN (`TvVpnService`) → Helper (DNS-Parser, Flow-Engine, Threat-/Privacy-
   Policy) → direkter Egress über geschützte Upstream-Sockets; Telemetrie zurück an die App.
@@ -127,7 +124,7 @@ Neue `TvRoute`-Ziele sind bereits definiert: `ONBOARDING`, `PROTECTION`, `TRAFFI
   `jniLibs.useLegacyPackaging = true`), ohne Root, ohne externen Export.
 - **Steuerung:** privater Unix-Socket + zufälliger Token-Handshake; File-Descriptors per
   `SCM_RIGHTS`, keine kopierten Paket-Payloads über die Pipe.
-- **Telemetrie:** zeilen-/frame-basiert, 2…1024 Byte/Frame (Architektur-Entwurf), begrenzte Zähler und
+- **Telemetrie:** zeilen-/frame-basiert, 2…1024 Byte/Frame (Lead-Draft), begrenzte Zähler und
   Listen; die App validiert jede Zeile und verwirft Unbekanntes statt zu raten.
 
 **Zustandsmodell (`VpnState`):** `OFF`, `PREPARING`, `ACTIVE`, `DEGRADED`, `FAILED`,
@@ -257,11 +254,11 @@ Benachrichtigungsberechtigung betrifft ausschließlich die FGS-Sichtbarkeit.
 | Quelle | `GeDefense/Mobile/0.28.0-beta1/Source/app/src/main/jniLibs` (byte-identisch) |
 | Dateien | `libgedefense_gaianet_v2.so` (arm64-v8a, x86_64) |
 | Größen | arm64-v8a **3.588.356 B**; x86_64 **3.899.320 B** |
-| SHA-256 (Dokumentationsteam berechnet, 29.10.2026) | arm64-v8a `d34fda6f06ed7809c386af243b55e55cadd20794f1413b94ada3a729b26fd15e`; x86_64 `9f393ce49032a84f75717174b09748c08e86ff831886a38f68d0ac12975394f3` |
+| SHA-256 (Doku-Team berechnet, 29.10.2026) | arm64-v8a `d34fda6f06ed7809c386af243b55e55cadd20794f1413b94ada3a729b26fd15e`; x86_64 `9f393ce49032a84f75717174b09748c08e86ff831886a38f68d0ac12975394f3` |
 | Byte-Identität zum Mobile-Dossier | **verifiziert** (gleiche Größe + gleicher SHA-256 wie Mobile-Originale am 29.10.2026) |
 | Build-Einbindung | `abiFilters arm64-v8a, x86_64`; `jniLibs.useLegacyPackaging = true` (echte ausführbare Datei in `nativeLibraryDir`); `keepDebugSymbols` |
 | Ausführung | Kindprozess der App, kein Root, kein Export, kein JNI im Paket-Hot-Path |
-| Restpunkt | finaler, vom Projektteam bestätigter SHA-256-Eintrag im Release-Ledger; Integritätsprüfung zur Laufzeit (Self-Check) ist **NOT_TESTED** |
+| Restpunkt | finaler, vom Lead bestätigter SHA-256-Eintrag im Release-Ledger; Integritätsprüfung zur Laufzeit (Self-Check) ist **NOT_TESTED** |
 
 Der Helper ist ein **internes, vendortes Bauteil** (kein neues Drittanbieter-Runtime-Paket im
 Sinne der SBOM-Politik). Externe Go-Module im Helper stammen aus dem Mobile-Dossier und werden
@@ -314,7 +311,7 @@ Binaries sind im Mobile-Dossier dokumentiert.
 | Punkt | Status |
 | --- | --- |
 | VPN-Service/Helper-Integration, Telemetrie, XDR, Onboarding, V2-UI | **Code überwiegend vorhanden (Stand 29.10.2026)**; Compile/Laufzeit **NOT_TESTED** |
-| V2-Screenshots | noch nicht vorhanden; Projektteam platziert sie unter `docs/screenshots` (keine Platzhalter erfunden) |
+| V2-Screenshots | noch nicht vorhanden; Lead platziert sie unter `docs/screenshots` (keine Platzhalter erfunden) |
 | Geo-Datenquelle/-lizenz, Länderabdeckung | offen; muss im SBOM/Quellenverzeichnis belegt werden |
 | Policy-/Regel-Integrität (signierte Policy-Binaries?) | offen; derzeit kein Signaturmechanismus dokumentiert |
 | Telemetrie-Retention/Persistenzdauer | Implementierungsdetail; muss in PRIVACY.md final belegt werden |
@@ -327,10 +324,10 @@ Binaries sind im Mobile-Dossier dokumentiert.
 
 ## 15. Referenzen
 
-- Architektur-Entwurf: `docs/V2-ARCHITECTURE.md` (dieses Dokument ersetzt/erweitert ihn).
+- Lead-Draft: `docs/V2-ARCHITECTURE.md` (dieses Dokument ersetzt/erweitert ihn).
 - Verträge: `app/src/main/java/de/visiongaia/gedefense/tv/contract/V2Contracts.kt`,
   `Contracts.kt`; Modelle: `tv-core/src/main/kotlin/.../model/Traffic.kt`, `Vpn.kt`.
 - Mobile-Referenz: `GeDefense/Mobile/0.28.0-beta1/Source/docs/datasheets/GeDefense-Mobile-Master-Architecture-EN.md`
   (Zwei-Prozess-Modell, `GeDefenseVpnService`, `NativeGaiaNet`, `SCM_RIGHTS`, XDR-/Traffic-Stores;
   Mobile-Fähigkeiten wie WireGuard/externe Tunnel sind **nicht** Teil von TV V2.0).
-- Screenshots V1 (vorhanden): `docs/screenshots`; V2-Screenshots folgen.
+- Screenshots V1 (vorhanden): `docs/screenshots/01…10`; V2-Screenshots folgen.

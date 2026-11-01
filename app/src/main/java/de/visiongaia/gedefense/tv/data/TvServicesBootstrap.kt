@@ -1,4 +1,4 @@
-﻿package de.visiongaia.gedefense.tv.data
+package de.visiongaia.gedefense.tv.data
 
 import android.content.Context
 import android.content.pm.PackageManager
@@ -6,6 +6,7 @@ import de.visiongaia.gedefense.tv.TvServices
 import de.visiongaia.gedefense.tv.core.report.DefaultReportRenderer
 import de.visiongaia.gedefense.tv.core.text.DeCatalog
 import de.visiongaia.gedefense.tv.ui.text.ResourceTextCatalog
+import de.visiongaia.gedefense.tv.data.titan.TitanController
 import de.visiongaia.gedefense.tv.geo.TvGeoLookup
 import de.visiongaia.gedefense.tv.geo.TvGeoRepository
 import de.visiongaia.gedefense.tv.scan.DefaultScanController
@@ -86,6 +87,16 @@ object TvServicesBootstrap {
                 containment.updateBaseThreatIndex(index)
             }
             NativeGaiaNet.initialize(appContext)
+            // V3 Titan Engine: privileged detection/collectors. Construction is cheap and never
+            // prompts; the passive warm-up runs on its own background thread.
+            val titan = TitanController(
+                context = appContext,
+                settings = settings,
+                evidence = evidence,
+                threatIndexProvider = { threatIntel.policyIndexSnapshot() },
+                deviceId = deviceId,
+                osApiLevel = android.os.Build.VERSION.SDK_INT,
+            )
             val services = TvServices.createForTest(
                 appContext = appContext,
                 catalog = ResourceTextCatalog(appContext),
@@ -102,6 +113,7 @@ object TvServicesBootstrap {
                 xdr = xdr,
                 anomaly = anomaly,
                 containment = containment,
+                titan = titan,
             )
             TvServices.install(services)
             containment.start()

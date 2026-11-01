@@ -34,3 +34,11 @@ tasks.register<JavaExec>("tvKineticCheck") {
     classpath = sourceSets["test"].runtimeClasspath
     mainClass.set("de.visiongaia.gedefense.tv.core.KineticTestMainKt")
 }
+
+tasks.register<JavaExec>("tvTitanCheck") {
+    group = "verification"
+    description = "Runs the GeDefense TV Titan Engine domain verification harness (proc/socket/FIM/witness/response)."
+    dependsOn(tasks.named("testClasses"))
+    classpath = sourceSets["test"].runtimeClasspath
+    mainClass.set("de.visiongaia.gedefense.tv.core.TitanTestMainKt")
+}

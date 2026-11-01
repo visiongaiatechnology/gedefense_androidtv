@@ -18,6 +18,7 @@ enum class TvRoute {
     FINDING_DETAIL,
     APPS,
     HARDENING,
+    TITAN,
     THREAT_INTEL,
     EVIDENCE,
     SETTINGS,

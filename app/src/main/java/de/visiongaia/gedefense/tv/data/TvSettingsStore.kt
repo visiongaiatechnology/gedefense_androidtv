@@ -225,6 +225,58 @@ class TvSettingsStore(context: Context) : SettingsApi {
         }
     }
 
+    // ------------------------------------------------------------------ Titan Engine (V3) settings
+
+    /**
+     * Explicit user consent for the privileged Titan command channel.
+     *
+     * Default and fail-safe value is `false`: a missing, corrupted or foreign preferences file can
+     * never be interpreted as consent, so no root probe runs without a direct user action.
+     */
+    override fun titanConsentGranted(): Boolean = try {
+        prefs.getBoolean(KEY_TITAN_CONSENT, false)
+    } catch (_: RuntimeException) {
+        false
+    }
+
+    override fun setTitanConsentGranted(granted: Boolean) {
+        try {
+            prefs.edit().putBoolean(KEY_TITAN_CONSENT, granted).apply()
+        } catch (_: RuntimeException) {
+            // A failed consent write keeps the previous (fail-safe) state; activation reports it.
+        }
+    }
+
+    /** User-enabled C2 socket guard; on by default because the pass itself stays visibility-bounded. */
+    override fun titanSocketGuardEnabled(): Boolean = try {
+        prefs.getBoolean(KEY_TITAN_SOCKET_GUARD, true)
+    } catch (_: RuntimeException) {
+        true
+    }
+
+    override fun setTitanSocketGuardEnabled(enabled: Boolean) {
+        try {
+            prefs.edit().putBoolean(KEY_TITAN_SOCKET_GUARD, enabled).apply()
+        } catch (_: RuntimeException) {
+            // Preferences failures must never crash the Titan screen.
+        }
+    }
+
+    /** User-enabled FIM Anti-Planting guard; on by default (read-only delta pass). */
+    override fun titanFimGuardEnabled(): Boolean = try {
+        prefs.getBoolean(KEY_TITAN_FIM_GUARD, true)
+    } catch (_: RuntimeException) {
+        true
+    }
+
+    override fun setTitanFimGuardEnabled(enabled: Boolean) {
+        try {
+            prefs.edit().putBoolean(KEY_TITAN_FIM_GUARD, enabled).apply()
+        } catch (_: RuntimeException) {
+            // Preferences failures must never crash the Titan screen.
+        }
+    }
+
     /** Last completed threat-intel sync, or 0 when the app never synced on this device. */
     fun lastThreatIntelSyncAtMillis(): Long = prefs.getLong(KEY_TI_LAST_SYNC_AT, 0L).coerceAtLeast(0L)
 
@@ -299,6 +351,9 @@ class TvSettingsStore(context: Context) : SettingsApi {
         private const val KEY_PROTECTION_SETUP_DONE = "vpn.protection_setup_done"
         private const val KEY_DETAILED_TELEMETRY = "vpn.detailed_telemetry"
         private const val KEY_CONTAINMENT_ENABLED = "vpn.containment_enabled"
+        private const val KEY_TITAN_CONSENT = "titan.consent_granted"
+        private const val KEY_TITAN_SOCKET_GUARD = "titan.socket_guard_enabled"
+        private const val KEY_TITAN_FIM_GUARD = "titan.fim_guard_enabled"
 
         const val DEFAULT_RETENTION_DAYS = 30
         const val MIN_RETENTION_DAYS = 1
