@@ -5,9 +5,15 @@ import android.app.admin.DevicePolicyManager
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.LinkProperties
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
 import android.view.accessibility.AccessibilityManager
+import de.visiongaia.gedefense.tv.platform.titan.privilege.TitanBoundedProcess
+import java.net.InetSocketAddress
+import java.net.Socket
 import de.visiongaia.gedefense.tv.core.model.AccessibilityService
 import de.visiongaia.gedefense.tv.core.model.CancelSignal
 import de.visiongaia.gedefense.tv.core.model.CollectorCategory
@@ -64,7 +70,12 @@ class HardeningCollector(context: Context) : TvCollector {
             val admins = readActiveAdmins()
             val accessibility = readAccessibilityServices()
             val ownInstaller = readOwnInstaller()
-            val nonStoreInstallers = readVisibleNonStoreInstallers()
+            val packageSignals = readVisiblePackageSignals()
+            val selinuxEnforcing = readSelinuxEnforcing()
+            val adbTcpExposed = readAdbTcpExposed()
+            val adbWifiEnabled = readGlobalFlag(SETTING_ADB_WIFI_ENABLED)
+            val adbUnauthenticated = readAdbUnauthenticated()
+            val networkHardening = readNetworkHardening()
 
             if (cancel.isCancelled()) throw InterruptedException("hardening collector cancelled")
 
@@ -78,8 +89,16 @@ class HardeningCollector(context: Context) : TvCollector {
                 activeDeviceAdminPackages = admins.packages,
                 accessibilityEnabledServices = accessibility.services,
                 accessibilityKnownSystemPackages = KNOWN_SYSTEM_ACCESSIBILITY_PACKAGES,
-                visibleNonStoreInstallers = nonStoreInstallers.packages,
+                visibleNonStoreInstallers = packageSignals.nonStoreInstallers,
                 ownInstallerPackage = ownInstaller.packageName,
+                selinuxEnforcing = selinuxEnforcing,
+                adbTcpExposed = adbTcpExposed,
+                adbWifiEnabled = adbWifiEnabled,
+                adbUnauthenticated = adbUnauthenticated,
+                httpProxyConfigured = networkHardening.httpProxyConfigured,
+                privateDnsActive = networkHardening.privateDnsActive,
+                visibleSideloadedApps = packageSignals.sideloadedApps,
+                visibleDebuggableApps = packageSignals.debuggableApps,
             )
 
             val evidence = CollectorSupport.evidence(descriptor.id, collectedAt)
@@ -99,7 +118,13 @@ class HardeningCollector(context: Context) : TvCollector {
                 admins.readable,
                 accessibility.readable,
                 ownInstaller.readable,
-                nonStoreInstallers.readable,
+                packageSignals.readable,
+                selinuxEnforcing.readable,
+                adbTcpExposed.readable,
+                adbWifiEnabled.readable,
+                adbUnauthenticated.readable,
+                networkHardening.httpProxyConfigured.readable,
+                networkHardening.privateDnsActive.readable,
             ).count { it }
             val totalChecks = TOTAL_CHECKS
             // The installer enumeration is bounded by package visibility on Android 11+, so even a
@@ -253,17 +278,30 @@ class HardeningCollector(context: Context) : TvCollector {
         InstallerRead(null, readable = false)
     }
 
-    private data class InstallersRead(val packages: List<String>, val readable: Boolean)
+    private data class PackageSignalsRead(
+        val nonStoreInstallers: List<String>,
+        val sideloadedApps: List<String>,
+        val debuggableApps: List<String>,
+        val readable: Boolean,
+    )
 
-    private fun readVisibleNonStoreInstallers(): InstallersRead = try {
+    private fun readVisiblePackageSignals(): PackageSignalsRead = try {
         val installers = LinkedHashSet<String>()
+        val sideloaded = LinkedHashSet<String>()
+        val debuggable = LinkedHashSet<String>()
         val packages = packageManager.getInstalledPackages(0)
         val bound = minOf(packages.size, MAX_INSTALLER_SCAN)
         for (index in 0 until bound) {
-            if (installers.size >= 512) break
             val packageInfo = packages[index]
             val packageName = packageInfo?.packageName ?: continue
             if (packageName == appContext.packageName) continue
+            if (!PACKAGE_NAME_PATTERN.matches(packageName)) continue
+            val appInfo = packageInfo.applicationInfo
+            val isSystem = appInfo != null && (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+            val isDebuggable = appInfo != null && (appInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
+            if (!isSystem && isDebuggable && debuggable.size < 256) {
+                debuggable.add(packageName)
+            }
             val installer = try {
                 if (Build.VERSION.SDK_INT >= 30) {
                     packageManager.getInstallSourceInfo(packageName).installingPackageName
@@ -273,22 +311,142 @@ class HardeningCollector(context: Context) : TvCollector {
                 }
             } catch (_: Throwable) {
                 null
-            } ?: continue
-            if (installer in InstalledApp.KNOWN_STORES) continue
-            if (installer == appContext.packageName) continue
-            if (!PACKAGE_NAME_PATTERN.matches(installer)) continue
-            installers.add(installer)
+            }
+            if (!isSystem && (installer == null || installer !in InstalledApp.KNOWN_STORES)) {
+                if (sideloaded.size < 512) sideloaded.add(packageName)
+            }
+            if (installer != null && installer !in InstalledApp.KNOWN_STORES &&
+                installer != appContext.packageName && PACKAGE_NAME_PATTERN.matches(installer) &&
+                installers.size < 512
+            ) {
+                installers.add(installer)
+            }
         }
-        InstallersRead(installers.toList().sorted(), readable = true)
+        PackageSignalsRead(
+            nonStoreInstallers = installers.toList().sorted(),
+            sideloadedApps = sideloaded.toList().sorted(),
+            debuggableApps = debuggable.toList().sorted(),
+            readable = true,
+        )
     } catch (_: Throwable) {
-        InstallersRead(emptyList(), readable = false)
+        PackageSignalsRead(emptyList(), emptyList(), emptyList(), readable = false)
+    }
+
+    private fun readSelinuxEnforcing(): Observed<Boolean> = try {
+        val outcome = TitanBoundedProcess.run(
+            argv = listOf(GETENFORCE_PROGRAM),
+            workingDirectory = null,
+            timeoutMillis = LOCAL_PROBE_TIMEOUT_MILLIS,
+            maxBytes = LOCAL_PROBE_CAP_BYTES,
+        )
+        val value = if (outcome.started && !outcome.timedOut && outcome.exitCode == 0) {
+            outcome.output.trim()
+        } else {
+            ""
+        }
+        when {
+            value.isEmpty() -> Observed.unreadable()
+            value.equals(SELINUX_ENFORCING, ignoreCase = true) -> Observed.of(true)
+            else -> Observed.of(false)
+        }
+    } catch (_: Throwable) {
+        Observed.unreadable()
+    }
+
+    private fun readAdbTcpExposed(): Observed<Boolean> {
+        val propRaw = readProp(PROPERTY_ADB_TCP_PORT)
+        val propPort = propRaw?.trim()?.toIntOrNull()
+        if (propPort != null && propPort > 0) return Observed.of(true)
+        if (probeLocalhostTcp(ADB_TCP_PORT)) return Observed.of(true)
+        return if (propRaw != null) Observed.of(false) else Observed.unreadable()
+    }
+
+    private fun readAdbUnauthenticated(): Observed<Boolean> = when (readProp(PROPERTY_ADB_SECURE)?.trim()) {
+        "0" -> Observed.of(true)
+        "1" -> Observed.of(false)
+        else -> Observed.unreadable()
+    }
+
+    private fun readProp(name: String): String? = try {
+        val outcome = TitanBoundedProcess.run(
+            argv = listOf(GETPROP_PROGRAM, name),
+            workingDirectory = null,
+            timeoutMillis = LOCAL_PROBE_TIMEOUT_MILLIS,
+            maxBytes = LOCAL_PROBE_CAP_BYTES,
+        )
+        if (outcome.started && !outcome.timedOut && !outcome.truncated && outcome.exitCode == 0) {
+            outcome.output
+        } else {
+            null
+        }
+    } catch (_: Throwable) {
+        null
+    }
+
+    private fun probeLocalhostTcp(port: Int): Boolean = try {
+        Socket().use { socket ->
+            socket.connect(InetSocketAddress("127.0.0.1", port), LOOPBACK_PROBE_TIMEOUT_MS)
+            true
+        }
+    } catch (_: Throwable) {
+        false
+    }
+
+    private data class NetworkHardeningRead(
+        val httpProxyConfigured: Observed<Boolean>,
+        val privateDnsActive: Observed<Boolean>,
+    )
+
+    private fun readNetworkHardening(): NetworkHardeningRead = try {
+        val cm = appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        if (cm == null) {
+            NetworkHardeningRead(Observed.unreadable(), Observed.unreadable())
+        } else {
+            val link = activePhysicalLinkProperties(cm)
+            if (link == null) {
+                NetworkHardeningRead(Observed.unreadable(), Observed.unreadable())
+            } else {
+                val hasProxy = link.httpProxy != null
+                val privateDns = if (Build.VERSION.SDK_INT >= 28) {
+                    Observed.of(link.isPrivateDnsActive)
+                } else {
+                    Observed.unreadable()
+                }
+                NetworkHardeningRead(Observed.of(hasProxy), privateDns)
+            }
+        }
+    } catch (_: Throwable) {
+        NetworkHardeningRead(Observed.unreadable(), Observed.unreadable())
+    }
+
+    @Suppress("DEPRECATION")
+    private fun activePhysicalLinkProperties(cm: ConnectivityManager): LinkProperties? {
+        val networks = runCatching { cm.allNetworks }.getOrNull().orEmpty()
+        for (network in networks) {
+            val caps = runCatching { cm.getNetworkCapabilities(network) }.getOrNull() ?: continue
+            if (caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) continue
+            if (!caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) continue
+            val props = runCatching { cm.getLinkProperties(network) }.getOrNull()
+            if (props != null) return props
+        }
+        return cm.activeNetwork?.let { runCatching { cm.getLinkProperties(it) }.getOrNull() }
     }
 
     companion object {
         private const val UNSET = -1
-        private const val TOTAL_CHECKS = 8
+        private const val TOTAL_CHECKS = 14
         private const val MAX_ACCESSIBILITY_SERVICES = 256
         private const val MAX_INSTALLER_SCAN = 1_500
+        private const val GETENFORCE_PROGRAM = "getenforce"
+        private const val GETPROP_PROGRAM = "getprop"
+        private const val SELINUX_ENFORCING = "Enforcing"
+        private const val PROPERTY_ADB_TCP_PORT = "service.adb.tcp.port"
+        private const val PROPERTY_ADB_SECURE = "ro.adb.secure"
+        private const val SETTING_ADB_WIFI_ENABLED = "adb_wifi_enabled"
+        private const val ADB_TCP_PORT = 5_555
+        private const val LOOPBACK_PROBE_TIMEOUT_MS = 150
+        private const val LOCAL_PROBE_TIMEOUT_MILLIS = 1_500L
+        private const val LOCAL_PROBE_CAP_BYTES = 2 * 1024
         private val PACKAGE_NAME_PATTERN = Regex("[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z][A-Za-z0-9_]*)+")
 
         /** Conservative allowlist of accessibility packages that ship with Android TV / Google TV. */

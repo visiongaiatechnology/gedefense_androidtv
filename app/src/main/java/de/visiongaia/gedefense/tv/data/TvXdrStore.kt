@@ -48,6 +48,12 @@ class TvXdrStore(
     @Volatile
     private var lastSessionStart = 0L
 
+    @Volatile
+    private var currentThreatIndex: de.visiongaia.gedefense.mobile.core.ThreatIndex = initialThreatIndex
+
+    @Volatile
+    private var currentSideloadedPackages: Set<String> = emptySet()
+
     /** Attaches the evaluator to the live traffic store (idempotent). */
     fun attach(trafficStore: TvTrafficStore) {
         traffic = trafficStore
@@ -55,12 +61,33 @@ class TvXdrStore(
         trafficStore.addSnapshotListener { _, _ -> requestEvaluation() }
     }
 
+    /** Updates visible sideloaded package names discovered by AppInventory/Hardening scans. */
+    fun setSideloadedPackages(packages: Set<String>) {
+        val bounded = packages.take(1_024).toSet()
+        synchronized(lock) {
+            if (bounded == currentSideloadedPackages) return
+            currentSideloadedPackages = bounded
+            engine = TvXdrEngine(
+                threatIndex = currentThreatIndex,
+                config = XdrConfig(
+                    maxIncidents = MAX_INCIDENTS,
+                    sideloadedPackages = bounded,
+                ),
+            )
+        }
+        requestEvaluation()
+    }
+
     /** Replaces the policy context after a successful threat-intel sync. */
     fun setThreatIndex(index: de.visiongaia.gedefense.mobile.core.ThreatIndex) {
         synchronized(lock) {
+            currentThreatIndex = index
             engine = TvXdrEngine(
                 threatIndex = index,
-                config = XdrConfig(maxIncidents = MAX_INCIDENTS),
+                config = XdrConfig(
+                    maxIncidents = MAX_INCIDENTS,
+                    sideloadedPackages = currentSideloadedPackages,
+                ),
             )
             cachedIncidents = emptyList()
         }

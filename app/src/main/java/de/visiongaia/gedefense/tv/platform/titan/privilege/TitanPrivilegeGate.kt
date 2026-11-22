@@ -53,11 +53,13 @@ class TitanPrivilegeGate(context: Context) {
                 else -> TitanRootKind.DIRTY
             }
             val selinuxRaw = readGetenforce()?.trim()?.takeIf { it.isNotEmpty() }?.take(MAX_SELINUX_RAW_CHARS)
+            val adbWifiExposed = readAdbWifiEnabled()
             val build = TitanBuildIntegrity(
                 testKeys = buildHasTestKeys(),
                 debuggableBuild = parseDebuggable(readGetprop(PROPERTY_DEBUGGABLE)?.trim()),
                 selinuxEnforcing = parseSelinuxEnforcing(selinuxRaw),
                 adbTcpExposed = parseAdbTcpExposed(readGetprop(PROPERTY_ADB_TCP_PORT)?.trim()),
+                adbWifiExposed = adbWifiExposed,
                 selinuxRaw = selinuxRaw,
             )
             val shizukuInstalled = packageInstalled(SHIZUKU_PACKAGE)
@@ -211,20 +213,90 @@ class TitanPrivilegeGate(context: Context) {
     }
 
     /**
-     * Reachability probe of the Shizuku binder bridge.
-     *
-     * `android.os.ServiceManager` is a hidden API. The lookup is wrapped in `catch (Throwable)`
-     * because hidden-API enforcement, missing binder services and API-level differences all surface
-     * as different throwable types here. On the vast majority of devices and API levels this returns
-     * `false`, which is the honest answer: Shizuku presence is detected, but no command bridge is
-     * claimed in this alpha.
+     * Requests/verifies Shizuku authorization and runs an identity probe through the Shizuku
+     * binder bridge. Only when the remote `id` command confirms `uid=2000(shell)` or `uid=0(root)`
+     * does the snapshot elevate to [TitanPrivilegeLevel.SHIZUKU].
      */
-    private fun shizukuBridgeReachable(): Boolean = try {
-        val serviceManagerClass = Class.forName(SERVICE_MANAGER_CLASS)
-        val getService = serviceManagerClass.getMethod(GET_SERVICE_METHOD, String::class.java)
-        getService.invoke(null, SHIZUKU_SERVICE_NAME) != null
+    fun confirmShizuku(
+        snapshot: TitanPrivilegeSnapshot,
+        shell: TitanShell,
+        nowMillis: Long,
+    ): TitanPrivilegeSnapshot {
+        val at = nowMillis.coerceAtLeast(1L)
+        if (!TitanShizukuClient.tryDiscoverBinder(appContext)) {
+            return snapshot.copy(
+                level = TitanPrivilegeLevel.STANDARD,
+                shizukuBridgeAvailable = false,
+                checkedAtMillis = at,
+                notes = withNote(
+                    snapshot.notes,
+                    MessageRef(TitanTextKeys.NOTE_SHIZUKU_BRIDGE_MISSING),
+                ),
+            )
+        }
+        val permission = TitanShizukuClient.ensurePermission(appContext)
+        if (permission != TitanShizukuClient.PermissionState.GRANTED) {
+            val noteKey = if (permission == TitanShizukuClient.PermissionState.UNAVAILABLE) {
+                TitanTextKeys.NOTE_SHIZUKU_BRIDGE_MISSING
+            } else {
+                TitanTextKeys.NOTE_SHIZUKU_PERMISSION_DENIED
+            }
+            return snapshot.copy(
+                level = TitanPrivilegeLevel.STANDARD,
+                shizukuBridgeAvailable = true,
+                checkedAtMillis = at,
+                notes = withNote(snapshot.notes, MessageRef(noteKey)),
+            )
+        }
+        val probe = try {
+            shell.probeShizuku()
+        } catch (error: Throwable) {
+            Log.w(TAG, "titan_shizuku_probe_failed:${error.javaClass.simpleName}")
+            null
+        }
+        val confirmed = probe != null && probe.ok &&
+            (probe.output.contains(SHELL_UID_MARKER) || probe.output.contains(ROOT_UID_MARKER))
+        return if (confirmed) {
+            snapshot.copy(
+                level = TitanPrivilegeLevel.SHIZUKU,
+                shizukuInstalled = true,
+                shizukuBridgeAvailable = true,
+                checkedAtMillis = at,
+                notes = withNote(
+                    withoutNote(
+                        withoutNote(snapshot.notes, TitanTextKeys.NOTE_STANDARD_ONLY),
+                        TitanTextKeys.NOTE_SHIZUKU_BRIDGE_MISSING,
+                    ),
+                    MessageRef(TitanTextKeys.NOTE_SHIZUKU_ACTIVE),
+                ),
+            )
+        } else {
+            snapshot.copy(
+                level = TitanPrivilegeLevel.STANDARD,
+                shizukuBridgeAvailable = false,
+                checkedAtMillis = at,
+                notes = withNote(
+                    snapshot.notes,
+                    MessageRef(TitanTextKeys.NOTE_SHIZUKU_BRIDGE_MISSING),
+                ),
+            )
+        }
+    }
+
+    /**
+     * Reachability probe of the Shizuku binder bridge: checks the pushed [TitanShizukuProvider]
+     * binder first, then falls back to `ServiceManager.getService("shizuku")`.
+     */
+    private fun shizukuBridgeReachable(): Boolean = TitanShizukuClient.tryDiscoverBinder(appContext)
+
+    private fun readAdbWifiEnabled(): Boolean? = try {
+        when (android.provider.Settings.Global.getInt(appContext.contentResolver, SETTING_ADB_WIFI_ENABLED, -1)) {
+            1 -> true
+            0 -> false
+            else -> null
+        }
     } catch (_: Throwable) {
-        false
+        null
     }
 
     // ------------------------------------------------------------------ note composition
@@ -294,11 +366,10 @@ class TitanPrivilegeGate(context: Context) {
         const val PROPERTY_ADB_TCP_PORT = "service.adb.tcp.port"
         const val TEST_KEYS_TAG = "test-keys"
         const val SELINUX_ENFORCING = "Enforcing"
-        const val SERVICE_MANAGER_CLASS = "android.os.ServiceManager"
-        const val GET_SERVICE_METHOD = "getService"
-        const val SHIZUKU_SERVICE_NAME = "shizuku"
         const val SHIZUKU_PACKAGE = "moe.shizuku.privileged.api"
         const val ROOT_UID_MARKER = "uid=0(root)"
+        const val SHELL_UID_MARKER = "uid=2000(shell)"
+        const val SETTING_ADB_WIFI_ENABLED = "adb_wifi_enabled"
         const val MAX_SELINUX_RAW_CHARS = 32
         const val MAX_PASSIVE_NOTES = 10
         const val LOCAL_PROBE_TIMEOUT_MILLIS = 2_000L

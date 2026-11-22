@@ -19,6 +19,14 @@ data class HardeningObservations(
     val accessibilityKnownSystemPackages: Set<String>,
     val visibleNonStoreInstallers: List<String>,
     val ownInstallerPackage: String?,
+    val selinuxEnforcing: Observed<Boolean>? = null,
+    val adbTcpExposed: Observed<Boolean>? = null,
+    val adbWifiEnabled: Observed<Boolean>? = null,
+    val adbUnauthenticated: Observed<Boolean>? = null,
+    val httpProxyConfigured: Observed<Boolean>? = null,
+    val privateDnsActive: Observed<Boolean>? = null,
+    val visibleSideloadedApps: List<String> = emptyList(),
+    val visibleDebuggableApps: List<String> = emptyList(),
 ) {
     init {
         require(collectedAtMillis > 0L) { "invalid hardening timestamp" }
@@ -28,6 +36,8 @@ data class HardeningObservations(
         require(accessibilityEnabledServices.size <= 256) { "too many accessibility services" }
         require(visibleNonStoreInstallers.size <= 512) { "too many installer packages" }
         require(accessibilityKnownSystemPackages.size <= 256) { "too many known accessibility packages" }
+        require(visibleSideloadedApps.size <= 512) { "too many sideloaded packages" }
+        require(visibleDebuggableApps.size <= 256) { "too many debuggable packages" }
     }
 
     /** True when the build itself advertises a non-production signing/build configuration. */

@@ -1,14 +1,2 @@
-# SHA256SUMS — GeDefense TV 0.3.0-alpha1 (VersionCode 4)
-#
-# Release artifacts built and signed with Alpha Certificate
-# CN=VisionGaiaTechnology GeDefense TV Alpha, OU=Android TV, O=VisionGaiaTechnology
-#
-# Verification after download (Linux/macOS):
-#   sha256sum -c SHA256SUMS.txt
-# Verification on Windows (PowerShell):
-#   Get-FileHash .\VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk -Algorithm SHA256
-#
-# Release page: https://github.com/visiongaiatechnology/gedefense_androidtv/releases/latest
-
-DA4110EB18ED9376B2C16AD70065C9F39A1F7592865B612A469E969B0F3F2934  VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
-2FB107BB473BFF4C6BCDBE8ED97605D057BD7E18B404BF80561331A25087B2D4  VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk
+1A181288DCE177CAFBB545A4AC72F52BF077093A1A685489E3F60B7B8035FFA9  VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk
+478B51DA852D8E59FD4823B6812C41A4425F67F52E6E45E734EB658B24477C03  VGT_GeDefense_TV_0.3.1-alpha1_VC5_debug.apk

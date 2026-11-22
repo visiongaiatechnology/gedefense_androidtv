@@ -37,6 +37,8 @@ object OutboundContainmentPolicy {
         AnomalyKind.TRACKER_CATEGORY to "anomaly_tracker_category",
         AnomalyKind.C2_MATCH to "anomaly_c2_match",
         AnomalyKind.HIGH_RISK_CORRIDOR to "anomaly_high_risk_corridor",
+        AnomalyKind.PROXY_RELAY_PATTERN to "anomaly_proxy_relay",
+        AnomalyKind.DIRECT_IP_BYPASS to "anomaly_direct_ip_bypass",
     )
 
     fun reasonCode(kind: AnomalyKind): String = REASON_CODES.getValue(kind)

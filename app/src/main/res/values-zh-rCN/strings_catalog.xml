@@ -225,4 +225,37 @@
     <string name="catalog_report_limit_nointegrity">构建元数据和指纹不是完整性或固件信任的证明。</string>
     <string name="catalog_report_limit_localonly">所有评估均在本地进行；V1 不传输遥测。</string>
     <string name="catalog_report_limit_observeonly">V1 仅观察并给出建议；不会自动强制执行任何更改。</string>
+    <string name="catalog_hardening_selinux_unknown_title">无法读取 SELinux 状态</string>
+    <string name="catalog_hardening_selinux_unknown_why">无法读取 SELinux 强制模式，因此不能排除内核隔离被削弱的可能。</string>
+    <string name="catalog_hardening_selinux_unknown_recommendation">请手动检查设备固件与 SELinux 状态，尤其是非认证电视盒子。</string>
+    <string name="catalog_hardening_selinux_permissive_title">SELinux 未处于 Enforcing 强制模式</string>
+    <string name="catalog_hardening_selinux_permissive_why">SELinux 当前为 Permissive 或 Disabled，系统沙箱和进程隔离边界被显著削弱。</string>
+    <string name="catalog_hardening_selinux_permissive_recommendation">请安装厂商官方正式固件更新，或将该设备视为不受信任。</string>
+    <string name="catalog_hardening_adbtcp_enabled_title">网络 ADB（TCP 5555 端口）已开启</string>
+    <string name="catalog_hardening_adbtcp_enabled_why">开放的网络 ADB 端口可能允许同一局域网设备向电视发送调试或安装命令。</string>
+    <string name="catalog_hardening_adbtcp_enabled_recommendation">除非当前正在进行本地调试或 Shizuku 会话，否则请关闭网络 ADB。</string>
+    <string name="catalog_hardening_adbwifi_enabled_title">无线调试 (Wireless ADB) 已启用</string>
+    <string name="catalog_hardening_adbwifi_enabled_why">无线调试会在局域网暴露本地调试端点，不使用时应保持关闭。</string>
+    <string name="catalog_hardening_adbwifi_enabled_recommendation">完成配置或诊断后，请在开发者选项中关闭无线调试。</string>
+    <string name="catalog_hardening_adbunauth_enabled_title">未开启密钥认证的 ADB 守护进程 (ro.adb.secure=0)</string>
+    <string name="catalog_hardening_adbunauth_enabled_why">当 ro.adb.secure 为 0 时，ADB 服务无需电视屏幕 RSA 授权确认即可接受连接。</string>
+    <string name="catalog_hardening_adbunauth_enabled_recommendation">请立即关闭 ADB，将设备在局域网中隔离，并检查固件配置。</string>
+    <string name="catalog_hardening_proxy_enabled_title">当前活跃网络中配置了系统级 HTTP 代理</string>
+    <string name="catalog_hardening_proxy_enabled_why">已设置的网络代理会将 HTTP/HTTPS 流量导向中间主机，可能存在流量劫持或篡改风险。</string>
+    <string name="catalog_hardening_proxy_enabled_recommendation">请检查 Wi-Fi 或以太网代理设置并删除未知代理条目。</string>
+    <string name="catalog_hardening_privatedns_disabled_title">加密的私人 DNS (DoT) 未启用</string>
+    <string name="catalog_hardening_privatedns_disabled_why">未启用私人 DNS 时，本地 VPN 之外的域名解析可能在局域网中以明文传输。</string>
+    <string name="catalog_hardening_privatedns_disabled_recommendation">请在网络设置中启用私人 DNS，或保持 GeDefense 本地 VPN 防护持续开启。</string>
+    <string name="catalog_hardening_sideload_detected_title">检测到无已知商店来源的侧载应用：{0}</string>
+    <string name="catalog_hardening_sideload_detected_why">该第三方应用没有已知的应用商店安装来源（如直接 APK 或 ADB 侧载）；这仅作核查提示，不代表一定是恶意软件。</string>
+    <string name="catalog_hardening_sideload_detected_recommendation">请在 XDR 与流量视图中检查该应用来源和网络行为，若不可信请移除。</string>
+    <string name="catalog_hardening_debuggable_detected_title">检测到可调试第三方应用：{0}</string>
+    <string name="catalog_hardening_debuggable_detected_why">带有 debuggable 标志的应用会绕过生产环境加固并暴露进程调试接口，在消费级电视上较为反常。</string>
+    <string name="catalog_hardening_debuggable_detected_recommendation">请仅使用已签名的正式发布版并卸载不明可调试应用。</string>
+    <string name="catalog_xdr_directip_title">无 DNS 解析的直连公网 IP 通信：{0}</string>
+    <string name="catalog_xdr_directip_why">应用 {0} 未经 DNS 查询直接访问了 {1} 个公网 IP 目标；这是代理中继或直连 C2 的常见特征。</string>
+    <string name="catalog_xdr_directip_recommendation">请检查应用安装来源（是否侧载）与外连目标，如有疑虑请在防护页面开启阻断。</string>
+    <string name="catalog_xdr_proxyrelay_title">可疑的代理/中继分散特征：{0}</string>
+    <string name="catalog_xdr_proxyrelay_why">应用 {0} 向 {1} 个不同公网前缀发出具有中继特征的分散连接（BadBox/代理僵尸特征）。</string>
+    <string name="catalog_xdr_proxyrelay_recommendation">请在应用列表排查或在 TITAN LIVE 中冻结该应用，或启用严格模式进行拦截。</string>
 </resources>

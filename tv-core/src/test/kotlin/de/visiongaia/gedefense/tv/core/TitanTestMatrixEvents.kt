@@ -46,11 +46,26 @@ private fun testMatrixComposer() {
         level = TitanPrivilegeLevel.SHIZUKU,
         shizukuInstalled = true,
         shizukuBridgeAvailable = true,
+        build = TitanBuildIntegrity(adbWifiExposed = true),
         checkedAtMillis = TITAN_NOW,
+        notes = listOf(MessageRef(TitanTextKeys.NOTE_SHIZUKU_ACTIVE)),
     )
+    titanCheckEquals(shizuku.build.adbWifiExposed, true, "adb wifi build integrity preserved")
     titanCheckEquals(TitanCapabilityMatrix.effectiveCapabilities(null), emptySet<TitanCapability>(), "no privilege no capabilities")
     titanCheckEquals(TitanCapabilityMatrix.effectiveCapabilities(standard), emptySet<TitanCapability>(), "standard no capabilities")
     titanCheckEquals(TitanCapabilityMatrix.effectiveCapabilities(shizuku), expectedTheory.getValue(TitanPrivilegeLevel.SHIZUKU), "shizuku capabilities")
+    val shizukuStatus = TitanStatusComposer.compose(shizuku, null, null, nowMillis = TITAN_NOW)
+    titanCheckEquals(shizukuStatus.level, TitanPrivilegeLevel.SHIZUKU, "shizuku composed level")
+    titanCheckTrue(shizukuStatus.has(TitanCapability.SOCKET_PROVENANCE) && shizukuStatus.has(TitanCapability.APP_FREEZE), "shizuku composed capabilities")
+    titanCheckTrue(!shizukuStatus.has(TitanCapability.NETWORK_QUARANTINE) && !shizukuStatus.has(TitanCapability.PROCESS_KILL), "shizuku excludes root-only capabilities")
+    titanCheckTrue(
+        listOf(
+            TitanTextKeys.NOTE_SHIZUKU_ACTIVE,
+            TitanTextKeys.NOTE_SHIZUKU_PERMISSION_DENIED,
+            TitanTextKeys.KEY_ACTIVATE_SHIZUKU_OK,
+        ).all { key -> key.startsWith("titan.") },
+        "shizuku text keys stable",
+    )
     titanCheckEquals(TitanCapabilityMatrix.effectiveCapabilities(root), allCapabilities(), "root capabilities")
     titanCheckEquals(TitanCapabilityMatrix.effectiveVisibility(null), DataVisibility.PARTIAL, "no privilege partial")
     titanCheckEquals(TitanCapabilityMatrix.effectiveVisibility(root), DataVisibility.FULL, "root full visibility")

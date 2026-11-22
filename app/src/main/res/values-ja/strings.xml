@@ -432,7 +432,7 @@
     <string name="titan_level_shizuku">レベル2 · Shizuku</string>
     <string name="titan_level_root">レベル3 · Root</string>
     <string name="titan_claim_standard">パッシブモード：特権的な可視性はありません。Titan は通常のテレビアプリが見られる範囲だけを観測します。</string>
-    <string name="titan_claim_shizuku">Shizuku を検出しました。この alpha では Shizuku 経由のコマンド実行は利用できません。高度な機能はすべて利用不可のままです。</string>
+    <string name="titan_claim_shizuku">Shizuku チャネル確認済み（レベル 2）。シェル権限の範囲でアプリ凍結とソケット監査が利用可能です。</string>
     <string name="titan_claim_root">Root チャネルを確認しました。有効な保護は以下に示す範囲でのみ利用できます。</string>
     <string name="titan_section_capabilities">保護シールド</string>
     <string name="titan_capability_active">有効</string>
@@ -571,7 +571,7 @@
     <string name="catalog_titan_note_selinuxpermissive">SELinux が permissive です。システムの保護境界が弱まっています。</string>
     <string name="catalog_titan_note_testkeys">このビルドはテストキーを使用しており、製品ビルドではありません。</string>
     <string name="catalog_titan_note_adbexposed">ADB over TCP が有効です。ポート 5555 がローカルネットワークから到達可能です。</string>
-    <string name="catalog_titan_note_shizukudetected">Shizuku がインストールされています。この alpha では Shizuku 経由のコマンド実行は実装されていません。</string>
+    <string name="catalog_titan_note_shizukudetected">Shizuku が検出されました。レベル 2（アプリ凍結・UID 解決）として有効化できます。</string>
     <string name="catalog_titan_note_shizukubridgemissing">Shizuku はインストールされていますが binder に到達できません。Shizuku のコマンドチャネルはありません。</string>
     <string name="catalog_titan_note_rootshelldenied">Superuser アクセスが許可されませんでした。Titan はレベル1のままです。</string>
     <string name="catalog_titan_note_standardonly">レベル1：Titan は特権的な可視性なしでパッシブに動作します。</string>
@@ -584,7 +584,7 @@
     <string name="catalog_titan_activate_ok">有効化が完了しました。確認されたレベルはステータスに表示されます。</string>
     <string name="catalog_titan_activate_denied">Superuser アクセスが許可されませんでした。Titan はレベル1のままです。</string>
     <string name="catalog_titan_activate_nochannel">Root または Shizuku チャネルが見つかりません。Titan はパッシブのままです。</string>
-    <string name="catalog_titan_activate_bridgeunavailable">Shizuku はインストールされていますがブリッジに到達できません。コマンド実行はこの alpha の欠落です。</string>
+    <string name="catalog_titan_activate_bridgeunavailable">Shizuku はインストールされていますが、バインダーが未起動です。先にワイヤレス ADB 等で起動してください。</string>
     <string name="catalog_titan_scan_failed">Titan 検査に失敗しました。新しい結果はありません。</string>
     <string name="catalog_titan_scan_completed">Titan 検査が完了しました。</string>
     <string name="catalog_titan_scan_partial">Titan 検査は一部完了しました。一部のモジュールはデータを返しませんでした。</string>
@@ -599,4 +599,18 @@
     <string name="catalog_titan_decision_ratelimited">短時間にリクエストが多すぎます。しばらくお待ちください。</string>
     <string name="catalog_titan_decision_limitreached">有効な制限の上限に達しました。先に操作を1つ解除してください。</string>
 
+    <string name="apps_badge_sideload">サイドロード</string>
+    <string name="apps_flag_sideload">提供元不明</string>
+    <string name="apps_flag_debuggable">デバッグ可</string>
+    <string name="hardening_check_selinux_title">SELinux Enforcing</string>
+    <string name="hardening_check_selinux_guidance">SELinux が Permissive または無効の場合は公式ファームウェア更新を確認</string>
+    <string name="hardening_check_adbtcp_title">ネットワーク ADB とワイヤレスデバッグ</string>
+    <string name="hardening_check_adbtcp_guidance">Shizuku を使用していない時は TCP 5555 ポートとワイヤレスデバッグを無効化</string>
+    <string name="hardening_check_proxy_title">システムプロキシとプライベート DNS</string>
+    <string name="hardening_check_proxy_guidance">ネットワーク設定の不明な HTTP プロキシを削除しプライベート DNS を有効化</string>
+    <string name="hardening_check_sideload_title">サイドロードおよびデバッグ可能アプリ</string>
+    <string name="hardening_check_sideload_guidance">ストア以外の提供元やデバッグ可能アプリを XDR とトラフィック画面で確認</string>
+    <string name="catalog_titan_note_shizukuactive">Shizuku ブリッジ (レベル 2) 有効：アプリ凍結と拡張パッケージ解決が利用可能。</string>
+    <string name="catalog_titan_note_shizukupermissiondenied">Shizuku 権限が拒否されたか期限切れです。Titan はレベル 1 を維持します。</string>
+    <string name="catalog_titan_activate_shizukuok">Shizuku 経由で Titan レベル 2 を確認しました。</string>
 </resources>

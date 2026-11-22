@@ -225,4 +225,37 @@
     <string name="catalog_report_limit_nointegrity">ビルドメタデータとフィンガープリントは整合性やファームウェア信頼の証明ではありません。</string>
     <string name="catalog_report_limit_localonly">すべての評価はローカルで行われ、V1 はテレメトリを送信しません。</string>
     <string name="catalog_report_limit_observeonly">V1 は監視と推奨のみを行い、変更を自動的に適用することはありません。</string>
+    <string name="catalog_hardening_selinux_unknown_title">SELinux 状態を読み取れません</string>
+    <string name="catalog_hardening_selinux_unknown_why">SELinux の適用モードを取得できませんでした。カーネル隔離の弱体化を否定できません。</string>
+    <string name="catalog_hardening_selinux_unknown_recommendation">特に非認定 TV ボックスではファームウェアと SELinux 状態を手動で確認してください。</string>
+    <string name="catalog_hardening_selinux_permissive_title">SELinux が Enforcing モードではありません</string>
+    <string name="catalog_hardening_selinux_permissive_why">SELinux が Permissive または無効のため、システムのサンドボックス境界が大きく弱体化しています。</string>
+    <string name="catalog_hardening_selinux_permissive_recommendation">公式のメーカーアップデートを適用するか、この端末を非信頼として扱ってください。</string>
+    <string name="catalog_hardening_adbtcp_enabled_title">ネットワーク経由の ADB（TCP 5555）が有効です</string>
+    <string name="catalog_hardening_adbtcp_enabled_why">ネットワーク ADB ポートが開いていると、同一 LAN/Wi-Fi 上の端末からデバッグやアプリ導入コマンドを実行される恐れがあります。</string>
+    <string name="catalog_hardening_adbtcp_enabled_recommendation">明示的なローカル診断や Shizuku セッション中でない場合はネットワーク ADB を無効化してください。</string>
+    <string name="catalog_hardening_adbwifi_enabled_title">ワイヤレスデバッグ（Wireless ADB）が有効です</string>
+    <string name="catalog_hardening_adbwifi_enabled_why">ワイヤレスデバッグはネットワーク上にローカルデバッグ窓口を開くため、不要時は無効にしておくべきです。</string>
+    <string name="catalog_hardening_adbwifi_enabled_recommendation">セットアップや診断が終わったら、開発者向けオプションでワイヤレスデバッグを無効にしてください。</string>
+    <string name="catalog_hardening_adbunauth_enabled_title">未認証の ADB デーモン (ro.adb.secure=0)</string>
+    <string name="catalog_hardening_adbunauth_enabled_why">ro.adb.secure=0 の場合、テレビ画面での RSA 承認プロンプトなしに ADB 接続を受け入れてしまいます。</string>
+    <string name="catalog_hardening_adbunauth_enabled_recommendation">直ちに ADB を無効化し、端末を LAN 上で隔離してファームウェア構成を確認してください。</string>
+    <string name="catalog_hardening_proxy_enabled_title">アクティブネットワークにシステム HTTP プロキシが設定されています</string>
+    <string name="catalog_hardening_proxy_enabled_why">ネットワークプロキシが設定されていると通信が中間ホスト経由となり、通信転送や改ざんの可能性があります。</string>
+    <string name="catalog_hardening_proxy_enabled_recommendation">Wi-Fi または有線 LAN のプロキシ設定を確認し、見覚えのない設定を削除してください。</string>
+    <string name="catalog_hardening_privatedns_disabled_title">暗号化されたプライベート DNS (DoT) が無効です</string>
+    <string name="catalog_hardening_privatedns_disabled_why">プライベート DNS がないと、ローカル VPN 外の名前解決が LAN 内で平文送信される場合があります。</string>
+    <string name="catalog_hardening_privatedns_disabled_recommendation">ネットワーク設定でプライベート DNS を有効にするか、GeDefense のローカル VPN 保護を継続使用してください。</string>
+    <string name="catalog_hardening_sideload_detected_title">ストア以外の不明なソースから導入されたアプリ：{0}</string>
+    <string name="catalog_hardening_sideload_detected_why">このサードパーティ製アプリには既知のストア導入元がありません（直接 APK や ADB 導入等）。マルウェアの断定ではなく確認の目安です。</string>
+    <string name="catalog_hardening_sideload_detected_recommendation">XDR およびトラフィック画面でアプリの通信と入手元を確認し、不審であればアンインストールしてください。</string>
+    <string name="catalog_hardening_debuggable_detected_title">デバッグ可能なサードパーティアプリを検出：{0}</string>
+    <string name="catalog_hardening_debuggable_detected_why">debuggable フラグ付きアプリは製品版の保護を緩和するため、一般向け TV 環境では不自然です。</string>
+    <string name="catalog_hardening_debuggable_detected_recommendation">署名済みの正式リリース版のみを使用し、心当たりのないデバッグ用アプリは削除してください。</string>
+    <string name="catalog_xdr_directip_title">DNS を経ない直接 IP 接続：{0}</string>
+    <string name="catalog_xdr_directip_why">アプリ {0} は DNS 照会を経ずに {1} 件のパブリック IP へ直接接続しました。プロキシ中継や直接 C2 通信によく見られる挙動です。</string>
+    <string name="catalog_xdr_directip_recommendation">アプリの導入元（サイドロード等）と通信先を確認し、必要に応じて保護機能でブロックしてください。</string>
+    <string name="catalog_xdr_proxyrelay_title">不審なプロキシ／リレー分散通信：{0}</string>
+    <string name="catalog_xdr_proxyrelay_why">アプリ {0} は {1} 個の異なる公開ネットワークプレフィックスへ中継型の外向き通信を分散させています（BadBox／プロキシ兆候）。</string>
+    <string name="catalog_xdr_proxyrelay_recommendation">アプリ一覧や TITAN LIVE で対象アプリを凍結するか、保護機能で厳格に監視してください。</string>
 </resources>

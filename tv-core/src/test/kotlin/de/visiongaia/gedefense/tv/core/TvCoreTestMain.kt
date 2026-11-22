@@ -147,6 +147,7 @@ private fun registerTests() {
     test("hardening: device admins", ::testHardeningDeviceAdmins)
     test("hardening: accessibility services", ::testHardeningAccessibility)
     test("hardening: non-store installers", ::testHardeningInstallers)
+    test("hardening: TV exposure, SELinux, proxy and sideload guards", ::testHardeningTvExposureAndSideload)
     test("hardening: unreadable values never secure", ::testHardeningUnreadable)
     test("report: German text scope, freshness and determinism", ::testReportText)
     test("report: partial scan is not presented as clean", ::testReportPartialNoCleanClaim)
@@ -1052,6 +1053,76 @@ private fun testHardeningInstallers() {
     checkEquals(findings.single().severity, Severity.LOW, "installer severity")
     val clean = DefaultHardeningRules.evaluate(hardeningObservations(), hardeningEvidence())
     checkTrue(clean.none { it.ruleId == "hardening-installer" }, "store-installed apps not flagged")
+}
+
+private fun testHardeningTvExposureAndSideload() {
+    val exposed = HardeningObservations(
+        collectedAtMillis = NOW,
+        adbEnabled = Observed.of(false),
+        developerOptionsEnabled = Observed.of(false),
+        ownAppCanInstallUnknownApps = Observed.of(false),
+        buildTags = listOf("release-keys"),
+        buildType = "user",
+        activeDeviceAdminPackages = emptyList(),
+        accessibilityEnabledServices = emptyList(),
+        accessibilityKnownSystemPackages = emptySet(),
+        visibleNonStoreInstallers = emptyList(),
+        ownInstallerPackage = "com.android.vending",
+        selinuxEnforcing = Observed.of(false),
+        adbTcpExposed = Observed.of(true),
+        adbWifiEnabled = Observed.of(true),
+        adbUnauthenticated = Observed.of(true),
+        httpProxyConfigured = Observed.of(true),
+        privateDnsActive = Observed.of(false),
+        visibleSideloadedApps = listOf("com.badbox.proxy"),
+        visibleDebuggableApps = listOf("com.debug.agent"),
+    )
+    val findings = DefaultHardeningRules.evaluate(exposed, hardeningEvidence())
+    val byRule = findings.associateBy { it.ruleId }
+    checkEquals(byRule["hardening-selinux-permissive"]?.severity, Severity.CRITICAL, "permissive SELinux critical")
+    checkEquals(byRule["hardening-adb-unauth"]?.severity, Severity.CRITICAL, "unauth ADB critical")
+    checkEquals(byRule["hardening-adb-tcp"]?.severity, Severity.HIGH, "adb tcp high")
+    checkEquals(byRule["hardening-adb-wifi"]?.severity, Severity.MEDIUM, "adb wifi medium")
+    checkEquals(byRule["hardening-network-proxy"]?.severity, Severity.HIGH, "proxy high")
+    checkEquals(byRule["hardening-privatedns-off"]?.severity, Severity.LOW, "private dns off low")
+    checkEquals(byRule["hardening-sideload-app"]?.severity, Severity.MEDIUM, "sideload app medium")
+    checkEquals(byRule["hardening-debuggable-app"]?.severity, Severity.HIGH, "debuggable app high")
+    findings.forEach { f ->
+        checkTrue(DeCatalog.isDefined(f.title.key), "catalog defines ${f.title.key}")
+        checkTrue(DeCatalog.isDefined(f.why.key), "catalog defines ${f.why.key}")
+        f.recommendation?.let { rec -> checkTrue(DeCatalog.isDefined(rec.key), "catalog defines ${rec.key}") }
+    }
+
+    val unreadableSelinux = exposed.copy(
+        selinuxEnforcing = Observed.unreadable(),
+        adbTcpExposed = Observed.of(false),
+        adbWifiEnabled = Observed.of(false),
+        adbUnauthenticated = Observed.of(false),
+        httpProxyConfigured = Observed.of(false),
+        privateDnsActive = Observed.of(true),
+        visibleSideloadedApps = emptyList(),
+        visibleDebuggableApps = emptyList(),
+    )
+    val unreadableFindings = DefaultHardeningRules.evaluate(unreadableSelinux, hardeningEvidence())
+    checkEquals(unreadableFindings.single().ruleId, "hardening-selinux-unreadable", "unreadable selinux flagged honestly")
+    checkEquals(unreadableFindings.single().severity, Severity.INFO, "unreadable selinux info severity")
+
+    val sideloadedApp = InstalledApp(
+        packageName = "com.sideload.app",
+        label = "Sideload",
+        versionName = "1.0",
+        versionCode = 1L,
+        isSystemApp = false,
+        installerPackage = null,
+        firstInstallTimeMillis = NOW,
+        lastUpdateTimeMillis = NOW,
+        signatureSha256 = emptyList(),
+        enabled = true,
+        isDebuggable = true,
+    )
+    checkTrue(sideloadedApp.hasUnknownInstaller, "third-party null installer detected as sideload")
+    checkTrue(!sideloadedApp.installerIsKnownStore, "third-party null installer not treated as known store")
+    checkTrue(sideloadedApp.copy(isSystemApp = true).installerIsKnownStore, "system app remains known")
 }
 
 private fun testHardeningUnreadable() {

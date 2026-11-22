@@ -228,4 +228,37 @@
     <string name="catalog_report_limit_localonly">Alle Auswertungen erfolgen lokal; V1 überträgt keine Telemetrie.</string>
     <string name="catalog_report_limit_observeonly">V1 beobachtet und empfiehlt; es werden keine Änderungen automatisch durchgesetzt.</string>
 
+    <string name="catalog_hardening_selinux_unknown_title">SELinux-Status nicht lesbar</string>
+    <string name="catalog_hardening_selinux_unknown_why">Der SELinux-Durchsetzungsmodus konnte nicht ausgelesen werden; ein abgeschwächter Kernel-Schutz ist daher nicht ausschließbar.</string>
+    <string name="catalog_hardening_selinux_unknown_recommendation">Geräte-Firmware und SELinux-Status manuell prüfen, insbesondere bei unzertifizierten TV-Boxen.</string>
+    <string name="catalog_hardening_selinux_permissive_title">SELinux ist nicht im Enforcing-Modus</string>
+    <string name="catalog_hardening_selinux_permissive_why">SELinux steht auf Permissive oder Disabled; Sandbox- und Prozessisolationsgrenzen des Systems sind dadurch erheblich geschwächt.</string>
+    <string name="catalog_hardening_selinux_permissive_recommendation">Offizielles Hersteller-Update installieren oder das Gerät als kompromittiert bzw. ungesichert behandeln.</string>
+    <string name="catalog_hardening_adbtcp_enabled_title">ADB über Netzwerk (TCP Port 5555) ist aktiv</string>
+    <string name="catalog_hardening_adbtcp_enabled_why">Über einen offenen Netzwerk-ADB-Port können Geräte im selben WLAN/LAN Debug- oder Installationsbefehle an den Fernseher senden.</string>
+    <string name="catalog_hardening_adbtcp_enabled_recommendation">Netzwerk-ADB deaktivieren, sofern keine bewusste lokale Debug-/Shizuku-Sitzung benötigt wird.</string>
+    <string name="catalog_hardening_adbwifi_enabled_title">Kabelloses Debugging (Wireless ADB) ist aktiv</string>
+    <string name="catalog_hardening_adbwifi_enabled_why">Wireless Debugging öffnet einen lokalen Debug-Endpunkt im Netzwerk; ohne Bedarf sollte diese Schnittstelle geschlossen bleiben.</string>
+    <string name="catalog_hardening_adbwifi_enabled_recommendation">Kabelloses Debugging in den Entwickleroptionen nach Abschluss von Diagnose oder Shizuku-Setup wieder deaktivieren.</string>
+    <string name="catalog_hardening_adbunauth_enabled_title">ADB ohne Schlüssel-Authentifizierung (ro.adb.secure=0)</string>
+    <string name="catalog_hardening_adbunauth_enabled_why">Wenn ro.adb.secure auf 0 steht, akzeptiert der Debug-Daemon Verbindungen ohne RSA-Bestätigung auf dem TV-Bildschirm.</string>
+    <string name="catalog_hardening_adbunauth_enabled_recommendation">ADB sofort deaktivieren und das Gerät im Heimnetz isolieren; Firmware-Konfiguration prüfen.</string>
+    <string name="catalog_hardening_proxy_enabled_title">Systemweiter HTTP-Proxy im aktiven Netzwerk erkannt</string>
+    <string name="catalog_hardening_proxy_enabled_why">Ein gesetzter Netzwerk-Proxy leitet HTTP-/HTTPS-Verbindungen über einen Zwischenhost und kann auf Umleitung oder Manipulation hinweisen.</string>
+    <string name="catalog_hardening_proxy_enabled_recommendation">WLAN-/Ethernet-Proxy-Einstellungen prüfen und unbekannte Proxy-Einträge entfernen.</string>
+    <string name="catalog_hardening_privatedns_disabled_title">Verschlüsseltes Private DNS (DoT) ist nicht aktiv</string>
+    <string name="catalog_hardening_privatedns_disabled_why">Ohne Private DNS werden Namensauflösungen außerhalb des lokalen VPN im LAN unverschlüsselt übertragen.</string>
+    <string name="catalog_hardening_privatedns_disabled_recommendation">In den Netzwerkeinstellungen Private DNS aktivieren oder den lokalen GeDefense-VPN-Schutz dauerhaft nutzen.</string>
+    <string name="catalog_hardening_sideload_detected_title">App ohne Store-Herkunft (Sideload) erkannt: {0}</string>
+    <string name="catalog_hardening_sideload_detected_why">Diese Drittanbieter-App besitzt keine bekannte Store-Installationsquelle (z. B. direktes APK- oder ADB-Sideload); das ist ein Prüfhinweis, kein Malware-Nachweis.</string>
+    <string name="catalog_hardening_sideload_detected_recommendation">Herkunft und Netzwerkverhalten der App unter XDR &amp; Traffic prüfen und unbekannte Sideload-Pakete entfernen.</string>
+    <string name="catalog_hardening_debuggable_detected_title">Debug-fähige Drittanbieter-App erkannt: {0}</string>
+    <string name="catalog_hardening_debuggable_detected_why">Apps mit aktivem Debuggable-Flag umgehen Produktionshärtung und erlauben tieferen Prozesszugriff; auf Alltags-TVs ist das unüblich.</string>
+    <string name="catalog_hardening_debuggable_detected_recommendation">Nur signierte Produktions-Builds einsetzen und unerklärliche Debug-Apps deinstallieren.</string>
+    <string name="catalog_xdr_directip_title">Direkte IP-Verbindungen ohne DNS: {0}</string>
+    <string name="catalog_xdr_directip_why">Die App {0} hat {1} öffentliche IP-Ziele direkt ohne beobachtete DNS-Abfrage kontaktiert; ein häufiges Muster bei Proxy-Relays oder direktem C2.</string>
+    <string name="catalog_xdr_directip_recommendation">Herkunft der App (Sideload?) und ausgehende Ziele prüfen und bei Bedarf per Schutzmodus blockieren.</string>
+    <string name="catalog_xdr_proxyrelay_title">Auffällige Proxy-/Relay-Streuung: {0}</string>
+    <string name="catalog_xdr_proxyrelay_why">Die App {0} streut ausgehenden Verkehr über {1} öffentliche Netzpräfixe mit Relay-Muster (BadBox-/Proxy-Indikator).</string>
+    <string name="catalog_xdr_proxyrelay_recommendation">App im App-Inventar oder in TITAN LIVE einfrieren bzw. im Schutzmodus streng überwachen.</string>
 </resources>

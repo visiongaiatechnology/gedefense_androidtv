@@ -228,4 +228,37 @@
     <string name="catalog_report_limit_localonly">All analysis is local; V1 transmits no telemetry.</string>
     <string name="catalog_report_limit_observeonly">V1 observes and recommends; no changes are enforced automatically.</string>
 
+    <string name="catalog_hardening_selinux_unknown_title">SELinux status unreadable</string>
+    <string name="catalog_hardening_selinux_unknown_why">The SELinux enforcement mode could not be read; weakened kernel confinement cannot be ruled out.</string>
+    <string name="catalog_hardening_selinux_unknown_recommendation">Inspect firmware and SELinux status manually, especially on uncertified TV boxes.</string>
+    <string name="catalog_hardening_selinux_permissive_title">SELinux is not in Enforcing mode</string>
+    <string name="catalog_hardening_selinux_permissive_why">SELinux is set to Permissive or Disabled, which significantly weakens system sandbox boundaries.</string>
+    <string name="catalog_hardening_selinux_permissive_recommendation">Install an official vendor firmware update or treat the TV box as untrusted.</string>
+    <string name="catalog_hardening_adbtcp_enabled_title">ADB over network (TCP port 5555) is exposed</string>
+    <string name="catalog_hardening_adbtcp_enabled_why">An open network ADB port allows hosts on the same LAN/Wi-Fi to send debug or package-install commands to the TV.</string>
+    <string name="catalog_hardening_adbtcp_enabled_recommendation">Disable network ADB unless an explicit local diagnostic or Shizuku session is active.</string>
+    <string name="catalog_hardening_adbwifi_enabled_title">Wireless debugging (Wireless ADB) is enabled</string>
+    <string name="catalog_hardening_adbwifi_enabled_why">Wireless debugging exposes a local debug interface on the network and should remain disabled when unneeded.</string>
+    <string name="catalog_hardening_adbwifi_enabled_recommendation">Disable wireless debugging in developer options after setup or diagnostics.</string>
+    <string name="catalog_hardening_adbunauth_enabled_title">Unauthenticated ADB daemon (ro.adb.secure=0)</string>
+    <string name="catalog_hardening_adbunauth_enabled_why">When ro.adb.secure is 0, adbd accepts incoming debug connections without an on-screen RSA authorization prompt.</string>
+    <string name="catalog_hardening_adbunauth_enabled_recommendation">Turn off ADB immediately, isolate the device on the LAN, and verify the firmware.</string>
+    <string name="catalog_hardening_proxy_enabled_title">System-wide HTTP proxy configured on active network</string>
+    <string name="catalog_hardening_proxy_enabled_why">A configured network proxy routes HTTP/HTTPS traffic through an intermediary host and may indicate redirection or tampering.</string>
+    <string name="catalog_hardening_proxy_enabled_recommendation">Inspect Wi-Fi or Ethernet proxy settings and remove unrecognized proxy entries.</string>
+    <string name="catalog_hardening_privatedns_disabled_title">Encrypted Private DNS (DoT) is not active</string>
+    <string name="catalog_hardening_privatedns_disabled_why">Without Private DNS, name lookups outside the local VPN may traverse the LAN unencrypted.</string>
+    <string name="catalog_hardening_privatedns_disabled_recommendation">Enable Private DNS in Android network settings or keep local GeDefense VPN protection active.</string>
+    <string name="catalog_hardening_sideload_detected_title">Sideloaded app without known store origin: {0}</string>
+    <string name="catalog_hardening_sideload_detected_why">This third-party app has no known store installer recorded (for example direct APK or ADB sideload); this is a review signal, not proof of malware.</string>
+    <string name="catalog_hardening_sideload_detected_recommendation">Verify app provenance and monitor its connections under XDR &amp; Traffic; remove if untrusted.</string>
+    <string name="catalog_hardening_debuggable_detected_title">Debuggable third-party app detected: {0}</string>
+    <string name="catalog_hardening_debuggable_detected_why">Apps built with the debuggable flag bypass production hardening and expose deeper runtime inspection; unusual on consumer TVs.</string>
+    <string name="catalog_hardening_debuggable_detected_recommendation">Use only signed release builds and uninstall unexpected debuggable packages.</string>
+    <string name="catalog_xdr_directip_title">Direct raw-IP connections without DNS: {0}</string>
+    <string name="catalog_xdr_directip_why">App {0} contacted {1} public IP targets directly without observed DNS lookups; a common pattern for proxy relays or raw C2 channels.</string>
+    <string name="catalog_xdr_directip_recommendation">Review app provenance (sideloaded?) and outbound targets, and block in Protection if untrusted.</string>
+    <string name="catalog_xdr_proxyrelay_title">Suspicious proxy/relay dispersion: {0}</string>
+    <string name="catalog_xdr_proxyrelay_why">App {0} dispersed outbound connections across {1} distinct public network prefixes with relay characteristics (BadBox/proxy indicator).</string>
+    <string name="catalog_xdr_proxyrelay_recommendation">Inspect the app in Apps or freeze it inside TITAN LIVE, or enforce strict network blocking.</string>
 </resources>

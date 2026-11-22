@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Optional Level-2 Titan privilege bridge via installed Shizuku service (zero elevated runtime without user consent). -->
+    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
 
     <!-- TV-only product: requires a TV device and leanback-compatible launcher. -->
     <uses-feature android:name="android.software.leanback" android:required="true" />
@@ -116,6 +118,15 @@
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="Local loopback VPN filtering DNS, tracker and C2 destinations; no external server." />
         </service>
+
+        <!-- Receives the Shizuku binder over ContentProvider IPC; guarded to shell/root callers. -->
+        <provider
+            android:name=".platform.titan.privilege.TitanShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
     </application>
 </manifest>

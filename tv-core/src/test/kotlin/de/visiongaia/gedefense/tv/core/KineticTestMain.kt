@@ -95,6 +95,7 @@ fun main() {
 private fun registerTests() {
     test("engine: DNS burst positive, scaled score, negative", ::testDnsBurst)
     test("engine: destination fanout long, short and negative", ::testFanout)
+    test("engine: BadBox direct-IP bypass and proxy relay", ::testDirectIpBypassAndProxyRelay)
     test("engine: beacon math positive, jitter and interval negatives", ::testBeacon)
     test("engine: volume spike absolute and ratio", ::testVolumeSpike)
     test("engine: repeated blocked flows positive and negative", ::testRepeatedBlock)
@@ -933,6 +934,7 @@ private fun testSourceAndBuildChecks() {
 
     AnomalyKind.entries.forEach { kind ->
         checkTrue(kind.name.isNotEmpty(), "anomaly kind name $kind")
+        checkTrue(OutboundContainmentPolicy.reasonCode(kind).isNotEmpty(), "reason code for $kind")
     }
     checkTrue(AnomalyDetailCodec.encode(listOf("45.33.32.7", "45.33.32.9", "45.33.32.11")).length <= 160, "detail bounded")
     checkEquals(
@@ -942,4 +944,51 @@ private fun testSourceAndBuildChecks() {
     )
     checkEquals(AnomalyDetailCodec.destinationAddresses("no-marker"), emptyList<String>(), "detail codec tolerates missing marker")
     checkEquals(AnomalyDetailCodec.encode(listOf("not-an-ip")), "dst=", "invalid address ignored")
+}
+
+private fun testDirectIpBypassAndProxyRelay() {
+    val engine = OutboundAnomalyEngine()
+    val relayFlows = (1L..12L).map { idx ->
+        TrafficFlow(
+            id = 100L + idx,
+            ownerPackage = "com.proxy.badbox",
+            ownerLabel = "BadBox",
+            destinationAddress = "45.33.$idx.25",
+            countryCode = "NL",
+            destinationDomain = null,
+            action = TrafficAction.ALLOW,
+            protocol = "TCP",
+            txBytes = 4_096L,
+            rxBytes = 16_384L,
+            openedAtMillis = KIN_NOW - 20_000L,
+            lastSeenMillis = KIN_NOW - 1_000L,
+        )
+    }
+    val detected = engine.evaluate(TrafficSnapshot.IDLE, relayFlows, KIN_NOW)
+    checkEquals(detected.size, 1, "relay traffic emits single correlated anomaly")
+    val kinds = detected.single().signals.map { it.kind }.toSet()
+    checkTrue(AnomalyKind.DIRECT_IP_BYPASS in kinds, "direct IP bypass triggered")
+    checkTrue(AnomalyKind.PROXY_RELAY_PATTERN in kinds, "proxy relay pattern triggered")
+
+    val benignDomainFlows = (1L..12L).map { idx ->
+        TrafficFlow(
+            id = 200L + idx,
+            ownerPackage = "com.cdn.player",
+            ownerLabel = "Player",
+            destinationAddress = "45.33.10.$idx",
+            countryCode = "DE",
+            destinationDomain = "edge.cdn.example",
+            action = TrafficAction.ALLOW,
+            protocol = "TCP",
+            txBytes = 1_024L,
+            rxBytes = 8_192L,
+            openedAtMillis = KIN_NOW - 10_000L,
+            lastSeenMillis = KIN_NOW - 500L,
+        )
+    }
+    checkEquals(
+        OutboundAnomalyEngine().evaluate(TrafficSnapshot.IDLE, benignDomainFlows, KIN_NOW).size,
+        0,
+        "resolved CDN traffic does not trigger direct-IP or proxy relay",
+    )
 }

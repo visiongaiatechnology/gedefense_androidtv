@@ -13,6 +13,7 @@ data class TitanShellCommand(
     val arguments: List<String>,
     val requiresRoot: Boolean,
     val auditTag: String,
+    val allowsShizuku: Boolean = false,
 ) {
     init {
         require(program in ALLOWED_PROGRAMS) { "command program not allowed: $program" }

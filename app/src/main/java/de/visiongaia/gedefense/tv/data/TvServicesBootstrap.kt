@@ -51,20 +51,21 @@ object TvServicesBootstrap {
                 threatIntel = threatIntel,
                 deviceId = deviceId,
             )
+            val geoRepository = TvGeoRepository(appContext) { TvKeyCustody.cached()?.geoHmac }
+            val traffic = TvTrafficStore(appContext, geoLookup = TvGeoLookup(geoRepository))
+            val xdr = TvXdrStore()
+            xdr.attach(traffic)
             val scan = DefaultScanController(
                 context = appContext,
                 settings = settings,
                 deviceId = deviceId,
                 evidence = evidence,
                 threatIntel = threatIntel,
+                onSideloadedObserved = { packages -> xdr.setSideloadedPackages(packages) },
             )
             // V2 data plane: offline geo lookup, bounded traffic store, XDR adapter and loopback VPN
             // controller. The GaiaNet helper is only registered here (file validation/stat); no
             // process is started before user consent.
-            val geoRepository = TvGeoRepository(appContext) { TvKeyCustody.cached()?.geoHmac }
-            val traffic = TvTrafficStore(appContext, geoLookup = TvGeoLookup(geoRepository))
-            val xdr = TvXdrStore()
-            xdr.attach(traffic)
             val anomaly = TvAnomalyStore()
             anomaly.attach(traffic)
             val vpn = TvVpnController(appContext, settings, traffic)

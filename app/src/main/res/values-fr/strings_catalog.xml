@@ -228,4 +228,37 @@
     <string name="catalog_report_limit_localonly">Toutes les analyses sont locales ; la V1 ne transmet aucune télémétrie.</string>
     <string name="catalog_report_limit_observeonly">La V1 observe et recommande ; aucune modification n\'est appliquée automatiquement.</string>
 
+    <string name="catalog_hardening_selinux_unknown_title">État SELinux illisible</string>
+    <string name="catalog_hardening_selinux_unknown_why">Le mode d\'application SELinux n\'a pas pu être lu ; une baisse d\'isolation ne peut être exclue.</string>
+    <string name="catalog_hardening_selinux_unknown_recommendation">Vérifiez manuellement le micrologiciel et SELinux, surtout sur les box TV non certifiées.</string>
+    <string name="catalog_hardening_selinux_permissive_title">SELinux n\'est pas en mode Enforcing</string>
+    <string name="catalog_hardening_selinux_permissive_why">SELinux est en mode Permissive ou désactivé, ce qui affaiblit fortement le cloisonnement système.</string>
+    <string name="catalog_hardening_selinux_permissive_recommendation">Installez une mise à jour officielle du fabricant ou traitez l\'appareil comme non fiable.</string>
+    <string name="catalog_hardening_adbtcp_enabled_title">ADB sur réseau (port TCP 5555) est actif</string>
+    <string name="catalog_hardening_adbtcp_enabled_why">Un port ADB réseau ouvert permet aux appareils du même réseau local d\'exécuter des commandes de débogage ou d\'installation.</string>
+    <string name="catalog_hardening_adbtcp_enabled_recommendation">Désactivez ADB réseau lorsqu\'aucune session locale de diagnostic ou Shizuku n\'est requise.</string>
+    <string name="catalog_hardening_adbwifi_enabled_title">Le débogage sans fil (Wireless ADB) est activé</string>
+    <string name="catalog_hardening_adbwifi_enabled_why">Le débogage sans fil expose une interface locale de débogage sur le réseau et doit rester désactivé hors usage.</string>
+    <string name="catalog_hardening_adbwifi_enabled_recommendation">Désactivez le débogage sans fil dans les options développeur après la configuration.</string>
+    <string name="catalog_hardening_adbunauth_enabled_title">ADB sans authentification par clé (ro.adb.secure=0)</string>
+    <string name="catalog_hardening_adbunauth_enabled_why">Lorsque ro.adb.secure vaut 0, le démon ADB accepte les connexions sans confirmation RSA à l\'écran.</string>
+    <string name="catalog_hardening_adbunauth_enabled_recommendation">Désactivez ADB immédiatement, isolez l\'appareil du réseau local et vérifiez le firmware.</string>
+    <string name="catalog_hardening_proxy_enabled_title">Proxy HTTP système configuré sur le réseau actif</string>
+    <string name="catalog_hardening_proxy_enabled_why">Un proxy réseau redirige le trafic HTTP/HTTPS via un hôte tiers et peut signaler une interception.</string>
+    <string name="catalog_hardening_proxy_enabled_recommendation">Vérifiez les paramètres proxy Wi-Fi/Ethernet et supprimez toute entrée inconnue.</string>
+    <string name="catalog_hardening_privatedns_disabled_title">Le DNS privé chiffré (DoT) n\'est pas actif</string>
+    <string name="catalog_hardening_privatedns_disabled_why">Sans DNS privé, les résolutions de noms hors VPN local circulent en clair sur le réseau.</string>
+    <string name="catalog_hardening_privatedns_disabled_recommendation">Activez le DNS privé dans les réglages réseau ou maintenez le VPN local GeDefense actif.</string>
+    <string name="catalog_hardening_sideload_detected_title">Application sans origine store connue (sideload) : {0}</string>
+    <string name="catalog_hardening_sideload_detected_why">Cette application tierce ne provient pas d\'un store connu (APK direct ou ADB) ; il s\'agit d\'un indice de contrôle, non d\'une preuve de logiciel malveillant.</string>
+    <string name="catalog_hardening_sideload_detected_recommendation">Vérifiez la provenance de l\'app et son trafic dans XDR et Trafic ; supprimez-la si douteuse.</string>
+    <string name="catalog_hardening_debuggable_detected_title">Application tierce débogable détectée : {0}</string>
+    <string name="catalog_hardening_debuggable_detected_why">Les applications avec l\'attribut debuggable contournent le durcissement de production, ce qui est inhabituel sur un téléviseur.</string>
+    <string name="catalog_hardening_debuggable_detected_recommendation">Utilisez uniquement des versions de production signées et désinstallez les paquets de débogage inconnus.</string>
+    <string name="catalog_xdr_directip_title">Connexions IP directes sans DNS : {0}</string>
+    <string name="catalog_xdr_directip_why">L\'application {0} a contacté {1} adresses IP publiques sans résolution DNS observée, un schéma courant des relais proxy ou canaux C2.</string>
+    <string name="catalog_xdr_directip_recommendation">Vérifiez l\'origine de l\'app (sideload ?) et ses cibles, et bloquez via le mode Strict si nécessaire.</string>
+    <string name="catalog_xdr_proxyrelay_title">Dispersion de trafic proxy/relais suspecte : {0}</string>
+    <string name="catalog_xdr_proxyrelay_why">L\'application {0} disperse ses connexions vers {1} préfixes réseau publics selon un motif de relais proxy (indicateur BadBox).</string>
+    <string name="catalog_xdr_proxyrelay_recommendation">Inspectez l\'application ou gelez-la dans TITAN LIVE, ou activez le filtrage strict.</string>
 </resources>

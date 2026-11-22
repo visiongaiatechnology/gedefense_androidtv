@@ -104,7 +104,7 @@ class TitanSocketCollector(
             return SocketSnapshot.empty(now, DataVisibility.PARTIAL, note)
         }
         val processes = scanProcesses()
-        val packagesByUid = resolvePackages(sockets)
+        val packagesByUid = resolvePackages(sockets, shell)
         var snapshot = engine.analyze(
             sockets = sockets,
             inodeToPid = processes.inodeToPid,
@@ -325,7 +325,7 @@ class TitanSocketCollector(
 
     // --------------------------------------------------------------- package resolution
 
-    private fun resolvePackages(sockets: List<RawSocket>): Map<Int, List<String>> {
+    private fun resolvePackages(sockets: List<RawSocket>, shell: TitanShell?): Map<Int, List<String>> {
         val result = HashMap<Int, List<String>>(32)
         val uids = LinkedHashSet<Int>()
         for (socket in sockets) {
@@ -335,15 +335,19 @@ class TitanSocketCollector(
         val packageManager = try {
             appContext.packageManager
         } catch (_: Throwable) {
-            return result
+            null
         }
+        val unresolvedAppUids = LinkedHashSet<Int>()
         for (uid in uids) {
             val names: Array<String>? = try {
-                packageManager.getPackagesForUid(uid)
+                packageManager?.getPackagesForUid(uid)
             } catch (_: Throwable) {
                 null
             }
-            if (names == null) continue
+            if (names == null || names.isEmpty()) {
+                if (uid >= MIN_THIRD_PARTY_UID) unresolvedAppUids += uid
+                continue
+            }
             val valid = ArrayList<String>(names.size)
             for (name in names) {
                 if (valid.size >= MAX_PACKAGES_PER_UID) break
@@ -351,9 +355,45 @@ class TitanSocketCollector(
                 if (valid.contains(name)) continue
                 valid += name
             }
-            if (valid.isNotEmpty()) result[uid] = valid.sorted()
+            if (valid.isNotEmpty()) {
+                result[uid] = valid.sorted()
+            } else if (uid >= MIN_THIRD_PARTY_UID) {
+                unresolvedAppUids += uid
+            }
+        }
+        if (unresolvedAppUids.isNotEmpty() && shell != null) {
+            enrichPackagesViaShell(shell, unresolvedAppUids, result)
         }
         return result
+    }
+
+    /** Uses allowlisted `cmd package list packages -U` via Shizuku/Root to resolve sideloaded UIDs. */
+    private fun enrichPackagesViaShell(
+        shell: TitanShell,
+        targetUids: Set<Int>,
+        sink: MutableMap<Int, List<String>>,
+    ) {
+        val output = try {
+            shell.readTable(TitanCommandFactory.listPackagesWithUids(), MAX_TABLE_BYTES)
+        } catch (_: Throwable) {
+            null
+        } ?: return
+        val collected = HashMap<Int, MutableList<String>>(targetUids.size)
+        for (rawLine in output.lineSequence()) {
+            val line = rawLine.trim()
+            if (!line.startsWith(PKG_PREFIX)) continue
+            val uidMarker = line.indexOf(UID_MARKER)
+            if (uidMarker <= PKG_PREFIX.length) continue
+            val pkg = line.substring(PKG_PREFIX.length, uidMarker).trim()
+            if (pkg.length !in 1..MAX_PACKAGE_NAME_LENGTH || !PACKAGE_PATTERN.matches(pkg)) continue
+            val uid = line.substring(uidMarker + UID_MARKER.length).trim().toIntOrNull() ?: continue
+            if (uid !in targetUids) continue
+            val list = collected.getOrPut(uid) { ArrayList(2) }
+            if (list.size < MAX_PACKAGES_PER_UID && !list.contains(pkg)) list += pkg
+        }
+        collected.forEach { (uid, pkgs) ->
+            if (pkgs.isNotEmpty()) sink[uid] = pkgs.sorted()
+        }
     }
 
     // ------------------------------------------------------------------------ helpers
@@ -389,6 +429,9 @@ class TitanSocketCollector(
 
         const val UID_PREFIX = "Uid:"
         const val SOCKET_PREFIX = "socket:["
+        const val PKG_PREFIX = "package:"
+        const val UID_MARKER = " uid:"
+        const val MIN_THIRD_PARTY_UID = 10_000
 
         val PACKAGE_PATTERN = Regex("[A-Za-z0-9_]+(\\.[A-Za-z0-9_]+){1,15}")
     }

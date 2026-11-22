@@ -51,6 +51,7 @@ class DefaultScanController(
     private val deviceId: String,
     private val evidence: TvEvidenceRepository,
     private val threatIntel: ThreatIntelApi,
+    private val onSideloadedObserved: ((Set<String>) -> Unit)? = null,
 ) : ScanControllerApi {
     private val appContext = context.applicationContext
     private val executor = Executors.newSingleThreadExecutor { runnable ->
@@ -156,6 +157,18 @@ class DefaultScanController(
                 inventory = appInventoryCollector.lastInventory,
                 inventoryDelta = appInventoryCollector.lastDelta,
             )
+            val sideloaded = appInventoryCollector.lastInventory?.apps
+                ?.asSequence()
+                ?.filter { !it.installerIsKnownStore && it.packageName != appContext.packageName }
+                ?.map { it.packageName }
+                ?.toSet()
+            if (sideloaded != null && onSideloadedObserved != null) {
+                try {
+                    onSideloadedObserved.invoke(sideloaded)
+                } catch (_: Throwable) {
+                    // Best-effort enrichment for XDR proxy correlation.
+                }
+            }
             publish(result)
             persistSummary(result)
             persist(result, collectors)

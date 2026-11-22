@@ -9,7 +9,7 @@ Local loopback VPN filtering, traffic map with geo attribution, XDR-Light and an
 No external VPN server. No cloud. No telemetry.</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="Release 0.3.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1"><img src="https://img.shields.io/badge/release-0.3.1--alpha1-E8C46A?style=flat-square" alt="Release 0.3.1-alpha1"></a>
   <img src="https://img.shields.io/badge/Titan_Engine-v3_active-5FBFA8?style=flat-square" alt="Titan Engine V3 Active">
   <img src="https://img.shields.io/badge/status-alpha-E86A5A?style=flat-square" alt="Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
@@ -24,7 +24,7 @@ No external VPN server. No cloud. No telemetry.</p>
 
 > ## 🛡️ ALPHA RELEASE — Titan Engine & Hardware Alpha Testing
 >
-> GeDefense TV **0.3.0-alpha1 (VersionCode 4)** introduces the **Titan Engine** — a three-tier endpoint guardian architecture designed specifically for TV platforms.
+> GeDefense TV **0.3.1-alpha1 (VersionCode 5)** introduces the **Titan Engine** — a three-tier endpoint guardian architecture designed specifically for TV platforms.
 > This release is ready for real-world testing on physical Android TV / Google TV devices and rooted TV boxes.
 > Before installing, please review our **[Alpha-Tester Guide](docs/ALPHA-TESTER-GUIDE.md)**, check the [release notes](RELEASE-NOTES.md), and report any findings via [GitHub Issues](https://github.com/visiongaiatechnology/gedefense_androidtv/issues).
 
@@ -42,16 +42,23 @@ GeDefense is one local-first security fabric — for Linux, Windows, Android and
 
 ## Download
 
-[![Download the latest alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
+[![Download the latest alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk)
 
-Always use the [latest release page](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1):
+Always use the [latest release page](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1):
 the official APK assets, their cryptographic signatures, and SHA-256 checksums live there.
 The release APK is signed with the VGT Alpha Certificate (`CN=VisionGaiaTechnology GeDefense TV Alpha`). Verify the SHA-256 checksum against [SHA256SUMS.txt](SHA256SUMS.txt) before installing:
 
 | Artifact | Size | SHA-256 Checksum |
 | :--- | :--- | :--- |
-| **`VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk`** | **6,522,110 Bytes** | `DA4110EB18ED9376B2C16AD70065C9F39A1F7592865B612A469E969B0F3F2934` |
-| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8,811,121 Bytes | `2FB107BB473BFF4C6BCDBE8ED97605D057BD7E18B404BF80561331A25087B2D4` |
+| **`VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk`** | **6,577,286 Bytes** | `1A181288DCE177CAFBB545A4AC72F52BF077093A1A685489E3F60B7B8035FFA9` |
+| `VGT_GeDefense_TV_0.3.1-alpha1_VC5_debug.apk` | 8,474,619 Bytes | `478B51DA852D8E59FD4823B6812C41A4425F67F52E6E45E734EB658B24477C03` |
+
+### Quick Navigation
+
+| Explore | Technical & Testing | Security & Legal |
+| :--- | :--- | :--- |
+| [Screenshots](#screenshots) · [What is GeDefense TV?](#what-is-gedefense-tv) · [Features](#features) | [How it works](#how-it-works) · [Build from source](#build-from-source) · [Tests](#tests) | [Scope & limitations](#scope-and-limitations) · [Safety & privacy](#safety-and-privacy) |
+| [Install (Sideload)](#install-sideload) · [Alpha-Tester Guide](docs/ALPHA-TESTER-GUIDE.md) | [Architecture](ARCHITECTURE.md) · [Documentation](#documentation) · [Project structure](#project-structure) | [Release Notes](RELEASE-NOTES.md) · [Changelog](CHANGELOG.md) · [License](#license-and-third-party-notices) |
 
 ## Screenshots
 
@@ -301,13 +308,13 @@ For a detailed walkthrough across different TV hardware, ADB Wi-Fi pairing, and 
 
 1. On the TV, allow installation from unknown sources for the app you use to install APKs
    (a sideload/file manager app, or ADB).
-2. Install the APK from the [latest release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk).
+2. Install the APK from the [latest release](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk).
 3. Start **GeDefense TV**, follow the onboarding and accept Android's one-time VPN consent dialog.
 4. Optional, over ADB:
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
+adb install -r VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
@@ -334,11 +341,11 @@ More details: [BUILD-RUNBOOK.md](BUILD-RUNBOOK.md).
 ## Tests
 
 ```bash
-./gradlew :tv-core:tvCoreCheck     # core domain harness (554 passed)
-./gradlew :tv-core:tvV2Check       # traffic / privacy / XDR domain harness (4,398 passed)
-./gradlew :tv-core:tvKineticCheck  # V2.1 anomaly + containment harness (3,025 passed)
-./gradlew :tv-core:tvTitanCheck    # V3 Titan Engine harness (6,624 passed)
-# Total: 14,601 JVM tests with 0 failures
+./gradlew :tv-core:tvCoreCheck     # core domain harness (591 passed)
+./gradlew :tv-core:tvV2Check       # traffic / privacy / XDR domain harness (4,584 passed)
+./gradlew :tv-core:tvKineticCheck  # V2.1 anomaly + containment harness (3,259 passed)
+./gradlew :tv-core:tvTitanCheck    # V3 Titan Engine harness (6,693 passed)
+# Total: 15,127 JVM tests with 0 failures
 ./gradlew :app:lintDebug           # Android lint (0 Errors / 305 Warnings)
 ```
 

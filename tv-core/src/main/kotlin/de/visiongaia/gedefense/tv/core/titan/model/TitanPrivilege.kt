@@ -57,6 +57,8 @@ data class TitanBuildIntegrity(
     val selinuxEnforcing: Boolean? = null,
     /** ADB-over-TCP is configured (port 5555 or a custom property); null when unreadable. */
     val adbTcpExposed: Boolean? = null,
+    /** Wireless debugging (`adb_wifi_enabled == 1`); null when unreadable. */
+    val adbWifiExposed: Boolean? = null,
     /** Raw `getenforce` output (already shortened); null when unreadable. Never user input. */
     val selinuxRaw: String? = null,
 ) {
@@ -141,7 +143,9 @@ object TitanTextKeys {
     const val NOTE_TEST_KEYS = "titan.note.testkeys"
     const val NOTE_ADB_EXPOSED = "titan.note.adbexposed"
     const val NOTE_SHIZUKU_DETECTED = "titan.note.shizukudetected"
+    const val NOTE_SHIZUKU_ACTIVE = "titan.note.shizukuactive"
     const val NOTE_SHIZUKU_BRIDGE_MISSING = "titan.note.shizukubridgemissing"
+    const val NOTE_SHIZUKU_PERMISSION_DENIED = "titan.note.shizukupermissiondenied"
     const val NOTE_ROOT_SHELL_DENIED = "titan.note.rootshelldenied"
     const val NOTE_STANDARD_ONLY = "titan.note.standardonly"
     const val NOTE_SOCKET_LIMITED = "titan.note.socketlimited"
@@ -153,6 +157,7 @@ object TitanTextKeys {
 
     // Activation and lifecycle outcomes shown by the UI as toast/status text.
     const val KEY_ACTIVATE_OK = "titan.activate.ok"
+    const val KEY_ACTIVATE_SHIZUKU_OK = "titan.activate.shizukuok"
     const val KEY_ACTIVATE_DENIED = "titan.activate.denied"
     const val KEY_ACTIVATE_NO_CHANNEL = "titan.activate.nochannel"
     const val KEY_ACTIVATE_BRIDGE_UNAVAILABLE = "titan.activate.bridgeunavailable"

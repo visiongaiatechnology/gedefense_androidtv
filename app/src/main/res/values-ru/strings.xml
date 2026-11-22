@@ -432,7 +432,7 @@
     <string name="titan_level_shizuku">Уровень 2 · Shizuku</string>
     <string name="titan_level_root">Уровень 3 · Root</string>
     <string name="titan_claim_standard">Пассивный режим: привилегированного обзора нет. Titan видит только то, что доступно обычному TV-приложению.</string>
-    <string name="titan_claim_shizuku">Shizuku обнаружен. Выполнение команд через Shizuku в этой alpha недоступно; все повышенные возможности остаются недоступными.</string>
+    <string name="titan_claim_shizuku">Канал Shizuku подтверждён (уровень 2). Доступны заморозка приложений и частичный аудит сокетов.</string>
     <string name="titan_claim_root">Канал root подтверждён. Активные защиты доступны только в указанном ниже объёме.</string>
     <string name="titan_section_capabilities">Защитные щиты</string>
     <string name="titan_capability_active">Активно</string>
@@ -571,7 +571,7 @@
     <string name="catalog_titan_note_selinuxpermissive">SELinux в режиме permissive; границы защиты системы ослаблены.</string>
     <string name="catalog_titan_note_testkeys">Эта сборка использует тестовые ключи и не является производственной.</string>
     <string name="catalog_titan_note_adbexposed">ADB по TCP включён; порт 5555 доступен в локальной сети.</string>
-    <string name="catalog_titan_note_shizukudetected">Shizuku установлен. Выполнение команд через Shizuku в этой alpha не реализовано.</string>
+    <string name="catalog_titan_note_shizukudetected">Shizuku установлен и доступен для активации уровня 2 (заморозка приложений и UID).</string>
     <string name="catalog_titan_note_shizukubridgemissing">Shizuku установлен, но его binder недоступен; канала команд Shizuku нет.</string>
     <string name="catalog_titan_note_rootshelldenied">Доступ Superuser не предоставлен; Titan остаётся на уровне 1.</string>
     <string name="catalog_titan_note_standardonly">Уровень 1: Titan работает пассивно, без привилегированного обзора.</string>
@@ -584,7 +584,7 @@
     <string name="catalog_titan_activate_ok">Активация завершена. Подтверждённый уровень показан в статусе.</string>
     <string name="catalog_titan_activate_denied">Доступ Superuser не предоставлен. Titan остаётся на уровне 1.</string>
     <string name="catalog_titan_activate_nochannel">Канал root или Shizuku не найден. Titan остаётся пассивным.</string>
-    <string name="catalog_titan_activate_bridgeunavailable">Shizuku установлен, но мост недоступен. Выполнение команд — пробел этой alpha.</string>
+    <string name="catalog_titan_activate_bridgeunavailable">Shizuku установлен, но сервис Binder не запущен. Сначала запустите Shizuku по ADB.</string>
     <string name="catalog_titan_scan_failed">Проверка Titan не удалась; новых результатов нет.</string>
     <string name="catalog_titan_scan_completed">Проверка Titan завершена.</string>
     <string name="catalog_titan_scan_partial">Проверка Titan завершена частично; некоторые модули не вернули данные.</string>
@@ -599,4 +599,18 @@
     <string name="catalog_titan_decision_ratelimited">Слишком много запросов за короткое время; подождите.</string>
     <string name="catalog_titan_decision_limitreached">Достигнут лимит активных ограничений; сначала снимите одно действие.</string>
 
+    <string name="apps_badge_sideload">Sideload</string>
+    <string name="apps_flag_sideload">Неизв. источник</string>
+    <string name="apps_flag_debuggable">Отладочная</string>
+    <string name="hardening_check_selinux_title">Режим SELinux Enforcing</string>
+    <string name="hardening_check_selinux_guidance">Проверьте официальные обновления прошивки, если SELinux в режиме Permissive</string>
+    <string name="hardening_check_adbtcp_title">Сетевой ADB и отладка по Wi-Fi</string>
+    <string name="hardening_check_adbtcp_guidance">Закройте TCP-порт 5555 и беспроводную отладку вне сеанса Shizuku</string>
+    <string name="hardening_check_proxy_title">Системный прокси и частный DNS</string>
+    <string name="hardening_check_proxy_guidance">Удалите неизвестный HTTP-прокси в настройках сети и включите частный DNS</string>
+    <string name="hardening_check_sideload_title">Sideload и отладочные приложения</string>
+    <string name="hardening_check_sideload_guidance">Проверьте приложения без известного магазина и отследите их в XDR и трафике</string>
+    <string name="catalog_titan_note_shizukuactive">Мост Shizuku (уровень 2) активен: заморозка приложений и расширенный сокет-аудит.</string>
+    <string name="catalog_titan_note_shizukupermissiondenied">Разрешение Shizuku отклонено или истекло; Titan остаётся на уровне 1.</string>
+    <string name="catalog_titan_activate_shizukuok">Titan уровень 2 подтверждён через Shizuku.</string>
 </resources>

@@ -204,6 +204,134 @@ object DefaultHardeningRules : HardeningRuleEvaluator {
                 )
             }
 
+        observations.selinuxEnforcing?.let { selinux ->
+            if (!selinux.readable) {
+                add(
+                    ruleId = "hardening-selinux-unreadable",
+                    severity = Severity.INFO,
+                    confidence = Confidence.LOW,
+                    component = "selinux",
+                    titleKey = "hardening.selinux.unknown.title",
+                    whyKey = "hardening.selinux.unknown.why",
+                    recommendationKey = "hardening.selinux.unknown.recommendation",
+                    visibility = DataVisibility.NONE,
+                    action = PolicyAction.OBSERVE,
+                )
+            } else if (selinux.value == false) {
+                add(
+                    ruleId = "hardening-selinux-permissive",
+                    severity = Severity.CRITICAL,
+                    confidence = Confidence.HIGH,
+                    component = "selinux",
+                    titleKey = "hardening.selinux.permissive.title",
+                    whyKey = "hardening.selinux.permissive.why",
+                    recommendationKey = "hardening.selinux.permissive.recommendation",
+                )
+            }
+        }
+
+        if (observations.adbTcpExposed?.readable == true && observations.adbTcpExposed.value == true) {
+            add(
+                ruleId = "hardening-adb-tcp",
+                severity = Severity.HIGH,
+                confidence = Confidence.HIGH,
+                component = "adb-tcp-5555",
+                titleKey = "hardening.adbtcp.enabled.title",
+                whyKey = "hardening.adbtcp.enabled.why",
+                recommendationKey = "hardening.adbtcp.enabled.recommendation",
+            )
+        }
+
+        if (observations.adbWifiEnabled?.readable == true && observations.adbWifiEnabled.value == true) {
+            add(
+                ruleId = "hardening-adb-wifi",
+                severity = Severity.MEDIUM,
+                confidence = Confidence.HIGH,
+                component = "adb-wifi",
+                titleKey = "hardening.adbwifi.enabled.title",
+                whyKey = "hardening.adbwifi.enabled.why",
+                recommendationKey = "hardening.adbwifi.enabled.recommendation",
+            )
+        }
+
+        if (observations.adbUnauthenticated?.readable == true && observations.adbUnauthenticated.value == true) {
+            add(
+                ruleId = "hardening-adb-unauth",
+                severity = Severity.CRITICAL,
+                confidence = Confidence.HIGH,
+                component = "adb-auth",
+                titleKey = "hardening.adbunauth.enabled.title",
+                whyKey = "hardening.adbunauth.enabled.why",
+                recommendationKey = "hardening.adbunauth.enabled.recommendation",
+            )
+        }
+
+        if (observations.httpProxyConfigured?.readable == true && observations.httpProxyConfigured.value == true) {
+            add(
+                ruleId = "hardening-network-proxy",
+                severity = Severity.HIGH,
+                confidence = Confidence.HIGH,
+                component = "network-proxy",
+                titleKey = "hardening.proxy.enabled.title",
+                whyKey = "hardening.proxy.enabled.why",
+                recommendationKey = "hardening.proxy.enabled.recommendation",
+            )
+        }
+
+        if (observations.privateDnsActive?.readable == true && observations.privateDnsActive.value == false) {
+            add(
+                ruleId = "hardening-privatedns-off",
+                severity = Severity.LOW,
+                confidence = Confidence.MEDIUM,
+                component = "private-dns",
+                titleKey = "hardening.privatedns.disabled.title",
+                whyKey = "hardening.privatedns.disabled.why",
+                recommendationKey = "hardening.privatedns.disabled.recommendation",
+            )
+        }
+
+        observations.visibleSideloadedApps
+            .asSequence()
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .distinct()
+            .sorted()
+            .take(16)
+            .forEach { pkg ->
+                add(
+                    ruleId = "hardening-sideload-app",
+                    severity = Severity.MEDIUM,
+                    confidence = Confidence.MEDIUM,
+                    component = pkg,
+                    titleKey = "hardening.sideload.detected.title",
+                    whyKey = "hardening.sideload.detected.why",
+                    recommendationKey = "hardening.sideload.detected.recommendation",
+                    titleArgs = listOf(pkg),
+                    visibility = DataVisibility.PARTIAL,
+                )
+            }
+
+        observations.visibleDebuggableApps
+            .asSequence()
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .distinct()
+            .sorted()
+            .take(16)
+            .forEach { pkg ->
+                add(
+                    ruleId = "hardening-debuggable-app",
+                    severity = Severity.HIGH,
+                    confidence = Confidence.HIGH,
+                    component = pkg,
+                    titleKey = "hardening.debuggable.detected.title",
+                    whyKey = "hardening.debuggable.detected.why",
+                    recommendationKey = "hardening.debuggable.detected.recommendation",
+                    titleArgs = listOf(pkg),
+                    visibility = DataVisibility.PARTIAL,
+                )
+            }
+
         return findings.sortedWith(
             compareByDescending<Finding> { it.severity.rank }.thenBy { it.id },
         )

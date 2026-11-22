@@ -16,6 +16,8 @@ enum class AnomalyKind {
     TRACKER_CATEGORY,
     C2_MATCH,
     HIGH_RISK_CORRIDOR,
+    PROXY_RELAY_PATTERN,
+    DIRECT_IP_BYPASS,
 }
 
 /** One explainable score contribution of an anomaly. */

@@ -135,6 +135,7 @@ private fun registerTests() {
     test("xdr: dedupe window suppresses repeats", ::testXdrDedupe)
     test("xdr: new app first-seen signal", ::testXdrNewApp)
     test("xdr: bounded memory, window and incident caps", ::testXdrBounds)
+    test("xdr: BadBox direct-IP fanout, proxy relay and sideload weighting", ::testXdrDirectIpAndProxyRelay)
     test("xdr: toFinding mapping and catalog coverage", ::testXdrFinding)
     test("xdr: deterministic evaluation", ::testXdrDeterminism)
     test("config: caps and XDR configuration validation", ::testConfigValidation)
@@ -913,10 +914,72 @@ private fun testCatalogXdrKeys() {
         "xdr.c2match.title", "xdr.c2match.why", "xdr.c2match.recommendation",
         "xdr.corridor.title", "xdr.corridor.why", "xdr.corridor.recommendation",
         "xdr.correlated.title", "xdr.correlated.why", "xdr.correlated.recommendation",
+        "xdr.directip.title", "xdr.directip.why", "xdr.directip.recommendation",
+        "xdr.proxyrelay.title", "xdr.proxyrelay.why", "xdr.proxyrelay.recommendation",
     )
     keys.forEach { key ->
         checkTrue(DeCatalog.isDefined(key), "catalog key defined: $key")
         val ref = de.visiongaia.gedefense.tv.core.model.MessageRef(key)
         checkTrue(DeCatalog.resolve(ref) != key, "catalog resolves: $key")
     }
+}
+
+private fun testXdrDirectIpAndProxyRelay() {
+    val sideloadPkg = "com.badbox.relay"
+    val regularPkg = "com.regular.stream"
+    val proxyFlows = (1..10).map { idx ->
+        TrafficFlow(
+            id = 500L + idx,
+            ownerPackage = sideloadPkg,
+            ownerLabel = "Relay",
+            destinationAddress = "45.33.${idx}.10",
+            countryCode = null,
+            destinationDomain = null,
+            action = TrafficAction.ALLOW,
+            protocol = "TCP",
+            txBytes = 2_048L,
+            rxBytes = 8_192L,
+            openedAtMillis = XDR_NOW - 30_000L,
+            lastSeenMillis = XDR_NOW - 1_000L,
+        )
+    }
+    val sideloadEngine = TvXdrEngine(config = XdrConfig(sideloadedPackages = setOf(sideloadPkg)))
+    primeKnownApp(sideloadEngine, sideloadPkg, XDR_NOW)
+    val correlated = sideloadEngine.evaluate(TrafficSnapshot.IDLE, proxyFlows, XDR_NOW).single()
+    checkEquals(correlated.ruleId, "xdr-correlated", "direct-ip + proxy relay correlate")
+    val signalKinds = correlated.signals.map { it.kind }.toSet()
+    checkTrue(XdrSignalKind.DIRECT_IP_FANOUT in signalKinds, "direct IP fanout detected")
+    checkTrue(XdrSignalKind.PROXY_RELAY in signalKinds, "proxy relay detected")
+    checkEquals(correlated.policyAction, PolicyAction.OBSERVE, "XDR relay stays observe-only")
+
+    // Positive bonus check vs non-sideloaded package
+    val nonSideloadEngine = TvXdrEngine(config = XdrConfig(sideloadedPackages = emptySet()))
+    primeKnownApp(nonSideloadEngine, regularPkg, XDR_NOW)
+    val baseScore = nonSideloadEngine.evaluate(
+        TrafficSnapshot.IDLE,
+        proxyFlows.map { it.copy(ownerPackage = regularPkg) },
+        XDR_NOW,
+    ).single().score
+    checkTrue(correlated.score > baseScore, "sideloaded package elevates proxy correlation score")
+
+    // Negative: private LAN IPs and resolved domain traffic must never trigger raw-IP/proxy fanout
+    val benignLanAndDomain = (1..10).map { idx ->
+        TrafficFlow(
+            id = 700L + idx,
+            ownerPackage = regularPkg,
+            ownerLabel = "Media",
+            destinationAddress = "192.168.$idx.20",
+            countryCode = null,
+            destinationDomain = "cdn$idx.example.com",
+            action = TrafficAction.ALLOW,
+            protocol = "TCP",
+            txBytes = 1024L,
+            rxBytes = 4096L,
+            openedAtMillis = XDR_NOW - 10_000L,
+            lastSeenMillis = XDR_NOW - 500L,
+        )
+    }
+    val cleanEngine = TvXdrEngine()
+    primeKnownApp(cleanEngine, regularPkg, XDR_NOW)
+    checkEquals(cleanEngine.evaluate(TrafficSnapshot.IDLE, benignLanAndDomain, XDR_NOW).size, 0, "private LAN / domain traffic triggers no BadBox signal")
 }

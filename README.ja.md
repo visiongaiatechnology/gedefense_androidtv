@@ -9,7 +9,7 @@
 外部 VPN サーバーなし。クラウドなし。テレメトリなし。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="リリース 0.3.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1"><img src="https://img.shields.io/badge/release-0.3.1--alpha1-E8C46A?style=flat-square" alt="リリース 0.3.1-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -23,7 +23,7 @@
 
 > ## ⚠️ 早期 ALPHA（early alpha）— すべてのユーザーがアルファテスターです
 >
-> GeDefense TV **0.3.0-alpha1** は早期アルファ版です。完成したコンシューマー製品でも、監査済みの
+> GeDefense TV **0.3.1-alpha1** は早期アルファ版です。完成したコンシューマー製品でも、監査済みの
 > セキュリティ製品でもありません。公開 APK は専用の VGT Alpha 証明書で署名されています。
 > 動作、UI、フィルタリングポリシーはアルファ版ごとに変わります。依拠する前に[適用範囲と制限](#適用範囲と制限)、
 > **[アルファテスターガイド](docs/ALPHA-TESTER-GUIDE.md)**、および [リリースノート](RELEASE-NOTES.md) を読み、
@@ -43,16 +43,23 @@ GeDefense は Linux、Windows、Android、WordPress のための単一のロー�
 
 ## ダウンロード
 
-[![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
+[![最新のアルファ APK をダウンロード](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk)
 
-常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1)を使用してください。
+常に[最新リリースページ](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1)を使用してください。
 正確な APK アセット、チェックサム、ビルドノートはそこにあります。詳細なサイドロードおよびハードウェアテストの手順は **[アルファテスターガイド](docs/ALPHA-TESTER-GUIDE.md)** をご覧ください。
 インストール前に SHA-256 を [SHA256SUMS.txt](SHA256SUMS.txt) またはリリースに添付されたチェックサムと照合してください：
 
 | アーティファクト | サイズ | SHA-256 チェックサム |
 | --- | --- | --- |
-| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk` | 6,522,110 バイト | `da4110eb18ed9376b2c16ad70065c9f39a1f7592865b612a469e969b0f3f2934` |
-| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8,811,121 バイト | `2fb107bb473bff4c6bcdbe8ed97605d057bd7e18b404bf80561331a25087b2d4` |
+| `VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk` | 6,577,286 バイト | `1a181288dce177cafbb545a4ac72f52bf077093a1a685489e3f60b7b8035ffa9` |
+| `VGT_GeDefense_TV_0.3.1-alpha1_VC5_debug.apk` | 8,474,619 バイト | `478b51da852d8e59fd4823b6812c41a4425f67f52e6e45e734eb658b24477c03` |
+
+### クイックナビゲーション
+
+| 概要・導入 | 技術・テスト | セキュリティ・ライセンス |
+| :--- | :--- | :--- |
+| [スクリーンショット](#スクリーンショット) · [GeDefense TV とは](#gedefense-tv-とは) · [機能](#機能) | [仕組み](#仕組み) · [ソースからビルド](#ソースからビルド) · [テスト](#テスト) | [適用範囲と制限](#適用範囲と制限) · [セキュリティとプライバシー](#セキュリティとプライバシー) |
+| [インストール](#インストールサイドロード) · [アルファテスターガイド](docs/ALPHA-TESTER-GUIDE.md) | [アーキテクチャ](ARCHITECTURE.md) · [ドキュメント](#ドキュメント) · [構成](#プロジェクト構成) | [リリースノート](RELEASE-NOTES.md) · [変更履歴](CHANGELOG.md) · [ライセンス](#ライセンスと第三者通知) |
 
 ## スクリーンショット
 
@@ -301,13 +308,13 @@ GeDefense TV は意図的に次では**ありません**：
 
 1. テレビで、APK のインストールに使用するアプリ（サイドロード/ファイルマネージャー、または ADB）に対して
    提供元不明アプリのインストールを許可します。
-2. [最新リリース](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)から APK をインストールします。
+2. [最新リリース](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk)から APK をインストールします。
 3. **GeDefense TV** を起動し、初回セットアップに従い、Android の一度限りの VPN 同意ダイアログを承認します。
 4. 任意で ADB を使用：
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
+adb install -r VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
@@ -335,10 +342,10 @@ export ANDROID_HOME=/path/to/android-sdk
 
 ```bash
 ./gradlew :tv-core:tvCoreCheck     # コアドメインのハーネス（554 件合格）
-./gradlew :tv-core:tvV2Check       # トラフィック / プライバシー / XDR ハーネス（4,398 件合格）
-./gradlew :tv-core:tvKineticCheck  # V2.1 異常検知と封じ込めのハーネス（3,025 件合格）
-./gradlew :tv-core:tvTitanCheck    # V3 Titan エンジンハーネス（6,624 件合格）
-# 合計：14,601 件の JVM テスト、失敗 0
+./gradlew :tv-core:tvV2Check       # トラフィック / プライバシー / XDR ハーネス（4,584 件合格）
+./gradlew :tv-core:tvKineticCheck  # V2.1 異常検知と封じ込めのハーネス（3,259 件合格）
+./gradlew :tv-core:tvTitanCheck    # V3 Titan エンジンハーネス（6,693 件合格）
+# 合計：15,127 件の JVM テスト、失敗 0
 ./gradlew :app:lintDebug           # Android lint（エラー 0 / 警告 305）
 ```
 

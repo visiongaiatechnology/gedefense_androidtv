@@ -18,6 +18,7 @@ data class InstalledApp(
     val lastUpdateTimeMillis: Long,
     val signatureSha256: List<String>,
     val enabled: Boolean,
+    val isDebuggable: Boolean = false,
 ) {
     init {
         require(packageName.matches(Regex("[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z][A-Za-z0-9_]*)+"))) {
@@ -30,11 +31,13 @@ data class InstalledApp(
         require(firstInstallTimeMillis >= 0L && lastUpdateTimeMillis >= 0L) { "invalid install timestamp" }
     }
 
+    /** True when a non-system app carries no installer package (typical for raw sideload / adb install). */
+    val hasUnknownInstaller: Boolean
+        get() = !isSystemApp && installerPackage == null
+
     /** Launcher/system/known-store heuristic used for review prioritisation only. */
     val installerIsKnownStore: Boolean
-        get() = installerPackage == null ||
-            installerPackage in KNOWN_STORES ||
-            isSystemApp
+        get() = isSystemApp || (installerPackage != null && installerPackage in KNOWN_STORES)
 
     companion object {
         /**

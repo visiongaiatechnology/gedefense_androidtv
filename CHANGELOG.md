@@ -4,6 +4,51 @@ Alle relevanten Änderungen an diesem Projekt. Format orientiert an *Keep a Chan
 Versionierung folgt dem VGT-Produktschema. Es werden nur tatsächlich vorhandene Änderungen
 dokumentiert; Build-/Teststatus wird getrennt ausgewiesen.
 
+## [0.3.1-alpha1] — Shizuku Level-2 Bridge & Non-Root TV Hardening Guards, 22.11.2026
+
+**Version:** `0.3.1-alpha1`, VersionCode **5** (`VERSION`, `VERSION_CODE`, `app/build.gradle.kts`).
+**Status:** `:tv-core:tvCoreCheck` PASS 591/0 (36/36), `:tv-core:tvV2Check` PASS 4584/0 (29/29), `:tv-core:tvKineticCheck` PASS 3259/0 (24/24), `:tv-core:tvTitanCheck` PASS 6693/0 (17/17), `:app:lintDebug` 0 Errors / 305 Warnings, `:app:assembleDebug` & signiertes `:app:assembleRelease` Exit 0, Source-Fidelity-Check PASS (26 Dateien in `core/` byte-identisch), 7-Locale-Übersetzungscheck PASS (904 Keys / 9 Plurals). **Offen:** Live-Shizuku-IPC und neue Hardening-/Anomaly-Collectors auf physischer Android-TV-Hardware sind **NOT_TESTED**.
+
+### Hinzugefügt — Level-2 Shizuku Bridge (Zero-Dependency)
+
+- **Native AIDL/Binder-IPC ohne Drittabhängigkeiten (`android.useAndroidX=false`):**
+  Offizielle Shizuku-AIDL-Schnittstellen (`IShizukuService`, `IShizukuApplication`,
+  `IShizukuServiceConnection`, `IRemoteProcess`), eigene Bridge `ITitanShizukuBridge.aidl` mit
+  expliziten Methoden-IDs (`= 1`, `= 2`, `= 16777114`), `moe.shizuku.api.BinderContainer`
+  (reines Android-`Parcelable`) sowie Manifest-Absicherung über
+  `moe.shizuku.manager.permission.API_V23` und `TitanShizukuProvider`
+  (`android.permission.INTERACT_ACROSS_USERS_FULL`).
+- **Isolierter UserService & Fail-Closed Client:**
+  `TitanShizukuUserService` (Allowlist strikt auf `pm`, `am`, `cmd`, `getprop`, `id`, `cat`, `ls`,
+  `SAFE_ARG_PATTERN`, Caller-UID-Prüfung, Hard-Timeout & Output-Cap) und `TitanShizukuClient`
+  (Attach-Handshake v13, Consent-Flow, `UserService` mit `newProcess`-Fallback, sofortige
+  `DeathRecipient`-Degradation auf Level 1 `STANDARD`).
+- **Saubere Level-2/Level-3-Trennung (`allowsShizuku`):**
+  `TitanShellCommand` und `TitanCommandFactory` trennen Level-2-Kommandos (`APP_FREEZE` mit
+  `freezeApp`/`restoreApp`/`forceStopApp`/`listDisabledPackages`, `SOCKET_PROVENANCE` inklusive
+  `cmd package list packages -U` gegen `<queries>`-Grenzen) strikt von Root-only-Aktionen
+  (`isolateUid`, `killProcess`, `closeAdbTcp`, Vault). Cold-Start setzt `level`,
+  `rootShellConfirmed` und `shizukuBridgeAvailable` fail-closed zurück.
+
+### Hinzugefügt & Gehärtet — Non-Root TV Guards & BadBox/Proxy-Relay-Erkennung
+
+- **App-Inventar & Store-Korrektur:** `AppInventoryCollector` extrahiert `FLAG_DEBUGGABLE`
+  (`isDebuggable`), und `Inventory.kt` korrigiert `installerIsKnownStore` über
+  `hasUnknownInstaller` (Sideloaded Non-System-Apps mit `installerPackage == null`).
+- **TV-Hardening (14 Checks):** `Hardening.kt`, `DefaultHardeningRules.kt` und
+  `HardeningCollector` prüfen SELinux (`getenforce`), ADB-over-TCP (`service.adb.tcp.port` +
+  Loopback-5555-Probe), Wireless-ADB (`adb_wifi_enabled`), unauthentifiziertes ADB
+  (`ro.adb.secure == 0`), aktiven HTTP-Proxy / fehlendes Private DNS auf Nicht-VPN-Links sowie
+  sichtbare Sideload- und Debuggable-Apps inklusive Darstellung in `HardeningScreen` & `AppsScreen`.
+- **BadBox / Residential-Proxy-Heuristiken (`PolicyAction.OBSERVE`):**
+  `OutboundAnomalyEngine` erkennt `DIRECT_IP_BYPASS` (rohe öffentliche IPs ohne DNS über mehrere
+  Präfixe ab `4 KiB`) und `PROXY_RELAY_PATTERN` (mehrpräfixiges bidirektionales/raw-dominantes
+  Relay ab `16 KiB`); `TvXdrEngine` ergänzt korrelierte Regeln inkl. Sideload-Gewichtung (`+10`).
+- **Lokalisierung:** Vollständig nachgezogen über alle 7 Sprachordner (`values`, `values-de`,
+  `values-en`, `values-fr`, `values-ja`, `values-ru`, `values-zh-rCN`) und `DeCatalog`.
+
+---
+
 ## [0.3.0-alpha1] — Titan Engine (V3), 31.10.2026
 
 **Version:** `0.3.0-alpha1`, VersionCode **4** (`VERSION`, `VERSION_CODE`, `app/build.gradle.kts`).
@@ -127,7 +172,7 @@ Produktionsanspruch.
   Rendering ist in dieser Session **NOT_TESTED**.
 - Screenshots `titan-13-final-scan.png`, `titan-14-onboarding.png`, `titan-15-after-onboarding.png`,
   `titan-02-passive-scan.png`, `titan-03-sections.png`, `titan-04-home.png`,
-  `titan-05-evidence.png` in `docs/screenshots/`.
+  `titan-05-evidence.png` in `_inbox/screenshots` (Lead-Arbeitsverzeichnis, gitignoriert).
 - **Unabhängiges Read-only-Security-Audit (31.10.2026):** **kein kritischer Befund und kein
   Shell-Injection-Blocker**; der privilegierte Kanal ist durch Allowlist + Argument-Charset
   eingegrenzt. Verbleibende Alpha-Befunde siehe [SECURITY.md](SECURITY.md) §17 (TF-01…TF-12) und
@@ -237,7 +282,8 @@ JVM-verifiziert), Produktions-/Upload-Signatur (Alpha-Zertifikat), reale TV-Hard
 - D-Pad: alle Screens erreichbar, Listen fokussierbar/scrollbar, Delete zweistufig, LEFT zur Rail,
   BACK korrekt, keine Touch-Abhängigkeit; Text Weiß-Familie (Kontrast ≥ 4,5:1), Gold nur
   Brand/Primary/Warning, Blau live/info, Grün verifiziert, Rot kritisch.
-- Screenshots **80–96** (1920×1080) in `docs/screenshots/`.
+- Screenshots **80–96** (1920×1080) in `TV/_inbox/screenshots` (Lead-Arbeitsverzeichnis,
+  gitignoriert).
 - Eigene read-only Gegenprüfung: Emulator `emulator-5554` aktiv; `ro.build.version.sdk=36`,
   `release=16`, Fingerprint `…:user/dev-keys`, `security_patch=2026-04-01`; App installiert
   (`versionName=0.1.0-alpha1`, versionCode 1, DEBUGGABLE); Ledger 19.169 B / 32 Zeilen,
@@ -338,4 +384,4 @@ VersionCode 1, Anwendungspaket `de.visiongaia.gedefense.tv`, `minSdk 26`,
 - Geo attribution verified after offline geo generation: US country resolved, map route drawn; unknown owners stay „Nicht zuordenbar“.
 - Traffic and XDR screens redesigned (GLASS 2100 composition): map+numbers hero, top destinations, two-column app cards; XDR summary band, explainable incidents, context panel; fixed cached-incident merge and duplicate density.
 - First-run wizard rebuilt and verified (6 steps, focus on primary action, honest VPN/TI/scan states, completion persists); Sir Quacksec welcome overlay and TI sync popup with logo/progress verified; VPN auto-start on relaunch verified.
-- Screenshots: `docs/screenshots/` (W/X/Y/Z series).
+- Screenshots: `_inbox/screenshots/v2/` (W/X/Y/Z series).

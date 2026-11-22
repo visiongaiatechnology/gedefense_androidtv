@@ -9,7 +9,7 @@
 Без внешнего VPN-сервера. Без облака. Без телеметрии.</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="Релиз 0.3.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1"><img src="https://img.shields.io/badge/release-0.3.1--alpha1-E8C46A?style=flat-square" alt="Релиз 0.3.1-alpha1"></a>
   <img src="https://img.shields.io/badge/Движок_Titan-v3_Активен-5FBFA8?style=flat-square" alt="Движок Titan V3 Активен">
   <img src="https://img.shields.io/badge/status-alpha-E86A5A?style=flat-square" alt="Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
@@ -24,7 +24,7 @@
 
 > ## 🛡️ АЛЬФА-РЕЛИЗ — Движок Titan и тестирование на реальном оборудовании
 >
-> GeDefense TV **0.3.0-alpha1 (VersionCode 4)** представляет **Titan Engine** — трёхуровневую архитектуру защиты конечной точки, созданную специально для TV-систем.
+> GeDefense TV **0.3.1-alpha1 (VersionCode 5)** представляет **Titan Engine** — трёхуровневую архитектуру защиты конечной точки, созданную специально для TV-систем.
 > Этот выпуск готов к тестированию на реальных телевизорах Android TV / Google TV и ТВ-приставках с root-доступом.
 > Перед установкой ознакомьтесь с нашим **[Руководством для альфа-тестеров](docs/ALPHA-TESTER-GUIDE.md)**, проверьте [примечания к выпуску](RELEASE-NOTES.md) и сообщайте о проблемах через [GitHub Issues](https://github.com/visiongaiatechnology/gedefense_androidtv/issues).
 
@@ -42,16 +42,23 @@ GeDefense — единая локальная security-fabric для Linux, Wind
 
 ## Загрузка
 
-[![Скачать последний alpha-APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
+[![Скачать последний alpha-APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk)
 
-Всегда используйте [страницу последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1):
+Всегда используйте [страницу последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1):
 там находятся официальные APK-файлы, криптографические подписи и контрольные суммы SHA-256.
 Релизный APK подписан сертификатом VGT Alpha (`CN=VisionGaiaTechnology GeDefense TV Alpha`). Перед установкой сверьте контрольную сумму SHA-256 в [SHA256SUMS.txt](SHA256SUMS.txt):
 
 | Файл | Размер | SHA-256 Контрольная сумма |
 | :--- | :--- | :--- |
-| **`VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk`** | **6 522 110 байт** | `DA4110EB18ED9376B2C16AD70065C9F39A1F7592865B612A469E969B0F3F2934` |
-| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8 811 121 байт | `2FB107BB473BFF4C6BCDBE8ED97605D057BD7E18B404BF80561331A25087B2D4` |
+| **`VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk`** | **6 577 286 байт** | `1A181288DCE177CAFBB545A4AC72F52BF077093A1A685489E3F60B7B8035FFA9` |
+| `VGT_GeDefense_TV_0.3.1-alpha1_VC5_debug.apk` | 8 474 619 байт | `478B51DA852D8E59FD4823B6812C41A4425F67F52E6E45E734EB658B24477C03` |
+
+### Быстрая навигация
+
+| Обзор и старт | Техника и тесты | Безопасность и лицензия |
+| :--- | :--- | :--- |
+| [Скриншоты](#скриншоты) · [Что такое GeDefense TV?](#что-такое-gedefense-tv) · [Возможности](#возможности) | [Как это работает](#как-это-работает) · [Сборка из исходников](#сборка-из-исходников) · [Тесты](#тесты) | [Ограничения](#область-применения-и-ограничения) · [Безопасность и приватность](#безопасность-и-конфиденциальность) |
+| [Установка (sideload)](#установка-sideload) · [Руководство альфа-тестера](docs/ALPHA-TESTER-GUIDE.md) | [Архитектура](ARCHITECTURE.md) · [Документация](#документация) · [Структура проекта](#структура-проекта) | [Release Notes](RELEASE-NOTES.md) · [Changelog](CHANGELOG.md) · [Лицензия](#лицензия-и-уведомления-третьих-сторон) |
 
 ## Скриншоты
 
@@ -313,13 +320,13 @@ GeDefense TV намеренно **не является**:
 
 1. На телевизоре разрешите установку из неизвестных источников для приложения, которым вы
    устанавливаете APK (sideload/файловый менеджер или ADB).
-2. Установите APK из [последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk).
+2. Установите APK из [последнего релиза](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk).
 3. Запустите **GeDefense TV**, пройдите первичную настройку и подтвердите разовый диалог согласия на VPN.
 4. Необязательно, через ADB:
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
+adb install -r VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
@@ -346,11 +353,11 @@ export ANDROID_HOME=/path/to/android-sdk
 ## Тесты
 
 ```bash
-./gradlew :tv-core:tvCoreCheck     # доменный harness ядра (554 passed)
-./gradlew :tv-core:tvV2Check       # harness трафика / приватности / XDR (4,398 passed)
-./gradlew :tv-core:tvKineticCheck  # harness аномалий и сдерживания V2.1 (3,025 passed)
-./gradlew :tv-core:tvTitanCheck    # harness движка V3 Titan (6,624 passed)
-# Всего: 14 601 JVM-тест с 0 ошибок
+./gradlew :tv-core:tvCoreCheck     # доменный harness ядра (591 passed)
+./gradlew :tv-core:tvV2Check       # harness трафика / приватности / XDR (4,584 passed)
+./gradlew :tv-core:tvKineticCheck  # harness аномалий и сдерживания V2.1 (3,259 passed)
+./gradlew :tv-core:tvTitanCheck    # harness движка V3 Titan (6,693 passed)
+# Всего: 15 127 JVM-тест с 0 ошибок
 ./gradlew :app:lintDebug           # Android lint (0 Errors / 305 Warnings)
 ```
 

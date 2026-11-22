@@ -49,6 +49,14 @@ data class AnomalyConfig(
     val maxAnomalies: Int = 32,
     val maxKnownApps: Int = 512,
     val idWindowMillis: Long = 300_000L,
+    val directIpBypassWindowMillis: Long = 300_000L,
+    val directIpBypassThreshold: Int = 5,
+    val directIpBypassMinPrefixes: Int = 3,
+    val directIpBypassMinBytes: Long = 4_096L,
+    val proxyRelayWindowMillis: Long = 300_000L,
+    val proxyRelayMinPrefixes: Int = 8,
+    val proxyRelayMinFlows: Int = 12,
+    val proxyRelayMinBytes: Long = 16_384L,
 ) {
     init {
         require(dnsBurstWindowMillis in 1_000L..3_600_000L) { "invalid DNS burst window" }
@@ -78,6 +86,14 @@ data class AnomalyConfig(
         require(maxAnomalies in 1..128) { "invalid anomaly bound" }
         require(maxKnownApps in 1..4_096) { "invalid known app bound" }
         require(idWindowMillis in 60_000L..3_600_000L) { "invalid id window" }
+        require(directIpBypassWindowMillis in 1_000L..3_600_000L) { "invalid direct IP window" }
+        require(directIpBypassThreshold in 2..500) { "invalid direct IP threshold" }
+        require(directIpBypassMinPrefixes in 1..100) { "invalid direct IP prefix bound" }
+        require(directIpBypassMinBytes in 0L..(64L shl 20)) { "invalid direct IP byte threshold" }
+        require(proxyRelayWindowMillis in 1_000L..3_600_000L) { "invalid proxy relay window" }
+        require(proxyRelayMinPrefixes in 2..200) { "invalid proxy relay prefix bound" }
+        require(proxyRelayMinFlows in 2..1_000) { "invalid proxy relay flow bound" }
+        require(proxyRelayMinBytes in 0L..(64L shl 30)) { "invalid proxy relay byte threshold" }
     }
 
     companion object {
@@ -165,6 +181,8 @@ class OutboundAnomalyEngine(
             config.trackerWindowMillis,
             config.c2WindowMillis,
             config.corridorWindowMillis,
+            config.directIpBypassWindowMillis,
+            config.proxyRelayWindowMillis,
         )
         val windowFloor = (now - maxWindow).coerceAtLeast(1L)
         val considered = flows.asSequence()
@@ -240,6 +258,8 @@ class OutboundAnomalyEngine(
         detectTrackerCategory(appFlows, now)?.let(signals::add)
         detectC2(appFlows, now)?.let(signals::add)
         detectCorridor(appFlows, now)?.let(signals::add)
+        detectDirectIpBypass(appFlows, now)?.let(signals::add)
+        detectProxyRelayPattern(appFlows, now)?.let(signals::add)
         return signals
     }
 
@@ -451,6 +471,90 @@ class OutboundAnomalyEngine(
         )
     }
 
+    /**
+     * Detects BadBox-style raw-IP outbound fanout without DNS resolution: repeated connections to
+     * distinct public IP addresses across distinct /24 (IPv4) or /64 (IPv6) prefixes while
+     * `destinationDomain` remains absent.
+     */
+    private fun detectDirectIpBypass(appFlows: List<TrafficFlow>, now: Long): SignalEvidence? {
+        val rawPublicFlows = windowed(appFlows, now, config.directIpBypassWindowMillis).filter { flow ->
+            if (!flow.destinationDomain.isNullOrBlank()) return@filter false
+            val parsed = PrefixSupport.parseAddress(flow.destinationAddress) ?: return@filter false
+            de.visiongaia.gedefense.mobile.core.IpPrefix.isPublic(parsed)
+        }
+        if (rawPublicFlows.size < config.directIpBypassThreshold) return null
+        val totalBytes = rawPublicFlows.fold(0L) { acc, flow ->
+            PrefixSupport.saturatingAdd(acc, PrefixSupport.saturatingAdd(flow.txBytes, flow.rxBytes))
+        }
+        if (totalBytes < config.directIpBypassMinBytes) return null
+        val distinctIps = rawPublicFlows.mapNotNull { PrefixSupport.canonicalAddress(it.destinationAddress) }.toSet()
+        val distinctPrefixes = rawPublicFlows.mapNotNull { PrefixSupport.aggregationPrefix(it.destinationAddress) }.toSet()
+        if (distinctIps.size < config.directIpBypassThreshold || distinctPrefixes.size < config.directIpBypassMinPrefixes) {
+            return null
+        }
+        val prefixAndAddresses = selectPrefixAndAddresses(rawPublicFlows) ?: return null
+        val bounds = boundsOf(rawPublicFlows) ?: return null
+        val score = (25 + (distinctIps.size - config.directIpBypassThreshold) * 3).coerceIn(25, 45)
+        return SignalEvidence(
+            kind = AnomalyKind.DIRECT_IP_BYPASS,
+            score = score,
+            detail = AnomalyDetailCodec.encode(
+                prefixAndAddresses.second,
+                "raw_ips=${distinctIps.size};prefixes=${distinctPrefixes.size}",
+            ),
+            count = distinctIps.size,
+            destinationPrefix = prefixAndAddresses.first,
+            destinationAddresses = prefixAndAddresses.second,
+            countryCode = countryOf(rawPublicFlows),
+            firstSeenMillis = bounds.first,
+            lastSeenMillis = bounds.second,
+        )
+    }
+
+    /**
+     * Detects residential-proxy / exit-node relay behavior: sustained fanout across many distinct
+     * public prefixes paired with bidirectional relay byte transfers or high un-resolved IP ratio.
+     */
+    private fun detectProxyRelayPattern(appFlows: List<TrafficFlow>, now: Long): SignalEvidence? {
+        val relayFlows = windowed(appFlows, now, config.proxyRelayWindowMillis).filter { flow ->
+            val parsed = PrefixSupport.parseAddress(flow.destinationAddress) ?: return@filter false
+            de.visiongaia.gedefense.mobile.core.IpPrefix.isPublic(parsed)
+        }
+        if (relayFlows.size < config.proxyRelayMinFlows) return null
+        val distinctPrefixes = relayFlows.mapNotNull { PrefixSupport.aggregationPrefix(it.destinationAddress) }.toSet()
+        if (distinctPrefixes.size < config.proxyRelayMinPrefixes) return null
+        var txTotal = 0L
+        var rxTotal = 0L
+        var rawIpFlows = 0
+        relayFlows.forEach { flow ->
+            txTotal = PrefixSupport.saturatingAdd(txTotal, flow.txBytes)
+            rxTotal = PrefixSupport.saturatingAdd(rxTotal, flow.rxBytes)
+            if (flow.destinationDomain.isNullOrBlank()) rawIpFlows += 1
+        }
+        val totalBytes = PrefixSupport.saturatingAdd(txTotal, rxTotal)
+        if (totalBytes < config.proxyRelayMinBytes) return null
+        val bidirectional = txTotal >= 1_024L && rxTotal >= 1_024L
+        val rawDominant = rawIpFlows * 2 >= relayFlows.size
+        if (!bidirectional && !rawDominant) return null
+        val prefixAndAddresses = selectPrefixAndAddresses(relayFlows) ?: return null
+        val bounds = boundsOf(relayFlows) ?: return null
+        val score = (35 + (distinctPrefixes.size - config.proxyRelayMinPrefixes) * 2).coerceIn(35, 55)
+        return SignalEvidence(
+            kind = AnomalyKind.PROXY_RELAY_PATTERN,
+            score = score,
+            detail = AnomalyDetailCodec.encode(
+                prefixAndAddresses.second,
+                "relay_prefixes=${distinctPrefixes.size};raw=$rawIpFlows;flows=${relayFlows.size}",
+            ),
+            count = distinctPrefixes.size,
+            destinationPrefix = prefixAndAddresses.first,
+            destinationAddresses = prefixAndAddresses.second,
+            countryCode = countryOf(relayFlows),
+            firstSeenMillis = bounds.first,
+            lastSeenMillis = bounds.second,
+        )
+    }
+
     // --- anomaly assembly ----------------------------------------------------------------------
 
     private fun buildAnomaly(
@@ -604,7 +708,9 @@ class OutboundAnomalyEngine(
     }
 
     private fun kindPriority(kind: AnomalyKind): Int = when (kind) {
-        AnomalyKind.C2_MATCH -> 8
+        AnomalyKind.C2_MATCH -> 10
+        AnomalyKind.PROXY_RELAY_PATTERN -> 9
+        AnomalyKind.DIRECT_IP_BYPASS -> 8
         AnomalyKind.REPEATED_BLOCK -> 7
         AnomalyKind.BEACON_PATTERN -> 6
         AnomalyKind.DESTINATION_FANOUT -> 5

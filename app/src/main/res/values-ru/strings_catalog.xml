@@ -225,4 +225,37 @@
     <string name="catalog_report_limit_nointegrity">Метаданные сборки и fingerprint не являются доказательством целостности или доверия к прошивке.</string>
     <string name="catalog_report_limit_localonly">Все оценки выполняются локально; V1 не передаёт телеметрию.</string>
     <string name="catalog_report_limit_observeonly">V1 наблюдает и рекомендует; изменения не применяются автоматически.</string>
+    <string name="catalog_hardening_selinux_unknown_title">Статус SELinux не читается</string>
+    <string name="catalog_hardening_selinux_unknown_why">Не удалось определить режим SELinux; ослабление изоляции ядра нельзя исключить.</string>
+    <string name="catalog_hardening_selinux_unknown_recommendation">Проверьте прошивку и статус SELinux вручную, особенно на несертифицированных ТВ-приставках.</string>
+    <string name="catalog_hardening_selinux_permissive_title">SELinux не в режиме Enforcing</string>
+    <string name="catalog_hardening_selinux_permissive_why">SELinux переведён в Permissive или отключён, что существенно ослабляет системную песочницу.</string>
+    <string name="catalog_hardening_selinux_permissive_recommendation">Установите официальное обновление производителя или считайте устройство ненадёжным.</string>
+    <string name="catalog_hardening_adbtcp_enabled_title">Включён ADB по сети (TCP порт 5555)</string>
+    <string name="catalog_hardening_adbtcp_enabled_why">Открытый сетевой порт ADB позволяет устройствам в той же локальной сети отправлять команды отладки и установки.</string>
+    <string name="catalog_hardening_adbtcp_enabled_recommendation">Отключите сетевой ADB, если не используете его осознанно для отладки или Shizuku.</string>
+    <string name="catalog_hardening_adbwifi_enabled_title">Включена беспроводная отладка (Wireless ADB)</string>
+    <string name="catalog_hardening_adbwifi_enabled_why">Беспроводная отладка открывает локальный отладочный интерфейс в сети и должна отключаться после использования.</string>
+    <string name="catalog_hardening_adbwifi_enabled_recommendation">Отключите беспроводную отладку в параметрах разработчика после завершения настройки.</string>
+    <string name="catalog_hardening_adbunauth_enabled_title">ADB без ключевой аутентификации (ro.adb.secure=0)</string>
+    <string name="catalog_hardening_adbunauth_enabled_why">При ro.adb.secure=0 демон ADB принимает подключения без экранного RSA-подтверждения.</string>
+    <string name="catalog_hardening_adbunauth_enabled_recommendation">Немедленно отключите ADB, изолируйте устройство в локальной сети и проверьте прошивку.</string>
+    <string name="catalog_hardening_proxy_enabled_title">В активной сети задан системный HTTP-прокси</string>
+    <string name="catalog_hardening_proxy_enabled_why">Сетевой прокси направляет HTTP/HTTPS-трафик через промежуточный узел и может указывать на перехват.</string>
+    <string name="catalog_hardening_proxy_enabled_recommendation">Проверьте настройки прокси Wi-Fi/Ethernet и удалите незнакомые записи.</string>
+    <string name="catalog_hardening_privatedns_disabled_title">Шифрованный частный DNS (DoT) не активен</string>
+    <string name="catalog_hardening_privatedns_disabled_why">Без частного DNS запросы имён вне локального VPN передаются по сети без шифрования.</string>
+    <string name="catalog_hardening_privatedns_disabled_recommendation">Включите частный DNS в настройках сети или постоянно используйте локальный VPN GeDefense.</string>
+    <string name="catalog_hardening_sideload_detected_title">Приложение без известного магазина (sideload): {0}</string>
+    <string name="catalog_hardening_sideload_detected_why">У этого стороннего приложения нет известного магазина-установщика (прямой APK или ADB). Это повод для проверки, а не вердикт.</string>
+    <string name="catalog_hardening_sideload_detected_recommendation">Проверьте происхождение приложения и его соединения в разделах XDR и Трафик; удалите при недоверии.</string>
+    <string name="catalog_hardening_debuggable_detected_title">Обнаружено отладочное стороннее приложение: {0}</string>
+    <string name="catalog_hardening_debuggable_detected_why">Приложения с флагом отладки ослабляют защиту среды выполнения, что нетипично для бытовых ТВ.</string>
+    <string name="catalog_hardening_debuggable_detected_recommendation">Используйте только подписанные релизные сборки и удалите неожиданные отладочные пакеты.</string>
+    <string name="catalog_xdr_directip_title">Прямые IP-подключения без DNS: {0}</string>
+    <string name="catalog_xdr_directip_why">Приложение {0} напрямую обратилось к {1} публичным IP-адресам без DNS-запроса — типичный признак прокси-ретранслятора или C2.</string>
+    <string name="catalog_xdr_directip_recommendation">Проверьте источник установки приложения и исходящие цели; при необходимости заблокируйте в защите.</string>
+    <string name="catalog_xdr_proxyrelay_title">Подозрительное распределение прокси/ретрансляции: {0}</string>
+    <string name="catalog_xdr_proxyrelay_why">Приложение {0} распределяет исходящие соединения по {1} публичным подсетям по модели прокси-ретранслятора (признак BadBox).</string>
+    <string name="catalog_xdr_proxyrelay_recommendation">Проверьте приложение или заморозьте его в TITAN LIVE, либо включите строгий режим защиты.</string>
 </resources>

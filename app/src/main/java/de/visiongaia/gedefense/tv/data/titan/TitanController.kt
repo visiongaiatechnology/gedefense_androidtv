@@ -40,6 +40,7 @@ import de.visiongaia.gedefense.tv.platform.titan.collect.TitanSocketCollector
 import de.visiongaia.gedefense.tv.platform.titan.privilege.TitanPrivilegeGate
 import de.visiongaia.gedefense.tv.platform.titan.privilege.TitanResponseEngine
 import de.visiongaia.gedefense.tv.platform.titan.privilege.TitanShell
+import de.visiongaia.gedefense.tv.platform.titan.privilege.TitanShizukuClient
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -100,7 +101,23 @@ class TitanController(
     private var lastCheckpoint: TitanWitnessCheckpoint? = null
 
     init {
+        TitanShizukuClient.addDeathListener {
+            executor.execute { handleShizukuBinderDied() }
+        }
         executor.execute { warmUp() }
+    }
+
+    private fun handleShizukuBinderDied() {
+        val current = cachedStatus.privilege ?: return
+        if (current.level != TitanPrivilegeLevel.SHIZUKU) return
+        shell.setChannelMode(TitanShell.ChannelMode.ROOT)
+        val downgraded = current.copy(
+            level = TitanPrivilegeLevel.STANDARD,
+            shizukuBridgeAvailable = false,
+            checkedAtMillis = clock().coerceAtLeast(1L),
+            notes = listOf(MessageRef(TitanTextKeys.NOTE_SHIZUKU_BRIDGE_MISSING)),
+        )
+        publishPrivilege(downgraded)
     }
 
     private fun warmUp() {
@@ -191,26 +208,50 @@ class TitanController(
     private fun shouldReuseConfirmation(passive: TitanPrivilegeSnapshot): Boolean {
         val last = cachedStatus.privilege ?: return false
         if (!settings.titanConsentGranted()) return false
-        if (last.level != TitanPrivilegeLevel.ROOT || !last.rootShellConfirmed) return false
-        return passive.suPaths.isNotEmpty() || passive.rootManagers.isNotEmpty() || last.suPaths.isNotEmpty()
+        return when (last.level) {
+            TitanPrivilegeLevel.ROOT ->
+                last.rootShellConfirmed &&
+                    (passive.suPaths.isNotEmpty() || passive.rootManagers.isNotEmpty() || last.suPaths.isNotEmpty())
+            TitanPrivilegeLevel.SHIZUKU ->
+                last.shizukuBridgeAvailable && TitanShizukuClient.isChannelReady(appContext)
+            TitanPrivilegeLevel.STANDARD -> false
+        }
     }
 
     /**
-     * Keeps a previously confirmed root channel alive for this process without prompting again.
-     * Passive build facts are always refreshed; the confirmed channel fields are carried over.
+     * Keeps a previously confirmed privileged channel alive for this process without prompting
+     * again. Passive build facts are always refreshed; the confirmed channel fields are carried
+     * over and [shell] channel mode stays synchronized.
      */
     private fun activePrivilege(passive: TitanPrivilegeSnapshot, confirmed: Boolean): TitanPrivilegeSnapshot {
         if (!confirmed) return passive
         val last = cachedStatus.privilege ?: return passive
-        return last.copy(
-            level = TitanPrivilegeLevel.ROOT,
-            rootShellConfirmed = true,
-            checkedAtMillis = passive.checkedAtMillis,
-            build = passive.build,
-            suPaths = if (passive.suPaths.isEmpty()) last.suPaths else passive.suPaths,
-            rootManagers = if (passive.rootManagers.isEmpty()) last.rootManagers else passive.rootManagers,
-            notes = passive.notes,
-        )
+        return when (last.level) {
+            TitanPrivilegeLevel.ROOT -> {
+                shell.setChannelMode(TitanShell.ChannelMode.ROOT)
+                last.copy(
+                    level = TitanPrivilegeLevel.ROOT,
+                    rootShellConfirmed = true,
+                    checkedAtMillis = passive.checkedAtMillis,
+                    build = passive.build,
+                    suPaths = if (passive.suPaths.isEmpty()) last.suPaths else passive.suPaths,
+                    rootManagers = if (passive.rootManagers.isEmpty()) last.rootManagers else passive.rootManagers,
+                    notes = passive.notes,
+                )
+            }
+            TitanPrivilegeLevel.SHIZUKU -> {
+                shell.setChannelMode(TitanShell.ChannelMode.SHIZUKU)
+                last.copy(
+                    level = TitanPrivilegeLevel.SHIZUKU,
+                    shizukuInstalled = passive.shizukuInstalled || last.shizukuInstalled,
+                    shizukuBridgeAvailable = true,
+                    checkedAtMillis = passive.checkedAtMillis,
+                    build = passive.build,
+                    notes = passive.notes,
+                )
+            }
+            TitanPrivilegeLevel.STANDARD -> passive
+        }
     }
 
     private fun collectSockets(
@@ -282,29 +323,45 @@ class TitanController(
                 val hasSu = snapshot.suPaths.isNotEmpty() || snapshot.rootManagers.isNotEmpty()
                 val hasShizuku = snapshot.shizukuInstalled
                 if (!hasSu && !hasShizuku) {
+                    shell.setChannelMode(TitanShell.ChannelMode.ROOT)
                     publishPrivilege(snapshot)
                     post { listener.onResult(snapshot, MessageRef(TitanTextKeys.KEY_ACTIVATE_NO_CHANNEL)) }
                     return@execute
                 }
-                if (!hasSu && hasShizuku) {
-                    // Alpha limit: Shizuku presence is detected, but no binder command bridge ships.
-                    snapshot = snapshot.copy(
-                        shizukuBridgeAvailable = false,
-                        notes = (snapshot.notes + MessageRef(TitanTextKeys.NOTE_SHIZUKU_BRIDGE_MISSING)).take(4),
-                    )
-                    publishPrivilege(snapshot)
-                    post { listener.onResult(snapshot, MessageRef(TitanTextKeys.KEY_ACTIVATE_BRIDGE_UNAVAILABLE)) }
-                    return@execute
+                if (hasSu) {
+                    shell.setChannelMode(TitanShell.ChannelMode.ROOT)
+                    val confirmed = gate.confirmRoot(snapshot, shell, clock())
+                    if (confirmed.level == TitanPrivilegeLevel.ROOT && confirmed.rootShellConfirmed) {
+                        settings.setTitanConsentGranted(true)
+                        publishPrivilege(confirmed)
+                        recorder.recordPrivilege(confirmed, clock())
+                        post { listener.onResult(confirmed, MessageRef(TitanTextKeys.KEY_ACTIVATE_OK)) }
+                        return@execute
+                    }
+                    if (!hasShizuku) {
+                        publishPrivilege(confirmed)
+                        post { listener.onResult(confirmed, MessageRef(TitanTextKeys.KEY_ACTIVATE_DENIED)) }
+                        return@execute
+                    }
+                    snapshot = confirmed
                 }
-                val confirmed = gate.confirmRoot(snapshot, shell, clock())
-                if (confirmed.level == TitanPrivilegeLevel.ROOT && confirmed.rootShellConfirmed) {
+                // Level 2 (Shizuku): real binder attach, permission confirmation, and `id` probe.
+                val confirmedShizuku = gate.confirmShizuku(snapshot, shell, clock())
+                if (confirmedShizuku.level == TitanPrivilegeLevel.SHIZUKU && confirmedShizuku.shizukuBridgeAvailable) {
+                    shell.setChannelMode(TitanShell.ChannelMode.SHIZUKU)
                     settings.setTitanConsentGranted(true)
-                    publishPrivilege(confirmed)
-                    recorder.recordPrivilege(confirmed, clock())
-                    post { listener.onResult(confirmed, MessageRef(TitanTextKeys.KEY_ACTIVATE_OK)) }
+                    publishPrivilege(confirmedShizuku)
+                    recorder.recordPrivilege(confirmedShizuku, clock())
+                    post { listener.onResult(confirmedShizuku, MessageRef(TitanTextKeys.KEY_ACTIVATE_SHIZUKU_OK)) }
                 } else {
-                    publishPrivilege(confirmed)
-                    post { listener.onResult(confirmed, MessageRef(TitanTextKeys.KEY_ACTIVATE_DENIED)) }
+                    shell.setChannelMode(TitanShell.ChannelMode.ROOT)
+                    publishPrivilege(confirmedShizuku)
+                    val key = if (confirmedShizuku.shizukuBridgeAvailable) {
+                        TitanTextKeys.KEY_ACTIVATE_DENIED
+                    } else {
+                        TitanTextKeys.KEY_ACTIVATE_BRIDGE_UNAVAILABLE
+                    }
+                    post { listener.onResult(confirmedShizuku, MessageRef(key)) }
                 }
             } catch (error: Throwable) {
                 Log.w(TAG, "titan activation failed: ${describe(error)}")
@@ -449,16 +506,22 @@ class TitanController(
         if (stored == null) {
             TitanStatus.empty(clock())
         } else if (stored.level != TitanPrivilegeLevel.STANDARD) {
-            // A persisted ROOT level is privilege EVIDENCE, not a confirmation for this process.
+            // A persisted ROOT or SHIZUKU level is privilege EVIDENCE, not a confirmation for this process.
             // Cold start honestly falls back to Level 1 until the user activates again.
             stored.copy(
                 level = TitanPrivilegeLevel.STANDARD,
                 visibility = DataVisibility.PARTIAL,
                 capabilities = emptySet(),
-                privilege = stored.privilege?.copy(level = TitanPrivilegeLevel.STANDARD, rootShellConfirmed = false),
+                privilege = stored.privilege?.copy(
+                    level = TitanPrivilegeLevel.STANDARD,
+                    rootShellConfirmed = false,
+                    shizukuBridgeAvailable = false,
+                ),
             )
         } else {
-            stored
+            stored.copy(
+                privilege = stored.privilege?.copy(shizukuBridgeAvailable = false),
+            )
         }
     } catch (_: Throwable) {
         TitanStatus.empty(clock())

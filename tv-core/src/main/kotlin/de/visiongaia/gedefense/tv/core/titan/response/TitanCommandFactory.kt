@@ -25,6 +25,7 @@ object TitanCommandFactory {
             arguments = listOf("disable-user", "--user", "0", packageName),
             requiresRoot = true,
             auditTag = "freeze-app",
+            allowsShizuku = true,
         )
     }
 
@@ -36,6 +37,7 @@ object TitanCommandFactory {
             arguments = listOf("enable", packageName),
             requiresRoot = true,
             auditTag = "restore-app",
+            allowsShizuku = true,
         )
     }
 
@@ -47,6 +49,7 @@ object TitanCommandFactory {
             arguments = listOf("force-stop", packageName),
             requiresRoot = true,
             auditTag = "force-stop-app",
+            allowsShizuku = true,
         )
     }
 
@@ -147,6 +150,16 @@ object TitanCommandFactory {
         arguments = listOf("package", "list", "packages", "-d"),
         requiresRoot = true,
         auditTag = "verify-disabled",
+        allowsShizuku = true,
+    )
+
+    /** Lists installed package -> UID mappings across Android package-visibility boundaries. */
+    fun listPackagesWithUids(): TitanShellCommand = TitanShellCommand(
+        program = "cmd",
+        arguments = listOf("package", "list", "packages", "-U"),
+        requiresRoot = true,
+        auditTag = "list-packages-uid",
+        allowsShizuku = true,
     )
 
     fun listInputFilter(): TitanShellCommand = TitanShellCommand(
@@ -171,14 +184,16 @@ object TitanCommandFactory {
         arguments = listOf("service.adb.tcp.port"),
         requiresRoot = true,
         auditTag = "verify-adb-port",
+        allowsShizuku = true,
     )
 
-    /** Explicit user-consented root confirmation used by the privilege activation flow. */
+    /** Explicit user-consented root/shell identity confirmation used by privilege activation. */
     fun probeRootIdentity(): TitanShellCommand = TitanShellCommand(
         program = "id",
         arguments = emptyList(),
         requiresRoot = true,
         auditTag = "probe-root",
+        allowsShizuku = true,
     )
 
     // ------------------------------------------------- read-only collectors over the root channel
@@ -242,6 +257,7 @@ object TitanCommandFactory {
             arguments = listOf(path),
             requiresRoot = true,
             auditTag = "read-proc",
+            allowsShizuku = true,
         )
     }
 
@@ -256,6 +272,7 @@ object TitanCommandFactory {
             arguments = listOf("-ln", "--", path),
             requiresRoot = true,
             auditTag = "list-dir",
+            allowsShizuku = true,
         )
     }
 
@@ -267,6 +284,7 @@ object TitanCommandFactory {
             arguments = listOf("/proc/$pid/status"),
             requiresRoot = true,
             auditTag = "read-proc-status",
+            allowsShizuku = true,
         )
     }
 

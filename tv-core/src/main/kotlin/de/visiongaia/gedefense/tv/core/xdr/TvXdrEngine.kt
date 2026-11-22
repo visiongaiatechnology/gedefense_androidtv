@@ -1,7 +1,9 @@
 package de.visiongaia.gedefense.tv.core.xdr
 
 import de.visiongaia.gedefense.mobile.core.FeedSemantics
+import de.visiongaia.gedefense.mobile.core.IpPrefix
 import de.visiongaia.gedefense.mobile.core.ThreatIndex
+import de.visiongaia.gedefense.tv.core.anomaly.PrefixSupport
 import de.visiongaia.gedefense.tv.core.model.CollectorCategory
 import de.visiongaia.gedefense.tv.core.model.Confidence
 import de.visiongaia.gedefense.tv.core.model.DataVisibility
@@ -29,6 +31,9 @@ data class XdrConfig(
     val scanFlowLimit: Int = 500,
     val highRiskCountries: Set<String> = setOf("RU", "CN", "IR", "KP", "SY"),
     val trackerCategories: Set<TrackerCategory> = setOf(TrackerCategory.TELEMETRY, TrackerCategory.ACR),
+    val directIpThreshold: Int = 5,
+    val proxyRelayMinPrefixes: Int = 8,
+    val sideloadedPackages: Set<String> = emptySet(),
 ) {
     init {
         require(windowMillis in 60_000L..(24L * 60L * 60L * 1_000L)) { "invalid XDR window" }
@@ -39,11 +44,22 @@ data class XdrConfig(
         require(maxDedupeEntries in 1..4096) { "invalid dedupe bound" }
         require(scanFlowLimit in 1..2_000) { "invalid flow scan bound" }
         require(highRiskCountries.all { it.matches(Regex("[A-Z]{2}")) }) { "invalid high risk country code" }
+        require(directIpThreshold in 2..200) { "invalid direct IP threshold" }
+        require(proxyRelayMinPrefixes in 2..200) { "invalid proxy relay prefix threshold" }
+        require(sideloadedPackages.size <= 1_024) { "too many sideloaded packages" }
     }
 }
 
 /** Independent local evidence classes that the TV XDR-light engine correlates. */
-enum class XdrSignalKind { REPEATED_BLOCKED, TRACKER_BLOCK, NEW_APP, C2_MATCH, HIGH_RISK_CORRIDOR }
+enum class XdrSignalKind {
+    REPEATED_BLOCKED,
+    TRACKER_BLOCK,
+    NEW_APP,
+    C2_MATCH,
+    HIGH_RISK_CORRIDOR,
+    DIRECT_IP_FANOUT,
+    PROXY_RELAY,
+}
 
 /** One explainable score contribution inside an [XdrIncident]. */
 data class XdrSignal(
@@ -301,6 +317,58 @@ class TvXdrEngine(
             )
         }
 
+        // Rule 6 & 7: BadBox / residential-proxy indicators (direct raw-IP fanout + multi-prefix relay).
+        val packageFlows = considered.groupBy { it.ownerPackage }
+        for ((packageName, appFlows) in packageFlows) {
+            val sideloadBonus = if (packageName in config.sideloadedPackages) 10 else 0
+            val rawPublicIps = LinkedHashSet<String>()
+            val rawPrefixes = LinkedHashSet<String>()
+            val relayPrefixes = LinkedHashSet<String>()
+            var relayFlows = 0
+            var rawRelayFlows = 0
+            var txTotal = 0L
+            var rxTotal = 0L
+            for (flow in appFlows) {
+                val parsed = PrefixSupport.parseAddress(flow.destinationAddress) ?: continue
+                if (!IpPrefix.isPublic(parsed)) continue
+                val prefix = PrefixSupport.aggregationPrefix(flow.destinationAddress)
+                if (prefix != null) relayPrefixes += prefix
+                relayFlows += 1
+                txTotal = PrefixSupport.saturatingAdd(txTotal, flow.txBytes)
+                rxTotal = PrefixSupport.saturatingAdd(rxTotal, flow.rxBytes)
+                if (flow.destinationDomain.isNullOrBlank()) {
+                    rawRelayFlows += 1
+                    PrefixSupport.canonicalAddress(flow.destinationAddress)?.let(rawPublicIps::add)
+                    if (prefix != null) rawPrefixes += prefix
+                }
+            }
+            if (rawPublicIps.size >= config.directIpThreshold && rawPrefixes.size >= 3) {
+                addSignal(
+                    packageName,
+                    XdrSignal(
+                        kind = XdrSignalKind.DIRECT_IP_FANOUT,
+                        score = min(55, 25 + 3 * (rawPublicIps.size - config.directIpThreshold) + sideloadBonus),
+                        detail = "raw_ips=${rawPublicIps.size};prefixes=${rawPrefixes.size}",
+                        count = rawPublicIps.size,
+                        destination = rawPublicIps.sorted().first(),
+                    ),
+                )
+            }
+            val bidirectional = txTotal > 0L && rxTotal > 0L
+            val rawDominant = relayFlows > 0 && rawRelayFlows * 2 >= relayFlows
+            if (relayPrefixes.size >= config.proxyRelayMinPrefixes && relayFlows >= 10 && (bidirectional || rawDominant)) {
+                addSignal(
+                    packageName,
+                    XdrSignal(
+                        kind = XdrSignalKind.PROXY_RELAY,
+                        score = min(65, 35 + 2 * (relayPrefixes.size - config.proxyRelayMinPrefixes) + sideloadBonus),
+                        detail = "relay_prefixes=${relayPrefixes.size};flows=$relayFlows",
+                        count = relayPrefixes.size,
+                    ),
+                )
+            }
+        }
+
         val incidents = ArrayList<XdrIncident>()
         signalsByPackage.forEach { (packageName, signals) ->
             if (signals.isEmpty()) return@forEach
@@ -362,6 +430,8 @@ class TvXdrEngine(
             XdrSignalKind.NEW_APP -> "xdr-new-app"
             XdrSignalKind.C2_MATCH -> "xdr-c2-match"
             XdrSignalKind.HIGH_RISK_CORRIDOR -> "xdr-high-risk-corridor"
+            XdrSignalKind.DIRECT_IP_FANOUT -> "xdr-direct-ip-fanout"
+            XdrSignalKind.PROXY_RELAY -> "xdr-proxy-relay"
         }
         val severity = when (signal.kind) {
             XdrSignalKind.REPEATED_BLOCKED -> Severity.MEDIUM
@@ -373,6 +443,8 @@ class TvXdrEngine(
             XdrSignalKind.NEW_APP -> Severity.INFO
             XdrSignalKind.C2_MATCH -> Severity.HIGH
             XdrSignalKind.HIGH_RISK_CORRIDOR -> Severity.INFO
+            XdrSignalKind.DIRECT_IP_FANOUT -> Severity.MEDIUM
+            XdrSignalKind.PROXY_RELAY -> Severity.HIGH
         }
         val confidence = when (signal.kind) {
             XdrSignalKind.REPEATED_BLOCKED -> Confidence.MEDIUM
@@ -380,6 +452,8 @@ class TvXdrEngine(
             XdrSignalKind.NEW_APP -> Confidence.MEDIUM
             XdrSignalKind.C2_MATCH -> Confidence.HIGH
             XdrSignalKind.HIGH_RISK_CORRIDOR -> Confidence.LOW
+            XdrSignalKind.DIRECT_IP_FANOUT -> Confidence.MEDIUM
+            XdrSignalKind.PROXY_RELAY -> Confidence.MEDIUM
         }
         val component = packageName + "|" + (category?.name ?: signal.kind.name)
         val (title, why, recommendation) = messagesFor(signal, packageName, category)
@@ -491,6 +565,16 @@ class TvXdrEngine(
             MessageRef("xdr.corridor.title", listOf(signal.countryCode ?: "??")),
             MessageRef("xdr.corridor.why", listOf(packageName, signal.countryCode ?: "??")),
             MessageRef("xdr.corridor.recommendation"),
+        )
+        XdrSignalKind.DIRECT_IP_FANOUT -> SignalMessages(
+            MessageRef("xdr.directip.title", listOf(packageName)),
+            MessageRef("xdr.directip.why", listOf(packageName, signal.count.toString())),
+            MessageRef("xdr.directip.recommendation"),
+        )
+        XdrSignalKind.PROXY_RELAY -> SignalMessages(
+            MessageRef("xdr.proxyrelay.title", listOf(packageName)),
+            MessageRef("xdr.proxyrelay.why", listOf(packageName, signal.count.toString())),
+            MessageRef("xdr.proxyrelay.recommendation"),
         )
     }
 

@@ -9,6 +9,9 @@
 -keep class de.visiongaia.gedefense.tv.TvApplication { *; }
 -keep class de.visiongaia.gedefense.tv.TvMainActivity { *; }
 -keep class de.visiongaia.gedefense.tv.platform.TvThreatIntelJobService { *; }
+-keep class de.visiongaia.gedefense.tv.platform.titan.privilege.TitanShizukuProvider { *; }
+-keep class de.visiongaia.gedefense.tv.platform.titan.privilege.TitanShizukuUserService { *; }
+-keep class moe.shizuku.api.BinderContainer { *; }
 
 # Vendored dependency-free core keeps predictable class names for the local verification harness.
 -keepnames class de.visiongaia.gedefense.mobile.core.** { *; }

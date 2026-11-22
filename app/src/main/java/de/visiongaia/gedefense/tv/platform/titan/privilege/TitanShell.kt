@@ -66,14 +66,42 @@ data class TitanShellResult(
  */
 class TitanShell(context: Context) {
 
+    enum class ChannelMode {
+        ROOT,
+        SHIZUKU,
+    }
+
+    private val appContext: Context = context.applicationContext ?: context
     private val workingDirectory: File =
-        context.applicationContext.filesDir.takeIf { it.isDirectory } ?: File("/")
+        appContext.filesDir.takeIf { it.isDirectory } ?: File("/")
 
     private val suProgram: String = resolveSuProgram()
 
-    /** Runs the explicit root-identity probe (`id`) through the shell channel. Default 5 s. */
+    @Volatile
+    private var activeChannel: ChannelMode = ChannelMode.ROOT
+
+    fun setChannelMode(mode: ChannelMode) {
+        activeChannel = mode
+    }
+
+    fun channelMode(): ChannelMode = activeChannel
+
+    /** Runs the explicit identity probe (`id`) through the active privileged channel. Default 5 s. */
     fun probeRoot(timeoutMillis: Long = DEFAULT_PROBE_TIMEOUT_MILLIS): TitanShellResult =
         run(TitanCommandFactory.probeRootIdentity(), timeoutMillis, EXECUTE_OUTPUT_CAP_BYTES)
+
+    /** Explicitly probes the Shizuku bridge channel with `id`. Never uses `su`. */
+    fun probeShizuku(timeoutMillis: Long = DEFAULT_PROBE_TIMEOUT_MILLIS): TitanShellResult {
+        val command = TitanCommandFactory.probeRootIdentity()
+        val outcome = TitanShizukuClient.executeAllowlisted(
+            context = appContext,
+            command = command,
+            workingDirectory = workingDirectory,
+            timeoutMillis = timeoutMillis.coerceIn(MIN_TIMEOUT_MILLIS, MAX_TIMEOUT_MILLIS),
+            maxBytes = EXECUTE_OUTPUT_CAP_BYTES,
+        )
+        return toShellResult(command, outcome)
+    }
 
     /** Executes one allow-listed command. Default 8 s. Never throws. */
     fun execute(command: TitanShellCommand, timeoutMillis: Long = DEFAULT_EXECUTE_TIMEOUT_MILLIS): TitanShellResult =
@@ -93,9 +121,8 @@ class TitanShell(context: Context) {
      * silently parsed as complete data.
      */
     fun readTable(command: TitanShellCommand, maxBytes: Int = DEFAULT_TABLE_CAP_BYTES): String? {
-        val outcome = TitanBoundedProcess.run(
-            argv = shellCommandLine(command),
-            workingDirectory = workingDirectory,
+        val outcome = dispatchOutcome(
+            command = command,
             timeoutMillis = DEFAULT_EXECUTE_TIMEOUT_MILLIS,
             maxBytes = maxBytes.coerceIn(MIN_TABLE_CAP_BYTES, MAX_TABLE_CAP_BYTES),
         )
@@ -109,51 +136,80 @@ class TitanShell(context: Context) {
     }
 
     private fun run(command: TitanShellCommand, timeoutMillis: Long, maxBytes: Int): TitanShellResult {
-        val outcome = TitanBoundedProcess.run(
-            argv = shellCommandLine(command),
-            workingDirectory = workingDirectory,
+        val outcome = dispatchOutcome(
+            command = command,
             timeoutMillis = timeoutMillis.coerceIn(MIN_TIMEOUT_MILLIS, MAX_TIMEOUT_MILLIS),
             maxBytes = maxBytes,
         )
-        return when {
-            !outcome.started -> {
-                Log.w(TAG, "titan_shell_unavailable:${command.auditTag}")
-                TitanShellResult(
-                    ok = false,
-                    exitCode = TitanShellResult.EXIT_NOT_STARTED,
-                    output = "",
-                    timedOut = false,
-                    failure = TitanActionFailure.UNAVAILABLE,
-                )
-            }
+        return toShellResult(command, outcome)
+    }
 
-            outcome.timedOut -> {
-                Log.w(TAG, "titan_shell_timeout:${command.auditTag}")
-                TitanShellResult(
-                    ok = false,
-                    exitCode = TitanShellResult.EXIT_TIMEOUT,
-                    output = outcome.output,
-                    timedOut = true,
-                    failure = TitanActionFailure.COMMAND_FAILED,
-                )
-            }
+    private fun dispatchOutcome(
+        command: TitanShellCommand,
+        timeoutMillis: Long,
+        maxBytes: Int,
+    ): TitanBoundedProcess.Outcome = when (activeChannel) {
+        ChannelMode.ROOT -> TitanBoundedProcess.run(
+            argv = shellCommandLine(command),
+            workingDirectory = workingDirectory,
+            timeoutMillis = timeoutMillis,
+            maxBytes = maxBytes,
+        )
 
-            outcome.exitCode != 0 -> TitanShellResult(
-                ok = false,
-                exitCode = outcome.exitCode,
-                output = outcome.output,
-                timedOut = false,
-                failure = TitanActionFailure.COMMAND_FAILED,
-            )
-
-            else -> TitanShellResult(
-                ok = true,
-                exitCode = 0,
-                output = outcome.output,
-                timedOut = false,
-                failure = null,
+        ChannelMode.SHIZUKU -> if (!command.allowsShizuku) {
+            TitanBoundedProcess.Outcome.NOT_STARTED
+        } else {
+            TitanShizukuClient.executeAllowlisted(
+                context = appContext,
+                command = command,
+                workingDirectory = workingDirectory,
+                timeoutMillis = timeoutMillis,
+                maxBytes = maxBytes,
             )
         }
+    }
+
+    private fun toShellResult(
+        command: TitanShellCommand,
+        outcome: TitanBoundedProcess.Outcome,
+    ): TitanShellResult = when {
+        !outcome.started -> {
+            Log.w(TAG, "titan_shell_unavailable:${command.auditTag}")
+            TitanShellResult(
+                ok = false,
+                exitCode = TitanShellResult.EXIT_NOT_STARTED,
+                output = "",
+                timedOut = false,
+                failure = TitanActionFailure.UNAVAILABLE,
+            )
+        }
+
+        outcome.timedOut -> {
+            Log.w(TAG, "titan_shell_timeout:${command.auditTag}")
+            TitanShellResult(
+                ok = false,
+                exitCode = TitanShellResult.EXIT_TIMEOUT,
+                output = outcome.output,
+                timedOut = true,
+                failure = TitanActionFailure.COMMAND_FAILED,
+            )
+        }
+
+        outcome.exitCode != 0 -> TitanShellResult(
+            ok = false,
+            exitCode = outcome.exitCode,
+            output = outcome.output,
+            timedOut = false,
+            failure = TitanActionFailure.COMMAND_FAILED,
+        )
+
+        else -> TitanShellResult(
+            ok = true,
+            exitCode = 0,
+            output = outcome.output,
+            timedOut = false,
+            failure = null,
+        )
     }
 
     private fun shellCommandLine(command: TitanShellCommand): List<String> =

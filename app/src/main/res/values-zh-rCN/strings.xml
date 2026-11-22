@@ -432,7 +432,7 @@
     <string name="titan_level_shizuku">级别 2 · Shizuku</string>
     <string name="titan_level_root">级别 3 · Root</string>
     <string name="titan_claim_standard">被动模式：没有特权可见性。Titan 只能看到普通电视应用可见的内容。</string>
-    <string name="titan_claim_shizuku">已检测到 Shizuku。本 alpha 版本不支持通过 Shizuku 执行命令；所有高级能力均不可用。</string>
+    <string name="titan_claim_shizuku">Shizuku 通道已确认（第 2 级）。在 shell 权限范围内支持应用冻结和部分套接字溯源。</string>
     <string name="titan_claim_root">Root 通道已确认。主动防护仅在下列范围内可用。</string>
     <string name="titan_section_capabilities">防护盾</string>
     <string name="titan_capability_active">已启用</string>
@@ -571,7 +571,7 @@
     <string name="catalog_titan_note_selinuxpermissive">SELinux 处于宽容模式；系统防护边界已被削弱。</string>
     <string name="catalog_titan_note_testkeys">此构建使用测试密钥，不是生产构建。</string>
     <string name="catalog_titan_note_adbexposed">ADB over TCP 已启用；端口 5555 在本地网络中可达。</string>
-    <string name="catalog_titan_note_shizukudetected">已安装 Shizuku。本 alpha 版本未实现通过 Shizuku 执行命令。</string>
+    <string name="catalog_titan_note_shizukudetected">检测到已安装 Shizuku，可激活第 2 级权限（应用冻结与 UID 映射）。</string>
     <string name="catalog_titan_note_shizukubridgemissing">已安装 Shizuku，但其 binder 不可达；不存在 Shizuku 命令通道。</string>
     <string name="catalog_titan_note_rootshelldenied">未授予 Superuser 访问；Titan 保持在级别 1。</string>
     <string name="catalog_titan_note_standardonly">级别 1：Titan 以被动方式工作，没有特权可见性。</string>
@@ -584,7 +584,7 @@
     <string name="catalog_titan_activate_ok">激活已完成。确认的级别显示在状态中。</string>
     <string name="catalog_titan_activate_denied">未授予 Superuser 访问。Titan 保持在级别 1。</string>
     <string name="catalog_titan_activate_nochannel">未找到 Root 或 Shizuku 通道。Titan 保持被动。</string>
-    <string name="catalog_titan_activate_bridgeunavailable">已安装 Shizuku，但桥接不可达。命令执行是本 alpha 的缺口。</string>
+    <string name="catalog_titan_activate_bridgeunavailable">已安装 Shizuku，但服务 Binder 未运行。请先通过无线 ADB 启动 Shizuku。</string>
     <string name="catalog_titan_scan_failed">Titan 检查失败；没有新的结果。</string>
     <string name="catalog_titan_scan_completed">Titan 检查已完成。</string>
     <string name="catalog_titan_scan_partial">Titan 检查部分完成；部分模块未返回数据。</string>
@@ -599,4 +599,18 @@
     <string name="catalog_titan_decision_ratelimited">短时间内请求过多；请稍候。</string>
     <string name="catalog_titan_decision_limitreached">已达到活动限制上限；请先解除一个操作。</string>
 
+    <string name="apps_badge_sideload">侧载</string>
+    <string name="apps_flag_sideload">未知来源</string>
+    <string name="apps_flag_debuggable">可调试</string>
+    <string name="hardening_check_selinux_title">SELinux 强制模式</string>
+    <string name="hardening_check_selinux_guidance">如果 SELinux 处于宽容或禁用状态，请检查官方固件更新</string>
+    <string name="hardening_check_adbtcp_title">网络 ADB 与无线调试</string>
+    <string name="hardening_check_adbtcp_guidance">未使用 Shizuku 会话时关闭 TCP 5555 端口和无线调试</string>
+    <string name="hardening_check_proxy_title">系统代理与私人 DNS</string>
+    <string name="hardening_check_proxy_guidance">移除网络设置中未知的 HTTP 代理并优先启用私人 DNS (DoT)</string>
+    <string name="hardening_check_sideload_title">侧载及可调试应用</string>
+    <string name="hardening_check_sideload_guidance">检查无已知商店来源的第三方应用并结合 XDR 与流量视图排查</string>
+    <string name="catalog_titan_note_shizukuactive">Shizuku 桥接（第 2 级）已激活：可用应用冻结和扩展包映射功能。</string>
+    <string name="catalog_titan_note_shizukupermissiondenied">Shizuku 权限被拒绝或已过期；Titan 保持第 1 级。</string>
+    <string name="catalog_titan_activate_shizukuok">已通过 Shizuku 确认 Titan 第 2 级权限。</string>
 </resources>

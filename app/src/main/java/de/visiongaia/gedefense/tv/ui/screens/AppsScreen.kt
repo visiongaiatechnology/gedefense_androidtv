@@ -305,6 +305,8 @@ internal class AppsScreen(services: TvServices) : ScaffoldScreen(services) {
         val badgeText = when {
             isNew -> text(R.string.apps_badge_new) to R.drawable.bg_badge_new
             isChanged -> text(R.string.apps_badge_changed) to R.drawable.bg_badge_changed
+            app.isDebuggable -> text(R.string.apps_flag_debuggable) to R.drawable.bg_badge_changed
+            app.hasUnknownInstaller -> text(R.string.apps_badge_sideload) to R.drawable.bg_badge_changed
             !app.enabled -> text(R.string.apps_disabled) to R.drawable.bg_pill_neutral
             else -> null
         }
@@ -339,6 +341,8 @@ internal class AppsScreen(services: TvServices) : ScaffoldScreen(services) {
         }
         val flags = mutableListOf(app.packageName, version)
         flags += if (app.isSystemApp) text(R.string.apps_system_app) else text(R.string.apps_user_app)
+        if (app.hasUnknownInstaller) flags += text(R.string.apps_flag_sideload)
+        if (app.isDebuggable) flags += text(R.string.apps_flag_debuggable)
         return flags.joinToString(" · ")
     }
 }

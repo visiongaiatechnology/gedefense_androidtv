@@ -83,6 +83,26 @@ internal class HardeningScreen(services: TvServices) : ScaffoldScreen(services) 
             R.string.hardening_check_installers_guidance,
             listOf("installer"),
         ),
+        HardeningCheck(
+            R.string.hardening_check_selinux_title,
+            R.string.hardening_check_selinux_guidance,
+            listOf("selinux"),
+        ),
+        HardeningCheck(
+            R.string.hardening_check_adbtcp_title,
+            R.string.hardening_check_adbtcp_guidance,
+            listOf("adb-tcp", "adb-wifi", "adb-auth"),
+        ),
+        HardeningCheck(
+            R.string.hardening_check_proxy_title,
+            R.string.hardening_check_proxy_guidance,
+            listOf("proxy", "privatedns"),
+        ),
+        HardeningCheck(
+            R.string.hardening_check_sideload_title,
+            R.string.hardening_check_sideload_guidance,
+            listOf("sideload", "debuggable"),
+        ),
     )
 
     override fun build(scaffold: ScreenScaffold) {

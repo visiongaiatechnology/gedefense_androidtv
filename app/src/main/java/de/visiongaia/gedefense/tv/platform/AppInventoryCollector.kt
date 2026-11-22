@@ -188,6 +188,7 @@ class AppInventoryCollector(context: Context) : TvCollector {
             packageInfo.versionCode.toLong()
         }
         val isSystemApp = (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+        val isDebuggable = (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
         val installer = installerOf(packageName)
         return InstalledApp(
             packageName = packageName,
@@ -200,6 +201,7 @@ class AppInventoryCollector(context: Context) : TvCollector {
             lastUpdateTimeMillis = packageInfo.lastUpdateTime.coerceAtLeast(0L),
             signatureSha256 = signatureDigests(packageInfo),
             enabled = applicationInfo.enabled,
+            isDebuggable = isDebuggable,
         )
     }
 

@@ -38,7 +38,7 @@ internal object TitanText {
 
     fun levelTone(level: TitanPrivilegeLevel): TvTone = when (level) {
         TitanPrivilegeLevel.STANDARD -> TvTone.NEUTRAL
-        TitanPrivilegeLevel.SHIZUKU -> TvTone.WARNING
+        TitanPrivilegeLevel.SHIZUKU -> TvTone.INFO
         TitanPrivilegeLevel.ROOT -> TvTone.SUCCESS
     }
 

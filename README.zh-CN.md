@@ -9,7 +9,7 @@
 无外部 VPN 服务器。无云。无遥测。</p>
 
 <p align="center">
-  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1"><img src="https://img.shields.io/badge/release-0.3.0--alpha1-E8C46A?style=flat-square" alt="版本 0.3.0-alpha1"></a>
+  <a href="https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1"><img src="https://img.shields.io/badge/release-0.3.1--alpha1-E8C46A?style=flat-square" alt="版本 0.3.1-alpha1"></a>
   <img src="https://img.shields.io/badge/status-early%20alpha-E86A5A?style=flat-square" alt="早期 Alpha">
   <img src="https://img.shields.io/badge/platform-Android_TV%20%7C%20Google_TV-5FBFA8?style=flat-square" alt="Android TV / Google TV">
   <img src="https://img.shields.io/badge/Kotlin-1.9.24-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin 1.9.24">
@@ -23,7 +23,7 @@
 
 > ## ⚠️ 早期 ALPHA（early alpha）——每一位用户都是 Alpha 测试者
 >
-> GeDefense TV **0.3.0-alpha1** 是早期 Alpha 版本。它不是成品消费级产品，也不是经过审计的安全产品。
+> GeDefense TV **0.3.1-alpha1** 是早期 Alpha 版本。它不是成品消费级产品，也不是经过审计的安全产品。
 > 发布的 APK 使用专用的 VGT Alpha 证书签名。行为、界面和过滤策略会在不同 Alpha 版本之间变化。在依赖它之前：
 > 请阅读[适用范围与限制](#适用范围与限制)、**[Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md)** 和 [发布说明](RELEASE-NOTES.md)，并将每个结果视为提示，而不是保证。
 
@@ -41,16 +41,23 @@ GeDefense 是一套本地优先的安全架构，覆盖 Linux、Windows、Androi
 
 ## 下载
 
-[![下载最新 Alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)
+[![下载最新 Alpha APK](https://img.shields.io/badge/Download-latest%20APK-E8C46A?style=for-the-badge&logo=android&logoColor=black)](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk)
 
-请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.0-alpha1)：
+请始终使用[最新发布页面](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/tag/v0.3.1-alpha1)：
 确切的 APK 文件、校验和与构建说明都在那里。详细的侧载与硬件测试说明请参见 **[Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md)**。
 安装前请对照 [SHA256SUMS.txt](SHA256SUMS.txt) 或发布页附带的校验和核对 SHA-256：
 
 | 构件 | 大小 | SHA-256 校验和 |
 | --- | --- | --- |
-| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk` | 6.522.110 字节 | `da4110eb18ed9376b2c16ad70065c9f39a1f7592865b612a469e969b0f3f2934` |
-| `VGT_GeDefense_TV_0.3.0-alpha1_VC4_debug.apk` | 8.811.121 字节 | `2fb107bb473bff4c6bcdbe8ed97605d057bd7e18b404bf80561331a25087b2d4` |
+| `VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk` | 6.577.286 字节 | `1a181288dce177cafbb545a4ac72f52bf077093a1a685489e3f60b7b8035ffa9` |
+| `VGT_GeDefense_TV_0.3.1-alpha1_VC5_debug.apk` | 8.474.619 字节 | `478b51da852d8e59fd4823b6812c41a4425f67f52e6e45e734eb658b24477c03` |
+
+### 快速导航
+
+| 概览与入门 | 技术与测试 | 安全与许可 |
+| :--- | :--- | :--- |
+| [截图](#截图) · [GeDefense TV 是什么？](#gedefense-tv-是什么) · [功能](#功能) | [工作原理](#工作原理) · [从源码构建](#从源码构建) · [测试](#测试) | [适用范围与限制](#适用范围与限制) · [安全与隐私](#安全与隐私) |
+| [安装（侧载）](#安装侧载) · [Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md) | [架构](ARCHITECTURE.md) · [文档](#文档) · [项目结构](#项目结构) | [发布说明](RELEASE-NOTES.md) · [更新日志](CHANGELOG.md) · [许可证](#许可证与第三方声明) |
 
 ## 截图
 
@@ -258,13 +265,13 @@ GeDefense TV 有意**不是**：
 有关不同电视硬件、ADB Wi-Fi 配对及 USB 安装的详细说明，请参见 **[Alpha 测试者指南](docs/ALPHA-TESTER-GUIDE.md)**。
 
 1. 在电视上，为你用来安装 APK 的应用（侧载/文件管理器应用或 ADB）允许安装未知来源应用。
-2. 从[最新发布](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.0-alpha1/VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk)安装 APK。
+2. 从[最新发布](https://github.com/visiongaiatechnology/gedefense_androidtv/releases/download/v0.3.1-alpha1/VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk)安装 APK。
 3. 启动 **GeDefense TV**，按首次向导操作，并接受 Android 的一次性 VPN 同意对话框。
 4. 可选，通过 ADB：
 
 ```bash
 adb connect <tv-ip>:5555
-adb install -r VGT_GeDefense_TV_0.3.0-alpha1_VC4_release-signed.apk
+adb install -r VGT_GeDefense_TV_0.3.1-alpha1_VC5_release-signed.apk
 adb shell am start -n de.visiongaia.gedefense.tv/.TvMainActivity
 ```
 
@@ -290,11 +297,11 @@ export ANDROID_HOME=/path/to/android-sdk
 ## 测试
 
 ```bash
-./gradlew :tv-core:tvCoreCheck     # 核心领域测试（554 通过）
-./gradlew :tv-core:tvV2Check       # 流量 / 隐私 / XDR 领域测试（4,398 通过）
-./gradlew :tv-core:tvKineticCheck  # V2.1 异常与封堵测试（3,025 通过）
-./gradlew :tv-core:tvTitanCheck    # V3 Titan 引擎测试（6,624 通过）
-# 总计：14,601 项 JVM 测试，0 失败
+./gradlew :tv-core:tvCoreCheck     # 核心领域测试（591 通过）
+./gradlew :tv-core:tvV2Check       # 流量 / 隐私 / XDR 领域测试（4,584 通过）
+./gradlew :tv-core:tvKineticCheck  # V2.1 异常与封堵测试（3,259 通过）
+./gradlew :tv-core:tvTitanCheck    # V3 Titan 引擎测试（6,693 通过）
+# 总计：15,127 项 JVM 测试，0 失败
 ./gradlew :app:lintDebug           # Android lint（0 错误 / 305 警告）
 ```
 

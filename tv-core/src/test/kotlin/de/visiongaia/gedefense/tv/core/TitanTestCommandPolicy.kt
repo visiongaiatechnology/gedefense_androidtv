@@ -60,6 +60,7 @@ private fun testCommandCommands() {
     )
     checkCommand(TitanCommandFactory.chmodVault("evil.sh"), "chmod", listOf("000", "--", "$TITAN_VAULT/evil.sh"), "vault-chmod-file")
     checkCommand(TitanCommandFactory.listDisabledPackages(), "cmd", listOf("package", "list", "packages", "-d"), "verify-disabled")
+    checkCommand(TitanCommandFactory.listPackagesWithUids(), "cmd", listOf("package", "list", "packages", "-U"), "list-packages-uid")
     checkCommand(TitanCommandFactory.listInputFilter(), "iptables", listOf("-w", "-L", "OUTPUT", "-n", "-v"), "verify-iptables")
     checkCommand(TitanCommandFactory.readAdbTcpPort(), "getprop", listOf("service.adb.tcp.port"), "verify-adb-port")
     checkCommand(TitanCommandFactory.probeRootIdentity(), "id", emptyList(), "probe-root")
@@ -100,6 +101,14 @@ private fun testCommandCommands() {
         titanCheckTrue(command.requiresRoot, "command requires confirmed root channel")
         titanCheckTrue(command.arguments.none { argument -> argument.contains(" ") }, "no whitespace injected into arguments")
     }
+    // Shizuku privilege boundary (VGT-002 / VGT-010): only safe Level-2 freeze/introspection commands allowed.
+    titanCheckEquals(TitanCommandFactory.freezeApp("com.example.app").allowsShizuku, true, "freeze allowed via Shizuku")
+    titanCheckEquals(TitanCommandFactory.restoreApp("com.example.app").allowsShizuku, true, "restore allowed via Shizuku")
+    titanCheckEquals(TitanCommandFactory.listPackagesWithUids().allowsShizuku, true, "uid package lookup allowed via Shizuku")
+    titanCheckEquals(TitanCommandFactory.isolateUid(10_050).allowsShizuku, false, "iptables UID isolation disallowed via Shizuku")
+    titanCheckEquals(TitanCommandFactory.killProcess(4_242).allowsShizuku, false, "process kill disallowed via Shizuku")
+    titanCheckEquals(TitanCommandFactory.closeAdbTcp().any { it.allowsShizuku }, false, "adb lockdown disallowed via Shizuku")
+    titanCheckEquals(TitanCommandFactory.moveToVault("$TITAN_TMP_ROOT/evil.sh", "evil.sh").allowsShizuku, false, "vault move disallowed via Shizuku")
     titanCheckThrows<IllegalArgumentException>("unknown program rejected") {
         TitanShellCommand("rm", listOf("-rf", "/"), true, "destructive")
     }
